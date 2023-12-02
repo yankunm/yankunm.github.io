@@ -78,7 +78,9 @@
     
     async function populateDropdown() {
         essays = await readLocalJsonFile(essayFilePath);
+        console.log(essays);
         persuasiveness = await readLocalJsonFile(persuasiveFilePath);
+        console.log(persuasiveness);
         console.log(persuasiveness);
         var select = document.getElementById("fileSelector");
         document.getElementById("essayText").value = "Essay Text Appears Here";
@@ -89,6 +91,7 @@
 
             // Fetch the list of files from the local directory
             const response = await fetchLocalFiles(directoryPath);
+            console.log(response);
 
             // Extract file names from the HTML response
             const files = extractFileNames(response.responseText);
