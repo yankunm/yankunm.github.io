@@ -47,6 +47,7 @@
   <label for="fileSelector">Select an Essay:</label>
   <select id="fileSelector" onchange="loadFile()">
     <option value="">None</option>
+    <option value="visualize2978.txt.html">Essay 2978</option>
   </select>
 
   <!-- iframe to display the selected HTML file -->
@@ -78,9 +79,9 @@
     
     async function populateDropdown() {
         essays = await readLocalJsonFile(essayFilePath);
-        console.log(essays);
+        // console.log(essays);
         persuasiveness = await readLocalJsonFile(persuasiveFilePath);
-        console.log(persuasiveness);
+        // console.log(persuasiveness);
         var select = document.getElementById("fileSelector");
         document.getElementById("essayText").value = "Essay Text Appears Here";
 
@@ -90,11 +91,9 @@
 
             // Fetch the list of files from the local directory
             const response = await fetchLocalFiles(directoryPath);
-            console.log(response);
 
             // Extract file names from the HTML response
             const files = extractFileNames(response.responseText);
-            console.log(files);
 
            // Populate dropdown with options, starting from the second file
             for (let i = 1; i < files.length; i++) {
