@@ -1,7 +1,171 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automated Essay Scoring</title>
+  <style>
+    body {
+      background-color: #E5BEEC; /* Set background color to blue */
+      color: black; /* Set text color to white */
+      text-align: center; /* Center-align text */
+    }
+    /* Flex container for the two elements */
+    .flex-container {
+      display: flex;
+      margin-top: 20px;
+    }
+
+    #textAboveIframe {
+      text-align: left;
+      font-size: 18px; /* Adjust the font size */
+      margin-bottom: 1px; /* Add margin at the bottom for spacing */
+      margin-left: 5px;
+      font-family: 'EB Garamond', serif; /* Set the font-family to EB Garamond */
+    } 
+
+    /* Style for the iframe */
+    #fileContent {
+      width: 800px; /* Adjust the width as needed */
+      border: 800px;
+    }
+
+    /* Style for the textarea */
+    #essayText {
+      width: 50%; /* Adjust the width as needed */
+      height: 800px;
+      font-family: 'EB Garamond', serif; /* Set the font-family to EB Garamond */
+    }
+  </style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap">
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+
+  <h1>Graphically Modeling Persuasive Essays on ASAP Essay Dataset</h1>
+
+  <!-- Dropdown menu for selecting HTML files -->
+  <label for="fileSelector">Select an Essay:</label>
+  <select id="fileSelector" onchange="loadFile()">
+    <option value="">None</option>
+  </select>
+
+  <!-- iframe to display the selected HTML file -->
+  <!-- <div>
+    <iframe id="fileContent" width="1200" height="800" frameborder="0"></iframe>
+     Textbox to display essay content -->
+    <!-- <textarea id="essayText" rows="10" cols="50" readonly>Hello World!</textarea>
+  </div> -->
+  <!-- Flex container for the iframe and textarea -->
+  
+  <div class="flex-container">
+    <!-- iframe to display the selected HTML file -->
+    <!-- Textbox to display essay content -->
+    <textarea id="essayText" rows="10" readonly>Essay Text</textarea>
+    <div>
+      <div id="textAboveIframe"></div>
+      <iframe id="fileContent" width="1200" height="1500" frameborder="0"></iframe>
+    </div>
+
+  </div>
+
+  
+  
+  <script>
+    let essays;
+    let persuasiveness;
+    const essayFilePath = 'asap_essays.json';
+    const persuasiveFilePath = 'persuasiveness.json';
+    
+    async function populateDropdown() {
+        essays = await readLocalJsonFile(essayFilePath);
+        persuasiveness = await readLocalJsonFile(persuasiveFilePath);
+        console.log(persuasiveness);
+        var select = document.getElementById("fileSelector");
+        document.getElementById("essayText").value = "Essay Text Appears Here";
+
+        try {
+            // Assume the files are in the "visualizations" directory
+            const directoryPath = './visualizations/';
+
+            // Fetch the list of files from the local directory
+            const response = await fetchLocalFiles(directoryPath);
+
+            // Extract file names from the HTML response
+            const files = extractFileNames(response.responseText);
+            console.log(files);
+
+           // Populate dropdown with options, starting from the second file
+            for (let i = 1; i < files.length; i++) {
+                var option = document.createElement("option");
+                option.value = directoryPath + files[i];
+                let essay_num = files[i].match(/\d+/)[0];
+                option.text = "Essay " + essay_num + " (D1: " + essays[essay_num]["domain1_score"] + ")";
+                console.log(option.value);
+                select.add(option);
+            }
+        } catch (error) {
+            console.error('Error fetching file list:', error);
+        }
+    }
+
+    function extractFileNames(htmlContent) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlContent, 'text/html');
+        const fileElements = doc.querySelectorAll('#files a');
+
+        const files = Array.from(fileElements).map((fileElement) => {
+            const fileName = fileElement.querySelector('.name').textContent;
+            return fileName.trim();
+        });
+
+        return files;
+    }
+
+    async function fetchLocalFiles(directoryPath) {
+        return new Promise((resolve, reject) => {
+            // You can customize this to fit your needs
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        resolve(xhr);
+                    } else {
+                        reject(new Error(`Failed to fetch local files (status ${xhr.status})`));
+                    }
+                }
+            };
+            xhr.open('GET', directoryPath, true);
+            xhr.send();
+        });
+    }
+
+    // Function to load the selected HTML file into the iframe
+    function loadFile() {
+      var select = document.getElementById("fileSelector");
+      var file = select.options[select.selectedIndex].value;
+
+      // Set the iframe source to the selected HTML file
+      document.getElementById("fileContent").src = file;
+      document.getElementById("essayText").value = essays[file.match(/\d+/)]["text"].replace(/\n/g, "\n\n");
+      document.getElementById("textAboveIframe").textContent = "Essay Persuasiveness: " + persuasiveness[file.match(/\d+/) + ".txt"] + " (Proportion of Claims supported by Premises)";
+      console.log(essays[file.match(/\d+/)]["text"]);
+    }
+
+    populateDropdown().then(loadFile());
+
+    async function readLocalJsonFile(filePath) {
+      try {
+          const xhr = await fetchLocalFiles(filePath);
+          const jsonData = JSON.parse(xhr.responseText);
+          return jsonData;
+          // Now you can work with the JSON data
+      } catch (error) {
+          console.error(error.message);
+          return null;
+      }
+    }
+   
+  </script>
+
 </body>
 </html>

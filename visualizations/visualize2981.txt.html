@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#FDE2FE", "id": 1, "label": "1 Premise", "shape": "dot", "title": "Some people are becoming concerned about the materials in libraries"}, {"color": "#E11299", "id": 2, "label": "2 Claim", "shape": "dot", "title": "They find these things to be offensive"}, {"color": "#FDE2FE", "id": 3, "label": "3 Premise", "shape": "dot", "title": "Everyone is entitled to their own opinion, but there really is nothing anyone can do if someone is offended"}, {"color": "#FDE2FE", "id": 4, "label": "4 Premise", "shape": "dot", "title": "The world is a public place and everywhere we go, something might be found offensive"}, {"color": "#FDE2FE", "id": 5, "label": "5 Premise", "shape": "dot", "title": "The library is a place for study"}, {"color": "#FDE2FE", "id": 6, "label": "6 Premise", "shape": "dot", "title": "It is never intended to offend someone, or bring bad to the world"}, {"color": "#FDE2FE", "id": 7, "label": "7 Premise", "shape": "dot", "title": "It is simply a place to inform, and if someone is offended by what they see, they should stay away from the library"}, {"color": "#E11299", "id": 8, "label": "8 Claim", "shape": "dot", "title": "I have been to the library many times, none of which have I ever seen anything offensive"}, {"color": "#FDE2FE", "id": 9, "label": "9 Premise", "shape": "dot", "title": "Everything I have ever witnessed at the library is for learning and research"}, {"color": "#FDE2FE", "id": 10, "label": "10 Premise", "shape": "dot", "title": "There are certain sections in the library"}, {"color": "#FDE2FE", "id": 11, "label": "11 Premise", "shape": "dot", "title": "If a parent does not want their child seeing something, they should keep their child in the children\u0027s section"}, {"color": "#FDE2FE", "id": 12, "label": "12 Premise", "shape": "dot", "title": "I can assure you, there is nothing offensive in the children\u0027s section, or else the library would not have it in that section"}, {"color": "#FDE2FE", "id": 13, "label": "13 Premise", "shape": "dot", "title": "The owners of these libraries know what is going to upset people and what will not"}, {"color": "#FDE2FE", "id": 14, "label": "14 Premise", "shape": "dot", "title": "If there was truly offensive materials in the library, those materials would be taken out"}, {"color": "#FDE2FE", "id": 15, "label": "15 Premise", "shape": "dot", "title": "if a person complains, and the materials are removed, it could lessen someone else\u0027s chance getting the materials they need"}, {"color": "#E11299", "id": 16, "label": "16 Claim", "shape": "dot", "title": "One person could think the material is offensive, but someone else might want to learn more about it"}, {"color": "#FDE2FE", "id": 17, "label": "17 Premise", "shape": "dot", "title": "If one is offended by a certain material, all they simply must do, is not look at it"}, {"color": "#FDE2FE", "id": 18, "label": "18 Premise", "shape": "dot", "title": "The library can be compared to a big computer"}, {"color": "#FDE2FE", "id": 19, "label": "19 Premise", "shape": "dot", "title": "One can basically find anything there"}, {"color": "#FDE2FE", "id": 20, "label": "20 Premise", "shape": "dot", "title": "Asking the library to censor their materials is like asking the internet to censor theirs"}, {"color": "#FDE2FE", "id": 21, "label": "21 Premise", "shape": "dot", "title": "It is a way of learning and researching and it would be almost impossible to censor everything there"}, {"color": "#FDE2FE", "id": 22, "label": "22 Premise", "shape": "dot", "title": "they would have no materials left"}, {"color": "#E11299", "id": 23, "label": "23 Claim", "shape": "dot", "title": "People need to stop being so easily offended and realize the library is not trying to harm anyone"}, {"color": "#FDE2FE", "id": 24, "label": "24 Premise", "shape": "dot", "title": "It is simply trying to teach people about the world and let them enjoy books, music, movies, or whatever else one might go to the library to find"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": 1, "to": 2}, {"arrows": "to", "from": 3, "to": 7}, {"arrows": "to", "from": 4, "to": 2}, {"arrows": "to", "from": 5, "to": 2}, {"arrows": "to", "from": 6, "to": 2}, {"arrows": "to", "from": 7, "to": 2}, {"arrows": "to", "from": 9, "to": 8}, {"arrows": "to", "from": 10, "to": 8}, {"arrows": "to", "from": 11, "to": 10}, {"arrows": "to", "from": 12, "to": 10}, {"arrows": "to", "from": 13, "to": 10}, {"arrows": "to", "from": 14, "to": 10}, {"arrows": "to", "from": 15, "to": 16}, {"arrows": "to", "from": 17, "to": 16}, {"arrows": "to", "from": 18, "to": 16}, {"arrows": "to", "from": 19, "to": 16}, {"arrows": "to", "from": 20, "to": 16}, {"arrows": "to", "from": 21, "to": 16}, {"arrows": "to", "from": 22, "to": 23}, {"arrows": "to", "from": 24, "to": 23}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

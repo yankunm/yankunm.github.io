@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#E11299", "id": 1, "label": "1 Claim", "shape": "dot", "title": "it should be taken off the shelf in a library and you should too"}, {"color": "#FDE2FE", "id": 2, "label": "2 Premise", "shape": "dot", "title": "The movies and music I think if it really offended somebody that they should have to either change the lyrics or get rid of it"}, {"color": "#E11299", "id": 3, "label": "3 Claim", "shape": "dot", "title": "They just should not offend somebody to be a good song or a really great movie"}, {"color": "#FDE2FE", "id": 4, "label": "4 Premise", "shape": "dot", "title": "You can\u0027t not make something that is making fun of another race or a movie of killing them"}, {"color": "#FDE2FE", "id": 5, "label": "5 Premise", "shape": "dot", "title": "Going to like school libraries, for books I think it really depends on the age group"}, {"color": "#E11299", "id": 6, "label": "6 Claim", "shape": "dot", "title": "Like their should not be anything that would be offensive or profanity in the @CAPS1 or @CAPS2 @CAPS4"}, {"color": "#FDE2FE", "id": 7, "label": "7 Premise", "shape": "dot", "title": "They are just not old enough or mature to be seeing or reading those things in books or magazines"}, {"color": "#FDE2FE", "id": 8, "label": "8 Premise", "shape": "dot", "title": "if a student comes home with a book the class is reading and the parent doesn\u0027t like the content they should have the right to say that they don\u0027t want their child reading it"}, {"color": "#FDE2FE", "id": 9, "label": "9 Premise", "shape": "dot", "title": "if was really bad be able to take it out of the school"}, {"color": "#FDE2FE", "id": 10, "label": "10 Premise", "shape": "dot", "title": "Even @CAPS3 @CAPS4 that have more mature students get offended sometimes from the books their reading in school"}, {"color": "#FDE2FE", "id": 11, "label": "11 Premise", "shape": "dot", "title": "One in example is \u0027To @CAPS5 a @CAPS6\u0027"}, {"color": "#FDE2FE", "id": 12, "label": "12 Premise", "shape": "dot", "title": "it is a really good book and a lot of @CAPS4 read it"}, {"color": "#E11299", "id": 13, "label": "13 Claim", "shape": "dot", "title": "A lot of @CAPS7 @CAPS8 might get offended by all the racial slurs about @CAPS7 @CAPS8"}, {"color": "#FDE2FE", "id": 14, "label": "14 Premise", "shape": "dot", "title": "They just do not feel comfortable fellow students saying them and their teachers saying them"}, {"color": "#FDE2FE", "id": 15, "label": "15 Premise", "shape": "dot", "title": "the @CAPS4 or libraries just should not make students read books that they don\u0027t feel comfortable reading"}, {"color": "#FDE2FE", "id": 16, "label": "16 Premise", "shape": "dot", "title": "Or the libraries having books like that"}, {"color": "#FDE2FE", "id": 17, "label": "17 Premise", "shape": "dot", "title": "next year I\u0027m going to have to read that book and I am just not going to like it"}, {"color": "#E11299", "id": 18, "label": "18 Claim", "shape": "dot", "title": "I\u0027m half @CAPS7 @CAPS12 and I do not like people saying things like that"}, {"color": "#FDE2FE", "id": 19, "label": "19 Premise", "shape": "dot", "title": "It is going to be a really akward moment for me"}, {"color": "#FDE2FE", "id": 20, "label": "20 Premise", "shape": "dot", "title": "I have some other friends that have read that book that didn\u0027t feel comfortable reading that book"}, {"color": "#FDE2FE", "id": 21, "label": "21 Premise", "shape": "dot", "title": "Their are even little kid books that parents want out of their childs school library"}, {"color": "#E11299", "id": 22, "label": "22 Claim", "shape": "dot", "title": "The most challenged book in school libraries is @CAPS13 @CAPS14"}, {"color": "#FDE2FE", "id": 23, "label": "23 Premise", "shape": "dot", "title": "my librarian told me this one day"}, {"color": "#FDE2FE", "id": 24, "label": "24 Premise", "shape": "dot", "title": "It is just a good book, but some parents don\u0027t want their kids reading about witchcraft and wizards"}, {"color": "#FDE2FE", "id": 25, "label": "25 Premise", "shape": "dot", "title": "they try to get them out of the library"}, {"color": "#FDE2FE", "id": 26, "label": "26 Premise", "shape": "dot", "title": "they should if the parents do\u0027t want their kids reading it"}, {"color": "#FDE2FE", "id": 27, "label": "27 Premise", "shape": "dot", "title": "I just think if their is a certain amount of people complaining about a movie or song that their should not even be a fight about it"}, {"color": "#E11299", "id": 28, "label": "28 Claim", "shape": "dot", "title": "They should just get rid of it"}, {"color": "#FDE2FE", "id": 29, "label": "29 Premise", "shape": "dot", "title": "Same thing in a school, if their is students or parents that are complaining and their is a certain amount of them, the librarian should not even have a say in it or the school"}, {"color": "#FDE2FE", "id": 30, "label": "30 Premise", "shape": "dot", "title": "They should just get rid of the book or magazine"}, {"color": "#FDE2FE", "id": 31, "label": "31 Premise", "shape": "dot", "title": "it should just be taken care of by getting rid of it"}, {"color": "#E11299", "id": 32, "label": "32 Claim", "shape": "dot", "title": "things that are brought to the world for entertainment should also be able to get out of the world if people are offended by it"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": 2, "to": 3}, {"arrows": "to", "from": 4, "to": 3}, {"arrows": "to", "from": 5, "to": 6}, {"arrows": "to", "from": 7, "to": 6}, {"arrows": "to", "from": 8, "to": 6}, {"arrows": "to", "from": 9, "to": 6}, {"arrows": "to", "from": 10, "to": 14}, {"arrows": "to", "from": 11, "to": 10}, {"arrows": "to", "from": 12, "to": 10}, {"arrows": "to", "from": 14, "to": 13}, {"arrows": "to", "from": 15, "to": 10}, {"arrows": "to", "from": 16, "to": 12}, {"arrows": "to", "from": 17, "to": 18}, {"arrows": "to", "from": 19, "to": 18}, {"arrows": "to", "from": 20, "to": 18}, {"arrows": "to", "from": 21, "to": 22}, {"arrows": "to", "from": 23, "to": 22}, {"arrows": "to", "from": 24, "to": 25}, {"arrows": "to", "from": 25, "to": 22}, {"arrows": "to", "from": 26, "to": 22}, {"arrows": "to", "from": 27, "to": 28}, {"arrows": "to", "from": 29, "to": 28}, {"arrows": "to", "from": 30, "to": 28}, {"arrows": "to", "from": 31, "to": 32}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

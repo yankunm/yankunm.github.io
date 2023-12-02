@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#FDE2FE", "id": 1, "label": "1 Premise", "shape": "dot", "title": "so libraris are full of book\u0027s, movies, music,"}, {"color": "#E11299", "id": 2, "label": "2 Claim", "shape": "dot", "title": "You can\u0027t just take books off the shelves,"}, {"color": "#FDE2FE", "id": 3, "label": "3 Premise", "shape": "dot", "title": "Other people @MONTH1 like the book you hate"}, {"color": "#FDE2FE", "id": 4, "label": "4 Premise", "shape": "dot", "title": "There are more books in the library you can read"}, {"color": "#E11299", "id": 5, "label": "5 Claim", "shape": "dot", "title": "Another reason people shouldn\u0027t remove offensive material out of the library; it will hurt whoevers\u0027 company got the book published and also the writters"}, {"color": "#FDE2FE", "id": 6, "label": "6 Premise", "shape": "dot", "title": "Writters and publishers would lose so much money because the library sells\u0027 there books,magazines,"}, {"color": "#FDE2FE", "id": 7, "label": "7 Premise", "shape": "dot", "title": "They make thousands of copies of thier product, which takes money"}, {"color": "#FDE2FE", "id": 8, "label": "8 Premise", "shape": "dot", "title": "So to make thier money back ,they sell to thousands of book stores"}, {"color": "#FDE2FE", "id": 9, "label": "9 Premise", "shape": "dot", "title": "Must of the offensive material will open the worlds eye\u0027s"}, {"color": "#E11299", "id": 10, "label": "10 Claim", "shape": "dot", "title": "Everybody needs to see whats going on in the world"}, {"color": "#FDE2FE", "id": 11, "label": "11 Premise", "shape": "dot", "title": "Books, newspapers tell the truth about a subject"}, {"color": "#FDE2FE", "id": 12, "label": "12 Premise", "shape": "dot", "title": "Now the writters intent is\u0027nt to hurt you but to help you"}, {"color": "#FDE2FE", "id": 13, "label": "13 Premise", "shape": "dot", "title": "Why cant the world be more open"}, {"color": "#FDE2FE", "id": 14, "label": "14 Premise", "shape": "dot", "title": "I know in my own life i have read books that at first ,the book offended me"}, {"color": "#E11299", "id": 15, "label": "15 Claim", "shape": "dot", "title": "I would get so mad, i would put the book down and walk away"}, {"color": "#FDE2FE", "id": 16, "label": "16 Premise", "shape": "dot", "title": "my eyes would open and finaly it hit me"}, {"color": "#FDE2FE", "id": 17, "label": "17 Premise", "shape": "dot", "title": "The offensive part out of the book helped myself relives a new understanding"}, {"color": "#FDE2FE", "id": 18, "label": "18 Premise", "shape": "dot", "title": "The views i used to have would be gone"}, {"color": "#FDE2FE", "id": 19, "label": "19 Premise", "shape": "dot", "title": "It is strange how you finnaly open up, and your life changes"}, {"color": "#FDE2FE", "id": 20, "label": "20 Premise", "shape": "dot", "title": "Some people might even find this paper offensive"}, {"color": "#FDE2FE", "id": 21, "label": "21 Premise", "shape": "dot", "title": "if nobody is stepping on your toes, and getting under your skin you wont ever change"}, {"color": "#E11299", "id": 22, "label": "22 Claim", "shape": "dot", "title": "Offened is a word used lightly; yes, people use it a lot but do they really mean it"}, {"color": "#FDE2FE", "id": 23, "label": "23 Premise", "shape": "dot", "title": "Some people need to use \u0027well this book bugs me\u0027"}, {"color": "#FDE2FE", "id": 24, "label": "24 Premise", "shape": "dot", "title": "Stop being about yourselves and get over it"}, {"color": "#FDE2FE", "id": 25, "label": "25 Premise", "shape": "dot", "title": "Life is to short to worry and feel offended"}, {"color": "#E11299", "id": 26, "label": "26 Claim", "shape": "dot", "title": "Those materials @MONTH1 reflect other peoples life and help others with thiers\u0027"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": 1, "to": 2}, {"arrows": "to", "from": 3, "to": 2}, {"arrows": "to", "from": 4, "to": 2}, {"arrows": "to", "from": 6, "to": 5}, {"arrows": "to", "from": 7, "to": 5}, {"arrows": "to", "from": 8, "to": 5}, {"arrows": "to", "from": 9, "to": 10}, {"arrows": "to", "from": 11, "to": 10}, {"arrows": "to", "from": 12, "to": 10}, {"arrows": "to", "from": 13, "to": 10}, {"arrows": "to", "from": 14, "to": 15}, {"arrows": "to", "from": 16, "to": 15}, {"arrows": "to", "from": 17, "to": 15}, {"arrows": "to", "from": 18, "to": 15}, {"arrows": "to", "from": 19, "to": 15}, {"arrows": "to", "from": 20, "to": 22}, {"arrows": "to", "from": 21, "to": 22}, {"arrows": "to", "from": 23, "to": 22}, {"arrows": "to", "from": 24, "to": 22}, {"arrows": "to", "from": 25, "to": 22}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
