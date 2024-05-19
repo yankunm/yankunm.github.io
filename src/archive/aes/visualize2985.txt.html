@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#FDE2FE", "id": 1, "label": "1 Premise", "shape": "dot", "title": "So have you desided what you think about taking them off the self of your local libary or even your school library"}, {"color": "#FDE2FE", "id": 2, "label": "2 Premise", "shape": "dot", "title": "We I have came up with what I think about it"}, {"color": "#E11299", "id": 3, "label": "3 Claim", "shape": "dot", "title": "In some way yes, but in other ways no"}, {"color": "#FDE2FE", "id": 4, "label": "4 Premise", "shape": "dot", "title": "I bet there are old books in my school library right know that haven\u0027t even been picked up for a long time, just because they are old and overly out dated"}, {"color": "#FDE2FE", "id": 5, "label": "5 Premise", "shape": "dot", "title": "The reason I say they shouldn\u0027t be pulled off the shelf of a library"}, {"color": "#E11299", "id": 6, "label": "6 Claim", "shape": "dot", "title": "Well just becasue some people seems that it\u0027s offensive, doesn\u0027t mean it couldn\u0027t almost the most popular book in the hole library"}, {"color": "#FDE2FE", "id": 7, "label": "7 Premise", "shape": "dot", "title": "The person that likes that book might find that the poeple that found the book offensive, they book might be offending the other person"}, {"color": "#FDE2FE", "id": 8, "label": "8 Premise", "shape": "dot", "title": "if you think about it, you will always have the poeple that like to complain about something no where you go"}, {"color": "#E11299", "id": 9, "label": "9 Claim", "shape": "dot", "title": "I was at a library one time and there way these to guys"}, {"color": "#FDE2FE", "id": 10, "label": "10 Premise", "shape": "dot", "title": "One was complaining how the farm books never get messed with"}, {"color": "#FDE2FE", "id": 11, "label": "11 Premise", "shape": "dot", "title": "Then the other guy walked up with two of the books that was over there in the farm section of that library"}, {"color": "#FDE2FE", "id": 12, "label": "12 Premise", "shape": "dot", "title": "the librarian is just taking in all the information that the two guys was disabuting during that time"}, {"color": "#FDE2FE", "id": 13, "label": "13 Premise", "shape": "dot", "title": "During all of this I was just about five feet form the counter these guys was at"}, {"color": "#FDE2FE", "id": 14, "label": "14 Premise", "shape": "dot", "title": "So then the guy that was talk about how the farm books should get pulled off the shelf he ask the librarian where the books was on spaceships"}, {"color": "#FDE2FE", "id": 15, "label": "15 Premise", "shape": "dot", "title": "Then the guy that was getting the farm books said you really should take them off the shelf because he hasn\u0027t seen anyone over that way for years"}, {"color": "#FDE2FE", "id": 16, "label": "16 Premise", "shape": "dot", "title": "if you was to take a book, some music, or any other of the thinks that you can find in a library should just more in likely stay where they are, because the library got them books or any of that other stuff for a reason"}, {"color": "#E11299", "id": 17, "label": "17 Claim", "shape": "dot", "title": "you don\u0027t ever know what someone might just come walking through that door just looking for that lonely book, magizne, movie, or just need to get on the computer"}, {"color": "#FDE2FE", "id": 18, "label": "18 Premise", "shape": "dot", "title": "you probably getting tired of hearing the reasons why I think no books or any other things should get pulled off the shelf"}, {"color": "#E11299", "id": 19, "label": "19 Claim", "shape": "dot", "title": "it\u0027s time to tells you why they should get pulled off the shelf of that local library in your neiborhood"}, {"color": "#FDE2FE", "id": 20, "label": "20 Premise", "shape": "dot", "title": "The main reason somethings should get pulled off the shelf of the local library or school library is if the book was really damaged"}, {"color": "#E11299", "id": 21, "label": "21 Claim", "shape": "dot", "title": "I have been to one of the libraries in my county and they had a book in there that the back cover of the book was torn completly off"}, {"color": "#FDE2FE", "id": 22, "label": "22 Premise", "shape": "dot", "title": "they would have that on there shelf,"}, {"color": "#FDE2FE", "id": 23, "label": "23 Premise", "shape": "dot", "title": "makes there library looks like a trashed up place to go to"}, {"color": "#FDE2FE", "id": 24, "label": "24 Premise", "shape": "dot", "title": "something should get pulled off the shelf is if the book supported drugs"}, {"color": "#E11299", "id": 25, "label": "25 Claim", "shape": "dot", "title": "if there was a books about some that was doing drug and they got cought with them and they just got a \u0027slap on the wrist\u0027 as I call it"}, {"color": "#FDE2FE", "id": 26, "label": "26 Premise", "shape": "dot", "title": "A slap on the wrist is when you get in trouble for something and you don\u0027t even get in any trouble you just get handed over to your parents"}, {"color": "#FDE2FE", "id": 27, "label": "27 Premise", "shape": "dot", "title": "I think the saying \u0027just a slap on the wrist\u0027"}, {"color": "#FDE2FE", "id": 28, "label": "28 Premise", "shape": "dot", "title": "you will always have you people that like to complain about every little pitty thing they can find to complain about"}, {"color": "#E11299", "id": 29, "label": "29 Claim", "shape": "dot", "title": "I haven\u0027t taken to much of your time up"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": 1, "to": 3}, {"arrows": "to", "from": 2, "to": 3}, {"arrows": "to", "from": 4, "to": 3}, {"arrows": "to", "from": 5, "to": 6}, {"arrows": "to", "from": 7, "to": 6}, {"arrows": "to", "from": 8, "to": 6}, {"arrows": "to", "from": 10, "to": 9}, {"arrows": "to", "from": 11, "to": 9}, {"arrows": "to", "from": 12, "to": 9}, {"arrows": "to", "from": 13, "to": 9}, {"arrows": "to", "from": 14, "to": 10}, {"arrows": "to", "from": 15, "to": 9}, {"arrows": "to", "from": 16, "to": 17}, {"arrows": "to", "from": 18, "to": 19}, {"arrows": "to", "from": 20, "to": 21}, {"arrows": "to", "from": 22, "to": 21}, {"arrows": "to", "from": 23, "to": 21}, {"arrows": "to", "from": 24, "to": 25}, {"arrows": "to", "from": 26, "to": 25}, {"arrows": "to", "from": 27, "to": 25}, {"arrows": "to", "from": 28, "to": 29}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

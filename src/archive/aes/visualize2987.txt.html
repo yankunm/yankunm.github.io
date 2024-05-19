@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#FDE2FE", "id": 1, "label": "1 Premise", "shape": "dot", "title": "Everyone will read a book that they don\u0027t like, its natural, but that doesn\u0027t mean that no one will like it"}, {"color": "#FDE2FE", "id": 2, "label": "2 Premise", "shape": "dot", "title": "Authors write for an audience, but maybe you are not in that audience; so, it doesn\u0027t appeal to you and might even seem offensive"}, {"color": "#FDE2FE", "id": 3, "label": "3 Premise", "shape": "dot", "title": "Not everyone believes in the same ideas"}, {"color": "#FDE2FE", "id": 4, "label": "4 Premise", "shape": "dot", "title": "You could think about an issue one way and your neighbor think about it a totally different way"}, {"color": "#FDE2FE", "id": 5, "label": "5 Premise", "shape": "dot", "title": "you\u0027re reading a book about a young girl that is going through many problems in her life"}, {"color": "#FDE2FE", "id": 6, "label": "6 Premise", "shape": "dot", "title": "She has gotten into some really horrible situations"}, {"color": "#E11299", "id": 7, "label": "7 Claim", "shape": "dot", "title": "Some of these situations you read about are so awful that you wouldn\u0027t want anyone else to read it"}, {"color": "#FDE2FE", "id": 8, "label": "8 Premise", "shape": "dot", "title": "did you ever think that maybe there\u0027s another girl that is or has gone through some of these same situations"}, {"color": "#FDE2FE", "id": 9, "label": "9 Premise", "shape": "dot", "title": "this girl comes to a library and finds this book; suddenly she finds guidence in it"}, {"color": "#FDE2FE", "id": 10, "label": "10 Premise", "shape": "dot", "title": "She finds something she can depend on in her life that she\u0027s never had before"}, {"color": "#FDE2FE", "id": 11, "label": "11 Premise", "shape": "dot", "title": "She feels like she has a friend in this book that can handle the situations with her"}, {"color": "#FDE2FE", "id": 12, "label": "12 Premise", "shape": "dot", "title": "would you really want to take that book off of the shelf and not let that girl ever find her guidence"}, {"color": "#FDE2FE", "id": 13, "label": "13 Premise", "shape": "dot", "title": "No one will ever be able to learn of what was to become of that writing and of those ideas"}, {"color": "#E11299", "id": 14, "label": "14 Claim", "shape": "dot", "title": "We all have a right to learn, to explore new ideas, and to expand our minds"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": 1, "to": 7}, {"arrows": "to", "from": 2, "to": 7}, {"arrows": "to", "from": 3, "to": 7}, {"arrows": "to", "from": 4, "to": 7}, {"arrows": "to", "from": 5, "to": 7}, {"arrows": "to", "from": 6, "to": 7}, {"arrows": "to", "from": 8, "to": 7}, {"arrows": "to", "from": 9, "to": 7}, {"arrows": "to", "from": 10, "to": 7}, {"arrows": "to", "from": 11, "to": 7}, {"arrows": "to", "from": 12, "to": 7}, {"arrows": "to", "from": 13, "to": 14}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

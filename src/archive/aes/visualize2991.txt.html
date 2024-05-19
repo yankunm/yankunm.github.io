@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#E11299", "id": 1, "label": "1 Claim", "shape": "dot", "title": "some materials in those catagories should be removed if they are offensive to me as well as others, but it will take a long while to get them removed from stores and other places if other people like them"}, {"color": "#E11299", "id": 2, "label": "2 Claim", "shape": "dot", "title": "I do not like how they make some music to be very violent and cause minds of most teenagers to turn bad and start selling drugs on the street of their hometown, but i can\u0027t do anything about that because that kind of music is admired by those teenagers as well as some adults too"}, {"color": "#FDE2FE", "id": 3, "label": "3 Premise", "shape": "dot", "title": "If some people can buckle down and see that stuff like that will mess up lives of teenagers and some adults who fall victim to it, then there is a chance that it can be stopped"}, {"color": "#E11299", "id": 4, "label": "4 Claim", "shape": "dot", "title": "Stopping things like this will save a community from disaster and cause other good chances in life for people in need for those chances"}, {"color": "#FDE2FE", "id": 5, "label": "5 Premise", "shape": "dot", "title": "Here\u0027s another example, like this music artist named @CAPS1 @CAPS2"}, {"color": "#E11299", "id": 6, "label": "6 Claim", "shape": "dot", "title": "She has made some great songs for the past year and a half now"}, {"color": "#FDE2FE", "id": 7, "label": "7 Premise", "shape": "dot", "title": "People have told me that she is part of a group called @CAPS3 and its a group where they try to I think \u0027re-birth\u0027"}, {"color": "#FDE2FE", "id": 8, "label": "8 Premise", "shape": "dot", "title": "My friends wanted me to stop listening to her music"}, {"color": "#FDE2FE", "id": 9, "label": "9 Premise", "shape": "dot", "title": "I told my friends that I do not like the fact that she joined this group, but that doesnt mean im gonna stop listen to her music"}, {"color": "#FDE2FE", "id": 10, "label": "10 Premise", "shape": "dot", "title": "if she makes a song that is offensive to me and as well as my friends, then that where I draw the line"}, {"color": "#E11299", "id": 11, "label": "11 Claim", "shape": "dot", "title": "people don\u0027t have others to back them up if something is highly offensive to them and oblivious to others, it will be very hard trying to prove yourself in the best way possible"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": 3, "to": 4}, {"arrows": "to", "from": 5, "to": 8}, {"arrows": "to", "from": 7, "to": 6}, {"arrows": "to", "from": 8, "to": 6}, {"arrows": "to", "from": 9, "to": 6}, {"arrows": "to", "from": 10, "to": 6}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

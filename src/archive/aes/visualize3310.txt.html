@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#FDE2FE", "id": 1, "label": "1 Premise", "shape": "dot", "title": "Censorship in public libraries would be an insult to the institution"}, {"color": "#E11299", "id": 2, "label": "2 Claim", "shape": "dot", "title": "A library, a citadel of knowledge, should not be bound by a society as to what knowledge it can convey"}, {"color": "#FDE2FE", "id": 3, "label": "3 Premise", "shape": "dot", "title": "One point of a library, the destination of researchers, is to offer information that must be sought: for those who cannot find the information in their homes without fear, for those who cannot ask their questions without retribution, the library stands as a pillar of safety"}, {"color": "#FDE2FE", "id": 4, "label": "4 Premise", "shape": "dot", "title": "Books are incapable of judgment"}, {"color": "#FDE2FE", "id": 5, "label": "5 Premise", "shape": "dot", "title": "To censor the books held in a library is to chip away at human progress"}, {"color": "#E11299", "id": 6, "label": "6 Claim", "shape": "dot", "title": "A freedom of thought and a freedom of press, present within our nation and increasing in presence around the @CAPS5, precludes the idea of this censorship"}, {"color": "#E11299", "id": 7, "label": "7 Claim", "shape": "dot", "title": "If any book is subject to criticism or opposition, are not all books worthy of the same"}, {"color": "#FDE2FE", "id": 8, "label": "8 Premise", "shape": "dot", "title": "To value one opinion or perspective less than another is to debase the entire culture from which libraries have arisen"}, {"color": "#FDE2FE", "id": 9, "label": "9 Premise", "shape": "dot", "title": "Libraries are a communal institution, open to all views and writings"}, {"color": "#FDE2FE", "id": 10, "label": "10 Premise", "shape": "dot", "title": "The point of bringing books together under one roof is to equate them, and give them all equal standing as literature or scholarly works"}, {"color": "#E11299", "id": 11, "label": "11 Claim", "shape": "dot", "title": "censorship in the library has cost me precious time, and has stolen from me parts of my life"}, {"color": "#FDE2FE", "id": 12, "label": "12 Premise", "shape": "dot", "title": "Growing up in a small town, where ideas of gender and sexuality were somewhat firmly set, any search for dissenting opinion was often fruitless"}, {"color": "#FDE2FE", "id": 13, "label": "13 Premise", "shape": "dot", "title": "When I visited my school\u0027s library, as a child searching for answers about my sexuality, I found little aid"}, {"color": "#FDE2FE", "id": 14, "label": "14 Premise", "shape": "dot", "title": "Around the library were a thousand stories of a man and woman falling in love, but never did I find a fairy tale of two princes"}, {"color": "#FDE2FE", "id": 15, "label": "15 Premise", "shape": "dot", "title": "It was not until I left the school that I found that such books did exist in my old school library, but kept removed, off the shelves,"}, {"color": "#FDE2FE", "id": 16, "label": "16 Premise", "shape": "dot", "title": "More insulting than finding books of @CAPS4 issues completely unrepresented was to find that they were treated so separately"}, {"color": "#E11299", "id": 17, "label": "17 Claim", "shape": "dot", "title": "if minority opinions or values are unrepresented, they will disappear"}, {"color": "#FDE2FE", "id": 18, "label": "18 Premise", "shape": "dot", "title": "ignoring an issue or a life-choice to the point of extinction"}, {"color": "#FDE2FE", "id": 19, "label": "19 Premise", "shape": "dot", "title": "books cannot shout their values"}, {"color": "#FDE2FE", "id": 20, "label": "20 Premise", "shape": "dot", "title": "They cannot shove information down our throats"}, {"color": "#FDE2FE", "id": 21, "label": "21 Premise", "shape": "dot", "title": "Books must be read, we must give our consent to their knowledge"}, {"color": "#FDE2FE", "id": 22, "label": "22 Premise", "shape": "dot", "title": "Unlike an advertisement that might accost us unawares, we must pick up a book and open it to receive its guidance"}, {"color": "#FDE2FE", "id": 23, "label": "23 Premise", "shape": "dot", "title": "If my library had done its job and given me the guidance I sought, I would have grown so much more easily"}, {"color": "#E11299", "id": 24, "label": "24 Claim", "shape": "dot", "title": "I would have learned not only how to express and accept myself, but I might have grown to more easily accept others as well"}, {"color": "#FDE2FE", "id": 25, "label": "25 Premise", "shape": "dot", "title": "with the effects of @CAPS5 @CAPS6 @CAPS7 reaching the newest generation, @LOCATION1 has searched for ways to pay homage to the victims of the violence of @CAPS8 and of the @CAPS9"}, {"color": "#FDE2FE", "id": 26, "label": "26 Premise", "shape": "dot", "title": "it cannot effectively memorialize the tragedies"}, {"color": "#E11299", "id": 27, "label": "27 Claim", "shape": "dot", "title": "In trying construct a monument, the government and culture find that they have little to build off of"}, {"color": "#FDE2FE", "id": 28, "label": "28 Premise", "shape": "dot", "title": "The products of murder and book-burning have resulted in an emptiness, a void"}, {"color": "#FDE2FE", "id": 29, "label": "29 Premise", "shape": "dot", "title": "architects have created what @MONTH1 be called \u0027anti-monuments\u0027, commemorating a void to posterity to memorialize what was lost"}, {"color": "#FDE2FE", "id": 30, "label": "30 Premise", "shape": "dot", "title": "One of the most powerful, to me at least, appears in the form of a negative bookshelf: a solid wall, with gaping holes in the form of book spines, ranging across the rows"}, {"color": "#FDE2FE", "id": 31, "label": "31 Premise", "shape": "dot", "title": "Such is the knowledge lost from book-"}, {"color": "#FDE2FE", "id": 32, "label": "32 Premise", "shape": "dot", "title": "We cannot even describe what is lost, for the knowledge has vanished"}, {"color": "#FDE2FE", "id": 33, "label": "33 Premise", "shape": "dot", "title": "We must ask, what are we missing"}, {"color": "#FDE2FE", "id": 34, "label": "34 Premise", "shape": "dot", "title": "What views, what prose, what beauty has been taking from us while we continue living, never having the chance to glimpse it"}, {"color": "#E11299", "id": 35, "label": "35 Claim", "shape": "dot", "title": "a book from its natural and rightful place on a shelf is to set its words aflame"}, {"color": "#FDE2FE", "id": 36, "label": "36 Premise", "shape": "dot", "title": "it will be forgotten"}, {"color": "#FDE2FE", "id": 37, "label": "37 Premise", "shape": "dot", "title": "we must work to preserve all books, any book that appears offensive, or disgusting, or brave, or new"}, {"color": "#FDE2FE", "id": 38, "label": "38 Premise", "shape": "dot", "title": "Let the reader decide its value"}, {"color": "#FDE2FE", "id": 39, "label": "39 Premise", "shape": "dot", "title": "Let the person in search of answers pick it up or leave it behind"}, {"color": "#FDE2FE", "id": 40, "label": "40 Premise", "shape": "dot", "title": "Give the book a chance for it @MONTH1 have a power that is unrealized"}, {"color": "#FDE2FE", "id": 41, "label": "41 Premise", "shape": "dot", "title": "they are, as the monuments to the preservation and progression of knowledge and wisdom"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": 1, "to": 2}, {"arrows": "to", "from": 3, "to": 2}, {"arrows": "to", "from": 4, "to": 2}, {"arrows": "to", "from": 5, "to": 6}, {"arrows": "to", "from": 8, "to": 7}, {"arrows": "to", "from": 9, "to": 8}, {"arrows": "to", "from": 10, "to": 8}, {"arrows": "to", "from": 12, "to": 11}, {"arrows": "to", "from": 13, "to": 14}, {"arrows": "to", "from": 14, "to": 11}, {"arrows": "to", "from": 15, "to": 14}, {"arrows": "to", "from": 16, "to": 11}, {"arrows": "to", "from": 18, "to": 17}, {"arrows": "to", "from": 19, "to": 17}, {"arrows": "to", "from": 20, "to": 18}, {"arrows": "to", "from": 21, "to": 18}, {"arrows": "to", "from": 22, "to": 18}, {"arrows": "to", "from": 23, "to": 24}, {"arrows": "to", "from": 25, "to": 27}, {"arrows": "to", "from": 26, "to": 34}, {"arrows": "to", "from": 28, "to": 27}, {"arrows": "to", "from": 29, "to": 27}, {"arrows": "to", "from": 30, "to": 34}, {"arrows": "to", "from": 31, "to": 27}, {"arrows": "to", "from": 32, "to": 34}, {"arrows": "to", "from": 33, "to": 27}, {"arrows": "to", "from": 34, "to": 27}, {"arrows": "to", "from": 36, "to": 35}, {"arrows": "to", "from": 37, "to": 36}, {"arrows": "to", "from": 38, "to": 39}, {"arrows": "to", "from": 39, "to": 36}, {"arrows": "to", "from": 40, "to": 36}, {"arrows": "to", "from": 41, "to": 36}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
