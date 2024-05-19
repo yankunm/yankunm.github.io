@@ -44,18 +44,22 @@ const services = [
     {
         title: "Web Developer",
         icon: web,
+        link: "src/constants/page1.html"
     },
     {
         title: "React Native Developer",
         icon: mobile,
+        link: "src/constants/page1.html"
     },
     {
         title: "Backend Developer",
         icon: backend,
+        link: "src/constants/page1.html"
     },
     {
         title: "Content Creator",
         icon: creator,
+        link: "src/constants/page1.html"
     },
 ];
 
