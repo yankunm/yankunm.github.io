@@ -20,9 +20,8 @@ import {
     tesla,
     shopify,
     carrent,
-    jobit,
-    tripguide,
     threejs,
+    workout
 } from "../assets";
 
 export const navLinks = [
@@ -46,20 +45,24 @@ export const navLinks = [
 
 const services = [
     {
-        title: "Web Developer",
+        title: "Work Projects",
         icon: web,
+        link: "/workprojects"
     },
     {
-        title: "React Native Developer",
+        title: "Side Projects",
         icon: mobile,
+        link: "/sideprojects"
     },
     {
         title: "Backend Developer",
         icon: backend,
+        link: "/"
     },
     {
         title: "Content Creator",
         icon: creator,
+        link: "/"
     },
 ];
 
@@ -225,49 +228,31 @@ const workprojects = [
         ],
         image: carrent,
         source_code_link: "https://sites.google.com/view/cs333aes/overview",
-    },
-    {
-        name: "Job IT",
-        description:
-            "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
-        tags: [
-            {
-                name: "react",
-                color: "blue-text-gradient",
-            },
-            {
-                name: "restapi",
-                color: "green-text-gradient",
-            },
-            {
-                name: "scss",
-                color: "pink-text-gradient",
-            },
-        ],
-        image: jobit,
-        source_code_link: "https://github.com/",
-    },
-    {
-        name: "Trip Guide",
-        description:
-            "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
-        tags: [
-            {
-                name: "nextjs",
-                color: "blue-text-gradient",
-            },
-            {
-                name: "supabase",
-                color: "green-text-gradient",
-            },
-            {
-                name: "css",
-                color: "pink-text-gradient",
-            },
-        ],
-        image: tripguide,
-        source_code_link: "https://github.com/",
-    },
+    }
 ];
 
-export { services, technologies, experiences, testimonials, workprojects };
+const sideprojects = [
+    {
+        name: "Workout Routine Generator",
+        description:
+            "This is a simple Python CLI program that generates a customized workout routine based on user inputs.",
+        tags: [
+            {
+                name: "Python",
+                color: "",
+            },
+            {
+                name: "CLI",
+                color: "",
+            },
+            {
+                name: "I/O",
+                color: "",
+            }
+        ],
+        image: workout,
+        source_code_link: "https://github.com/yankunm/100/tree/main/001",
+    }
+];
+
+export { services, technologies, experiences, testimonials, workprojects, sideprojects };

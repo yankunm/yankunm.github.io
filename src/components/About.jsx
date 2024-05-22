@@ -7,9 +7,9 @@ import { fadeIn, textVariant } from '../utils/motion'
 import { SectionWrapper } from '../hoc'
 import { Link } from 'react-router-dom'
 
-const ServiceCard = ({ index, title, icon }) => {
+const ServiceCard = ({ index, title, icon, link }) => {
   return (
-    <Link to="/workprojects">
+    <Link to={link}>
       <Tilt className="xs:w-[250px] w-full">
         <motion.div
           variants={fadeIn("right", "spring", 0.5 * index, 0.75)}
@@ -50,7 +50,7 @@ const About = () => {
          leading-[30px]"
       // deleted: max-w-3xl
       >
-        A Senior studying Computer Science and Electrical and Computer Engineering at Duke University
+        Blah Blah Blah
       </motion.p>
 
       <div className="mt-20 flex flex-wrap gap-10">
