@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 
 const ServiceCard = ({ index, title, icon }) => {
   return (
-    <Link to="/contact">
+    <Link to="/workprojects">
       <Tilt className="xs:w-[250px] w-full">
         <motion.div
           variants={fadeIn("right", "spring", 0.5 * index, 0.75)}

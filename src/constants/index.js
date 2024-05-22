@@ -27,12 +27,16 @@ import {
 
 export const navLinks = [
     {
+        id: "",
+        title: "Home",
+    },
+    {
         id: "about",
-        title: "About",
+        title: "Overview",
     },
     {
         id: "work",
-        title: "Work",
+        title: "Experience",
     },
     {
         id: "contact",
@@ -196,9 +200,9 @@ const testimonials = [
     },
 ];
 
-const projects = [
+const workprojects = [
     {
-        name: "Automated Essay Scoring",
+        name: "Argument Parsing",
         description:
             "Replicated and Improved upon state-of-the-art argument mining and natural language processing methods in automatically scoring essays. Performed feature engineering with Stanford CoreNLP in Java to parse argument microstructures.",
         tags: [
@@ -266,4 +270,4 @@ const projects = [
     },
 ];
 
-export { services, technologies, experiences, testimonials, projects };
+export { services, technologies, experiences, testimonials, workprojects };

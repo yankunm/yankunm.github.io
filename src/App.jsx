@@ -8,7 +8,7 @@ const App = () => {
       <div className="relative z-0 bg-primary">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/workprojects" element={<Works />} />
         </Routes>
       </div>
     </BrowserRouter>
