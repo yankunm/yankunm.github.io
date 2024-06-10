@@ -60,7 +60,7 @@ const GifGrid = () => {
     }, [])
 
     return (
-        <div className="gif-grid mt-20 grid gap-0 overflow-hidden">
+        <div className="gif-grid mt-20 grid gap-0">
             {gifUrls.map((url, index) => (
                 <div key={index} className="gif-item w-60 h-60 flex justify-center items-center">
                     <img src={url} alt={`GIF ${index}`} className="gif-image h-auto max-w-full" />

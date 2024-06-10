@@ -24,7 +24,7 @@ const Hero = () => {
             Polymathic
           </span></h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            Simons Foundation
+            Flatiron Institute
           </p>
         </div>
       </div>
