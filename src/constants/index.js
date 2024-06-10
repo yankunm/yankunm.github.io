@@ -21,7 +21,8 @@ import {
     shopify,
     carrent,
     threejs,
-    workout
+    workout,
+    pic01
 } from "../assets";
 
 export const navLinks = [
@@ -43,6 +44,13 @@ export const navLinks = [
     },
 ];
 
+const intro = [
+    {
+        index: 1,
+        imageUrl: pic01,
+    }
+];
+
 const services = [
     {
         title: "Work Projects",
@@ -50,17 +58,17 @@ const services = [
         link: "/workprojects"
     },
     {
+        title: "Research Projects",
+        icon: backend,
+        link: "/"
+    },
+    {
         title: "Side Projects",
         icon: mobile,
         link: "/sideprojects"
     },
     {
-        title: "Backend Developer",
-        icon: backend,
-        link: "/"
-    },
-    {
-        title: "Content Creator",
+        title: "Learning Never Stops",
         icon: creator,
         link: "/"
     },
@@ -255,4 +263,4 @@ const sideprojects = [
     }
 ];
 
-export { services, technologies, experiences, testimonials, workprojects, sideprojects };
+export { services, technologies, experiences, testimonials, workprojects, sideprojects, intro };

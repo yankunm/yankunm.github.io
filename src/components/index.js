@@ -8,6 +8,7 @@ import Works from './Works';
 import Feedbacks from './Feedbacks';
 import Contact from './Contact';
 import PersonalProjects from './PersonalProjects';
+import Techs from './Techs';
 
 export {
   Hero,
@@ -22,5 +23,6 @@ export {
   BallCanvas,
   ComputersCanvas,
   StarsCanvas,
-  PersonalProjects
+  PersonalProjects,
+  Techs
 }
