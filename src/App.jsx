@@ -24,11 +24,11 @@ const HomePage = () => (
     <div>
       <Hero />
       {/* <StarsCanvas /> */}
-      <About />
-      <Experience />
+      {/* <About /> */}
+      {/* <Experience /> */}
       {/* <Tech /> */}
-      <Works />
-      <PersonalProjects />
+      {/* <Works /> */}
+      {/* <PersonalProjects /> */}
       {/* <Feedbacks /> */}
       <div className="relative z-0">
         <Contact />
