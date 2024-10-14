@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { styles } from '../styles'
-import { ComputersCanvas } from "./canvas"
+import { StarsCanvas } from "./canvas"
 
 const Hero = () => {
   return (
@@ -17,12 +17,12 @@ const Hero = () => {
             Hi, I'm Alex Meng
           </span></h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            A Senior studying Computer Science and Electrical and Computer Engineering at Duke University
+            An aspiring researcher, artist, and educator.
           </p>
         </div>
 
       </div>
-      {/* <ComputersCanvas /> */}
+      <StarsCanvas />
       <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
         <a href="#about">
           <div className="w-[35px] h-[64px]

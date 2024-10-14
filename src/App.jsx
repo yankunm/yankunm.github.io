@@ -23,6 +23,7 @@ const HomePage = () => (
     </div>
     <div>
       <Hero />
+      {/* <StarsCanvas /> */}
       <About />
       <Experience />
       {/* <Tech /> */}
@@ -32,7 +33,6 @@ const HomePage = () => (
       <div className="relative z-0">
         <Contact />
       </div>
-      <StarsCanvas />
     </div>
   </div>
 );

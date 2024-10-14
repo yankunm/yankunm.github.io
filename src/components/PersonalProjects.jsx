@@ -4,7 +4,7 @@ import { styles } from "../styles"
 import { SectionWrapper } from "../hoc"
 import { sideprojects } from "../constants"
 import { fadeIn, textVariant } from "../utils/motion"
-import { StarsCanvas } from './canvas';
+// import { StarsCanvas } from './canvas';
 import { Navbar } from './'
 
 
@@ -91,7 +91,7 @@ const PersonalProjects = () => {
                 ))}
             </div>
 
-            <StarsCanvas />
+            {/* <StarsCanvas /> */}
         </div>
     )
 }
