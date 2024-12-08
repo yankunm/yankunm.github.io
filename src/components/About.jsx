@@ -6,6 +6,9 @@ import { services } from '../constants'
 import { fadeIn, textVariant } from '../utils/motion'
 import { SectionWrapper } from '../hoc'
 import { Link } from 'react-router-dom'
+import { StarsCanvas } from "./canvas"
+
+
 
 const ServiceCard = ({ index, title, icon, link }) => {
   return (
@@ -39,17 +42,18 @@ const ServiceCard = ({ index, title, icon, link }) => {
 const About = () => {
   return (
     <>
-      <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubText}>Introduction</p>
-        <h2 className={styles.sectionHeadText}>Overview.</h2>
-      </motion.div>
 
-      <motion.p
+      {/* <motion.div variants={textVariant()}>
+        <p className={styles.sectionSubText}>Introduction</p>
+        <h2 className={styles.sectionHeadText}>About Me</h2>
+      </motion.div> */}
+
+      {/* <motion.p
         variants={fadeIn("", "", 0.1, 1)}
         className="mt-4 text-secondary text-[17px]
          leading-[30px]"
       >
-      </motion.p>
+      </motion.p> */}
 
       {/* Embedded YouTube Video */}
       <div className="mt-10 flex justify-center">
@@ -57,18 +61,22 @@ const About = () => {
           className="rounded-lg shadow-lg"
           width="560"
           height="315"
-          src="https://youtu.be/MFC4u46TvH0?si=6w_E8GJa4wh7eyU9"
+          src="https://www.youtube.com/embed/MFC4u46TvH0"
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         ></iframe>
       </div>
 
-      <div className="mt-20 flex flex-wrap gap-10">
+
+
+      {/* <div className="mt-20 flex flex-wrap gap-10">
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}
-      </div>
+      </div> */}
+
+      <StarsCanvas />
     </>
   )
 }
