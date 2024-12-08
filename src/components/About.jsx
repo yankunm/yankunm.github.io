@@ -49,8 +49,20 @@ const About = () => {
         className="mt-4 text-secondary text-[17px]
          leading-[30px]"
       >
-        Blah Blah Blah
       </motion.p>
+
+      {/* Embedded YouTube Video */}
+      <div className="mt-10 flex justify-center">
+        <iframe
+          className="rounded-lg shadow-lg"
+          width="560"
+          height="315"
+          src="https://youtu.be/MFC4u46TvH0?si=6w_E8GJa4wh7eyU9"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+      </div>
 
       <div className="mt-20 flex flex-wrap gap-10">
         {services.map((service, index) => (
