@@ -4,7 +4,6 @@ import { styles } from "../styles"
 import { SectionWrapper } from "../hoc"
 import { workprojects } from "../constants"
 import { fadeIn, textVariant } from "../utils/motion"
-// import { StarsCanvas } from './canvas';
 import { Navbar } from './'
 
 
@@ -30,18 +29,6 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link }
             className="w-full h-full object-cover
             rounded-2xl"
           />
-
-          {/* <div className="absolute inset-0 flex
-          justify-end m-3 card-img_hover"> */}
-          {/* <div
-              onClick={() => window.open
-                (source_code_link, "blank")}
-              className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
-            >
-              <img src={github} alt="github" className="w-1/2 h-1/2 object-contain" />
-            </div> */}
-          {/* live url */}
-          {/* </div> */}
         </div>
 
         <div className="mt-5">
@@ -69,7 +56,7 @@ const Works = () => {
         <Navbar />
       </div>
       <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubText}>My Work</p>
+        <p className={styles.sectionSubText}>Creating Impact</p>
         <h2 className={styles.sectionHeadText}>Work Projects.</h2>
       </motion.div>
 
@@ -78,11 +65,10 @@ const Works = () => {
           variants={fadeIn("", "", 0.1, 1)}
           className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
         >
-          blah blah blah
         </motion.p>
       </div>
 
-      <div className="mt-20 flex flex-wrap gap-7">
+      <div className="mt-10 flex flex-wrap gap-7">
         {workprojects.map((project, index) => (
           <ProjectCard
             key={`project-${index}`}
@@ -91,8 +77,6 @@ const Works = () => {
           />
         ))}
       </div>
-
-      {/* <StarsCanvas /> */}
     </div>
   )
 }

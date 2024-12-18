@@ -21,7 +21,10 @@ import {
     shopify,
     carrent,
     threejs,
-    workout
+    workout,
+    thewell,
+    rd,
+    eva
 } from "../assets";
 
 export const navLinks = [
@@ -205,29 +208,123 @@ const testimonials = [
 
 const workprojects = [
     {
-        name: "Argument Parsing",
+        name: "Scientific Visualization",
         description:
-            "Replicated and Improved upon state-of-the-art argument mining and natural language processing methods in automatically scoring essays. Performed feature engineering with Stanford CoreNLP in Java to parse argument microstructures.",
+            "",
         tags: [
             {
-                name: "NLP",
+                name: "SimonsFoundation",
                 color: "",
             },
             {
-                name: "Machine Learning",
+                name: "NYC",
                 color: "",
             },
             {
-                name: "Python",
+                name: "Summer2024",
                 color: "",
-            },
-            {
-                name: "Java",
-                color: "",
-            },
+            }
+            // {
+            //     name: "Machine Learning",
+            //     color: "",
+            // },
+            // {
+            //     name: "Python",
+            //     color: "",
+            // },
+            // {
+            //     name: "Java",
+            //     color: "",
+            // },
         ],
-        image: carrent,
-        source_code_link: "https://sites.google.com/view/cs333aes/overview",
+        image: thewell,
+        source_code_link: "https://polymathic-ai.org/the_well/",
+    },
+    {
+        name: "GPU-Accelerated Numerical Simulation",
+        description:
+            "",
+        tags: [
+            {
+                name: "SimonsFoundation",
+                color: "",
+            },
+            {
+                name: "NYC",
+                color: "",
+            },
+            {
+                name: "Summer2024",
+                color: "",
+            }
+            // {
+            //     name: "Machine Learning",
+            //     color: "",
+            // },
+            // {
+            //     name: "Python",
+            //     color: "",
+            // },
+            // {
+            //     name: "Java",
+            //     color: "",
+            // },
+        ],
+        image: rd,
+        source_code_link: "https://github.com/flatironinstitute/rd_webgpu",
+    },
+    {
+        name: "EVA Wardrobe",
+        description:
+            "",
+        tags: [
+            {
+                name: "Startup",
+                color: "",
+            },
+            {
+                name: "NYC",
+                color: "",
+            }
+            // {
+            //     name: "Machine Learning",
+            //     color: "",
+            // },
+            // {
+            //     name: "Python",
+            //     color: "",
+            // },
+            // {
+            //     name: "Java",
+            //     color: "",
+            // },
+        ],
+        image: eva,
+        source_code_link: "https://evawardrobe.com/",
+    }
+];
+
+const researchprojects = [
+    {
+        name: "Scientific Visualization",
+        description:
+            "",
+        tags: [
+            // {
+            //     name: "Machine Learning",
+            //     color: "",
+            // },
+            // {
+            //     name: "Python",
+            //     color: "",
+            // },
+            // {
+            //     name: "Java",
+            //     color: "",
+            // },
+        ],
+        image: thewell,
+        source_code_link: "https://polymathic-ai.org/the_well/",
     }
 ];
 
@@ -255,4 +352,4 @@ const sideprojects = [
     }
 ];
 
-export { services, technologies, experiences, testimonials, workprojects, sideprojects };
+export { services, technologies, experiences, testimonials, researchprojects, workprojects, sideprojects };

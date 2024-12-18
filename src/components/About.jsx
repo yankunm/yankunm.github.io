@@ -56,7 +56,7 @@ const About = () => {
       </motion.p> */}
 
       {/* Embedded YouTube Video */}
-      <div className="mt-10 flex justify-center">
+      <div className="mt-24 flex justify-center">
         <iframe
           className="rounded-lg shadow-lg"
           width="560"

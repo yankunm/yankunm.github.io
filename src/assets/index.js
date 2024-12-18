@@ -26,10 +26,16 @@ import shopify from "./company/shopify.png";
 import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
 
+
 import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
 import workout from "./workout.png"
+
+
+import thewell from "./work/thewell.gif";
+import rd from "./work/rd.gif";
+import eva from "./work/eva.gif";
 
 export {
   logo,
@@ -60,5 +66,8 @@ export {
   carrent,
   jobit,
   tripguide,
-  workout
+  workout,
+  thewell,
+  rd,
+  eva
 };
