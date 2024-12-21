@@ -19,12 +19,12 @@ import {
     starbucks,
     tesla,
     shopify,
-    carrent,
     threejs,
     workout,
     thewell,
     rd,
-    eva
+    eva,
+    graph
 } from "../assets";
 
 export const navLinks = [
@@ -224,18 +224,6 @@ const workprojects = [
                 name: "Summer2024",
                 color: "",
             }
-            // {
-            //     name: "Machine Learning",
-            //     color: "",
-            // },
-            // {
-            //     name: "Python",
-            //     color: "",
-            // },
-            // {
-            //     name: "Java",
-            //     color: "",
-            // },
         ],
         image: thewell,
         source_code_link: "https://polymathic-ai.org/the_well/",
@@ -257,18 +245,6 @@ const workprojects = [
                 name: "Summer2024",
                 color: "",
             }
-            // {
-            //     name: "Machine Learning",
-            //     color: "",
-            // },
-            // {
-            //     name: "Python",
-            //     color: "",
-            // },
-            // {
-            //     name: "Java",
-            //     color: "",
-            // },
         ],
         image: rd,
         source_code_link: "https://github.com/flatironinstitute/rd_webgpu",
@@ -286,18 +262,6 @@ const workprojects = [
                 name: "NYC",
                 color: "",
             }
-            // {
-            //     name: "Machine Learning",
-            //     color: "",
-            // },
-            // {
-            //     name: "Python",
-            //     color: "",
-            // },
-            // {
-            //     name: "Java",
-            //     color: "",
-            // },
         ],
         image: eva,
         source_code_link: "https://evawardrobe.com/",
@@ -306,7 +270,7 @@ const workprojects = [
 
 const researchprojects = [
     {
-        name: "Scientific Visualization",
+        name: "Augmented Reality for Retinal Laser Therapy",
         description:
             "",
         tags: [
@@ -325,6 +289,27 @@ const researchprojects = [
         ],
         image: thewell,
         source_code_link: "https://polymathic-ai.org/the_well/",
+    },
+    {
+        name: "Graphically Modeling Text Coherence for Automated Essay Scoring",
+        description:
+            "",
+        tags: [
+            // {
+            //     name: "Machine Learning",
+            //     color: "",
+            // },
+            // {
+            //     name: "Python",
+            //     color: "",
+            // },
+            // {
+            //     name: "Java",
+            //     color: "",
+            // },
+        ],
+        image: graph,
+        source_code_link: "https://sites.google.com/view/cs333aes/overview",
     }
 ];
 

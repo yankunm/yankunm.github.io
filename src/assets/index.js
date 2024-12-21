@@ -36,6 +36,7 @@ import workout from "./workout.png"
 import thewell from "./work/thewell.gif";
 import rd from "./work/rd.gif";
 import eva from "./work/eva.gif";
+import graph from "./graph.gif";
 
 export {
   logo,
@@ -69,5 +70,6 @@ export {
   workout,
   thewell,
   rd,
-  eva
+  eva,
+  graph
 };

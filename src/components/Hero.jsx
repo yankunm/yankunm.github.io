@@ -20,8 +20,8 @@ const Hero = () => {
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
             An Aspiring Innovator, Artist, and Educator
           </p>
-          <p className={`${styles.sectionSubText} mt-2`} > This website is currently under construction until 12/20/2024</p>
-          <p className={`${styles.sectionSubText} mt-2`} > Happy Holidays!! --Alex Meng</p>
+          <p className={`${styles.sectionSubText} mt-2`} > Welcome to my Universe</p>
+          {/* <p className={`${styles.sectionSubText} mt-2`} > Happy Holidays!! --Alex Meng</p> */}
         </div>
       </div>
 

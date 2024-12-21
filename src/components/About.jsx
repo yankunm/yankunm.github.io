@@ -61,7 +61,7 @@ const About = () => {
           className="rounded-lg shadow-lg"
           width="560"
           height="315"
-          src="https://www.youtube.com/embed/MFC4u46TvH0"
+          src="https://www.youtube.com/embed/-v7WpG_znv0"
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
@@ -69,6 +69,12 @@ const About = () => {
       </div>
 
 
+
+      <div className="mt-20">
+        <p className="text-right text-secondary text-[17px] leading-[30px] pr-4">
+          Stars Canvas, a 3D rotating point cloud generated with a random spherical distribution using Three.js
+        </p>
+      </div>
 
       {/* <div className="mt-20 flex flex-wrap gap-10">
         {services.map((service, index) => (

@@ -68,7 +68,7 @@ const Works = () => {
         </motion.p>
       </div>
 
-      <div className="mt-10 flex flex-wrap gap-7">
+      <div className="mt-5 flex flex-wrap gap-7">
         {workprojects.map((project, index) => (
           <ProjectCard
             key={`project-${index}`}
@@ -77,6 +77,19 @@ const Works = () => {
           />
         ))}
       </div>
+      <p className={`${styles.sectionSubText} mt-2`} >More projects are being added during the next few days!! Happy Holidays - Alex Meng 12/21/2024</p>
+
+      {/* See More Button */}
+      {/* <div className="flex justify-center mt-10">
+        <a
+          href="https://example.com" // Replace with your desired URL
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-gradient-to-r from-blue-500 to-green-500 text-white py-2 px-6 rounded-full text-[16px] font-bold hover:opacity-90 transition-opacity duration-200"
+        >
+          See More
+        </a>
+      </div> */}
     </div>
   )
 }
