@@ -61,7 +61,7 @@ const About = () => {
           className="rounded-lg shadow-lg"
           width="560"
           height="315"
-          src="https://www.youtube.com/embed/-v7WpG_znv0"
+          src="https://www.youtube.com/embed/8ZEK34P9ipQ"
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen

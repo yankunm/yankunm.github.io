@@ -77,7 +77,7 @@ const Works = () => {
           />
         ))}
       </div>
-      <p className={`${styles.sectionSubText} mt-2`} >More projects are being added during the next few days!! Happy Holidays - Alex Meng 12/21/2024</p>
+      {/* <p className={`${styles.sectionSubText} mt-2`} >More projects are being added during the next few days!! Happy Holidays - Alex Meng 12/21/2024</p> */}
 
       {/* See More Button */}
       {/* <div className="flex justify-center mt-10">
