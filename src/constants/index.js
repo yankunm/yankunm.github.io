@@ -20,11 +20,13 @@ import {
     tesla,
     shopify,
     threejs,
-    workout,
     thewell,
     rd,
     eva,
-    graph
+    graph,
+    graphalgo,
+    ants,
+    drawingtool
 } from "../assets";
 
 export const navLinks = [
@@ -210,61 +212,26 @@ const workprojects = [
     {
         name: "Scientific Visualization",
         description:
-            "",
-        tags: [
-            {
-                name: "SimonsFoundation",
-                color: "",
-            },
-            {
-                name: "NYC",
-                color: "",
-            },
-            {
-                name: "Summer2024",
-                color: "",
-            }
-        ],
+            "Visualization Pipeline for 15TB+ Dataset at Polymathic AI in NYC in Summer 2024",
         image: thewell,
-        source_code_link: "https://polymathic-ai.org/the_well/",
+        website_link: "https://polymathic-ai.org/the_well/",
+        demo_link: "https://huggingface.co/spaces/polymathic-ai/TheWell"
     },
     {
-        name: "GPU-Accelerated Numerical Simulation",
+        name: "Reaction Diffusion on GPU",
         description:
-            "",
-        tags: [
-            {
-                name: "SimonsFoundation",
-                color: "",
-            },
-            {
-                name: "NYC",
-                color: "",
-            },
-            {
-                name: "Summer2024",
-                color: "",
-            }
-        ],
+            "Numerical simulation pipeline implemented with WebGPU at Polymathic AI Summer 2024",
         image: rd,
-        source_code_link: "https://github.com/flatironinstitute/rd_webgpu",
+        website_link: "https://github.com/flatironinstitute/rd_webgpu",
+        demo_link: "https://flatironinstitute.github.io/rd_webgpu/rd2d.html"
     },
     {
-        name: "EVA Wardrobe",
+        name: "EVA (Duke X Cornell)",
         description:
-            "",
-        tags: [
-            {
-                name: "Startup",
-                color: "",
-            },
-            {
-                name: "NYC",
-                color: "",
-            }
-        ],
+            "Co-founder for Startup since Summer 2023, developing image processing and 3D VTON",
         image: eva,
-        source_code_link: "https://evawardrobe.com/",
+        website_link: "https://evawardrobe.com/",
+        demo_link: "https://apps.apple.com/us/app/eva-wardrobe/id6469431884"
     }
 ];
 
@@ -315,26 +282,30 @@ const researchprojects = [
 
 const sideprojects = [
     {
-        name: "Workout Routine Generator",
+        name: "Algorithm Visualizer",
         description:
-            "This is a simple Python CLI program that generates a customized workout routine based on user inputs.",
-        tags: [
-            {
-                name: "Python",
-                color: "",
-            },
-            {
-                name: "CLI",
-                color: "",
-            },
-            {
-                name: "I/O",
-                color: "",
-            }
-        ],
-        image: workout,
-        source_code_link: "https://github.com/yankunm/100/tree/main/001",
-    }
+            "Visualize how different graph algorithms traverse through a maze.",
+        image: graphalgo,
+        source_code_link: "https://github.com/yankunm/graphAlgorithmVisualizer",
+        demo_link: "https://editor.p5js.org/alex.meng/full/4lNqpY9np"
+    },
+    {
+        name: "Nylanderia Fulva",
+        description:
+            "A swarm of ants you can feed, created with geometry, polar coordinates",
+        image: ants,
+        source_code_link: "https://github.com/yankunm/CreativeCodingGallery",
+        demo_link: "https://editor.p5js.org/alex.meng/full/sZDDDBkLP"
+    },
+    {
+        name: "Drawing Tool",
+        description:
+            "Using Keyboard Shortcut to create a Drawing tool where you can draw digitally faster",
+        image: drawingtool,
+        source_code_link: "https://github.com/yankunm/CreativeCodingGallery/tree/main",
+        demo_link: "https://editor.p5js.org/alex.meng/sketches/C_vdzdw1Q"
+    },
+
 ];
 
 export { services, technologies, experiences, testimonials, researchprojects, workprojects, sideprojects };

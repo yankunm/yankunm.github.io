@@ -28,7 +28,7 @@ const HomePage = () => (
       {/* <Experience /> */}
       <Works />
       {/* <ResearchProjects /> */}
-      {/* <PersonalProjects /> */}
+      <PersonalProjects />
       <div className="relative z-0">
         <Contact />
       </div>

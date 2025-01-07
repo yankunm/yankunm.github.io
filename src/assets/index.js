@@ -38,6 +38,10 @@ import rd from "./work/rd.gif";
 import eva from "./work/eva.gif";
 import graph from "./graph.gif";
 
+import graphalgo from "./creative/graphalgo2.gif";
+import ants from "./creative/ants.gif";
+import drawingtool from "./creative/drawingtool.gif";
+
 export {
   logo,
   backend,
@@ -71,5 +75,8 @@ export {
   thewell,
   rd,
   eva,
-  graph
+  graph,
+  graphalgo,
+  ants,
+  drawingtool
 };

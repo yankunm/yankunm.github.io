@@ -1,4 +1,3 @@
-import { Tilt } from 'react-tilt'
 import { motion } from 'framer-motion'
 import { styles } from "../styles"
 import { SectionWrapper } from "../hoc"
@@ -7,21 +6,13 @@ import { fadeIn, textVariant } from "../utils/motion"
 import { Navbar } from './'
 
 
-const ProjectCard = ({ index, name, description, tags, image, source_code_link }) => {
+const ProjectCard = ({ index, name, description, image, source_code_link, demo_link }) => {
     return (
         <motion.div
             variants={fadeIn("up", "spring", index * 0.5, 0.75)}
-            onClick={() => window.open(source_code_link, "blank")}
-            className="cursor-pointer">
-            <Tilt
-                options={{
-                    max: 45,
-                    scale: 1,
-                    speed: 450
-                }}
-                className="bg-gradient-to-r from-red-500 to-orange-500 p-5 rounded-2xl
-        sm:w-[360px] w-full"
-            >
+        >
+            <div className="bg-gradient-to-r from-red-500 to-orange-500 p-5 rounded-2xl
+        sm:w-[360px] w-full">
                 <div className="relative w-full h-[230px]">
                     <img
                         src={image}
@@ -36,14 +27,21 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link }
                     <p className="mt-2 text-black text-[14px]">{description}</p>
                 </div>
 
-                <div className="mt-4 flex flex-wrap gap-2">
-                    {tags.map((tag) => (
-                        <p key={tag.name} className={`text-[14px] ${tag.color}`}>
-                            #{tag.name}
-                        </p>
-                    ))}
+                <div className="mt-5 flex space-x-3">
+                    <button
+                        onClick={() => window.open(demo_link, "_blank")}
+                        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg"
+                    >
+                        Try it Out
+                    </button>
+                    <button
+                        onClick={() => window.open(source_code_link, "_blank")}
+                        className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg"
+                    >
+                        Source Code
+                    </button>
                 </div>
-            </Tilt>
+            </div>
         </motion.div>
     )
 }
@@ -57,7 +55,7 @@ const PersonalProjects = () => {
             </div>
             <motion.div variants={textVariant()}>
                 <p className={styles.sectionSubText}>Having Fun</p>
-                <h2 className={styles.sectionHeadText}>Personal Projects</h2>
+                <h2 className={styles.sectionHeadText}>Creative Projects.</h2>
             </motion.div>
 
             <div className="w-full flex">
@@ -68,7 +66,7 @@ const PersonalProjects = () => {
                 </motion.p>
             </div>
 
-            <div className="mt-10 flex flex-wrap gap-7">
+            <div className="mt-5 flex flex-wrap gap-7">
                 {sideprojects.map((project, index) => (
                     <ProjectCard
                         key={`project-${index}`}
@@ -78,7 +76,6 @@ const PersonalProjects = () => {
                 ))}
             </div>
 
-            {/* <StarsCanvas /> */}
         </div>
     )
 }
