@@ -14,9 +14,9 @@
 }
 
 .hash-span {
-  margin-top: -150px;
-  padding-bottom: 25px;
-  display: block;
+  margin-top: 0px;
+  padding-bottom: 0px;
+  display: none;
 }
 
 .black-gradient {
