@@ -29,16 +29,16 @@ const ProjectCard = ({ index, name, description, image, source_code_link, demo_l
 
                 <div className="mt-5 flex space-x-3">
                     <button
-                        onClick={() => window.open(demo_link, "_blank")}
+                        onClick={() => window.open(source_code_link, "_blank")}
                         className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg"
                     >
-                        Try it Out
+                        Source Code
                     </button>
                     <button
-                        onClick={() => window.open(source_code_link, "_blank")}
+                        onClick={() => window.open(demo_link, "_blank")}
                         className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg"
                     >
-                        Source Code
+                        Try it Out
                     </button>
                 </div>
             </div>

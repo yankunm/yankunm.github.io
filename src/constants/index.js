@@ -240,20 +240,6 @@ const researchprojects = [
         name: "Augmented Reality for Retinal Laser Therapy",
         description:
             "",
-        tags: [
-            // {
-            //     name: "Machine Learning",
-            //     color: "",
-            // },
-            // {
-            //     name: "Python",
-            //     color: "",
-            // },
-            // {
-            //     name: "Java",
-            //     color: "",
-            // },
-        ],
         image: thewell,
         source_code_link: "https://polymathic-ai.org/the_well/",
     },
@@ -261,20 +247,6 @@ const researchprojects = [
         name: "Graphically Modeling Text Coherence for Automated Essay Scoring",
         description:
             "",
-        tags: [
-            // {
-            //     name: "Machine Learning",
-            //     color: "",
-            // },
-            // {
-            //     name: "Python",
-            //     color: "",
-            // },
-            // {
-            //     name: "Java",
-            //     color: "",
-            // },
-        ],
         image: graph,
         source_code_link: "https://sites.google.com/view/cs333aes/overview",
     }
@@ -292,7 +264,7 @@ const sideprojects = [
     {
         name: "Nylanderia Fulva",
         description:
-            "A swarm of ants you can feed, created with geometry, polar coordinates",
+            "A swarm of ants you can feed, created with geometric shapes and polar coordinates.",
         image: ants,
         source_code_link: "https://github.com/yankunm/CreativeCodingGallery",
         demo_link: "https://editor.p5js.org/alex.meng/full/sZDDDBkLP"
@@ -300,7 +272,7 @@ const sideprojects = [
     {
         name: "Drawing Tool",
         description:
-            "Using Keyboard Shortcut to create a Drawing tool where you can draw digitally faster",
+            "Using Keyboard Shortcut to create a Drawing tool where you can draw digitally faster.",
         image: drawingtool,
         source_code_link: "https://github.com/yankunm/CreativeCodingGallery/tree/main",
         demo_link: "https://editor.p5js.org/alex.meng/sketches/C_vdzdw1Q"
