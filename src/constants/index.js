@@ -26,7 +26,11 @@ import {
     graph,
     graphalgo,
     ants,
-    drawingtool
+    drawingtool,
+    ar, ardoc, arposter,
+    textc,
+    yoga,
+    webml
 } from "../assets";
 
 export const navLinks = [
@@ -244,28 +248,28 @@ const workprojects = [
 
 const researchprojects = [
     {
-        name: "Scientific Visualization",
+        name: "Digital Twin for Surgery",
         description:
-            "Visualization Pipeline for 15TB+ Dataset at Polymathic AI in NYC in Summer 2024",
-        image: thewell,
-        website_link: "https://polymathic-ai.org/the_well/",
-        demo_link: "https://huggingface.co/spaces/polymathic-ai/TheWell"
+            "Constructed 3D Virtual Environment for Augmented Reality-based Guidance System for Retinal Laser Therapy at Duke Intelligent Interactive IOT Lab (Junior Year 2023-2024)",
+        image: ar,
+        website_link: arposter,
+        demo_link: ardoc
     },
     {
-        name: "Reaction Diffusion on GPU",
+        name: "Automated Essay Scoring",
         description:
-            "Numerical simulation pipeline implemented with WebGPU at Polymathic AI Summer 2024",
-        image: rd,
-        website_link: "https://github.com/flatironinstitute/rd_webgpu",
-        demo_link: "https://flatironinstitute.github.io/rd_webgpu/rd2d.html"
+            "Replication Study using state-of-the-art Machine Learning techniques for Argument Mining to visualize and automatically score 400 essays tenth graders wrote (Fall 2023)",
+        image: textc,
+        website_link: "https://sites.google.com/view/cs333aes/overview?authuser=0",
+        demo_link: "https://sites.google.com/view/cs333aes/technical-demo?authuser=0"
     },
     {
-        name: "EVA (Duke X Cornell)",
+        name: "Pose Estimation",
         description:
-            "Co-founder for Startup since Summer 2023, developing image processing and 3D VTON",
-        image: eva,
-        website_link: "https://evawardrobe.com/",
-        demo_link: "https://apps.apple.com/us/app/eva-wardrobe/id6469431884"
+            "Trained PoseNet Model for 3D Joint Detection and applied to build a web-based Yoga Coach at Computer Aided Design and Innovation Lab (2022)",
+        image: yoga,
+        website_link: webml,
+        demo_link: "https://github.com/yankunm/yoga_coach"
     }
 ];
 

@@ -42,6 +42,14 @@ import graphalgo from "./creative/graphalgo2.gif";
 import ants from "./creative/ants.gif";
 import drawingtool from "./creative/drawingtool.gif";
 
+import ar from "./research/ar.png";
+
+import ardoc from "./ardoc.pdf";
+import arposter from "./arposter.pdf";
+import textc from "./textc.png";
+import yoga from "./yoga.png";
+import webml from "./webml.pdf";
+
 export {
   logo,
   backend,
@@ -78,5 +86,10 @@ export {
   graph,
   graphalgo,
   ants,
-  drawingtool
+  drawingtool,
+  ar,
+  ardoc, arposter,
+  textc,
+  yoga,
+  webml
 };
