@@ -48,6 +48,13 @@ export const navLinks = [
     }
 ];
 
+// export const courses = [
+//     {
+//         name: "",
+
+//     }
+// ]
+
 const services = [
     {
         title: "Work Projects",
