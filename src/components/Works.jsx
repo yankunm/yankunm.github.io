@@ -97,16 +97,8 @@ const Works = () => {
       </div>
       <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>Creating Impact</p>
-        <h2 className={styles.sectionHeadText}>Work Projects.</h2>
+        <h2 className={styles.sectionHeadText}>Selected Work Projects.</h2>
       </motion.div>
-
-      <div className="w-full flex">
-        <motion.p
-          variants={fadeIn("", "", 0.1, 1)}
-          className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
-        >
-        </motion.p>
-      </div>
 
       <div className="mt-5 flex flex-wrap gap-7">
         {workprojects.map((project, index) => (
@@ -117,7 +109,6 @@ const Works = () => {
           />
         ))}
       </div>
-      {/* <p className={`${styles.sectionSubText} mt-2`} >More projects are being added during the next few days!! Happy Holidays - Alex Meng 12/21/2024</p> */}
 
       {/* See More Button */}
       {/* <div className="flex justify-center mt-10">
@@ -134,4 +125,4 @@ const Works = () => {
   )
 }
 
-export default SectionWrapper(Works, "")
+export default SectionWrapper(Works, "project")

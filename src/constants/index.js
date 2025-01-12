@@ -32,15 +32,11 @@ import {
 export const navLinks = [
     {
         id: "",
-        title: "Home",
+        title: "About",
     },
     {
-        id: "about",
-        title: "Overview",
-    },
-    {
-        id: "work",
-        title: "Experience",
+        id: "project",
+        title: "Projects",
     },
     {
         id: "contact",
@@ -237,18 +233,28 @@ const workprojects = [
 
 const researchprojects = [
     {
-        name: "Augmented Reality for Retinal Laser Therapy",
+        name: "Scientific Visualization",
         description:
-            "",
+            "Visualization Pipeline for 15TB+ Dataset at Polymathic AI in NYC in Summer 2024",
         image: thewell,
-        source_code_link: "https://polymathic-ai.org/the_well/",
+        website_link: "https://polymathic-ai.org/the_well/",
+        demo_link: "https://huggingface.co/spaces/polymathic-ai/TheWell"
     },
     {
-        name: "Graphically Modeling Text Coherence for Automated Essay Scoring",
+        name: "Reaction Diffusion on GPU",
         description:
-            "",
-        image: graph,
-        source_code_link: "https://sites.google.com/view/cs333aes/overview",
+            "Numerical simulation pipeline implemented with WebGPU at Polymathic AI Summer 2024",
+        image: rd,
+        website_link: "https://github.com/flatironinstitute/rd_webgpu",
+        demo_link: "https://flatironinstitute.github.io/rd_webgpu/rd2d.html"
+    },
+    {
+        name: "EVA (Duke X Cornell)",
+        description:
+            "Co-founder for Startup since Summer 2023, developing image processing and 3D VTON",
+        image: eva,
+        website_link: "https://evawardrobe.com/",
+        demo_link: "https://apps.apple.com/us/app/eva-wardrobe/id6469431884"
     }
 ];
 

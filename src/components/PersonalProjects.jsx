@@ -50,12 +50,12 @@ const PersonalProjects = () => {
 
     return (
         <div>
-            <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center flex justify-center w-full">
+            {/* <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center flex justify-center w-full">
                 <Navbar />
-            </div>
+            </div> */}
             <motion.div variants={textVariant()}>
                 <p className={styles.sectionSubText}>Having Fun</p>
-                <h2 className={styles.sectionHeadText}>Creative Projects.</h2>
+                <h2 className={styles.sectionHeadText}>Selected Creative Projects.</h2>
             </motion.div>
 
             <div className="w-full flex">
@@ -80,4 +80,4 @@ const PersonalProjects = () => {
     )
 }
 
-export default SectionWrapper(PersonalProjects, "")
+export default SectionWrapper(PersonalProjects, "personal");

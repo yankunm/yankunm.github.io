@@ -2,7 +2,6 @@ import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import emailjs from '@emailjs/browser'
 import { styles } from '../styles'
-import { EarthCanvas } from './canvas'
 import { SectionWrapper } from '../hoc'
 import { slideIn } from '../utils/motion'
 
@@ -35,7 +34,7 @@ const Contact = () => {
         from_name: form.name,
         to_name: 'Alex Meng',
         from_email: form.email,
-        to_email: 'yankun.meng25@gmail.com',
+        to_email: 'alexmeng.duke@gmail.com',
         message: form.message,
       },
       'D6jzRTxJYReKByrk4'
@@ -58,7 +57,8 @@ const Contact = () => {
   }
 
   return (
-    <div className="xl:mt-12 xl:flex-row flex-col-reverse
+    <div
+      className="xl:mt-12 xl:flex-row flex-col-reverse
     flex gap-10 overflow-hidden ">
       <motion.div
         variants={slideIn('left', "tween", 0.2, 1)}
@@ -66,6 +66,10 @@ const Contact = () => {
       >
         {/* <p className={styles.sectionSubText} >Get in touch</p> */}
         <h3 className={styles.sectionHeadText}>Lets Get in Touch!</h3>
+
+        <p>
+          alexmeng.duke@gmail.com
+        </p>
 
         <form
           ref={formRef}
