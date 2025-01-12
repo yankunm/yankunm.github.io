@@ -35,13 +35,17 @@ export const navLinks = [
         title: "About",
     },
     {
-        id: "project",
+        id: "#project",
         title: "Projects",
     },
+    // {
+    //     id: "courses",
+    //     title: "Courses"
+    // },
     {
-        id: "contact",
+        id: "#contact",
         title: "Contact",
-    },
+    }
 ];
 
 const services = [

@@ -8,8 +8,8 @@ const App = () => {
       <div className="relative z-0 bg-primary">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/workprojects" element={<Works />} />
-          <Route path="/sideprojects" element={<PersonalProjects />} />
+          {/* Add more pages here */}
+          <Route path="/courses" element={<Works />} />
         </Routes>
       </div>
     </BrowserRouter>

@@ -48,7 +48,7 @@ const Navbar = () => {
                 `}
               onClick={() => setActive(link.title)}
             >
-              <Link to={`/#${link.id}`}>{link.title}</Link>
+              <Link to={`/${link.id}`}>{link.title}</Link>
             </li>
           ))}
         </ul>
@@ -75,7 +75,7 @@ const Navbar = () => {
                     setActive(link.title);
                   }}
                 >
-                  <Link to={`/#${link.id}`}>{link.title}</Link>
+                  <Link to={`/${link.id}`}>{link.title}</Link>
                 </li>
               ))}
             </ul>

@@ -71,8 +71,11 @@ const About = () => {
 
 
       <div className="mt-20">
-        <p className="text-right text-secondary text-[17px] leading-[30px] pr-4">
+        {/* <p className="text-right text-secondary text-[17px] leading-[30px] pr-4">
           Stars Canvas, a 3D rotating point cloud generated with a random spherical distribution using Three.js
+        </p> */}
+        <p className="text-right text-secondary text-[17px] leading-[30px] pr-4">
+          This website was programmed by Alex Meng using React, Tailwind CSS, and Three.js
         </p>
       </div>
 
