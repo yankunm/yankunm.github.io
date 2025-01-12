@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { About, Contact, Hero, Navbar, Works, PersonalProjects, ResearchProjects } from './components';
+import { About, Contact, Hero, Navbar, Works, PersonalProjects, ResearchProjects, Courses } from './components';
 
 const App = () => {
   return (

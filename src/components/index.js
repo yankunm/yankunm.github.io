@@ -8,6 +8,7 @@ import Feedbacks from './Feedbacks';
 import Contact from './Contact';
 import PersonalProjects from './PersonalProjects';
 import ResearchProjects from './ResearchProjects';
+import Courses from './Courses';
 
 export {
   Hero,
@@ -23,4 +24,5 @@ export {
   StarsCanvas,
   PersonalProjects,
   ResearchProjects,
+  Courses
 }
