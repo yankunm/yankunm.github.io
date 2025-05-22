@@ -3,23 +3,21 @@ project:
   output-dir: docs
 
 website:
-  title: "Yankun (Alex) Meng"
+  title: "YKM"
   navbar:
-    background: secondary # https://bootswatch.com/united/
     left:
       - text: Home
         href: index.qmd
-      - about.qmd
       - text: Blog
         href: blog/index.qmd
       - text: Alex Meng's Notes
         href: notes_output/index.html
-
 format:
   html:
-    theme: simplex
-    css: styles.css
-    toc: true
-
+    theme: cosmo
+    font:
+      text: "EB Garamond"
+      heading: "EB Garamond"
+    toc: false  # disables right nav
 
 
