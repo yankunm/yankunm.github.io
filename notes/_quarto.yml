@@ -5,7 +5,6 @@ project:
 book:
   title: "Alex Meng's Notes"
   author: "Alex Meng"
-  date: "5/22/2025"
   chapters:
     - index.qmd
     - intro.qmd
@@ -13,7 +12,7 @@ book:
     - references.qmd
   navbar:
     left:
-      - text: Back to Home
+      - text: 🔙 Home
         href: https://yankunm.github.io/
 
 bibliography: references.bib
