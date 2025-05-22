@@ -5,7 +5,7 @@ project:
 website:
   title: "Yankun (Alex) Meng"
   navbar:
-    background: primary # https://bootswatch.com/united/
+    background: secondary # https://bootswatch.com/united/
     left:
       - text: Home
         href: index.qmd
@@ -17,9 +17,7 @@ website:
 
 format:
   html:
-    theme: 
-      - quartz
-      - default
+    theme: simplex
     css: styles.css
     toc: true
 
