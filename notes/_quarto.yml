@@ -3,7 +3,7 @@ project:
   output-dir: ../docs/notes_output  # ← important
 
 book:
-  title: "Alex Meng's Notes"
+  title: "LEARN"
   author: "Alex Meng"
   chapters:
     - index.qmd
@@ -12,7 +12,7 @@ book:
     - references.qmd
   navbar:
     left:
-      - text: 🔙 Home
+      - text: Back to Home
         href: https://yankunm.github.io/
 
 bibliography: references.bib
