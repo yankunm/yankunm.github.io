@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Alex Meng">
-<meta name="dcterms.date" content="2025-05-22">
 
-<title>Why Robots Need Brains Made of Light – Alex Meng’s Blog</title>
+<title>YKM</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,23 +23,25 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,20 +69,77 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
 
-<link rel="stylesheet" href="../../styles.css">
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Alex Meng’s Blog</span>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">YKM</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -90,20 +147,18 @@ ul.task-list li input[type="checkbox"] {
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
-<span class="menu-text">About</span></a>
+    <a class="nav-link" href="./../index.qmd"> 
+<span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
-</i> 
-<span class="menu-text"></span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./../blog/index.html"> 
+<span class="menu-text">Blog</span></a>
   </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
-</i> 
-<span class="menu-text"></span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./../notes_output/index.html"> 
+<span class="menu-text">Alex Meng’s Notes</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -113,118 +168,90 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Why Robots Need Brains Made of Light</h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">AI</div>
-                <div class="quarto-category">Photonics</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Alex Meng </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">May 22, 2025</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block"></header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="YW5hbHlzaXM=">analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bmV3cw==">news <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
 
 
 
 
-<p>Imagine you’re standing in your kitchen with a helper robot. You want to teach it how to pick up a weirdly shaped mug. You don’t want to plug it into a supercomputer, wait for hours, or send its data to the cloud. You want it to <strong>learn right there, on the spot</strong>—fast, efficient, and offline.</p>
-<p>That’s the dream. But with today’s AI infrastructure, it’s still far from reality.</p>
-<hr>
-<section id="the-problem-with-modern-ai-training" class="level2">
-<h2 class="anchored" data-anchor-id="the-problem-with-modern-ai-training">The Problem with Modern AI Training</h2>
-<p>Most AI today is trained on massive data centers using powerful GPUs. This works great for large-scale models—but it completely breaks down for <strong>embodied intelligence</strong>, like robots.</p>
-<p>Why?</p>
-<ul>
-<li><strong>High energy consumption</strong>: A single GPU can consume 300W+. That’s more power than your fridge.</li>
-<li><strong>Slow learning loops</strong>: Training even a small model can take hours or days.</li>
-<li><strong>Dependency on the cloud</strong>: Real-time response is impossible when your robot needs to “phone home” to think.</li>
-<li><strong>Big form factors</strong>: Heavy compute modules don’t fit into lightweight, mobile robots.</li>
-</ul>
-<p>If we want robots to truly live and learn in the real world, they need a <strong>new kind of brain</strong>.</p>
-<hr>
-</section>
-<section id="optical-analog-neural-networks" class="level2">
-<h2 class="anchored" data-anchor-id="optical-analog-neural-networks">Optical Analog Neural Networks</h2>
-<p>Optical analog neural networks are a radical shift in how we compute. Instead of using electricity and digital logic, they <strong>use light</strong> to do inference—and potentially even learning.</p>
-<p>Here’s how they work:</p>
-<ul>
-<li><strong>Light as data</strong>: Inputs are encoded as light waves.</li>
-<li><strong>Optics as weights</strong>: Layers of lenses or diffractive structures bend light to perform matrix multiplications.</li>
-<li><strong>Computation is free</strong>: Inference happens as light passes through. No clock cycles. No energy cost beyond the laser.</li>
-</ul>
-<hr>
-</section>
-<section id="why-this-matters-for-robots" class="level2">
-<h2 class="anchored" data-anchor-id="why-this-matters-for-robots">Why This Matters for Robots</h2>
-<p>With optical neural networks, we could give robots something revolutionary:</p>
-<ul>
-<li><p><strong>Learn on the Spot</strong> Training and inference could happen <strong>in-situ</strong>, without ever leaving the robot. If you show it a new tool or task, it could adapt in real time.</p></li>
-<li><p><strong>Tiny and Lightweight</strong> Optical layers can be embedded directly into sensors—no bulky GPUs needed.</p></li>
-<li><p><strong>Ultra-Low Power</strong> Since light travels through passive structures, inference consumes almost <strong>zero energy</strong>.</p></li>
-<li><p><strong>No Cloud Dependency</strong> On-device learning means <strong>no latency, no data privacy risks</strong>, and no need for connectivity.</p></li>
-</ul>
-<hr>
-</section>
-<section id="the-future-robots-with-brains-made-of-light" class="level2">
-<h2 class="anchored" data-anchor-id="the-future-robots-with-brains-made-of-light">The Future: Robots with Brains Made of Light</h2>
-<p>This isn’t science fiction. We’re already seeing early versions of:</p>
-<ul>
-<li><strong>Programmable metasurfaces</strong> that adaptively modify light paths</li>
-<li><strong>Diffractive optical neural networks</strong> that do real-time classification</li>
-<li><strong>Integrated photonic chips</strong> that route and compute with light on a chip</li>
-</ul>
-<p>Combine that with reinforcement learning and world models, and you get a robot that can <strong>see, think, and learn physically</strong>, just like humans do.</p>
-<hr>
-</section>
-<section id="toward-truly-embodied-intelligence" class="level2">
-<h2 class="anchored" data-anchor-id="toward-truly-embodied-intelligence">Toward Truly Embodied Intelligence</h2>
-<p>To build robots that operate in the messiness of the real world—not just on factory floors—we need:</p>
-<ul>
-<li><strong>Smarter sensors (light field, polarization, event-based)</strong></li>
-<li><strong>Faster, lower-power compute (optics over electronics)</strong></li>
-<li><strong>In-situ learning via analog computation</strong></li>
-</ul>
-<blockquote class="blockquote">
-<p>If we want robots to think and learn like humans,<br>
-they need brains made of light.</p>
-</blockquote>
-<p>This is where AI meets physics. And it’s how we take the leap from simulated intelligence to <strong>real-world, embodied intelligence</strong>.</p>
-<hr>
-<p><em>Written by someone who believes the future of AI isn’t just faster—it’s <strong>optical.</strong></em></p>
 
 
-</section>
 
-</main> <!-- /main -->
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="bmV3cyUyQ2NvZGUlMkNhbmFseXNpcw==" data-listing-date-sort="1747800000000" data-listing-file-modified-sort="1747873747167" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="7">
+<div class="thumbnail"><a href="./posts/post-with-code/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/post-with-code/image.jpg" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/post-with-code/index.html" class="no-external">Post With Code</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">code</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('YW5hbHlzaXM='); return false;">analysis</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/post-with-code/index.html" class="no-external">
+
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/post-with-code/index.html" class="no-external">
+<div class="listing-date">
+May 21, 2025
+</div>
+<div class="listing-author">
+Harlow Malloc
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="bmV3cw==" data-listing-date-sort="1747540800000" data-listing-file-modified-sort="1747873747165" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="32">
+<div class="thumbnail"><a href="./posts/welcome/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/welcome/index.html" class="no-external">Welcome To My Blog</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/welcome/index.html" class="no-external">
+
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/welcome/index.html" class="no-external">
+<div class="listing-date">
+May 18, 2025
+</div>
+<div class="listing-author">
+Tristan O’Malley
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

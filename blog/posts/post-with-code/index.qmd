@@ -1,9 +1,90 @@
 ---
-title: "Post With Code"
-author: "Harlow Malloc"
-date: "2025-05-21"
-categories: [news, code, analysis]
+title: "Why Robots Need Brains Made of Light"
+author: "Alex Meng"
+date: "2025-05-22"
+categories: [AI, Photonics]
 image: "image.jpg"
 ---
 
-This is a post with executable code.
+Imagine you’re standing in your kitchen with a helper robot. You want to teach it how to pick up a weirdly shaped mug. You don’t want to plug it into a supercomputer, wait for hours, or send its data to the cloud. You want it to **learn right there, on the spot**—fast, efficient, and offline.
+
+That’s the dream. But with today’s AI infrastructure, it’s still far from reality.
+
+---
+
+## The Problem with Modern AI Training
+
+Most AI today is trained on massive data centers using powerful GPUs. This works great for large-scale models—but it completely breaks down for **embodied intelligence**, like robots.
+
+Why?
+
+- **High energy consumption**: A single GPU can consume 300W+. That’s more power than your fridge.
+- **Slow learning loops**: Training even a small model can take hours or days.
+- **Dependency on the cloud**: Real-time response is impossible when your robot needs to “phone home” to think.
+- **Big form factors**: Heavy compute modules don’t fit into lightweight, mobile robots.
+
+If we want robots to truly live and learn in the real world, they need a **new kind of brain**.
+
+---
+
+## Optical Analog Neural Networks
+
+Optical analog neural networks are a radical shift in how we compute. Instead of using electricity and digital logic, they **use light** to do inference—and potentially even learning.
+
+Here’s how they work:
+
+- **Light as data**: Inputs are encoded as light waves.
+- **Optics as weights**: Layers of lenses or diffractive structures bend light to perform matrix multiplications.
+- **Computation is free**: Inference happens as light passes through. No clock cycles. No energy cost beyond the laser.
+
+---
+
+## Why This Matters for Robots
+
+With optical neural networks, we could give robots something revolutionary:
+
+* **Learn on the Spot**
+Training and inference could happen **in-situ**, without ever leaving the robot. If you show it a new tool or task, it could adapt in real time.
+
+* **Tiny and Lightweight**
+Optical layers can be embedded directly into sensors—no bulky GPUs needed.
+
+* **Ultra-Low Power**
+Since light travels through passive structures, inference consumes almost **zero energy**.
+
+* **No Cloud Dependency**
+On-device learning means **no latency, no data privacy risks**, and no need for connectivity.
+
+---
+
+## The Future: Robots with Brains Made of Light
+
+This isn't science fiction. We’re already seeing early versions of:
+
+- **Programmable metasurfaces** that adaptively modify light paths
+- **Diffractive optical neural networks** that do real-time classification
+- **Integrated photonic chips** that route and compute with light on a chip
+
+Combine that with reinforcement learning and world models, and you get a robot that can **see, think, and learn physically**, just like humans do.
+
+---
+
+## Toward Truly Embodied Intelligence
+
+To build robots that operate in the messiness of the real world—not just on factory floors—we need:
+
+- **Smarter sensors (light field, polarization, event-based)**
+- **Faster, lower-power compute (optics over electronics)**
+- **In-situ learning via analog computation**
+
+> If we want robots to think and learn like humans,  
+> they need brains made of light.
+
+This is where AI meets physics. And it’s how we take the leap from simulated intelligence to **real-world, embodied intelligence**.
+
+---
+
+*Written by someone who believes the future of AI isn't just faster—it's **optical.***
+
+
+

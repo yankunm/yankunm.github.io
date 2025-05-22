@@ -4,7 +4,6 @@ project:
 website:
   title: "Alex Meng's Blog"
   navbar:
-    background: primary
     right:
       - about.qmd
       - icon: github
@@ -13,7 +12,7 @@ website:
         href: https://twitter.com
 format:
   html:
-    theme: united
+    theme: cosmo 
     css: styles.css
 
 
