@@ -1,0 +1,21 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Yankun (Alex) Meng"
+  navbar:
+    background: primary # https://bootswatch.com/united/
+    left:
+      - text: Home
+        href: index.qmd
+      - about.qmd
+
+format:
+  html:
+    theme: united
+    css: styles.css
+    toc: true
+
+
+
