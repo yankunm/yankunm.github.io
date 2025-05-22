@@ -15,9 +15,6 @@ website:
 format:
   html:
     theme: cosmo
-    font:
-      text: "EB Garamond"
-      heading: "EB Garamond"
     toc: false  # disables right nav
 
 

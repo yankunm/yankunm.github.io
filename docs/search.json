@@ -21,11 +21,46 @@
     "text": "About this blog"
   },
   {
-    "objectID": "blog/posts/welcome/index.html",
-    "href": "blog/posts/welcome/index.html",
-    "title": "Welcome To My Blog",
+    "objectID": "blog/posts/post-with-code/index.html",
+    "href": "blog/posts/post-with-code/index.html",
+    "title": "Why Robots Need Brains Made of Light",
     "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+    "text": "Imagine you’re standing in your kitchen with a helper robot. You want to teach it how to pick up a weirdly shaped mug. You don’t want to plug it into a supercomputer, wait for hours, or send its data to the cloud. You want it to learn right there, on the spot—fast, efficient, and offline.\nThat’s the dream. But with today’s AI infrastructure, it’s still far from reality."
+  },
+  {
+    "objectID": "blog/posts/post-with-code/index.html#the-problem-with-modern-ai-training",
+    "href": "blog/posts/post-with-code/index.html#the-problem-with-modern-ai-training",
+    "title": "Why Robots Need Brains Made of Light",
+    "section": "The Problem with Modern AI Training",
+    "text": "The Problem with Modern AI Training\nMost AI today is trained on massive data centers using powerful GPUs. This works great for large-scale models—but it completely breaks down for embodied intelligence, like robots.\nWhy?\n\nHigh energy consumption: A single GPU can consume 300W+. That’s more power than your fridge.\nSlow learning loops: Training even a small model can take hours or days.\nDependency on the cloud: Real-time response is impossible when your robot needs to “phone home” to think.\nBig form factors: Heavy compute modules don’t fit into lightweight, mobile robots.\n\nIf we want robots to truly live and learn in the real world, they need a new kind of brain."
+  },
+  {
+    "objectID": "blog/posts/post-with-code/index.html#optical-analog-neural-networks",
+    "href": "blog/posts/post-with-code/index.html#optical-analog-neural-networks",
+    "title": "Why Robots Need Brains Made of Light",
+    "section": "Optical Analog Neural Networks",
+    "text": "Optical Analog Neural Networks\nOptical analog neural networks are a radical shift in how we compute. Instead of using electricity and digital logic, they use light to do inference—and potentially even learning.\nHere’s how they work:\n\nLight as data: Inputs are encoded as light waves.\nOptics as weights: Layers of lenses or diffractive structures bend light to perform matrix multiplications.\nComputation is free: Inference happens as light passes through. No clock cycles. No energy cost beyond the laser."
+  },
+  {
+    "objectID": "blog/posts/post-with-code/index.html#why-this-matters-for-robots",
+    "href": "blog/posts/post-with-code/index.html#why-this-matters-for-robots",
+    "title": "Why Robots Need Brains Made of Light",
+    "section": "Why This Matters for Robots",
+    "text": "Why This Matters for Robots\nWith optical neural networks, we could give robots something revolutionary:\n\nLearn on the Spot Training and inference could happen in-situ, without ever leaving the robot. If you show it a new tool or task, it could adapt in real time.\nTiny and Lightweight Optical layers can be embedded directly into sensors—no bulky GPUs needed.\nUltra-Low Power Since light travels through passive structures, inference consumes almost zero energy.\nNo Cloud Dependency On-device learning means no latency, no data privacy risks, and no need for connectivity."
+  },
+  {
+    "objectID": "blog/posts/post-with-code/index.html#the-future-robots-with-brains-made-of-light",
+    "href": "blog/posts/post-with-code/index.html#the-future-robots-with-brains-made-of-light",
+    "title": "Why Robots Need Brains Made of Light",
+    "section": "The Future: Robots with Brains Made of Light",
+    "text": "The Future: Robots with Brains Made of Light\nThis isn’t science fiction. We’re already seeing early versions of:\n\nProgrammable metasurfaces that adaptively modify light paths\nDiffractive optical neural networks that do real-time classification\nIntegrated photonic chips that route and compute with light on a chip\n\nCombine that with reinforcement learning and world models, and you get a robot that can see, think, and learn physically, just like humans do."
+  },
+  {
+    "objectID": "blog/posts/post-with-code/index.html#toward-truly-embodied-intelligence",
+    "href": "blog/posts/post-with-code/index.html#toward-truly-embodied-intelligence",
+    "title": "Why Robots Need Brains Made of Light",
+    "section": "Toward Truly Embodied Intelligence",
+    "text": "Toward Truly Embodied Intelligence\nTo build robots that operate in the messiness of the real world—not just on factory floors—we need:\n\nSmarter sensors (light field, polarization, event-based)\nFaster, lower-power compute (optics over electronics)\nIn-situ learning via analog computation\n\n\nIf we want robots to think and learn like humans,\nthey need brains made of light.\n\nThis is where AI meets physics. And it’s how we take the leap from simulated intelligence to real-world, embodied intelligence.\n\nWritten by someone who believes the future of AI isn’t just faster—it’s optical."
   },
   {
     "objectID": "index.html",
@@ -56,18 +91,11 @@
     "text": "News\n[May 2025] Graduated from Duke Undergraduate, excited to be going into my PhD!"
   },
   {
-    "objectID": "blog/posts/post-with-code/index.html",
-    "href": "blog/posts/post-with-code/index.html",
-    "title": "Post With Code",
-    "section": "",
-    "text": "This is a post with executable code."
-  },
-  {
     "objectID": "blog/index.html",
     "href": "blog/index.html",
     "title": "YKM",
     "section": "",
-    "text": "Post With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nMay 21, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nMay 18, 2025\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
+    "text": "Why Robots Need Brains Made of Light\n\n\n\nAI\n\nPhotonics\n\n\n\n\n\n\n\n\n\nMay 22, 2025\n\n\nAlex Meng\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "notes/intro.html",

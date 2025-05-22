@@ -5,3 +5,6 @@ quarto render .
 
 # Render the notes subdirectory
 quarto render ./notes
+
+# Ensure assets consistency
+cp assets/* ./docs/assets/
