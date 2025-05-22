@@ -1,0 +1,28 @@
+project:
+  type: book
+  output-dir: ../docs/notes_output  # ← important
+
+book:
+  title: "Alex Meng's Notes"
+  author: "Alex Meng"
+  date: "5/22/2025"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - references.qmd
+  navbar:
+    left:
+      - text: Back to Home
+        href: https://yankunm.github.io/
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: simplex
+  pdf:
+    documentclass: scrreprt
+
+
+

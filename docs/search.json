@@ -1,5 +1,19 @@
 [
   {
+    "objectID": "notes/references.html",
+    "href": "notes/references.html",
+    "title": "References",
+    "section": "",
+    "text": "References"
+  },
+  {
+    "objectID": "notes/index.html",
+    "href": "notes/index.html",
+    "title": "Preface",
+    "section": "",
+    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books."
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -42,10 +56,17 @@
     "text": "About this blog"
   },
   {
-    "objectID": "index.html#about-this-blog",
-    "href": "index.html#about-this-blog",
-    "title": "About",
+    "objectID": "notes/intro.html",
+    "href": "notes/intro.html",
+    "title": "Introduction",
     "section": "",
-    "text": "This is the contents of the about page for my blog."
+    "text": "Introduction\nThis is a book created from markdown and executable code.\nSee @knuth84 for additional discussion of literate programming."
+  },
+  {
+    "objectID": "notes/summary.html",
+    "href": "notes/summary.html",
+    "title": "Summary",
+    "section": "",
+    "text": "Summary\nIn summary, this book has no content whatsoever."
   }
 ]

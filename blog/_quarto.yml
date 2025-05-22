@@ -4,6 +4,7 @@ project:
 website:
   title: "Alex Meng's Blog"
   navbar:
+    background: primary
     right:
       - about.qmd
       - icon: github

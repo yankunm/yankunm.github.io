@@ -12,10 +12,14 @@ website:
       - about.qmd
       - text: Blog
         href: blog/index.qmd
+      - text: Alex Meng's Notes
+        href: notes_output/index.html
 
 format:
   html:
-    theme: united
+    theme: 
+      - quartz
+      - default
     css: styles.css
     toc: true
 
