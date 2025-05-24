@@ -14,20 +14,20 @@
     "href": "textbooks/danFleisch.html",
     "title": "Maxwell’s Equations - Dan Fleisch",
     "section": "",
-    "text": "Chapter 1: Gauss’s law for electric fields\nSources: Official Website\n1. Find the electric flux through the surface of a sphere containing \\(15\\) protons and \\(10\\) electrons. Does the size of the sphere matter?\n2. A cube of side L contains a flat plate with variable surface charge density of \\(σ = -3xy\\). If the plate extends from \\(x = 0\\)to \\(x = L\\) and from \\(y = 0\\) to \\(y = L\\), what is the total electric flux through the walls of the cube?\n3. Find the total electric flux through a closed cylinder containing a line charge along its axis with linear charge density \\(λ = λ_0(1-x/h)\\) C/m if the cylinder and the line charge extend from \\(x = 0\\) to \\(x = h\\).\n4. What is the flux through any closed surface surrounding a charged sphere of radius \\(a_0\\) with volume charge density of \\(ρ = ρ_0(r/a_0)\\), where \\(r\\) is the distance from the center of the sphere?\n5. A circular disk with surface charge density \\(2 \\times 10^{-10}\\) C/m² is surrounded by a sphere with radius of one meter. If the flux through the sphere is \\(5.2 \\times 10^{-2}\\) V·m, what is the diameter of the disk?",
+    "text": "Gauss’s law for electric fields\nSources: Official Website\n1. Find the electric flux through the surface of a sphere containing \\(15\\) protons and \\(10\\) electrons. Does the size of the sphere matter?\n2. A cube of side L contains a flat plate with variable surface charge density of \\(σ = -3xy\\). If the plate extends from \\(x = 0\\)to \\(x = L\\) and from \\(y = 0\\) to \\(y = L\\), what is the total electric flux through the walls of the cube?\n3. Find the total electric flux through a closed cylinder containing a line charge along its axis with linear charge density \\(λ = λ_0(1-x/h)\\) C/m if the cylinder and the line charge extend from \\(x = 0\\) to \\(x = h\\).\n4. What is the flux through any closed surface surrounding a charged sphere of radius \\(a_0\\) with volume charge density of \\(ρ = ρ_0(r/a_0)\\), where \\(r\\) is the distance from the center of the sphere?\n5. A circular disk with surface charge density \\(2 \\times 10^{-10}\\) C/m² is surrounded by a sphere with radius of one meter. If the flux through the sphere is \\(5.2 \\times 10^{-2}\\) V·m, what is the diameter of the disk?",
     "crumbs": [
-      "TEXTBOOKS",
+      "<b>TEXTBOOKS",
       "Maxwell's Equations - Dan Fleisch"
     ]
   },
   {
-    "objectID": "textbooks/danFleisch.html#chapter-1-gausss-law-for-electric-fields",
-    "href": "textbooks/danFleisch.html#chapter-1-gausss-law-for-electric-fields",
+    "objectID": "textbooks/danFleisch.html#gausss-law-for-electric-fields",
+    "href": "textbooks/danFleisch.html#gausss-law-for-electric-fields",
     "title": "Maxwell’s Equations - Dan Fleisch",
     "section": "",
     "text": "Answer\n\n\n\n\n\nAnswer\n\n\n\n\n\nAnswer\n\n\n\n\n\nAnswer\n\n\n\n\n\nAnswer",
     "crumbs": [
-      "TEXTBOOKS",
+      "<b>TEXTBOOKS",
       "Maxwell's Equations - Dan Fleisch"
     ]
   }

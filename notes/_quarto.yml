@@ -7,23 +7,35 @@ book:
   author: "Alex Meng"
   chapters:
     - index.qmd
-    - part: "TEXTBOOKS"
+    - part: "<b>COURSES"
+      chapters:
+        - courses/course1.qmd
+    - part: "<b>PAPERS"
+      chapters: 
+        - papers/photonics.qmd
+    - part: "<b>TEXTBOOKS"
       chapters:
         - textbooks/danFleisch.qmd
   navbar:
     left:
       - text: Back to Home
         href: https://yankunm.github.io/
-  page-navigation: true
   page-footer: "Copyright 2025, Alex Meng" 
 
 bibliography: references.bib
 
 format:
   html:
-    theme: simplex
+    page-layout: full
+    theme: cosmo  # or a different professional one
+    toc: true
+    toc-location: left
+    number-sections: true
+    grid:
+      margin-width: 1px
   pdf:
     documentclass: scrreprt
 
 
+    
 

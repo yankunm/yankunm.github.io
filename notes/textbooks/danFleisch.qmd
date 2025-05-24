@@ -2,14 +2,14 @@
 
 Sources: [Official Website](https://www.danfleisch.com/maxwell/)
 
-## Chapter 1: Gauss’s law for electric fields
-
+## Gauss’s law for electric fields
 
 **1. Find the electric flux through the surface of a sphere containing** $15$ **protons and** $10$ **electrons. Does the size of the sphere matter?**
 
 <details>
 
 <summary>Answer</summary>
+
 </details>
 
 **2. A cube of side L contains a flat plate with variable surface charge density of** $σ = -3xy$**. If the plate extends from** $x = 0$**to** $x = L$ **and from** $y = 0$ **to** $y = L$**, what is the total electric flux through the walls of the cube?**

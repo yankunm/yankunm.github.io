@@ -123,7 +123,7 @@
     "href": "notes/textbooks/danFleisch.html",
     "title": "Maxwell’s Equations - Dan Fleisch",
     "section": "",
-    "text": "Sources: Official Website\n\n\n\n\nFind the electric flux through the surface of a sphere containing \\(15\\) protons and \\(10\\) electrons. Does the size of the sphere matter?\n\n\nAnswer\n\n\n\n\n\nA cube of side L contains a flat plate with variable surface charge density of \\(σ = -3xy\\). If the plate extends from \\(x = 0\\)to \\(x = L\\) and from \\(y = 0\\) to \\(y = L\\), what is the total electric flux through the walls of the cube?\n\n\nAnswer\n\n\n\n\n\n3 Cylinder\nFind the total electric flux through a closed cylinder containing a line charge along its axis with linear charge density \\(λ = λ_0(1-x/h)\\) C/m if the cylinder and the line charge extend from \\(x = 0\\) to \\(x = h\\).\n\n\nAnswer\n\n\n\n\n\nWhat is the flux through any closed surface surrounding a charged sphere of radius \\(a_0\\) with volume charge density of \\(ρ = ρ_0(r/a_0)\\), where \\(r\\) is the distance from the center of the sphere?\n\n\nAnswer\n\n\n\n\n\nA circular disk with surface charge density \\(2 \\times 10^{-10}\\) C/m² is surrounded by a sphere with radius of one meter. If the flux through the sphere is \\(5.2 \\times 10^{-2}\\) V·m, what is the diameter of the disk?\n\n\nAnswer"
+    "text": "Sources: Official Website\n\n\n1. Find the electric flux through the surface of a sphere containing \\(15\\) protons and \\(10\\) electrons. Does the size of the sphere matter?\n\n\nAnswer\n\n\n2. A cube of side L contains a flat plate with variable surface charge density of \\(σ = -3xy\\). If the plate extends from \\(x = 0\\)to \\(x = L\\) and from \\(y = 0\\) to \\(y = L\\), what is the total electric flux through the walls of the cube?\n\n\nAnswer\n\n\n3. Find the total electric flux through a closed cylinder containing a line charge along its axis with linear charge density \\(λ = λ_0(1-x/h)\\) C/m if the cylinder and the line charge extend from \\(x = 0\\) to \\(x = h\\).\n\n\nAnswer\n\n\n4. What is the flux through any closed surface surrounding a charged sphere of radius \\(a_0\\) with volume charge density of \\(ρ = ρ_0(r/a_0)\\), where \\(r\\) is the distance from the center of the sphere?\n\n\nAnswer\n\n\n5. A circular disk with surface charge density \\(2 \\times 10^{-10}\\) C/m² is surrounded by a sphere with radius of one meter. If the flux through the sphere is \\(5.2 \\times 10^{-2}\\) V·m, what is the diameter of the disk?\n\n\nAnswer"
   },
   {
     "objectID": "notes/textbooks/danFleisch.html#chapter-1-gausss-law-for-electric-fields",
@@ -131,5 +131,26 @@
     "title": "Maxwell’s Equations - Dan Fleisch",
     "section": "",
     "text": "Find the electric flux through the surface of a sphere containing \\(15\\) protons and \\(10\\) electrons. Does the size of the sphere matter?\n\n\nAnswer\n\n\n\n\n\nA cube of side L contains a flat plate with variable surface charge density of \\(σ = -3xy\\). If the plate extends from \\(x = 0\\)to \\(x = L\\) and from \\(y = 0\\) to \\(y = L\\), what is the total electric flux through the walls of the cube?\n\n\nAnswer\n\n\n\n\n\n3 Cylinder\nFind the total electric flux through a closed cylinder containing a line charge along its axis with linear charge density \\(λ = λ_0(1-x/h)\\) C/m if the cylinder and the line charge extend from \\(x = 0\\) to \\(x = h\\).\n\n\nAnswer\n\n\n\n\n\nWhat is the flux through any closed surface surrounding a charged sphere of radius \\(a_0\\) with volume charge density of \\(ρ = ρ_0(r/a_0)\\), where \\(r\\) is the distance from the center of the sphere?\n\n\nAnswer\n\n\n\n\n\nA circular disk with surface charge density \\(2 \\times 10^{-10}\\) C/m² is surrounded by a sphere with radius of one meter. If the flux through the sphere is \\(5.2 \\times 10^{-2}\\) V·m, what is the diameter of the disk?\n\n\nAnswer"
+  },
+  {
+    "objectID": "notes/courses/course1.html",
+    "href": "notes/courses/course1.html",
+    "title": "No courses yet",
+    "section": "",
+    "text": "No courses yet"
+  },
+  {
+    "objectID": "notes/textbooks/danFleisch.html#gausss-law-for-electric-fields",
+    "href": "notes/textbooks/danFleisch.html#gausss-law-for-electric-fields",
+    "title": "Maxwell’s Equations - Dan Fleisch",
+    "section": "",
+    "text": "1. Find the electric flux through the surface of a sphere containing \\(15\\) protons and \\(10\\) electrons. Does the size of the sphere matter?\n\n\nAnswer\n\n\n2. A cube of side L contains a flat plate with variable surface charge density of \\(σ = -3xy\\). If the plate extends from \\(x = 0\\)to \\(x = L\\) and from \\(y = 0\\) to \\(y = L\\), what is the total electric flux through the walls of the cube?\n\n\nAnswer\n\n\n3. Find the total electric flux through a closed cylinder containing a line charge along its axis with linear charge density \\(λ = λ_0(1-x/h)\\) C/m if the cylinder and the line charge extend from \\(x = 0\\) to \\(x = h\\).\n\n\nAnswer\n\n\n4. What is the flux through any closed surface surrounding a charged sphere of radius \\(a_0\\) with volume charge density of \\(ρ = ρ_0(r/a_0)\\), where \\(r\\) is the distance from the center of the sphere?\n\n\nAnswer\n\n\n5. A circular disk with surface charge density \\(2 \\times 10^{-10}\\) C/m² is surrounded by a sphere with radius of one meter. If the flux through the sphere is \\(5.2 \\times 10^{-2}\\) V·m, what is the diameter of the disk?\n\n\nAnswer"
+  },
+  {
+    "objectID": "notes/papers/photonics.html",
+    "href": "notes/papers/photonics.html",
+    "title": "No papers yet",
+    "section": "",
+    "text": "No papers yet"
   }
 ]
