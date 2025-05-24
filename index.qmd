@@ -4,6 +4,8 @@ subtitle: "PhD student<br>Duke University<br> alex.meng (at) duke.edu"
 about:
     template: trestles
     image: assets/profile.jpg
+    image-shape: round
+    image-width: 10em
     links:
     - icon: github # https://icons.getbootstrap.com/
       text: Github
