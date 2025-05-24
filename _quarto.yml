@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "YKM"
+  title: "AM"
   navbar:
     left:
       - text: Home
@@ -14,7 +14,7 @@ website:
         href: notes_output/index.html
 format:
   html:
-    theme: cosmo
+    theme: united
     toc: false  # disables right nav
 
 

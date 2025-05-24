@@ -1,5 +1,5 @@
 ---
-title: "Yankun (Alex) Meng"
+title: "Alex Meng"
 subtitle: "PhD student<br>Duke University<br> alex.meng (at) duke.edu"
 about:
     template: trestles
