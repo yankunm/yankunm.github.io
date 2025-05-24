@@ -7,13 +7,15 @@ book:
   author: "Alex Meng"
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
-    - references.qmd
+    - part: "TEXTBOOKS"
+      chapters:
+        - textbooks/danFleisch.qmd
   navbar:
     left:
       - text: Back to Home
         href: https://yankunm.github.io/
+  page-navigation: true
+  page-footer: "Copyright 2025, Alex Meng" 
 
 bibliography: references.bib
 

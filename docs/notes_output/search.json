@@ -4,39 +4,31 @@
     "href": "index.html",
     "title": "LEARN",
     "section": "",
-    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "text": "Preface\nI believe the best way to learn is to solve problems. Solving a problem one time does not mean you understand it, so I would like to keep a catalog some of problems I solved for future reference.",
     "crumbs": [
       "Preface"
     ]
   },
   {
-    "objectID": "intro.html",
-    "href": "intro.html",
-    "title": "1  Introduction",
+    "objectID": "textbooks/danFleisch.html",
+    "href": "textbooks/danFleisch.html",
+    "title": "Maxwell’s Equations - Dan Fleisch",
     "section": "",
-    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "text": "Chapter 1: Gauss’s law for electric fields\nSources: Official Website\n1. Find the electric flux through the surface of a sphere containing \\(15\\) protons and \\(10\\) electrons. Does the size of the sphere matter?\n2. A cube of side L contains a flat plate with variable surface charge density of \\(σ = -3xy\\). If the plate extends from \\(x = 0\\)to \\(x = L\\) and from \\(y = 0\\) to \\(y = L\\), what is the total electric flux through the walls of the cube?\n3. Find the total electric flux through a closed cylinder containing a line charge along its axis with linear charge density \\(λ = λ_0(1-x/h)\\) C/m if the cylinder and the line charge extend from \\(x = 0\\) to \\(x = h\\).\n4. What is the flux through any closed surface surrounding a charged sphere of radius \\(a_0\\) with volume charge density of \\(ρ = ρ_0(r/a_0)\\), where \\(r\\) is the distance from the center of the sphere?\n5. A circular disk with surface charge density \\(2 \\times 10^{-10}\\) C/m² is surrounded by a sphere with radius of one meter. If the flux through the sphere is \\(5.2 \\times 10^{-2}\\) V·m, what is the diameter of the disk?",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+      "TEXTBOOKS",
+      "Maxwell's Equations - Dan Fleisch"
     ]
   },
   {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "2  Summary",
+    "objectID": "textbooks/danFleisch.html#chapter-1-gausss-law-for-electric-fields",
+    "href": "textbooks/danFleisch.html#chapter-1-gausss-law-for-electric-fields",
+    "title": "Maxwell’s Equations - Dan Fleisch",
     "section": "",
-    "text": "In summary, this book has no content whatsoever.",
+    "text": "Answer\n\n\n\n\n\nAnswer\n\n\n\n\n\nAnswer\n\n\n\n\n\nAnswer\n\n\n\n\n\nAnswer",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
-    ]
-  },
-  {
-    "objectID": "references.html",
-    "href": "references.html",
-    "title": "References",
-    "section": "",
-    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
-    "crumbs": [
-      "References"
+      "TEXTBOOKS",
+      "Maxwell's Equations - Dan Fleisch"
     ]
   }
 ]
