@@ -21,6 +21,7 @@ book:
       - text: Back to Home
         href: https://yankunm.github.io/
   page-footer: "Copyright 2025, Alex Meng" 
+  
 
 bibliography: references.bib
 
