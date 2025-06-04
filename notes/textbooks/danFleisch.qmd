@@ -7,8 +7,8 @@ Sources: [Official Website](https://www.danfleisch.com/maxwell/)
 **1. Find the electric flux through the surface of a sphere containing** $15$ **protons and** $10$ **electrons. Does the size of the sphere matter?**
 
 <details>
-
 <summary>Answer</summary>
+<!-- type answer below -->
 
 </details>
 

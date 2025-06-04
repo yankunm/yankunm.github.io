@@ -1,0 +1,60 @@
+# Advanced Engineering Electromagnetics {.unnumbered}
+
+## Chapter 1 -- Time-Varying and Time-Harmonic Electromagnetic Fields
+
+* What is Electomagnetic field theory? 
+
+<details>
+<summary>Answer</summary>
+<!-- type answer below -->
+the Study of charges. 
+</details>
+
+* What is Circuit Theory?
+
+<details>
+<summary>Answer</summary>
+<!-- type answer below -->
+A special case of electromagnetic theory, when the physical dimensions of the circuit is small compared to the wavelength.
+</details>
+
+* What does Chapter 1 Cover? 
+
+<details>
+<summary>Answer</summary>
+<!-- type answer below -->
+* Maxwell's equations (differential and integral forms)
+* Relations between electromagnetic field and circuit theories
+* Boundary conditions
+* Power and Energy
+* Time-harmonic Fields
+</details>
+
+### 1 Maxwell's equations (differential and integral forms)
+
+* Who is James Clerk Maxwell?
+
+<details>
+<summary>Answer</summary>
+![James Clerk Maxwell](pics/maxwell.jpg)
+
+A Scottish physicist and mathematician that lived from 1831 to 1879.
+
+[The Father of Modern physics](https://youtu.be/NuWEqE4k230?si=tjKgX9rWm-pI64pF)
+</details>
+
+* What are maxwell's equations?
+
+Relations and variations of electric and magnetic fields, charges, and currents
+
+
+
+### 2 Relations between electromagnetic field and circuit theories
+
+### 3 Boundary conditions
+
+### 4 Power and Energy
+
+### 5 Time-harmonic Fields
+
+

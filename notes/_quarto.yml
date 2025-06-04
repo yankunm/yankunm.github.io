@@ -9,13 +9,14 @@ book:
     - index.qmd
     - part: "<b>COURSES"
       chapters:
-        - courses/course1.qmd
+        - courses/fastai.qmd
     - part: "<b>PAPERS"
       chapters: 
         - papers/photonics.qmd
     - part: "<b>TEXTBOOKS"
       chapters:
         - textbooks/danFleisch.qmd
+        - textbooks/balanis.qmd
   navbar:
     left:
       - text: Back to Home

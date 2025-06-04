@@ -1,0 +1,196 @@
+---
+title: "Lesson 3"
+format:
+  html:
+    code-fold: true
+jupyter: python3
+---
+
+## Jeremy’s Pet Classifier
+
+```{python}
+from fastai.vision.all import *
+import gradio as gr
+import timm
+```
+
+## Paperspace: Your DL Workstation in Cloud!
+- Does Jeremy speak highly of it? Why?  
+
+## JupyterLab: Real Beginner Friendly
+- Why is JupyterLab good for beginners?  
+
+## Make a Better Pet Detector
+- After training, think about how to improve the model  
+
+## Comparison of All (Image) Models
+- Did anyone compare most image models and share the findings?  
+- Where to find the notebook for comparison?  
+- Which 3 criteria are used for comparison?  
+
+## Try Out New Models
+- How to select and try out models with high scores  
+- Where is the `train.ipynb` file?  
+- How to try models on TIMM?  
+- How to compare them by loss?  
+- Why is this model impressive?  
+- What can the name of a model tell us?  
+- Why does Jeremy only train for 3 epochs? (18:58)  
+
+## Get the Categories of a Model
+- How to get label/category info from the model  
+- The rest we learned from the last lecture  
+
+## What’s in the Model
+- What two things are stored in the model?  
+
+## What Does Model Architecture Look Like?
+
+## Parameters of a Model
+- How to zoom in on a model layer  
+- How to check out a layer’s parameters  
+- What do a layer’s parameters look like?  
+
+## The Investigating Questions
+- What are the weights/numbers?  
+- How can they reveal something important?  
+- Where is the notebook on how neural nets work?  
+
+## Create a General Quadratic Function
+- How to create a function that can generate any quadratic by changing 3 parameters  
+- How to generate output from a specific quadratic by changing 1 parameter  
+- Why create a general function with multiple parameters instead of hard-coding coefficients?  
+
+## Fit a Function by Hand and Eye
+- What does “fit a function” mean? (tune parameters based on data)  
+- How to create a random dataset  
+- How to fit the quadratic by hand using Jupyter widgets  
+- Limitations of the manual/visual approach  
+- Where is this notebook?  
+
+## Loss: Fit a Function Better Without Eyes
+- Why we need a loss/loss function  
+- What is mean squared error?  
+- How loss helps improve accuracy over manual fitting  
+
+## Automate the Search of Parameters
+- How to update parameters to reduce loss  
+- Derivative material on Khan Academy?  
+- What do you need to know about derivatives now? (34:26)  
+- What is the slope/gradient?  
+- Can PyTorch compute gradients for us?  
+- How to define a loss function on the quadratic (35:02)  
+- What to know about tensors and derivatives (36:02)  
+- How to create a rank-1 tensor for storing parameters (36:49)  
+- How to enable PyTorch gradient tracking (37:10)  
+- How to calculate gradients from loss (37:38)  
+- What do the gradients mean? (38:34)  
+- How to update parameters using gradients (39:18)  
+- How to automate the full gradient descent process (41:05)  
+- Why this process is called gradient descent  
+- Related notebook  
+
+## The Mathematical Functions
+- Beyond data/loss/derivative, what else is essential for learning parameters?  
+- Why not use just quadratic functions?  
+
+## ReLU: Rectified Linear Function
+- Real-world models need complex functions – how complex?  
+- Can we build infinite complexity using simple additions?  
+- What is a rectified linear function?  
+- What does a ReLU plot look like?  
+- Adjusting the 2 parameters with widgets  
+- How the function varies under different parameters (44:46)  
+
+## Infinitely Complex Function
+- How powerful are combinations of simple functions?  
+- Create a double ReLU function and adjust 4 parameters  
+- Comparison between double and single ReLU  
+- How complex can it get with millions of ReLUs?  
+
+## 2 Circles to an Owl
+- Concise summary of core deep learning concepts  
+
+## A Chart of All Image Models Compared
+- Can it be done with brute-force code?  
+- Did Jeremy look for this comparison?  
+- What is the *wrong* way students use the chart? (50:45)  
+- How Jeremy uses the chart  
+- How he selects which models to try step-by-step  
+
+## Do I Have Enough Data?
+- Did you train a model on your dataset?  
+- Is the result satisfying?  
+- Mistake often made in DL industry (52:55)  
+- Jeremy’s suggestions  
+- Role of semi-supervised learning and augmentation  
+- How labeled and unlabeled data can help  
+
+## Interpret Gradients in Unit
+- How much loss decreases when a parameter increases by 1 unit? (55:24)  
+
+## Learning Rate
+- Why avoid large step updates?  
+- Jeremy uses quadratic zoom analogy – why?  
+- What happens with large step updates? (57:19)  
+- Is large loss drop always due to large parameter increase?  
+- What is the learning rate? Why small? How to choose it? (58:07)  
+- Too large? Too small? Consequences  
+
+## Break
+
+## Matrix Multiplication
+- How to compute millions of ReLUs efficiently  
+- What linear algebra you need (1:01:33)  
+- How easy is matrix multiplication? (1:01:51)  
+- Dataset and parameters in matrix multiplication  
+- Does matrix multiplication do the rectifying?  
+- What are GPUs good at? (1:03:49)  
+
+## Build a Regression Model in Spreadsheet
+- Titanic competition on Kaggle intro (1:05:01)  
+- What is the dataset? (1:05:18)  
+- What to do with `train.csv`  
+- Clean and transform dataset (1:07:17)  
+- Prepare parameters for multiplication (1:08:50)  
+- Problem with ‘Fare’ column scale (1:09:35)  
+- Normalize ‘Fare’, ‘Age’  
+- What is data normalization?  
+- Does fastai do this? Will we learn how?  
+- Why log-transform 'Fare'? (1:10:59)  
+- Why even distribution matters  
+- How to use `MMULT` in spreadsheet (1:11:56)  
+- Use `MMULT` to add constant  
+- Model result (1:13:41)  
+- Linear regression only? No ReLU?  
+- Can gradient descent solve regression? How?  
+
+## Build a Neural Net by Adding Two Regression Models
+- What it takes to build a neural net  
+- Why not add results before ReLU?  
+- Why add after ReLU?  
+- What the prediction looks like  
+- Now update 2 sets of parameters  
+
+## Matrix Multiplication Makes Training Faster
+- How to use `MMULT` instead of individual additions  
+
+## Watch Out! It's Chapter 4
+- Try the Titanic competition  
+- Why Chapter 4 is tough for many  
+- How to work through spreadsheet examples  
+
+## Create Dummy Variables of 3 Classes
+- Do we need only 2 columns for 3-class dummy variable?  
+
+## Taste NLP
+- What NLP models do  
+- Opportunities for non-English speaker students  
+- What tasks NLP can do (1:25:57)  
+
+## fastai NLP Library vs Hugging Face
+- How these libraries differ  
+- Why we use `transformers` in this lecture  
+
+## Homework
+- Homework to prepare for the next lesson

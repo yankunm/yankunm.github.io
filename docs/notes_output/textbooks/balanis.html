@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Optical Computing – LEARN</title>
+<title>Advanced Engineering Electromagnetics – LEARN</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../textbooks/danFleisch.html" rel="next">
-<link href="../courses/fastai.html" rel="prev">
+<link href="../textbooks/danFleisch.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -105,7 +104,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../papers/photonics.html"><b>PAPERS</b></a></li><li class="breadcrumb-item"><a href="../papers/photonics.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Optical Computing</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../textbooks/danFleisch.html"><b>TEXTBOOKS</b></a></li><li class="breadcrumb-item"><a href="../textbooks/balanis.html">Advanced Engineering Electromagnetics</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -151,7 +150,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../papers/photonics.html" class="sidebar-item-text sidebar-link active">
+  <a href="../papers/photonics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Optical Computing</span></span></a>
   </div>
 </li>
@@ -174,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../textbooks/balanis.html" class="sidebar-item-text sidebar-link">
+  <a href="../textbooks/balanis.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Advanced Engineering Electromagnetics</span></a>
   </div>
 </li>
@@ -182,7 +181,20 @@ ul.task-list li input[type="checkbox"] {
   </b></li><b>
     </b></b></b></ul><b><b><b>
     </b></b></b></div><b><b><b>
-    
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#chapter-1-time-varying-and-time-harmonic-electromagnetic-fields" id="toc-chapter-1-time-varying-and-time-harmonic-electromagnetic-fields" class="nav-link active" data-scroll-target="#chapter-1-time-varying-and-time-harmonic-electromagnetic-fields">Chapter 1 – Time-Varying and Time-Harmonic Electromagnetic Fields</a>
+  <ul class="collapse">
+  <li><a href="#maxwells-equations-differential-and-integral-forms" id="toc-maxwells-equations-differential-and-integral-forms" class="nav-link" data-scroll-target="#maxwells-equations-differential-and-integral-forms">1 Maxwell’s equations (differential and integral forms)</a></li>
+  <li><a href="#relations-between-electromagnetic-field-and-circuit-theories" id="toc-relations-between-electromagnetic-field-and-circuit-theories" class="nav-link" data-scroll-target="#relations-between-electromagnetic-field-and-circuit-theories">2 Relations between electromagnetic field and circuit theories</a></li>
+  <li><a href="#boundary-conditions" id="toc-boundary-conditions" class="nav-link" data-scroll-target="#boundary-conditions">3 Boundary conditions</a></li>
+  <li><a href="#power-and-energy" id="toc-power-and-energy" class="nav-link" data-scroll-target="#power-and-energy">4 Power and Energy</a></li>
+  <li><a href="#time-harmonic-fields" id="toc-time-harmonic-fields" class="nav-link" data-scroll-target="#time-harmonic-fields">5 Time-harmonic Fields</a></li>
+  </ul></li>
+  </ul>
+</nav>
 </b></b></b></nav><b><b><b>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -191,9 +203,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../papers/photonics.html"><b>PAPERS</b></a></li><li class="breadcrumb-item"><a href="../papers/photonics.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Optical Computing</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../textbooks/danFleisch.html"><b>TEXTBOOKS</b></a></li><li class="breadcrumb-item"><a href="../textbooks/balanis.html">Advanced Engineering Electromagnetics</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Optical Computing</span></h1>
+<h1 class="title">Advanced Engineering Electromagnetics</h1>
 </div>
 
 
@@ -210,16 +222,82 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Wetzstein, G., Ozcan, A., Gigan, S. et al.&nbsp;Inference in artificial intelligence with deep optics and photonics. Nature 588, 39–47 (2020). https://doi.org/10.1038/s41586-020-2973-6</p>
-<p>General Optical computing is not practical yet, but using optics for inference for visual computing applications is practical. This paper is a review on recent work on optical computing for AI.</p>
-<p><strong>Motivation 1:</strong> Edge devices (cameras, cars, robots, headsets, IoT) need leaner (low latency, light, small, low power) computational imaging systems.</p>
-<p>Optical computing systems promise small form factor, massive parallelism, little to no power consumption. <a href="https://nvidianews.nvidia.com/news/nvidia-spectrum-x-co-packaged-optics-networking-switches-ai-factories">Optical interconnects are already widely used in data centers today</a>.</p>
-<p>Linear optical elements can calculate convolution, fourier transforms, random projections, as a byproduct of light-matter interaction. These operations are what’s needed for DNNs.</p>
-<p>“Incorporating all-optical nonlinearities into photonic circuits is one of the key requirements for truly deep photonic networks. Yet, the challenge of efficiently implementing photonic nonlinear activation functions at low optical signal intensities was one of the primary reasons that interest in ONNs waned in the 1990s. Creative approaches from the last decade, such as nonlinear thresholders based on all-optical micro-ring resonators35, saturable absorbers29,36, electro-absorption modulators37, or hybrid electro-optical approaches38, represent possible solutions for overcoming this challenge in the near future.”</p>
-<p><a href="https://doi.org/10.1103/PhysRevX.9.021032">Although programmability has traditionally been more difficult with photonic systems, first steps towards simplifying the process have recently been demonstrated</a></p>
-<p>“One direction that seems particularly well suited for optical and photonic processing is <strong>optical inference with incoherent light to rapidly process scene information under ambient lighting conditions</strong>. Such an approach presents many exciting opportunities for autonomous vehicles, robotics and computer vision, which we discuss next.”</p>
+<section id="chapter-1-time-varying-and-time-harmonic-electromagnetic-fields" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-1-time-varying-and-time-harmonic-electromagnetic-fields">Chapter 1 – Time-Varying and Time-Harmonic Electromagnetic Fields</h2>
+<ul>
+<li>What is Electomagnetic field theory?</li>
+</ul>
+<details>
+<summary>
+Answer
+</summary>
+<!-- type answer below -->
+the Study of charges.
+</details>
+<ul>
+<li>What is Circuit Theory?</li>
+</ul>
+<details>
+<summary>
+Answer
+</summary>
+<!-- type answer below -->
+A special case of electromagnetic theory, when the physical dimensions of the circuit is small compared to the wavelength.
+</details>
+<ul>
+<li>What does Chapter 1 Cover?</li>
+</ul>
+<details>
+<summary>
+Answer
+</summary>
+<!-- type answer below -->
+<ul>
+<li>Maxwell’s equations (differential and integral forms)</li>
+<li>Relations between electromagnetic field and circuit theories</li>
+<li>Boundary conditions</li>
+<li>Power and Energy</li>
+<li>Time-harmonic Fields</li>
+</ul>
+</details>
+<section id="maxwells-equations-differential-and-integral-forms" class="level3">
+<h3 class="anchored" data-anchor-id="maxwells-equations-differential-and-integral-forms">1 Maxwell’s equations (differential and integral forms)</h3>
+<ul>
+<li>Who is James Clerk Maxwell?</li>
+</ul>
+<details>
+<summary>
+Answer
+</summary>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pics/maxwell.jpg" class="img-fluid figure-img"></p>
+<figcaption>James Clerk Maxwell</figcaption>
+</figure>
+</div>
+<p>A Scottish physicist and mathematician that lived from 1831 to 1879.</p>
+<a href="https://youtu.be/NuWEqE4k230?si=tjKgX9rWm-pI64pF">The Father of Modern physics</a>
+</details>
+<ul>
+<li>What are maxwell’s equations?</li>
+</ul>
+<p>Relations and variations of electric and magnetic fields, charges, and currents</p>
+</section>
+<section id="relations-between-electromagnetic-field-and-circuit-theories" class="level3">
+<h3 class="anchored" data-anchor-id="relations-between-electromagnetic-field-and-circuit-theories">2 Relations between electromagnetic field and circuit theories</h3>
+</section>
+<section id="boundary-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="boundary-conditions">3 Boundary conditions</h3>
+</section>
+<section id="power-and-energy" class="level3">
+<h3 class="anchored" data-anchor-id="power-and-energy">4 Power and Energy</h3>
+</section>
+<section id="time-harmonic-fields" class="level3">
+<h3 class="anchored" data-anchor-id="time-harmonic-fields">5 Time-harmonic Fields</h3>
 <b><b><b>
 
+</b></b></b></section><b><b><b>
+</b></b></b></section><b><b><b>
 
 </b></b></b></main><b><b><b> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -623,14 +701,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="../courses/fastai.html" class="pagination-link" aria-label="Practical Deep Learning (fast.ai)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Practical Deep Learning (fast.ai)</span>
+      <a href="../textbooks/danFleisch.html" class="pagination-link" aria-label="Maxwell's Equations - Dan Fleisch">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Maxwell’s Equations - Dan Fleisch</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../textbooks/danFleisch.html" class="pagination-link" aria-label="Maxwell's Equations - Dan Fleisch">
-        <span class="nav-page-text">Maxwell’s Equations - Dan Fleisch</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </b></b></b></b></b></b></div><b><b><b> <!-- /content -->

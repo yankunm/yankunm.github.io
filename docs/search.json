@@ -135,9 +135,9 @@
   {
     "objectID": "notes/courses/course1.html",
     "href": "notes/courses/course1.html",
-    "title": "No courses yet",
+    "title": "fast.ai - Practical Deep Learning",
     "section": "",
-    "text": "No courses yet"
+    "text": "fast.ai - Practical Deep Learning"
   },
   {
     "objectID": "notes/textbooks/danFleisch.html#gausss-law-for-electric-fields",
@@ -149,8 +149,15 @@
   {
     "objectID": "notes/papers/photonics.html",
     "href": "notes/papers/photonics.html",
-    "title": "No papers yet",
+    "title": "Optical Computing",
     "section": "",
-    "text": "No papers yet"
+    "text": "Optical Computing\nWetzstein, G., Ozcan, A., Gigan, S. et al. Inference in artificial intelligence with deep optics and photonics. Nature 588, 39–47 (2020). https://doi.org/10.1038/s41586-020-2973-6\nGeneral Optical computing is not practical yet, but using optics for inference for visual computing applications is practical. This paper is a review on recent work on optical computing for AI.\nMotivation 1: Edge devices (cameras, cars, robots, headsets, IoT) need leaner (low latency, light, small, low power) computational imaging systems.\nOptical computing systems promise small form factor, massive parallelism, little to no power consumption. Optical interconnects are already widely used in data centers today.\nLinear optical elements can calculate convolution, fourier transforms, random projections, as a byproduct of light-matter interaction. These operations are what’s needed for DNNs.\n“Incorporating all-optical nonlinearities into photonic circuits is one of the key requirements for truly deep photonic networks. Yet, the challenge of efficiently implementing photonic nonlinear activation functions at low optical signal intensities was one of the primary reasons that interest in ONNs waned in the 1990s. Creative approaches from the last decade, such as nonlinear thresholders based on all-optical micro-ring resonators35, saturable absorbers29,36, electro-absorption modulators37, or hybrid electro-optical approaches38, represent possible solutions for overcoming this challenge in the near future.”\nAlthough programmability has traditionally been more difficult with photonic systems, first steps towards simplifying the process have recently been demonstrated\n“One direction that seems particularly well suited for optical and photonic processing is optical inference with incoherent light to rapidly process scene information under ambient lighting conditions. Such an approach presents many exciting opportunities for autonomous vehicles, robotics and computer vision, which we discuss next.”"
+  },
+  {
+    "objectID": "notes/papers/references.html",
+    "href": "notes/papers/references.html",
+    "title": "References",
+    "section": "",
+    "text": "References"
   }
 ]

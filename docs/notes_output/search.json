@@ -10,6 +10,39 @@
     ]
   },
   {
+    "objectID": "courses/fastai.html",
+    "href": "courses/fastai.html",
+    "title": "Practical Deep Learning (fast.ai)",
+    "section": "",
+    "text": "Lesson 2\nSource: https://course.fast.ai/\nDaniel 深度碎片 on forums.fast.ai has been kind enough to create summaries of each lesson in the form of a list of questions. These summaries can be used to preview a lesson or refresh your memory afterward.",
+    "crumbs": [
+      "<b>COURSES",
+      "Practical Deep Learning (fast.ai)"
+    ]
+  },
+  {
+    "objectID": "courses/fastai.html#lesson-2",
+    "href": "courses/fastai.html#lesson-2",
+    "title": "Practical Deep Learning (fast.ai)",
+    "section": "",
+    "text": "New exciting content to come\n\nCan there be substantial new content given we have already 4 versions and a book?\n\n\n\nWays of reading the book\n\nHow many channels are available to read the book? (physical, GitHub, Colab, and others)\n\n\n\nExtra sweets from the book\n\nAre there interesting materials/stories covered by the book but not the lecture?\nWhere can you find questionnaires and quizzes of the lectures?\n\n\n\naiquizzes.com\n\nWhere can you get more quizzes of fastai and memorize them forever?\n\n\n\nIntroducing the forum\n\nHow to make the most out of fastai forum?\n\n\n\nStudents’ works after week 1\n\n\nA Wow moment\n\nWill we learn to put a model in production today?\n\n\n\nFind a problem and some data\n\nWhat is the first step before building a model?\n\n\n\nAccess to the magics of Jupyter notebook\n\nDo you want to navigate the notebook with a TOC?\nHow about collapsible sections?\nHow about moving between start and end of sections fast?\nHow to install Jupyter extensions?\n\n\n\nDownload and clean your data\n\nWhy use ggd rather than Bing for searching and downloading images?\nHow to clean/remove broken images?\n\n\n\nGet to docs quickly\n\nHow to get basic info, source code, full docs on fastai code quickly?\n\n\n\nResize your data before training\n\nHow can you specify the resize options to your data?\nWhy should we always use RandomResizedCrop and aug_transforms together?\nHow do RandomResizedCrop and aug_transforms differ?\n\n\n\nData images instantly transformed, not copied\n\nWhen resized, are we making many copies of the image?\n\n\n\nMore epochs for fancy resize\n\nHow many epochs do we usually go when using RandomResizedCrop and aug_transforms?\n\n\n\nConfusion matrix: where do models get it wrong the most?\n\nHow to create a confusion matrix on your model performance?\nWhen to use a confusion matrix? (category-level practice)\nHow to interpret a confusion matrix?\nWhat is the most obvious thing it tells us?\nHow hard is it to tell grizzly and black bears apart?\n\n\n\nCheck out images with worse predictions\n\nDoes plot_top_losses give us the images with the highest losses?\nAre those images ones the model made confidently wrong predictions? (practice)\nDo those images include ones that the model made correct predictions unconfidently?\nWhat does looking at those high loss images help with? (expert examination or simple data cleaning)\n\n\n\nWhat if you want to clean the data a little\n\nHow to display and make cleaning choices on each of those top loss images in each data folder? (practice)\nWithout expert knowledge on telling apart grizzly and black bears, we can at least clean images which mess up teddy bears.\n\n\n\nMyth breaker: train model and then clean data\n\nHow can training the model help us see problems in the dataset? (practice)\nWon’t we have more ideas to improve the dataset once we spot the problems?\n\n\n\nTurn off GPU when not using\n\nHow to use GPU RAM locally without much trouble?\n\n\n\nWatch first, then watch and code along\n\nWhat is the preferred way of lecture watching and coding by the majority of students?\n\n\n\nA Gradio + Hugging Face tutorial\n\n\nGit and GitHub Desktop\n\nIs GitHub Desktop a less cool but easier and more robust way to version control than git?\n\n\n\nTerminal for Windows\n\nHow to set up a terminal for Windows?\nWhy does Jeremy prefer Windows over Mac?\n\n\n\nGet started with Hugging Face Spaces\n\nGo to huggingface.co/spaces and create a new space\n\n\n\nGet the default app up and running\n\nHow to use git to download your space folder?\nHow to open VSCode to add an app.py file?\nHow to use VSCode to push your space folder up to Hugging Face Spaces online?\nThen go back to your space on Hugging Face to see the app running\n\n\n\nTrain and download your model\n\nWhere is the model we are going to train and download from Kaggle notebook?\nHow to export your model after training it on Kaggle?\nWhere do you download the model?\nHow to open a folder in terminal? open .\nMake sure the model is downloaded into its own Hugging Face Space folder\n\n\n\nPredict with loaded model\n\nHow to load the downloaded model to make predictions?\nHow to make predictions with the loaded model?\nHow to export selected cells of a Jupyter notebook into a Python file?\nHow to see how long a code runs in a Jupyter cell?\n\n\n\nTurn your model into a Gradio app locally\n\nHow to prepare your prediction result into a form Gradio prefers? (code)\nHow to build a Gradio interface for your model?\nHow to launch your app with the model locally?\n(Not in video: run the code on Kaggle in cloud)\n\n\n\nPush this app onto Hugging Face Spaces\n\nMake sure to create a new space first (e.g., testing)\nHow to turn the notebook into a Python script?\nHow to push the folder up to GitHub and run app in cloud?\n(Not in Video: if stuck, check out Tanishq’s tutorial – shooting)\n\n\n\nAdditional questions\n\nHow many epochs are ideal for fine-tuning?\nHow to save model from Colab?\n\n\n\nHow to install fastai properly\n\nHow to download github/fastai/fastsetup using git?\ngit clone https://github.com/fastai/fastsetup.git\nHow to download and install mamba?\n./setup_conda.sh\n(Not in Video: problem of running ./setup_conda.sh)\nHow to download and install fastai?\nmamba install -c fastchan fastai\nHow to install nbdev?\nmamba install -c fastchan nbdev\nHow to start using Jupyter Notebook?\njupyter notebook --no-browser\n(Not in Video: other problem related to Xcode)\n\n\n\nThe workflow summary\n\n\nHuggingFace API + Gradio + JavaScript = real app\n\n\nHow easy does HuggingFace API work?\n\n\nHow easy to get started with JS + HF API + Gradio?\n\n\nApp example of having multiple inputs and outputs\n\n\nApp example of combining two models\n\n\nHow to turn your model into your own web app with fastpages\n\n\nHow to fork a public fastpages for your own use",
+    "crumbs": [
+      "<b>COURSES",
+      "Practical Deep Learning (fast.ai)"
+    ]
+  },
+  {
+    "objectID": "papers/photonics.html",
+    "href": "papers/photonics.html",
+    "title": "1  Optical Computing",
+    "section": "",
+    "text": "Wetzstein, G., Ozcan, A., Gigan, S. et al. Inference in artificial intelligence with deep optics and photonics. Nature 588, 39–47 (2020). https://doi.org/10.1038/s41586-020-2973-6\nGeneral Optical computing is not practical yet, but using optics for inference for visual computing applications is practical. This paper is a review on recent work on optical computing for AI.\nMotivation 1: Edge devices (cameras, cars, robots, headsets, IoT) need leaner (low latency, light, small, low power) computational imaging systems.\nOptical computing systems promise small form factor, massive parallelism, little to no power consumption. Optical interconnects are already widely used in data centers today.\nLinear optical elements can calculate convolution, fourier transforms, random projections, as a byproduct of light-matter interaction. These operations are what’s needed for DNNs.\n“Incorporating all-optical nonlinearities into photonic circuits is one of the key requirements for truly deep photonic networks. Yet, the challenge of efficiently implementing photonic nonlinear activation functions at low optical signal intensities was one of the primary reasons that interest in ONNs waned in the 1990s. Creative approaches from the last decade, such as nonlinear thresholders based on all-optical micro-ring resonators35, saturable absorbers29,36, electro-absorption modulators37, or hybrid electro-optical approaches38, represent possible solutions for overcoming this challenge in the near future.”\nAlthough programmability has traditionally been more difficult with photonic systems, first steps towards simplifying the process have recently been demonstrated\n“One direction that seems particularly well suited for optical and photonic processing is optical inference with incoherent light to rapidly process scene information under ambient lighting conditions. Such an approach presents many exciting opportunities for autonomous vehicles, robotics and computer vision, which we discuss next.”",
+    "crumbs": [
+      "<b>PAPERS",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Optical Computing</span>"
+    ]
+  },
+  {
     "objectID": "textbooks/danFleisch.html",
     "href": "textbooks/danFleisch.html",
     "title": "Maxwell’s Equations - Dan Fleisch",
@@ -25,10 +58,32 @@
     "href": "textbooks/danFleisch.html#gausss-law-for-electric-fields",
     "title": "Maxwell’s Equations - Dan Fleisch",
     "section": "",
-    "text": "Answer\n\n\n\n\n\nAnswer\n\n\n\n\n\nAnswer\n\n\n\n\n\nAnswer\n\n\n\n\n\nAnswer",
+    "text": "Answer\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nAnswer\n\n\n\n\n\nAnswer\n\n\n\n\n\nAnswer",
     "crumbs": [
       "<b>TEXTBOOKS",
       "Maxwell's Equations - Dan Fleisch"
+    ]
+  },
+  {
+    "objectID": "textbooks/balanis.html",
+    "href": "textbooks/balanis.html",
+    "title": "Advanced Engineering Electromagnetics",
+    "section": "",
+    "text": "Chapter 1 – Time-Varying and Time-Harmonic Electromagnetic Fields",
+    "crumbs": [
+      "<b>TEXTBOOKS",
+      "Advanced Engineering Electromagnetics"
+    ]
+  },
+  {
+    "objectID": "textbooks/balanis.html#chapter-1-time-varying-and-time-harmonic-electromagnetic-fields",
+    "href": "textbooks/balanis.html#chapter-1-time-varying-and-time-harmonic-electromagnetic-fields",
+    "title": "Advanced Engineering Electromagnetics",
+    "section": "",
+    "text": "What is Electomagnetic field theory?\n\n\n\nAnswer\n\n\nthe Study of charges.\n\n\nWhat is Circuit Theory?\n\n\n\nAnswer\n\n\nA special case of electromagnetic theory, when the physical dimensions of the circuit is small compared to the wavelength.\n\n\nWhat does Chapter 1 Cover?\n\n\n\nAnswer\n\n\n\nMaxwell’s equations (differential and integral forms)\nRelations between electromagnetic field and circuit theories\nBoundary conditions\nPower and Energy\nTime-harmonic Fields\n\n\n\n1 Maxwell’s equations (differential and integral forms)\n\nWho is James Clerk Maxwell?\n\n\n\nAnswer\n\n\n\n\nJames Clerk Maxwell\n\n\nA Scottish physicist and mathematician that lived from 1831 to 1879.\nThe Father of Modern physics\n\n\nWhat are maxwell’s equations?\n\nRelations and variations of electric and magnetic fields, charges, and currents\n\n\n2 Relations between electromagnetic field and circuit theories\n\n\n3 Boundary conditions\n\n\n4 Power and Energy\n\n\n5 Time-harmonic Fields",
+    "crumbs": [
+      "<b>TEXTBOOKS",
+      "Advanced Engineering Electromagnetics"
     ]
   }
 ]

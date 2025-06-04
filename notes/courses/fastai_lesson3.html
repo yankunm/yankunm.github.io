@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Optical Computing – LEARN</title>
+<title>Lesson 3</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,182 +23,35 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../textbooks/danFleisch.html" rel="next">
-<link href="../courses/fastai.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c491d898725e12e6f35efff9606d3e70.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
-  }
-}</script>
+<script src="fastai_lesson3_files/libs/clipboard/clipboard.min.js"></script>
+<script src="fastai_lesson3_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="fastai_lesson3_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="fastai_lesson3_files/libs/quarto-html/popper.min.js"></script>
+<script src="fastai_lesson3_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="fastai_lesson3_files/libs/quarto-html/anchor.min.js"></script>
+<link href="fastai_lesson3_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="fastai_lesson3_files/libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="fastai_lesson3_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="fastai_lesson3_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="fastai_lesson3_files/libs/bootstrap/bootstrap-81267100e462c21b3d6c0d5bf76a3417.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-light">
+<body class="fullcontent quarto-light">
 
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">LEARN</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="https://yankunm.github.io/"> 
-<span class="menu-text">Back to Home</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../papers/photonics.html"><b>PAPERS</b></a></li><li class="breadcrumb-item"><a href="../papers/photonics.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Optical Computing</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
-<!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text"><b>COURSES</b></span></a><b>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </b></div><b>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../courses/fastai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Practical Deep Learning (fast.ai)</span></a>
-  </div>
-</li>
-      </ul>
-  </b></li><b>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text"><b>PAPERS</b></span></a><b>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </b></div><b>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../papers/photonics.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Optical Computing</span></span></a>
-  </div>
-</li>
-      </ul>
-  </b></li><b>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text"><b>TEXTBOOKS</b></span></a><b>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </b></div><b>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../textbooks/danFleisch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Maxwell’s Equations - Dan Fleisch</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../textbooks/balanis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Advanced Engineering Electromagnetics</span></a>
-  </div>
-</li>
-      </ul>
-  </b></li><b>
-    </b></b></b></ul><b><b><b>
-    </b></b></b></div><b><b><b>
-    
-</b></b></b></nav><b><b><b>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-    </div>
-<!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../papers/photonics.html"><b>PAPERS</b></a></li><li class="breadcrumb-item"><a href="../papers/photonics.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Optical Computing</span></a></li></ol></nav>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Optical Computing</span></h1>
+<h1 class="title">Lesson 3</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta">
 
     
   
@@ -210,18 +63,372 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Wetzstein, G., Ozcan, A., Gigan, S. et al.&nbsp;Inference in artificial intelligence with deep optics and photonics. Nature 588, 39–47 (2020). https://doi.org/10.1038/s41586-020-2973-6</p>
-<p>General Optical computing is not practical yet, but using optics for inference for visual computing applications is practical. This paper is a review on recent work on optical computing for AI.</p>
-<p><strong>Motivation 1:</strong> Edge devices (cameras, cars, robots, headsets, IoT) need leaner (low latency, light, small, low power) computational imaging systems.</p>
-<p>Optical computing systems promise small form factor, massive parallelism, little to no power consumption. <a href="https://nvidianews.nvidia.com/news/nvidia-spectrum-x-co-packaged-optics-networking-switches-ai-factories">Optical interconnects are already widely used in data centers today</a>.</p>
-<p>Linear optical elements can calculate convolution, fourier transforms, random projections, as a byproduct of light-matter interaction. These operations are what’s needed for DNNs.</p>
-<p>“Incorporating all-optical nonlinearities into photonic circuits is one of the key requirements for truly deep photonic networks. Yet, the challenge of efficiently implementing photonic nonlinear activation functions at low optical signal intensities was one of the primary reasons that interest in ONNs waned in the 1990s. Creative approaches from the last decade, such as nonlinear thresholders based on all-optical micro-ring resonators35, saturable absorbers29,36, electro-absorption modulators37, or hybrid electro-optical approaches38, represent possible solutions for overcoming this challenge in the near future.”</p>
-<p><a href="https://doi.org/10.1103/PhysRevX.9.021032">Although programmability has traditionally been more difficult with photonic systems, first steps towards simplifying the process have recently been demonstrated</a></p>
-<p>“One direction that seems particularly well suited for optical and photonic processing is <strong>optical inference with incoherent light to rapidly process scene information under ambient lighting conditions</strong>. Such an approach presents many exciting opportunities for autonomous vehicles, robotics and computer vision, which we discuss next.”</p>
-<b><b><b>
+<section id="jeremys-pet-classifier" class="level2">
+<h2 class="anchored" data-anchor-id="jeremys-pet-classifier">Jeremy’s Pet Classifier</h2>
+</section>
+<section id="paperspace-your-dl-workstation-in-cloud" class="level2">
+<h2 class="anchored" data-anchor-id="paperspace-your-dl-workstation-in-cloud">Paperspace: Your DL Workstation in Cloud!</h2>
+<ul>
+<li>Does Jeremy speak highly of it? Why?</li>
+</ul>
+</section>
+<section id="jupyterlab-real-beginner-friendly" class="level2">
+<h2 class="anchored" data-anchor-id="jupyterlab-real-beginner-friendly">JupyterLab: Real Beginner Friendly</h2>
+<ul>
+<li>Why is JupyterLab good for beginners?</li>
+</ul>
+</section>
+<section id="make-a-better-pet-detector" class="level2">
+<h2 class="anchored" data-anchor-id="make-a-better-pet-detector">Make a Better Pet Detector</h2>
+<ul>
+<li>After training, think about how to improve the model</li>
+</ul>
+</section>
+<section id="comparison-of-all-image-models" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-of-all-image-models">Comparison of All (Image) Models</h2>
+<ul>
+<li>Did anyone compare most image models and share the findings?<br>
+</li>
+<li>Where to find the notebook for comparison?<br>
+</li>
+<li>Which 3 criteria are used for comparison?</li>
+</ul>
+</section>
+<section id="try-out-new-models" class="level2">
+<h2 class="anchored" data-anchor-id="try-out-new-models">Try Out New Models</h2>
+<ul>
+<li>How to select and try out models with high scores<br>
+</li>
+<li>Where is the <code>train.ipynb</code> file?<br>
+</li>
+<li>How to try models on TIMM?<br>
+</li>
+<li>How to compare them by loss?<br>
+</li>
+<li>Why is this model impressive?<br>
+</li>
+<li>What can the name of a model tell us?<br>
+</li>
+<li>Why does Jeremy only train for 3 epochs? (18:58)</li>
+</ul>
+</section>
+<section id="get-the-categories-of-a-model" class="level2">
+<h2 class="anchored" data-anchor-id="get-the-categories-of-a-model">Get the Categories of a Model</h2>
+<ul>
+<li>How to get label/category info from the model<br>
+</li>
+<li>The rest we learned from the last lecture</li>
+</ul>
+</section>
+<section id="whats-in-the-model" class="level2">
+<h2 class="anchored" data-anchor-id="whats-in-the-model">What’s in the Model</h2>
+<ul>
+<li>What two things are stored in the model?</li>
+</ul>
+</section>
+<section id="what-does-model-architecture-look-like" class="level2">
+<h2 class="anchored" data-anchor-id="what-does-model-architecture-look-like">What Does Model Architecture Look Like?</h2>
+</section>
+<section id="parameters-of-a-model" class="level2">
+<h2 class="anchored" data-anchor-id="parameters-of-a-model">Parameters of a Model</h2>
+<ul>
+<li>How to zoom in on a model layer<br>
+</li>
+<li>How to check out a layer’s parameters<br>
+</li>
+<li>What do a layer’s parameters look like?</li>
+</ul>
+</section>
+<section id="the-investigating-questions" class="level2">
+<h2 class="anchored" data-anchor-id="the-investigating-questions">The Investigating Questions</h2>
+<ul>
+<li>What are the weights/numbers?<br>
+</li>
+<li>How can they reveal something important?<br>
+</li>
+<li>Where is the notebook on how neural nets work?</li>
+</ul>
+</section>
+<section id="create-a-general-quadratic-function" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-general-quadratic-function">Create a General Quadratic Function</h2>
+<ul>
+<li>How to create a function that can generate any quadratic by changing 3 parameters<br>
+</li>
+<li>How to generate output from a specific quadratic by changing 1 parameter<br>
+</li>
+<li>Why create a general function with multiple parameters instead of hard-coding coefficients?</li>
+</ul>
+</section>
+<section id="fit-a-function-by-hand-and-eye" class="level2">
+<h2 class="anchored" data-anchor-id="fit-a-function-by-hand-and-eye">Fit a Function by Hand and Eye</h2>
+<ul>
+<li>What does “fit a function” mean? (tune parameters based on data)<br>
+</li>
+<li>How to create a random dataset<br>
+</li>
+<li>How to fit the quadratic by hand using Jupyter widgets<br>
+</li>
+<li>Limitations of the manual/visual approach<br>
+</li>
+<li>Where is this notebook?</li>
+</ul>
+</section>
+<section id="loss-fit-a-function-better-without-eyes" class="level2">
+<h2 class="anchored" data-anchor-id="loss-fit-a-function-better-without-eyes">Loss: Fit a Function Better Without Eyes</h2>
+<ul>
+<li>Why we need a loss/loss function<br>
+</li>
+<li>What is mean squared error?<br>
+</li>
+<li>How loss helps improve accuracy over manual fitting</li>
+</ul>
+</section>
+<section id="automate-the-search-of-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="automate-the-search-of-parameters">Automate the Search of Parameters</h2>
+<ul>
+<li>How to update parameters to reduce loss<br>
+</li>
+<li>Derivative material on Khan Academy?<br>
+</li>
+<li>What do you need to know about derivatives now? (34:26)<br>
+</li>
+<li>What is the slope/gradient?<br>
+</li>
+<li>Can PyTorch compute gradients for us?<br>
+</li>
+<li>How to define a loss function on the quadratic (35:02)<br>
+</li>
+<li>What to know about tensors and derivatives (36:02)<br>
+</li>
+<li>How to create a rank-1 tensor for storing parameters (36:49)<br>
+</li>
+<li>How to enable PyTorch gradient tracking (37:10)<br>
+</li>
+<li>How to calculate gradients from loss (37:38)<br>
+</li>
+<li>What do the gradients mean? (38:34)<br>
+</li>
+<li>How to update parameters using gradients (39:18)<br>
+</li>
+<li>How to automate the full gradient descent process (41:05)<br>
+</li>
+<li>Why this process is called gradient descent<br>
+</li>
+<li>Related notebook</li>
+</ul>
+</section>
+<section id="the-mathematical-functions" class="level2">
+<h2 class="anchored" data-anchor-id="the-mathematical-functions">The Mathematical Functions</h2>
+<ul>
+<li>Beyond data/loss/derivative, what else is essential for learning parameters?<br>
+</li>
+<li>Why not use just quadratic functions?</li>
+</ul>
+</section>
+<section id="relu-rectified-linear-function" class="level2">
+<h2 class="anchored" data-anchor-id="relu-rectified-linear-function">ReLU: Rectified Linear Function</h2>
+<ul>
+<li>Real-world models need complex functions – how complex?<br>
+</li>
+<li>Can we build infinite complexity using simple additions?<br>
+</li>
+<li>What is a rectified linear function?<br>
+</li>
+<li>What does a ReLU plot look like?<br>
+</li>
+<li>Adjusting the 2 parameters with widgets<br>
+</li>
+<li>How the function varies under different parameters (44:46)</li>
+</ul>
+</section>
+<section id="infinitely-complex-function" class="level2">
+<h2 class="anchored" data-anchor-id="infinitely-complex-function">Infinitely Complex Function</h2>
+<ul>
+<li>How powerful are combinations of simple functions?<br>
+</li>
+<li>Create a double ReLU function and adjust 4 parameters<br>
+</li>
+<li>Comparison between double and single ReLU<br>
+</li>
+<li>How complex can it get with millions of ReLUs?</li>
+</ul>
+</section>
+<section id="circles-to-an-owl" class="level2">
+<h2 class="anchored" data-anchor-id="circles-to-an-owl">2 Circles to an Owl</h2>
+<ul>
+<li>Concise summary of core deep learning concepts</li>
+</ul>
+</section>
+<section id="a-chart-of-all-image-models-compared" class="level2">
+<h2 class="anchored" data-anchor-id="a-chart-of-all-image-models-compared">A Chart of All Image Models Compared</h2>
+<ul>
+<li>Can it be done with brute-force code?<br>
+</li>
+<li>Did Jeremy look for this comparison?<br>
+</li>
+<li>What is the <em>wrong</em> way students use the chart? (50:45)<br>
+</li>
+<li>How Jeremy uses the chart<br>
+</li>
+<li>How he selects which models to try step-by-step</li>
+</ul>
+</section>
+<section id="do-i-have-enough-data" class="level2">
+<h2 class="anchored" data-anchor-id="do-i-have-enough-data">Do I Have Enough Data?</h2>
+<ul>
+<li>Did you train a model on your dataset?<br>
+</li>
+<li>Is the result satisfying?<br>
+</li>
+<li>Mistake often made in DL industry (52:55)<br>
+</li>
+<li>Jeremy’s suggestions<br>
+</li>
+<li>Role of semi-supervised learning and augmentation<br>
+</li>
+<li>How labeled and unlabeled data can help</li>
+</ul>
+</section>
+<section id="interpret-gradients-in-unit" class="level2">
+<h2 class="anchored" data-anchor-id="interpret-gradients-in-unit">Interpret Gradients in Unit</h2>
+<ul>
+<li>How much loss decreases when a parameter increases by 1 unit? (55:24)</li>
+</ul>
+</section>
+<section id="learning-rate" class="level2">
+<h2 class="anchored" data-anchor-id="learning-rate">Learning Rate</h2>
+<ul>
+<li>Why avoid large step updates?<br>
+</li>
+<li>Jeremy uses quadratic zoom analogy – why?<br>
+</li>
+<li>What happens with large step updates? (57:19)<br>
+</li>
+<li>Is large loss drop always due to large parameter increase?<br>
+</li>
+<li>What is the learning rate? Why small? How to choose it? (58:07)<br>
+</li>
+<li>Too large? Too small? Consequences</li>
+</ul>
+</section>
+<section id="break" class="level2">
+<h2 class="anchored" data-anchor-id="break">Break</h2>
+</section>
+<section id="matrix-multiplication" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-multiplication">Matrix Multiplication</h2>
+<ul>
+<li>How to compute millions of ReLUs efficiently<br>
+</li>
+<li>What linear algebra you need (1:01:33)<br>
+</li>
+<li>How easy is matrix multiplication? (1:01:51)<br>
+</li>
+<li>Dataset and parameters in matrix multiplication<br>
+</li>
+<li>Does matrix multiplication do the rectifying?<br>
+</li>
+<li>What are GPUs good at? (1:03:49)</li>
+</ul>
+</section>
+<section id="build-a-regression-model-in-spreadsheet" class="level2">
+<h2 class="anchored" data-anchor-id="build-a-regression-model-in-spreadsheet">Build a Regression Model in Spreadsheet</h2>
+<ul>
+<li>Titanic competition on Kaggle intro (1:05:01)<br>
+</li>
+<li>What is the dataset? (1:05:18)<br>
+</li>
+<li>What to do with <code>train.csv</code><br>
+</li>
+<li>Clean and transform dataset (1:07:17)<br>
+</li>
+<li>Prepare parameters for multiplication (1:08:50)<br>
+</li>
+<li>Problem with ‘Fare’ column scale (1:09:35)<br>
+</li>
+<li>Normalize ‘Fare’, ‘Age’<br>
+</li>
+<li>What is data normalization?<br>
+</li>
+<li>Does fastai do this? Will we learn how?<br>
+</li>
+<li>Why log-transform ‘Fare’? (1:10:59)<br>
+</li>
+<li>Why even distribution matters<br>
+</li>
+<li>How to use <code>MMULT</code> in spreadsheet (1:11:56)<br>
+</li>
+<li>Use <code>MMULT</code> to add constant<br>
+</li>
+<li>Model result (1:13:41)<br>
+</li>
+<li>Linear regression only? No ReLU?<br>
+</li>
+<li>Can gradient descent solve regression? How?</li>
+</ul>
+</section>
+<section id="build-a-neural-net-by-adding-two-regression-models" class="level2">
+<h2 class="anchored" data-anchor-id="build-a-neural-net-by-adding-two-regression-models">Build a Neural Net by Adding Two Regression Models</h2>
+<ul>
+<li>What it takes to build a neural net<br>
+</li>
+<li>Why not add results before ReLU?<br>
+</li>
+<li>Why add after ReLU?<br>
+</li>
+<li>What the prediction looks like<br>
+</li>
+<li>Now update 2 sets of parameters</li>
+</ul>
+</section>
+<section id="matrix-multiplication-makes-training-faster" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-multiplication-makes-training-faster">Matrix Multiplication Makes Training Faster</h2>
+<ul>
+<li>How to use <code>MMULT</code> instead of individual additions</li>
+</ul>
+</section>
+<section id="watch-out-its-chapter-4" class="level2">
+<h2 class="anchored" data-anchor-id="watch-out-its-chapter-4">Watch Out! It’s Chapter 4</h2>
+<ul>
+<li>Try the Titanic competition<br>
+</li>
+<li>Why Chapter 4 is tough for many<br>
+</li>
+<li>How to work through spreadsheet examples</li>
+</ul>
+</section>
+<section id="create-dummy-variables-of-3-classes" class="level2">
+<h2 class="anchored" data-anchor-id="create-dummy-variables-of-3-classes">Create Dummy Variables of 3 Classes</h2>
+<ul>
+<li>Do we need only 2 columns for 3-class dummy variable?</li>
+</ul>
+</section>
+<section id="taste-nlp" class="level2">
+<h2 class="anchored" data-anchor-id="taste-nlp">Taste NLP</h2>
+<ul>
+<li>What NLP models do<br>
+</li>
+<li>Opportunities for non-English speaker students<br>
+</li>
+<li>What tasks NLP can do (1:25:57)</li>
+</ul>
+</section>
+<section id="fastai-nlp-library-vs-hugging-face" class="level2">
+<h2 class="anchored" data-anchor-id="fastai-nlp-library-vs-hugging-face">fastai NLP Library vs Hugging Face</h2>
+<ul>
+<li>How these libraries differ<br>
+</li>
+<li>Why we use <code>transformers</code> in this lecture</li>
+</ul>
+</section>
+<section id="homework" class="level2">
+<h2 class="anchored" data-anchor-id="homework">Homework</h2>
+<ul>
+<li>Homework to prepare for the next lesson</li>
+</ul>
+</section>
 
-
-</b></b></b></main><b><b><b> <!-- /main -->
+</main>
+<!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -621,34 +828,9 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-<nav class="page-navigation column-page-right">
-  <div class="nav-page nav-page-previous">
-      <a href="../courses/fastai.html" class="pagination-link" aria-label="Practical Deep Learning (fast.ai)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Practical Deep Learning (fast.ai)</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../textbooks/danFleisch.html" class="pagination-link" aria-label="Maxwell's Equations - Dan Fleisch">
-        <span class="nav-page-text">Maxwell’s Equations - Dan Fleisch</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
-</b></b></b></b></b></b></div><b><b><b> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
-<p>Copyright 2025, Alex Meng</p>
-</div>
-    <div class="nav-footer-right">
-      &nbsp;
-    </div>
-  </div>
-</footer>
+</div> <!-- /content -->
 
 
 
 
-</b></b></b></body></html>
+</body></html>

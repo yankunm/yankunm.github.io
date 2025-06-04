@@ -1,0 +1,160 @@
+# Practical Deep Learning (fast.ai) {.unnumbered}
+
+Source: [https://course.fast.ai/](https://course.fast.ai/)
+
+
+## Lesson 2
+
+Daniel 深度碎片 on forums.fast.ai has been kind enough to create summaries of each lesson in the form of a list of questions. These summaries can be used to preview a lesson or refresh your memory afterward.
+
+### New exciting content to come
+- Can there be substantial new content given we have already 4 versions and a book?
+
+### Ways of reading the book
+- How many channels are available to read the book? (physical, GitHub, Colab, and others)
+
+### Extra sweets from the book
+- Are there interesting materials/stories covered by the book but not the lecture?
+- Where can you find questionnaires and quizzes of the lectures?
+
+### [aiquizzes.com](https://aiquizzes.com)
+- Where can you get more quizzes of fastai and memorize them forever?
+
+### Introducing the forum
+- How to make the most out of fastai forum?
+
+### Students’ works after week 1
+
+### A Wow moment
+- Will we learn to put a model in production today?
+
+### Find a problem and some data
+- What is the first step before building a model?
+
+### Access to the magics of Jupyter notebook
+- Do you want to navigate the notebook with a TOC?
+- How about collapsible sections?
+- How about moving between start and end of sections fast?
+- How to install Jupyter extensions?
+
+### Download and clean your data
+- Why use `ggd` rather than Bing for searching and downloading images?
+- How to clean/remove broken images?
+
+### Get to docs quickly
+- How to get basic info, source code, full docs on fastai code quickly?
+
+### Resize your data before training
+- How can you specify the resize options to your data?
+- Why should we always use `RandomResizedCrop` and `aug_transforms` together?
+- How do `RandomResizedCrop` and `aug_transforms` differ?
+
+### Data images instantly transformed, not copied
+- When resized, are we making many copies of the image?
+
+### More epochs for fancy resize
+- How many epochs do we usually go when using `RandomResizedCrop` and `aug_transforms`?
+
+### Confusion matrix: where do models get it wrong the most?
+- How to create a confusion matrix on your model performance?
+- When to use a confusion matrix? *(category-level practice)*
+- How to interpret a confusion matrix?
+- What is the most obvious thing it tells us?
+- How hard is it to tell grizzly and black bears apart?
+
+### Check out images with worse predictions
+- Does `plot_top_losses` give us the images with the highest losses?
+- Are those images ones the model made confidently wrong predictions? *(practice)*
+- Do those images include ones that the model made correct predictions unconfidently?
+- What does looking at those high loss images help with? *(expert examination or simple data cleaning)*
+
+### What if you want to clean the data a little
+- How to display and make cleaning choices on each of those top loss images in each data folder? *(practice)*
+- Without expert knowledge on telling apart grizzly and black bears, we can at least clean images which mess up teddy bears.
+
+### Myth breaker: train model and then clean data
+- How can training the model help us see problems in the dataset? *(practice)*
+- Won’t we have more ideas to improve the dataset once we spot the problems?
+
+### Turn off GPU when not using
+- How to use GPU RAM locally without much trouble?
+
+### Watch first, then watch and code along
+- What is the preferred way of lecture watching and coding by the majority of students?
+
+### A Gradio + Hugging Face tutorial
+
+### Git and GitHub Desktop
+- Is GitHub Desktop a less cool but easier and more robust way to version control than git?
+
+### Terminal for Windows
+- How to set up a terminal for Windows?
+- Why does Jeremy prefer Windows over Mac?
+
+### Get started with Hugging Face Spaces
+- Go to [huggingface.co/spaces](https://huggingface.co/spaces) and create a new space
+
+### Get the default app up and running
+- How to use git to download your space folder?
+- How to open VSCode to add an `app.py` file?
+- How to use VSCode to push your space folder up to Hugging Face Spaces online?
+- Then go back to your space on Hugging Face to see the app running
+
+### Train and download your model
+- Where is the model we are going to train and download from Kaggle notebook?
+- How to export your model after training it on Kaggle?
+- Where do you download the model?
+- How to open a folder in terminal? `open .`
+- Make sure the model is downloaded into its own Hugging Face Space folder
+
+### Predict with loaded model
+- How to load the downloaded model to make predictions?
+- How to make predictions with the loaded model?
+- How to export selected cells of a Jupyter notebook into a Python file?
+- How to see how long a code runs in a Jupyter cell?
+
+### Turn your model into a Gradio app locally
+- How to prepare your prediction result into a form Gradio prefers? *(code)*
+- How to build a Gradio interface for your model?
+- How to launch your app with the model locally?
+- *(Not in video: run the code on Kaggle in cloud)*
+
+### Push this app onto Hugging Face Spaces
+- Make sure to create a new space first (e.g., `testing`)
+- How to turn the notebook into a Python script?
+- How to push the folder up to GitHub and run app in cloud?
+- *(Not in Video: if stuck, check out Tanishq's tutorial – shooting)*
+
+### Additional questions
+- How many epochs are ideal for fine-tuning?
+- How to save model from Colab?
+
+### How to install fastai properly
+- How to download `github/fastai/fastsetup` using git?  
+  `git clone https://github.com/fastai/fastsetup.git`
+- How to download and install mamba?  
+  `./setup_conda.sh`
+- *(Not in Video: problem of running `./setup_conda.sh`)*
+- How to download and install fastai?  
+  `mamba install -c fastchan fastai`
+- How to install nbdev?  
+  `mamba install -c fastchan nbdev`
+- How to start using Jupyter Notebook?  
+  `jupyter notebook --no-browser`
+- *(Not in Video: other problem related to Xcode)*
+
+### The workflow summary
+
+### HuggingFace API + Gradio + JavaScript = real app
+
+### How easy does HuggingFace API work?
+
+### How easy to get started with JS + HF API + Gradio?
+
+### App example of having multiple inputs and outputs
+
+### App example of combining two models
+
+### How to turn your model into your own web app with fastpages
+
+### How to fork a public fastpages for your own use
