@@ -149,45 +149,219 @@ window.Quarto = {
 
 <section id="maxwells-equations---dan-fleisch" class="level1 unnumbered">
 <h1 class="unnumbered">Maxwell’s Equations - Dan Fleisch</h1>
-<p>Sources: <a href="https://www.danfleisch.com/maxwell/">Official Website</a></p>
+<p>Website: <a href="https://www.danfleisch.com/maxwell/">Official Website</a></p>
 <section id="gausss-law-for-electric-fields" class="level2">
-<h2 class="anchored" data-anchor-id="gausss-law-for-electric-fields">Gauss’s law for electric fields</h2>
-<p><strong>1. Find the electric flux through the surface of a sphere containing</strong> <span class="math inline">\(15\)</span> <strong>protons and</strong> <span class="math inline">\(10\)</span> <strong>electrons. Does the size of the sphere matter?</strong></p>
+<h2 class="anchored" data-anchor-id="gausss-law-for-electric-fields">1 Gauss’s law for electric fields</h2>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<details>
+<summary>
+Expand
+</summary>
+<ul>
+<li>What are the two kinds of Electric Fields in Maxwell’s Equation?</li>
+</ul>
 <details>
 <summary>
 Answer
 </summary>
+<ul>
+<li>Electrostatic Fields (from electric charge)</li>
+<li>Induced Electric Field (from changing magnetic field)</li>
+</ul>
 </details>
-<p><strong>2. A cube of side L contains a flat plate with variable surface charge density of</strong> <span class="math inline">\(σ = -3xy\)</span><strong>. If the plate extends from</strong> <span class="math inline">\(x = 0\)</span><strong>to</strong> <span class="math inline">\(x = L\)</span> <strong>and from</strong> <span class="math inline">\(y = 0\)</span> <strong>to</strong> <span class="math inline">\(y = L\)</span><strong>, what is the total electric flux through the walls of the cube?</strong></p>
+<ul>
+<li>What type of fields does Gauss’s law deal with?</li>
+</ul>
 <details>
 <summary>
 Answer
 </summary>
+Electrostatic Fields (from electric charge)
 </details>
-<p><strong>3. Find the total electric flux through a closed cylinder containing a line charge along its axis with linear charge density</strong> <span class="math inline">\(λ = λ_0(1-x/h)\)</span> <strong>C/m if the cylinder and the line charge extend from</strong> <span class="math inline">\(x = 0\)</span> <strong>to</strong> <span class="math inline">\(x = h\)</span><strong>.</strong></p>
+<ul>
+<li>What is Gauss’s Law in words?</li>
+</ul>
 <details>
 <summary>
 Answer
 </summary>
+Electric charge produces an electric field. The flux of that field passing through any closed surface is proportional to the total charge contained within that surface.
 </details>
-<p><strong>4. What is the flux through any closed surface surrounding a charged sphere of radius</strong> <span class="math inline">\(a_0\)</span> <strong>with volume charge density of</strong> <span class="math inline">\(ρ = ρ_0(r/a_0)\)</span><strong>, where</strong> <span class="math inline">\(r\)</span> <strong>is the distance from the center of the sphere?</strong></p>
-<details>
-<summary>
-Answer
-</summary>
 </details>
-<p><strong>5. A circular disk with surface charge density</strong> <span class="math inline">\(2 \times 10^{-10}\)</span> <strong>C/m² is surrounded by a sphere with radius of one meter. If the flux through the sphere is</strong> <span class="math inline">\(5.2 \times 10^{-2}\)</span> <strong>V·m, what is the diameter of the disk?</strong></p>
-<details>
-<summary>
-Answer
-</summary>
-</details>
-
-
 </section>
-</section>
+<section id="integral-form-of-gausss-law" class="level3">
+<h3 class="anchored" data-anchor-id="integral-form-of-gausss-law">Integral Form of Gauss’s Law</h3>
+<details>
+<summary>
+Expand
+</summary>
+<p><span class="math display">\[\oint_S \vec{E} \cdot \hat{n} da = \frac{q_{enc}}{\epsilon_0}\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expand To Learn About Left Hand Side
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<!-- <details>
+<summary>Expand</summary> -->
+<ul>
+<li>What does the left hand side represent?</li>
+</ul>
+<details>
+<summary>
+Answer
+</summary>
+The number of electric field lines (AKA electric flux) passing through a closed surface <span class="math inline">\(S\)</span>.
+</details>
+<ul>
+<li>What is Electric field?</li>
+</ul>
+<details>
+<summary>
+Answer
+</summary>
+<p>The electrical force exerted on one coulomb of charge at that point in space is the electric field at that location.</p>
+<p><span class="math display">\[\vec{E} = \frac{\vec{F}_e}{q_0}\]</span></p>
+<p><span class="math inline">\(\vec{E}\)</span> has units of <span class="math inline">\(\frac{N}{C} = \frac{V}{m}\)</span></p>
+<p>Spacing of electric field lines tells you the strength of it.</p>
+<ul>
+<li>Electric field lines go from positive to negative</li>
+<li>Electric field lines vector sums, so they never cross</li>
+</ul>
+</details>
+<ul>
+<li>Why do physicists and engineers always talk about small test charges?</li>
+</ul>
+<details>
+<summary>
+Answer
+</summary>
+Because the job of this charge is to test the electric field at a location, not to add another electric field into the mix (although you can’t stop it from doing so). Making the test charge infinitesimally small minimizes the effect of the test charge’s own field.
+</details>
+<ul>
+<li>What is the dot product? Why are we taking the dot product between <span class="math inline">\(\vec{E}\)</span> and <span class="math inline">\(\hat{n}\)</span> in Gauss’s Law?</li>
+</ul>
+<details>
+<summary>
+Answer
+</summary>
+<p>Consider vectors <span class="math inline">\(\vec{A}\)</span> and <span class="math inline">\(\vec{B}\)</span> in space.</p>
+<p>What is the projection of <span class="math inline">\(\vec{A}\)</span> onto <span class="math inline">\(\vec{B}\)</span>? From trig, it’s <span class="math inline">\(|A| \cos \theta\)</span>.</p>
+<p>Now the dot product is that projection, multiplied by the magnitude of <span class="math inline">\(\vec{B}\)</span>.</p>
+<p><span class="math display">\[\vec{A} \cdot \vec{B} = |A| |B| \cos \theta\]</span></p>
+</details>
+<ul>
+<li>What is <span class="math inline">\(\hat{n}\)</span>?</li>
+</ul>
+<details>
+<summary>
+Answer
+</summary>
+<p>It is the unit normal vector, which has a length of one, and points in the direction perpendicular to the surface.</p>
+<p>Note that since <span class="math inline">\(da\)</span> is the tiny amount of area we are considering</p>
+<span class="math display">\[\hat{n} da = d \vec{a}\]</span>
+</details>
+<ul>
+<li>What is the difference between closed surface and open surface?</li>
+</ul>
+<details>
+<summary>
+Answer
+</summary>
+<ul>
+<li>Open Surface - any surface for which it is possible to get from one side to the other without going through the surface</li>
+<li>Closed Surface - a surface that divides space into an “inside” and “outside”. Unit Normal Vector <span class="math inline">\(\hat{n}\)</span> always points outwards, away from the volume enclosed by the surface.</li>
+</ul>
+</details>
+<ul>
+<li>What does <span class="math inline">\(\vec{E} \cdot \hat{n}\)</span> represent?</li>
+</ul>
+<details>
+<summary>
+Answer
+</summary>
+<p>The component of the electric field vector that is perpendicular to the surface.</p>
+<p><span class="math display">\[\vec{E} \cdot \hat{n} = |\vec{E}| \cos \theta\]</span></p>
+</details>
+<ul>
+<li>How do you find the mass of a surface with varying density function <span class="math inline">\(\sigma(x, y)\)</span>?</li>
+</ul>
+<details>
+<summary>
+Answer
+</summary>
+<p>Since mass is density times volume, we can write:</p>
+<p><span class="math display">\[Mass = \sigma \cdot Area\]</span></p>
+<p><span class="math display">\[Mass_S = \Sigma_{i = 1}^{N} \sigma_i \cdot Area_i\]</span></p>
+<p>If we let Areas to become infinitesimally small <span class="math inline">\(dA\)</span>, we get <span class="math display">\[Mass = \int_{S} \sigma dA\]</span></p>
+This is a <em>surface intergal</em>.
+</details>
+<ul>
+<li>What does <span class="math inline">\(\int_S \vec{A} \cdot \hat{n} da\)</span> represent?</li>
+</ul>
+<details>
+<summary>
+Answer
+</summary>
+<p>It represents the flux of a vector field.</p>
+<p>What’s a vector field?</p>
+<p>It is magnitude and direction quantities distributed in space.</p>
+<ul>
+<li>Scalar Field - something like temperature distribution in a room, where at each point theres a number</li>
+<li>Vector Field - something like flow of fluid, there at every point it has a speed and direction</li>
+</ul>
+<p>What’s flux <span class="math inline">\(\Phi\)</span>?</p>
+<p>Flux <span class="math inline">\(\Phi\)</span> of a field over a surface is the amount of flow through that surface.</p>
+<span class="math display">\[\Phi = \vec{A} \cdot \hat{n} \times (Surface Area)\]</span>
+</details>
+<!-- end left hand side -->
+<!-- </details> -->
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expand To Learn About Right Hand Side
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>What is the right hand side in words?</li>
+</ul>
+<details>
+<summary>
+Answer
+</summary>
+The total amount of enclosed charge normalized by the permittivity of free space.
+</details>
+<!-- end integral form  -->
+</div></div></div></details>
+<!-- <details>
+<summary>Expand</summary>
+</details> -->
 
-</main> <!-- /main -->
+
+</section></section></section></main></div>
+
+
+
+
+
+
+ <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -587,7 +761,7 @@ Answer
     }
   });
   </script>
-</div> <!-- /content -->
+ <!-- /content -->
 
 
 

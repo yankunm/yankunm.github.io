@@ -1,45 +1,184 @@
 # Maxwell's Equations - Dan Fleisch {.unnumbered}
 
-Sources: [Official Website](https://www.danfleisch.com/maxwell/)
+Website: [Official Website](https://www.danfleisch.com/maxwell/)
 
-## Gauss’s law for electric fields
+## 1 Gauss’s law for electric fields
 
-**1. Find the electric flux through the surface of a sphere containing** $15$ **protons and** $10$ **electrons. Does the size of the sphere matter?**
+### Introduction
 
 <details>
+<summary>Expand</summary>
+
+- What are the two kinds of Electric Fields in Maxwell's Equation?
+  
+<details>
 <summary>Answer</summary>
-<!-- type answer below -->
+* Electrostatic Fields (from electric charge)
+* Induced Electric Field (from changing magnetic field)
+</details>
+
+- What type of fields does Gauss's law deal with?
+  
+<details>
+<summary>Answer</summary>
+Electrostatic Fields (from electric charge)
+</details>
+
+- What is Gauss's Law in words?
+  
+<details>
+<summary>Answer</summary>
+Electric charge produces an electric field. The flux of that field passing through any closed surface is proportional to the total charge contained within that surface.
+</details>
 
 </details>
 
-**2. A cube of side L contains a flat plate with variable surface charge density of** $σ = -3xy$**. If the plate extends from** $x = 0$**to** $x = L$ **and from** $y = 0$ **to** $y = L$**, what is the total electric flux through the walls of the cube?**
+### Integral Form of Gauss's Law
 
 <details>
+<summary>Expand</summary>
 
+$$\oint_S \vec{E} \cdot \hat{n} da = \frac{q_{enc}}{\epsilon_0}$$
+
+::: {.callout-tip collapse="true"}
+## Expand To Learn About Left Hand Side
+
+<!-- <details>
+<summary>Expand</summary> -->
+
+* What does the left hand side represent?
+
+<details>
 <summary>Answer</summary>
+The number of electric field lines (AKA electric flux) passing through a closed surface $S$.
+</details>
+
+* What is Electric field?
+
+<details>
+<summary>Answer</summary>
+The electrical force exerted on one coulomb of charge at that point in space is the electric field at that location.
+
+$$\vec{E} = \frac{\vec{F}_e}{q_0}$$
+
+$\vec{E}$ has units of $\frac{N}{C} = \frac{V}{m}$
+
+Spacing of electric field lines tells you the strength of it.
+
+* Electric field lines go from positive to negative
+* Electric field lines vector sums, so they never cross
 
 </details>
 
-**3. Find the total electric flux through a closed cylinder containing a line charge along its axis with linear charge density** $λ = λ_0(1-x/h)$ **C/m if the cylinder and the line charge extend from** $x = 0$ **to** $x = h$**.**
+- Why do physicists and engineers always talk about small test charges? 
 
 <details>
-
 <summary>Answer</summary>
+Because the job of
+this charge is to test the electric field at a location, not to add another electric field into the
+mix (although you can’t stop it from doing so). Making the test charge infinitesimally
+small minimizes the effect of the test charge’s own field.
+</details>
+
+- What is the dot product? Why are we taking the dot product between $\vec{E}$ and $\hat{n}$ in Gauss's Law?
+
+<details>
+<summary>Answer</summary>
+Consider vectors $\vec{A}$ and $\vec{B}$ in space.
+
+What is the projection of $\vec{A}$ onto $\vec{B}$? From trig, it's $|A| \cos \theta$. 
+
+Now the dot product is that projection, multiplied by the magnitude of $\vec{B}$.
+
+$$\vec{A} \cdot \vec{B} = |A| |B| \cos \theta$$
 
 </details>
 
-**4. What is the flux through any closed surface surrounding a charged sphere of radius** $a_0$ **with volume charge density of** $ρ = ρ_0(r/a_0)$**, where** $r$ **is the distance from the center of the sphere?**
+
+- What is $\hat{n}$?
 
 <details>
-
 <summary>Answer</summary>
+It is the unit normal vector, which has a length of one, and points in the direction perpendicular to the surface.
+
+Note that since $da$ is the tiny amount of area we are considering
+
+$$\hat{n} da = d \vec{a}$$
+</details>
+
+
+- What is the difference between closed surface and open surface?
+
+<details>
+<summary>Answer</summary>
+
+* Open Surface - any surface for which it is possible to get from one side to the other without going through the surface
+* Closed Surface - a surface that divides space into an "inside" and "outside". Unit Normal Vector $\hat{n}$ always points outwards, away from the volume enclosed by the surface.
+</details>
+
+- What does $\vec{E} \cdot \hat{n}$ represent?
+
+<details>
+<summary>Answer</summary>
+The component of the electric field vector that is perpendicular to the surface.
+
+$$\vec{E} \cdot \hat{n} = |\vec{E}| \cos \theta$$
 
 </details>
 
-**5. A circular disk with surface charge density** $2 \times 10^{-10}$ **C/m² is surrounded by a sphere with radius of one meter. If the flux through the sphere is** $5.2 \times 10^{-2}$ **V·m, what is the diameter of the disk?**
+- How do you find the mass of a surface with varying density function $\sigma(x, y)$?
 
 <details>
-
 <summary>Answer</summary>
+Since mass is density times volume, we can write:
 
+$$Mass = \sigma \cdot Area$$
+
+$$Mass_S = \Sigma_{i = 1}^{N} \sigma_i \cdot Area_i$$
+
+If we let Areas to become infinitesimally small $dA$, we get
+$$Mass = \int_{S} \sigma dA$$
+
+This is a *surface intergal*.
 </details>
+
+- What does $\int_S \vec{A} \cdot \hat{n} da$ represent?
+
+<details>
+<summary>Answer</summary>
+It represents the flux of a vector field.
+
+What's a vector field?
+
+It is magnitude and direction quantities distributed in space.
+
+* Scalar Field - something like temperature distribution in a room, where at each point theres a number
+* Vector Field - something like flow of fluid, there at every point it has a speed and direction
+
+What's flux $\Phi$?
+
+Flux $\Phi$ of a field over a surface is the amount of flow through that surface.
+
+$$\Phi = \vec{A} \cdot \hat{n} \times (Surface Area)$$
+</details>
+
+<!-- end left hand side -->
+<!-- </details> -->
+:::
+
+::: {.callout-tip collapse="true"}
+## Expand To Learn About Right Hand Side
+
+- What is the right hand side in words?
+  
+<details>
+<summary>Answer</summary>
+The total amount of enclosed charge normalized by the permittivity of free space.
+</details>
+
+<!-- end integral form  -->
+</details>
+
+<!-- <details>
+<summary>Expand</summary>
+</details> -->

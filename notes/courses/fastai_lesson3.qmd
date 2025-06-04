@@ -7,12 +7,12 @@ jupyter: python3
 ---
 
 ## Jeremy’s Pet Classifier
-
+<!-- 
 ```{python}
 from fastai.vision.all import *
 import gradio as gr
 import timm
-```
+``` -->
 
 ## Paperspace: Your DL Workstation in Cloud!
 - Does Jeremy speak highly of it? Why?  

@@ -32,7 +32,10 @@ A special case of electromagnetic theory, when the physical dimensions of the ci
 
 ### 1 Maxwell's equations (differential and integral forms)
 
-* Who is James Clerk Maxwell?
+<details>
+<summary>1 Maxwell's Equations</summary>
+
+- Who is James Clerk Maxwell?
 
 <details>
 <summary>Answer</summary>
@@ -43,10 +46,36 @@ A Scottish physicist and mathematician that lived from 1831 to 1879.
 [The Father of Modern physics](https://youtu.be/NuWEqE4k230?si=tjKgX9rWm-pI64pF)
 </details>
 
-* What are maxwell's equations?
+- What does the differential form of maxwell's equations do?
 
-Relations and variations of electric and magnetic fields, charges, and currents
+<details>
+<summary>Answer</summary>
+Assume field vectors are single-valued, bounded, continuous functions, with inputs of position and time, and exhibit continuous derivatives.
 
+It is used to describe and relate field vectors, current densities, and charge densities at any point in space at any time.
+</details>
+
+- Where does discontinuous distributions of charges and currents occur?
+
+<details>
+<summary>Answer</summary>
+At interfaces between media where there are discrete changes in electrical parameters across the interface.
+</details>
+
+- What are the four maxwell's equation in differential form?
+
+<details>
+<summary>Answer</summary>
+$$\nabla \times \vec{E} = $$
+$$\nabla \times \vec{H} = $$
+
+$$\nabla \cdot \vec{D} = $$
+
+$$\nabla \cdot \vec{B} = $$
+
+</details>
+
+</details>
 
 
 ### 2 Relations between electromagnetic field and circuit theories
