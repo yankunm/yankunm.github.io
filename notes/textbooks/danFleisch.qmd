@@ -176,8 +176,43 @@ $$\Phi = \vec{A} \cdot \hat{n} \times (Surface Area)$$
 The total amount of enclosed charge normalized by the permittivity of free space.
 </details>
 
+- What is $\epsilon_0$ and why is it there?
+  
+<details>
+<summary>Answer</summary>
+It is called the permitivity of free space or "vacuum permitivity".
+
+$$\epsilon_0 = 8.854 \times 10^{-12} \frac{F}{m}$$
+
+When we say the permitivity of a material, when are referring to its reponse to an electric field. It is also the key parameter in determining the speed at which an electromagnetic wave propagates through that medium.
+
+High permitivity means it provides higher capacitance. 
+
+In Gauss's Law, $\epsilon_0$ acts as a proportionality constant that relates electric flux to enclosed charge.
+</details>
+
+:::
+
+::: {.callout-tip collapse="true"} 
+## Exercises
+
+- Five point charges are enclosed in a cylindrical surface $S$. If the
+values of the charges are $q_1 = +3 nC$, $q_2 = -2 nC$, $q_3 = +2 nC$, $q_4 = +4 nC$, and $q_5 = -1 nC$, find the total flux through $S$.
+
+<details>
+<summary>Answer</summary>
+
+$$\sum_{i=1}^{5} q_i = 3 - 2 + 2 + 4 - 1 = 6 nC = 6 \times 10^{-9} C$$
+
+$$\Phi_E = \frac{q_enc}{\epsilon_0} = \frac{6 \times 10^{-9}C}{8.854 \times 10^{-12} \frac{C}{V \cdot m}} = \boxed{678 \hspace{1mm} Vm}$$
+
+</details>
+
+:::
+
 <!-- end integral form  -->
 </details>
+
 
 <!-- <details>
 <summary>Expand</summary>
