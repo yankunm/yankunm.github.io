@@ -1,24 +1,325 @@
 [
   {
-    "objectID": "notes/references.html",
-    "href": "notes/references.html",
+    "objectID": "work/references.html",
+    "href": "work/references.html",
     "title": "References",
     "section": "",
     "text": "References"
   },
   {
-    "objectID": "notes/index.html",
-    "href": "notes/index.html",
-    "title": "Preface",
-    "section": "",
-    "text": "Preface\nI believe the best way to learn is to solve problems. Solving a problem one time does not mean you understand it, so I would like to keep a catalog some of problems I solved for future reference."
+    "objectID": "work/courses/fastai_lesson3.html#paperspace-your-dl-workstation-in-cloud",
+    "href": "work/courses/fastai_lesson3.html#paperspace-your-dl-workstation-in-cloud",
+    "title": "Lesson 3",
+    "section": "Paperspace: Your DL Workstation in Cloud!",
+    "text": "Paperspace: Your DL Workstation in Cloud!\n\nDoes Jeremy speak highly of it? Why?"
   },
   {
-    "objectID": "blog/about.html",
-    "href": "blog/about.html",
-    "title": "About",
+    "objectID": "work/courses/fastai_lesson3.html#jupyterlab-real-beginner-friendly",
+    "href": "work/courses/fastai_lesson3.html#jupyterlab-real-beginner-friendly",
+    "title": "Lesson 3",
+    "section": "JupyterLab: Real Beginner Friendly",
+    "text": "JupyterLab: Real Beginner Friendly\n\nWhy is JupyterLab good for beginners?"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#make-a-better-pet-detector",
+    "href": "work/courses/fastai_lesson3.html#make-a-better-pet-detector",
+    "title": "Lesson 3",
+    "section": "Make a Better Pet Detector",
+    "text": "Make a Better Pet Detector\n\nAfter training, think about how to improve the model"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#comparison-of-all-image-models",
+    "href": "work/courses/fastai_lesson3.html#comparison-of-all-image-models",
+    "title": "Lesson 3",
+    "section": "Comparison of All (Image) Models",
+    "text": "Comparison of All (Image) Models\n\nDid anyone compare most image models and share the findings?\n\nWhere to find the notebook for comparison?\n\nWhich 3 criteria are used for comparison?"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#try-out-new-models",
+    "href": "work/courses/fastai_lesson3.html#try-out-new-models",
+    "title": "Lesson 3",
+    "section": "Try Out New Models",
+    "text": "Try Out New Models\n\nHow to select and try out models with high scores\n\nWhere is the train.ipynb file?\n\nHow to try models on TIMM?\n\nHow to compare them by loss?\n\nWhy is this model impressive?\n\nWhat can the name of a model tell us?\n\nWhy does Jeremy only train for 3 epochs? (18:58)"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#get-the-categories-of-a-model",
+    "href": "work/courses/fastai_lesson3.html#get-the-categories-of-a-model",
+    "title": "Lesson 3",
+    "section": "Get the Categories of a Model",
+    "text": "Get the Categories of a Model\n\nHow to get label/category info from the model\n\nThe rest we learned from the last lecture"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#whats-in-the-model",
+    "href": "work/courses/fastai_lesson3.html#whats-in-the-model",
+    "title": "Lesson 3",
+    "section": "What’s in the Model",
+    "text": "What’s in the Model\n\nWhat two things are stored in the model?"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#what-does-model-architecture-look-like",
+    "href": "work/courses/fastai_lesson3.html#what-does-model-architecture-look-like",
+    "title": "Lesson 3",
+    "section": "What Does Model Architecture Look Like?",
+    "text": "What Does Model Architecture Look Like?"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#parameters-of-a-model",
+    "href": "work/courses/fastai_lesson3.html#parameters-of-a-model",
+    "title": "Lesson 3",
+    "section": "Parameters of a Model",
+    "text": "Parameters of a Model\n\nHow to zoom in on a model layer\n\nHow to check out a layer’s parameters\n\nWhat do a layer’s parameters look like?"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#the-investigating-questions",
+    "href": "work/courses/fastai_lesson3.html#the-investigating-questions",
+    "title": "Lesson 3",
+    "section": "The Investigating Questions",
+    "text": "The Investigating Questions\n\nWhat are the weights/numbers?\n\nHow can they reveal something important?\n\nWhere is the notebook on how neural nets work?"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#create-a-general-quadratic-function",
+    "href": "work/courses/fastai_lesson3.html#create-a-general-quadratic-function",
+    "title": "Lesson 3",
+    "section": "Create a General Quadratic Function",
+    "text": "Create a General Quadratic Function\n\nHow to create a function that can generate any quadratic by changing 3 parameters\n\nHow to generate output from a specific quadratic by changing 1 parameter\n\nWhy create a general function with multiple parameters instead of hard-coding coefficients?"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#fit-a-function-by-hand-and-eye",
+    "href": "work/courses/fastai_lesson3.html#fit-a-function-by-hand-and-eye",
+    "title": "Lesson 3",
+    "section": "Fit a Function by Hand and Eye",
+    "text": "Fit a Function by Hand and Eye\n\nWhat does “fit a function” mean? (tune parameters based on data)\n\nHow to create a random dataset\n\nHow to fit the quadratic by hand using Jupyter widgets\n\nLimitations of the manual/visual approach\n\nWhere is this notebook?"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#loss-fit-a-function-better-without-eyes",
+    "href": "work/courses/fastai_lesson3.html#loss-fit-a-function-better-without-eyes",
+    "title": "Lesson 3",
+    "section": "Loss: Fit a Function Better Without Eyes",
+    "text": "Loss: Fit a Function Better Without Eyes\n\nWhy we need a loss/loss function\n\nWhat is mean squared error?\n\nHow loss helps improve accuracy over manual fitting"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#automate-the-search-of-parameters",
+    "href": "work/courses/fastai_lesson3.html#automate-the-search-of-parameters",
+    "title": "Lesson 3",
+    "section": "Automate the Search of Parameters",
+    "text": "Automate the Search of Parameters\n\nHow to update parameters to reduce loss\n\nDerivative material on Khan Academy?\n\nWhat do you need to know about derivatives now? (34:26)\n\nWhat is the slope/gradient?\n\nCan PyTorch compute gradients for us?\n\nHow to define a loss function on the quadratic (35:02)\n\nWhat to know about tensors and derivatives (36:02)\n\nHow to create a rank-1 tensor for storing parameters (36:49)\n\nHow to enable PyTorch gradient tracking (37:10)\n\nHow to calculate gradients from loss (37:38)\n\nWhat do the gradients mean? (38:34)\n\nHow to update parameters using gradients (39:18)\n\nHow to automate the full gradient descent process (41:05)\n\nWhy this process is called gradient descent\n\nRelated notebook"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#the-mathematical-functions",
+    "href": "work/courses/fastai_lesson3.html#the-mathematical-functions",
+    "title": "Lesson 3",
+    "section": "The Mathematical Functions",
+    "text": "The Mathematical Functions\n\nBeyond data/loss/derivative, what else is essential for learning parameters?\n\nWhy not use just quadratic functions?"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#relu-rectified-linear-function",
+    "href": "work/courses/fastai_lesson3.html#relu-rectified-linear-function",
+    "title": "Lesson 3",
+    "section": "ReLU: Rectified Linear Function",
+    "text": "ReLU: Rectified Linear Function\n\nReal-world models need complex functions – how complex?\n\nCan we build infinite complexity using simple additions?\n\nWhat is a rectified linear function?\n\nWhat does a ReLU plot look like?\n\nAdjusting the 2 parameters with widgets\n\nHow the function varies under different parameters (44:46)"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#infinitely-complex-function",
+    "href": "work/courses/fastai_lesson3.html#infinitely-complex-function",
+    "title": "Lesson 3",
+    "section": "Infinitely Complex Function",
+    "text": "Infinitely Complex Function\n\nHow powerful are combinations of simple functions?\n\nCreate a double ReLU function and adjust 4 parameters\n\nComparison between double and single ReLU\n\nHow complex can it get with millions of ReLUs?"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#circles-to-an-owl",
+    "href": "work/courses/fastai_lesson3.html#circles-to-an-owl",
+    "title": "Lesson 3",
+    "section": "2 Circles to an Owl",
+    "text": "2 Circles to an Owl\n\nConcise summary of core deep learning concepts"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#a-chart-of-all-image-models-compared",
+    "href": "work/courses/fastai_lesson3.html#a-chart-of-all-image-models-compared",
+    "title": "Lesson 3",
+    "section": "A Chart of All Image Models Compared",
+    "text": "A Chart of All Image Models Compared\n\nCan it be done with brute-force code?\n\nDid Jeremy look for this comparison?\n\nWhat is the wrong way students use the chart? (50:45)\n\nHow Jeremy uses the chart\n\nHow he selects which models to try step-by-step"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#do-i-have-enough-data",
+    "href": "work/courses/fastai_lesson3.html#do-i-have-enough-data",
+    "title": "Lesson 3",
+    "section": "Do I Have Enough Data?",
+    "text": "Do I Have Enough Data?\n\nDid you train a model on your dataset?\n\nIs the result satisfying?\n\nMistake often made in DL industry (52:55)\n\nJeremy’s suggestions\n\nRole of semi-supervised learning and augmentation\n\nHow labeled and unlabeled data can help"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#interpret-gradients-in-unit",
+    "href": "work/courses/fastai_lesson3.html#interpret-gradients-in-unit",
+    "title": "Lesson 3",
+    "section": "Interpret Gradients in Unit",
+    "text": "Interpret Gradients in Unit\n\nHow much loss decreases when a parameter increases by 1 unit? (55:24)"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#learning-rate",
+    "href": "work/courses/fastai_lesson3.html#learning-rate",
+    "title": "Lesson 3",
+    "section": "Learning Rate",
+    "text": "Learning Rate\n\nWhy avoid large step updates?\n\nJeremy uses quadratic zoom analogy – why?\n\nWhat happens with large step updates? (57:19)\n\nIs large loss drop always due to large parameter increase?\n\nWhat is the learning rate? Why small? How to choose it? (58:07)\n\nToo large? Too small? Consequences"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#break",
+    "href": "work/courses/fastai_lesson3.html#break",
+    "title": "Lesson 3",
+    "section": "Break",
+    "text": "Break"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#matrix-multiplication",
+    "href": "work/courses/fastai_lesson3.html#matrix-multiplication",
+    "title": "Lesson 3",
+    "section": "Matrix Multiplication",
+    "text": "Matrix Multiplication\n\nHow to compute millions of ReLUs efficiently\n\nWhat linear algebra you need (1:01:33)\n\nHow easy is matrix multiplication? (1:01:51)\n\nDataset and parameters in matrix multiplication\n\nDoes matrix multiplication do the rectifying?\n\nWhat are GPUs good at? (1:03:49)"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#build-a-regression-model-in-spreadsheet",
+    "href": "work/courses/fastai_lesson3.html#build-a-regression-model-in-spreadsheet",
+    "title": "Lesson 3",
+    "section": "Build a Regression Model in Spreadsheet",
+    "text": "Build a Regression Model in Spreadsheet\n\nTitanic competition on Kaggle intro (1:05:01)\n\nWhat is the dataset? (1:05:18)\n\nWhat to do with train.csv\n\nClean and transform dataset (1:07:17)\n\nPrepare parameters for multiplication (1:08:50)\n\nProblem with ‘Fare’ column scale (1:09:35)\n\nNormalize ‘Fare’, ‘Age’\n\nWhat is data normalization?\n\nDoes fastai do this? Will we learn how?\n\nWhy log-transform ‘Fare’? (1:10:59)\n\nWhy even distribution matters\n\nHow to use MMULT in spreadsheet (1:11:56)\n\nUse MMULT to add constant\n\nModel result (1:13:41)\n\nLinear regression only? No ReLU?\n\nCan gradient descent solve regression? How?"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#build-a-neural-net-by-adding-two-regression-models",
+    "href": "work/courses/fastai_lesson3.html#build-a-neural-net-by-adding-two-regression-models",
+    "title": "Lesson 3",
+    "section": "Build a Neural Net by Adding Two Regression Models",
+    "text": "Build a Neural Net by Adding Two Regression Models\n\nWhat it takes to build a neural net\n\nWhy not add results before ReLU?\n\nWhy add after ReLU?\n\nWhat the prediction looks like\n\nNow update 2 sets of parameters"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#matrix-multiplication-makes-training-faster",
+    "href": "work/courses/fastai_lesson3.html#matrix-multiplication-makes-training-faster",
+    "title": "Lesson 3",
+    "section": "Matrix Multiplication Makes Training Faster",
+    "text": "Matrix Multiplication Makes Training Faster\n\nHow to use MMULT instead of individual additions"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#watch-out-its-chapter-4",
+    "href": "work/courses/fastai_lesson3.html#watch-out-its-chapter-4",
+    "title": "Lesson 3",
+    "section": "Watch Out! It’s Chapter 4",
+    "text": "Watch Out! It’s Chapter 4\n\nTry the Titanic competition\n\nWhy Chapter 4 is tough for many\n\nHow to work through spreadsheet examples"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#create-dummy-variables-of-3-classes",
+    "href": "work/courses/fastai_lesson3.html#create-dummy-variables-of-3-classes",
+    "title": "Lesson 3",
+    "section": "Create Dummy Variables of 3 Classes",
+    "text": "Create Dummy Variables of 3 Classes\n\nDo we need only 2 columns for 3-class dummy variable?"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#taste-nlp",
+    "href": "work/courses/fastai_lesson3.html#taste-nlp",
+    "title": "Lesson 3",
+    "section": "Taste NLP",
+    "text": "Taste NLP\n\nWhat NLP models do\n\nOpportunities for non-English speaker students\n\nWhat tasks NLP can do (1:25:57)"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#fastai-nlp-library-vs-hugging-face",
+    "href": "work/courses/fastai_lesson3.html#fastai-nlp-library-vs-hugging-face",
+    "title": "Lesson 3",
+    "section": "fastai NLP Library vs Hugging Face",
+    "text": "fastai NLP Library vs Hugging Face\n\nHow these libraries differ\n\nWhy we use transformers in this lecture"
+  },
+  {
+    "objectID": "work/courses/fastai_lesson3.html#homework",
+    "href": "work/courses/fastai_lesson3.html#homework",
+    "title": "Lesson 3",
+    "section": "Homework",
+    "text": "Homework\n\nHomework to prepare for the next lesson"
+  },
+  {
+    "objectID": "work/index.html",
+    "href": "work/index.html",
+    "title": "Preface",
     "section": "",
-    "text": "About this blog"
+    "text": "Preface\nThis is where I will store my notes for the courses I am taking, the papers I am reading, and the textbooks I am studying, starting May 2025."
+  },
+  {
+    "objectID": "work/textbooks/balanis.html",
+    "href": "work/textbooks/balanis.html",
+    "title": "Advanced Engineering Electromagnetics",
+    "section": "",
+    "text": "Link: Internet Archive\n\n\n\n\n\n\nExpand\n\n\nWho is James Clerk Maxwell?\n\n\n\nAnswer\n\n\n\n\nJames Clerk Maxwell\n\n\nA Scottish physicist and mathematician that lived from 1831 to 1879.\nThe Father of Modern Physics\n\nSee my notes on Dan Fleisch’s A student’s guide to Maxwell’s Equations for detailed explanation of the differential and integral forms of the four maxwell’s equations.\n\n\n\n\n\n\nExpand\n\n\n\n\n\n\n\n\nExpand\n\n\n\nWhat is Circuit Theory?\n\n\n\nAnswer\n\nA special case of electromagnetic theory, when the physical dimensions of the circuit are small compared to the wavelength.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExpand"
+  },
+  {
+    "objectID": "work/textbooks/balanis.html#time-varying-and-time-harmonic-electromagnetic-fields",
+    "href": "work/textbooks/balanis.html#time-varying-and-time-harmonic-electromagnetic-fields",
+    "title": "Advanced Engineering Electromagnetics",
+    "section": "",
+    "text": "Expand\n\n\nWho is James Clerk Maxwell?\n\n\n\nAnswer\n\n\n\n\nJames Clerk Maxwell\n\n\nA Scottish physicist and mathematician that lived from 1831 to 1879.\nThe Father of Modern Physics\n\nSee my notes on Dan Fleisch’s A student’s guide to Maxwell’s Equations for detailed explanation of the differential and integral forms of the four maxwell’s equations.\n\n\n\n\n\n\nExpand\n\n\n\n\n\n\n\n\nExpand\n\n\n\nWhat is Circuit Theory?\n\n\n\nAnswer\n\nA special case of electromagnetic theory, when the physical dimensions of the circuit are small compared to the wavelength."
+  },
+  {
+    "objectID": "work/textbooks/balanis.html#electrical-properties-of-matter",
+    "href": "work/textbooks/balanis.html#electrical-properties-of-matter",
+    "title": "Advanced Engineering Electromagnetics",
+    "section": "2 Electrical Properties of Matter",
+    "text": "2 Electrical Properties of Matter\n\nIntroduction\n\n\nExpand\n\n\n\n\n\nDielectrics, Polarization, and Permittivity\n\n\nExpand\n\n\n\n\n\nMagnetics, Magnetization, and Permeability\n\n\nExpand\n\n\n\n\n\nCurrent, Conductors, and Conductivity\n\n\nExpand\n\n\nCurrent\n\n\n\nConductors\n\n\n\nConductivity"
+  },
+  {
+    "objectID": "work/textbooks/balanis.html#wave-equation-and-its-solutions",
+    "href": "work/textbooks/balanis.html#wave-equation-and-its-solutions",
+    "title": "Advanced Engineering Electromagnetics",
+    "section": "3 Wave Equation and Its Solutions",
+    "text": "3 Wave Equation and Its Solutions\n\nIntroduction\n\n\nExpand\n\n\n\n\n\nTime-Varying Electromagnetic Fields\n\n\nExpand\n\n\n\n\n\nTime-Harmonic Electromagnetic Fields\n\n\nExpand\n\n\n\n\n\nSolution to the Wave Equation\n\n\nExpand\n\n\nRectangular Coordinate System\n\n\n\nCylindrical Coordinate System\n\n\n\nSpherical Coordinate System"
+  },
+  {
+    "objectID": "work/textbooks/balanis.html#wave-propagation-and-polarization",
+    "href": "work/textbooks/balanis.html#wave-propagation-and-polarization",
+    "title": "Advanced Engineering Electromagnetics",
+    "section": "4 Wave Propagation and Polarization",
+    "text": "4 Wave Propagation and Polarization\n\nIntroduction\n\n\nExpand\n\n\n\n\n\nTransverse Electromagnetic Modes\n\n\nExpand\n\n\n\n\n\nTransverse Electromagnetic Modes in Lossy Media\n\n\nExpand\n\n\n\n\n\nPolarization\n\n\nExpand\n\n\n\n\n\nExercises\n\n\nExpand"
+  },
+  {
+    "objectID": "work/textbooks/balanis.html#reflection-and-transmission",
+    "href": "work/textbooks/balanis.html#reflection-and-transmission",
+    "title": "Advanced Engineering Electromagnetics",
+    "section": "5 Reflection and Transmission",
+    "text": "5 Reflection and Transmission\n\nIntroduction\n\n\nExpand\n\n\n\n\n\nNormal Incidence - Lossless Media\n\n\nExpand\n\n\n\n\n\nOblique Incidence - Lossless Media\n\n\nExpand\n\n\nPerpendicular Polarization\n\n\n\nParallel Polarization\n\n\n\nTotal Transmission - Brewster Angle\n\n\n\nTotal Reflection - Critical Angle"
+  },
+  {
+    "objectID": "work/papers/photonics.html",
+    "href": "work/papers/photonics.html",
+    "title": "Optical Computing",
+    "section": "",
+    "text": "Optical Computing\nWetzstein, G., Ozcan, A., Gigan, S. et al. Inference in artificial intelligence with deep optics and photonics. Nature 588, 39–47 (2020). https://doi.org/10.1038/s41586-020-2973-6\nGeneral Optical computing is not practical yet, but using optics for inference for visual computing applications is practical. This paper is a review on recent work on optical computing for AI.\nMotivation 1: Edge devices (cameras, cars, robots, headsets, IoT) need leaner (low latency, light, small, low power) computational imaging systems.\nOptical computing systems promise small form factor, massive parallelism, little to no power consumption. Optical interconnects are already widely used in data centers today.\nLinear optical elements can calculate convolution, fourier transforms, random projections, as a byproduct of light-matter interaction. These operations are what’s needed for DNNs.\n“Incorporating all-optical nonlinearities into photonic circuits is one of the key requirements for truly deep photonic networks. Yet, the challenge of efficiently implementing photonic nonlinear activation functions at low optical signal intensities was one of the primary reasons that interest in ONNs waned in the 1990s. Creative approaches from the last decade, such as nonlinear thresholders based on all-optical micro-ring resonators35, saturable absorbers29,36, electro-absorption modulators37, or hybrid electro-optical approaches38, represent possible solutions for overcoming this challenge in the near future.”\nAlthough programmability has traditionally been more difficult with photonic systems, first steps towards simplifying the process have recently been demonstrated\n“One direction that seems particularly well suited for optical and photonic processing is optical inference with incoherent light to rapidly process scene information under ambient lighting conditions. Such an approach presents many exciting opportunities for autonomous vehicles, robotics and computer vision, which we discuss next.”"
+  },
+  {
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "AM",
+    "section": "",
+    "text": "Why Robots Need Brains Made of Light\n\n\n\nAI\n\nPhotonics\n\n\n\n\n\n\n\n\n\nMay 22, 2025\n\n\nAlex Meng\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Alex Meng",
+    "section": "",
+    "text": "I am an incoming PhD student in the Department of Electrical and Computer Engineering at Duke University, fortunate to be advised by Prof. Natalia M. Litchinitser. Previously, I was an undergrad at Duke University Double majoring in Electrical and Computer Engineering and Computer Science."
+  },
+  {
+    "objectID": "index.html#about-me",
+    "href": "index.html#about-me",
+    "title": "Alex Meng",
+    "section": "",
+    "text": "I am an incoming PhD student in the Department of Electrical and Computer Engineering at Duke University, fortunate to be advised by Prof. Natalia M. Litchinitser. Previously, I was an undergrad at Duke University Double majoring in Electrical and Computer Engineering and Computer Science."
+  },
+  {
+    "objectID": "index.html#research-interests",
+    "href": "index.html#research-interests",
+    "title": "Alex Meng",
+    "section": "Research Interests",
+    "text": "Research Interests\n\nComputational Optics: Leveraging machine learning, optics, metamaterials, and computer engineering to design next-generation graphics, imaging, and vision systems.\nOptical Computing: Exploring the use of light for data processing and communication to enable faster, more energy-efficient computing architectures."
+  },
+  {
+    "objectID": "index.html#news",
+    "href": "index.html#news",
+    "title": "Alex Meng",
+    "section": "News",
+    "text": "News\n[May 2025] Graduated from Duke Undergraduate, excited to be going into my PhD!"
   },
   {
     "objectID": "blog/posts/post-with-code/index.html",
@@ -63,337 +364,50 @@
     "text": "Toward Truly Embodied Intelligence\nTo build robots that operate in the messiness of the real world—not just on factory floors—we need:\n\nSmarter sensors (light field, polarization, event-based)\nFaster, lower-power compute (optics over electronics)\nIn-situ learning via analog computation\n\n\nIf we want robots to think and learn like humans,\nthey need brains made of light.\n\nThis is where AI meets physics. And it’s how we take the leap from simulated intelligence to real-world, embodied intelligence.\n\nWritten by someone who believes the future of AI isn’t just faster—it’s optical."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Alex Meng",
+    "objectID": "blog/about.html",
+    "href": "blog/about.html",
+    "title": "About",
     "section": "",
-    "text": "I am an incoming PhD student in the Department of Electrical and Computer Engineering at Duke University, fortunate to be advised by Prof. Natalia M. Litchinitser. Previously, I was an undergrad at Duke University Double majoring in Electrical and Computer Engineering and Computer Science."
+    "text": "About this blog"
   },
   {
-    "objectID": "index.html#about-me",
-    "href": "index.html#about-me",
-    "title": "Alex Meng",
-    "section": "",
-    "text": "I am an incoming PhD student in the Department of Electrical and Computer Engineering at Duke University, fortunate to be advised by Prof. Natalia M. Litchinitser. Previously, I was an undergrad at Duke University Double majoring in Electrical and Computer Engineering and Computer Science."
-  },
-  {
-    "objectID": "index.html#research-interests",
-    "href": "index.html#research-interests",
-    "title": "Alex Meng",
-    "section": "Research Interests",
-    "text": "Research Interests\n\nComputational Optics: Leveraging machine learning, optics, metamaterials, and computer engineering to design next-generation graphics, imaging, and vision systems.\nOptical Computing: Exploring the use of light for data processing and communication to enable faster, more energy-efficient computing architectures."
-  },
-  {
-    "objectID": "index.html#news",
-    "href": "index.html#news",
-    "title": "Alex Meng",
-    "section": "News",
-    "text": "News\n[May 2025] Graduated from Duke Undergraduate, excited to be going into my PhD!"
-  },
-  {
-    "objectID": "blog/index.html",
-    "href": "blog/index.html",
-    "title": "AM",
-    "section": "",
-    "text": "Why Robots Need Brains Made of Light\n\n\n\nAI\n\nPhotonics\n\n\n\n\n\n\n\n\n\nMay 22, 2025\n\n\nAlex Meng\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "notes/intro.html",
-    "href": "notes/intro.html",
+    "objectID": "work/intro.html",
+    "href": "work/intro.html",
     "title": "Introduction",
     "section": "",
     "text": "Introduction\nThis is a book created from markdown and executable code.\nSee @knuth84 for additional discussion of literate programming."
   },
   {
-    "objectID": "notes/summary.html",
-    "href": "notes/summary.html",
+    "objectID": "work/textbooks/danFleisch.html",
+    "href": "work/textbooks/danFleisch.html",
+    "title": "Maxwell’s Equations - Dan Fleisch",
+    "section": "",
+    "text": "Website: Official Website\n\n\n\n\n\n\nExpand\n\n\nWhat are the two kinds of Electric Fields in Maxwell’s Equation?\n\n\n\nAnswer\n\n\nElectrostatic Fields (from electric charge)\nInduced Electric Field (from changing magnetic field)\n\n\n\nWhat type of fields does Gauss’s law deal with?\n\n\n\nAnswer\n\nElectrostatic Fields (from electric charge)\n\n\n\n\n\n\n\nExpand\n\nElectric charge produces an electric field. The flux of that field passing through any closed surface is proportional to the total charge contained within that surface.\n\\[\\oint_S \\vec{E} \\cdot \\hat{n} da = \\frac{q_{enc}}{\\epsilon_0}\\]\n\n\n\n\n\n\nExpand To Learn About Left Hand Side\n\n\n\n\n\n\n\nWhat does the left hand side represent?\n\n\n\nAnswer\n\nThe number of electric field lines (AKA electric flux) passing through a closed surface \\(S\\).\n\n\nWhat is Electric field?\n\n\n\nAnswer\n\nThe electrical force exerted on one coulomb of charge at that point in space is the electric field at that location.\n\\[\\vec{E} = \\frac{\\vec{F}_e}{q_0}\\]\n\\(\\vec{E}\\) has units of \\(\\frac{N}{C} = \\frac{V}{m}\\)\nSpacing of electric field lines tells you the strength of it.\n\nElectric field lines go from positive to negative\nElectric field lines vector sums, so they never cross\n\n\n\nWhy do physicists and engineers always talk about small test charges?\n\n\n\nAnswer\n\nBecause the job of this charge is to test the electric field at a location, not to add another electric field into the mix (although you can’t stop it from doing so). Making the test charge infinitesimally small minimizes the effect of the test charge’s own field.\n\n\nWhat is the dot product? Why are we taking the dot product between \\(\\vec{E}\\) and \\(\\hat{n}\\) in Gauss’s Law?\n\n\n\nAnswer\n\nConsider vectors \\(\\vec{A}\\) and \\(\\vec{B}\\) in space.\nWhat is the projection of \\(\\vec{A}\\) onto \\(\\vec{B}\\)? From trig, it’s \\(|A| \\cos \\theta\\).\nNow the dot product is that projection, multiplied by the magnitude of \\(\\vec{B}\\).\n\\[\\vec{A} \\cdot \\vec{B} = |A| |B| \\cos \\theta\\]\n\n\nWhat is \\(\\hat{n}\\)?\n\n\n\nAnswer\n\nIt is the unit normal vector, which has a length of one, and points in the direction perpendicular to the surface.\nNote that since \\(da\\) is the tiny amount of area we are considering\n\\[\\hat{n} da = d \\vec{a}\\]\n\n\nWhat is the difference between closed surface and open surface?\n\n\n\nAnswer\n\n\nOpen Surface - any surface for which it is possible to get from one side to the other without going through the surface\nClosed Surface - a surface that divides space into an “inside” and “outside”. Unit Normal Vector \\(\\hat{n}\\) always points outwards, away from the volume enclosed by the surface.\n\n\n\nWhat does \\(\\vec{E} \\cdot \\hat{n}\\) represent?\n\n\n\nAnswer\n\nThe component of the electric field vector that is perpendicular to the surface.\n\\[\\vec{E} \\cdot \\hat{n} = |\\vec{E}| \\cos \\theta\\]\n\n\nHow do you find the mass of a surface with varying density function \\(\\sigma(x, y)\\)?\n\n\n\nAnswer\n\nSince mass is density times volume, we can write:\n\\[Mass = \\sigma \\cdot Area\\]\n\\[Mass_S = \\Sigma_{i = 1}^{N} \\sigma_i \\cdot Area_i\\]\nIf we let Areas to become infinitesimally small \\(dA\\), we get \\[Mass = \\int_{S} \\sigma dA\\]\nThis is a surface intergal.\n\n\nWhat does \\(\\int_S \\vec{A} \\cdot \\hat{n} da\\) represent?\n\n\n\nAnswer\n\nIt represents the flux of a vector field.\nWhat’s a vector field?\nIt is magnitude and direction quantities distributed in space.\n\nScalar Field - something like temperature distribution in a room, where at each point theres a number\nVector Field - something like flow of fluid, there at every point it has a speed and direction\n\n\n\nWhat’s flux \\(\\Phi\\)?\n\n\n\nAnswer\n\nFlux \\(\\Phi\\) of a field over a surface is the amount of flow through that surface.\n\\[\\Phi = \\vec{A} \\cdot \\hat{n} \\times (Surface Area)\\]\n\n\n\n\n\n\n\n\n\n\n\n\nExpand To Learn About Right Hand Side\n\n\n\n\n\n\nWhat is the right hand side in words?\n\n\n\nAnswer\n\nThe total amount of enclosed charge normalized by the permittivity of free space.\n\n\nWhat is \\(\\epsilon_0\\) and why is it there?\n\n\n\nAnswer\n\nIt is called the permitivity of free space or “vacuum permitivity”.\n\\[\\epsilon_0 = 8.854 \\times 10^{-12} \\frac{F}{m}\\]\nWhen we say the permitivity of a material, when are referring to its reponse to an electric field. It is also the key parameter in determining the speed at which an electromagnetic wave propagates through that medium.\nHigh permitivity means it provides higher capacitance.\nIn Gauss’s Law, \\(\\epsilon_0\\) acts as a proportionality constant that relates electric flux to enclosed charge.\n\n\n\n\n\n\n\n\n\n\nExercises\n\n\n\n\n\n\nFive point charges are enclosed in a cylindrical surface \\(S\\). If the values of the charges are \\(q_1 = +3 nC\\), \\(q_2 = -2 nC\\), \\(q_3 = +2 nC\\), \\(q_4 = +4 nC\\), and \\(q_5 = -1 nC\\), find the total flux through \\(S\\).\n\n\n\nAnswer\n\n\\[\\sum_{i=1}^{5} q_i = 3 - 2 + 2 + 4 - 1 = 6 nC = 6 \\times 10^{-9} C\\]\n\\[\\Phi_E = \\frac{q_enc}{\\epsilon_0} = \\frac{6 \\times 10^{-9}C}{8.854 \\times 10^{-12} \\frac{C}{V \\cdot m}} = \\boxed{678 \\hspace{1mm} Vm}\\]\n\n\n\n\n\n\n\n\n\n\n\n\nExpand\n\nThe electric field produced by electric diverges from positive charge and converges upon negative charge.\n\\[\\vec{\\nabla} \\cdot \\vec{E} = \\frac{\\rho}{\\epsilon_0}\\]\n\n\n\n\n\n\nExpand To Learn About Left Hand Side\n\n\n\n\n\n\n\nWhat does the left hand side represent?\n\n\n\nAnswer\n\n\nThe tendency of electric field to flow away from a point in space - AKA the divergence.\n\n\nWhat is the difference between differential and integral form of Gauss’s Law?\n\n\n\nAnswer\n\n\nDifferential deals with individual points in space, whereareas integral deals with a closed surface.\n\n\nWhat is \\(\\vec{\\nabla}\\)?\n\n\n\nAnswer\n\n\nIt is called “del” or “nabla”. It tells you to take the derivative of what ever quantity comes after it.\n\\[\\vec{\\nabla} =\\hat{i} \\frac{\\partial}{\\partial x} + \\hat{j} \\frac{\\partial}{\\partial y} + \\hat{k} \\frac{\\partial}{\\partial z}\n\\]\nIt is an mathematical operator, which just means that it needs something to act on and cannot just appear by itself.\n\\(\\vec{\\nabla}\\) is gradient, \\(\\vec{\\nabla} \\cdot\\) is divergence, and \\(\\vec{\\nabla} \\times\\) is curl.\n\n\nWhat is \\(\\vec{\\nabla} \\cdot\\) specifically?\n\n\n\nExpand\n\nOliver Heaviside suggested the word “divergence” to describe the rate at which electric field flow outwards from a positive charge.\n\nsource - diverge from that point (positive charge for electric field)\nsink - converge to that point (negative charge for magnetic field)\n\n\n\n\n\n\n\n\n\n\n\n\nExpand To Learn About Right Hand Side\n\n\n\n\n\n\nWhat is the right hand side in words?\n\n\n\nAnswer\n\n\n\n\n\n\n\n\n\n\n\n\nExercises\n\n\n\n\n\n\nFive point charges are enclosed in a cylindrical surface \\(S\\). If the values of the charges are \\(q_1 = +3 nC\\), \\(q_2 = -2 nC\\), \\(q_3 = +2 nC\\), \\(q_4 = +4 nC\\), and \\(q_5 = -1 nC\\), find the total flux through \\(S\\).\n\n\n\nAnswer\n\n\\[\\sum_{i=1}^{5} q_i = 3 - 2 + 2 + 4 - 1 = 6 nC = 6 \\times 10^{-9} C\\]\n\\[\\Phi_E = \\frac{q_enc}{\\epsilon_0} = \\frac{6 \\times 10^{-9}C}{8.854 \\times 10^{-12} \\frac{C}{V \\cdot m}} = \\boxed{678 \\hspace{1mm} Vm}\\]"
+  },
+  {
+    "objectID": "work/textbooks/danFleisch.html#gausss-law-for-electric-fields",
+    "href": "work/textbooks/danFleisch.html#gausss-law-for-electric-fields",
+    "title": "Maxwell’s Equations - Dan Fleisch",
+    "section": "",
+    "text": "Expand\n\n\nWhat are the two kinds of Electric Fields in Maxwell’s Equation?\n\n\n\nAnswer\n\n\nElectrostatic Fields (from electric charge)\nInduced Electric Field (from changing magnetic field)\n\n\n\nWhat type of fields does Gauss’s law deal with?\n\n\n\nAnswer\n\nElectrostatic Fields (from electric charge)\n\n\n\n\n\n\n\nExpand\n\nElectric charge produces an electric field. The flux of that field passing through any closed surface is proportional to the total charge contained within that surface.\n\\[\\oint_S \\vec{E} \\cdot \\hat{n} da = \\frac{q_{enc}}{\\epsilon_0}\\]\n\n\n\n\n\n\nExpand To Learn About Left Hand Side\n\n\n\n\n\n\n\nWhat does the left hand side represent?\n\n\n\nAnswer\n\nThe number of electric field lines (AKA electric flux) passing through a closed surface \\(S\\).\n\n\nWhat is Electric field?\n\n\n\nAnswer\n\nThe electrical force exerted on one coulomb of charge at that point in space is the electric field at that location.\n\\[\\vec{E} = \\frac{\\vec{F}_e}{q_0}\\]\n\\(\\vec{E}\\) has units of \\(\\frac{N}{C} = \\frac{V}{m}\\)\nSpacing of electric field lines tells you the strength of it.\n\nElectric field lines go from positive to negative\nElectric field lines vector sums, so they never cross\n\n\n\nWhy do physicists and engineers always talk about small test charges?\n\n\n\nAnswer\n\nBecause the job of this charge is to test the electric field at a location, not to add another electric field into the mix (although you can’t stop it from doing so). Making the test charge infinitesimally small minimizes the effect of the test charge’s own field.\n\n\nWhat is the dot product? Why are we taking the dot product between \\(\\vec{E}\\) and \\(\\hat{n}\\) in Gauss’s Law?\n\n\n\nAnswer\n\nConsider vectors \\(\\vec{A}\\) and \\(\\vec{B}\\) in space.\nWhat is the projection of \\(\\vec{A}\\) onto \\(\\vec{B}\\)? From trig, it’s \\(|A| \\cos \\theta\\).\nNow the dot product is that projection, multiplied by the magnitude of \\(\\vec{B}\\).\n\\[\\vec{A} \\cdot \\vec{B} = |A| |B| \\cos \\theta\\]\n\n\nWhat is \\(\\hat{n}\\)?\n\n\n\nAnswer\n\nIt is the unit normal vector, which has a length of one, and points in the direction perpendicular to the surface.\nNote that since \\(da\\) is the tiny amount of area we are considering\n\\[\\hat{n} da = d \\vec{a}\\]\n\n\nWhat is the difference between closed surface and open surface?\n\n\n\nAnswer\n\n\nOpen Surface - any surface for which it is possible to get from one side to the other without going through the surface\nClosed Surface - a surface that divides space into an “inside” and “outside”. Unit Normal Vector \\(\\hat{n}\\) always points outwards, away from the volume enclosed by the surface.\n\n\n\nWhat does \\(\\vec{E} \\cdot \\hat{n}\\) represent?\n\n\n\nAnswer\n\nThe component of the electric field vector that is perpendicular to the surface.\n\\[\\vec{E} \\cdot \\hat{n} = |\\vec{E}| \\cos \\theta\\]\n\n\nHow do you find the mass of a surface with varying density function \\(\\sigma(x, y)\\)?\n\n\n\nAnswer\n\nSince mass is density times volume, we can write:\n\\[Mass = \\sigma \\cdot Area\\]\n\\[Mass_S = \\Sigma_{i = 1}^{N} \\sigma_i \\cdot Area_i\\]\nIf we let Areas to become infinitesimally small \\(dA\\), we get \\[Mass = \\int_{S} \\sigma dA\\]\nThis is a surface intergal.\n\n\nWhat does \\(\\int_S \\vec{A} \\cdot \\hat{n} da\\) represent?\n\n\n\nAnswer\n\nIt represents the flux of a vector field.\nWhat’s a vector field?\nIt is magnitude and direction quantities distributed in space.\n\nScalar Field - something like temperature distribution in a room, where at each point theres a number\nVector Field - something like flow of fluid, there at every point it has a speed and direction\n\n\n\nWhat’s flux \\(\\Phi\\)?\n\n\n\nAnswer\n\nFlux \\(\\Phi\\) of a field over a surface is the amount of flow through that surface.\n\\[\\Phi = \\vec{A} \\cdot \\hat{n} \\times (Surface Area)\\]\n\n\n\n\n\n\n\n\n\n\n\n\nExpand To Learn About Right Hand Side\n\n\n\n\n\n\nWhat is the right hand side in words?\n\n\n\nAnswer\n\nThe total amount of enclosed charge normalized by the permittivity of free space.\n\n\nWhat is \\(\\epsilon_0\\) and why is it there?\n\n\n\nAnswer\n\nIt is called the permitivity of free space or “vacuum permitivity”.\n\\[\\epsilon_0 = 8.854 \\times 10^{-12} \\frac{F}{m}\\]\nWhen we say the permitivity of a material, when are referring to its reponse to an electric field. It is also the key parameter in determining the speed at which an electromagnetic wave propagates through that medium.\nHigh permitivity means it provides higher capacitance.\nIn Gauss’s Law, \\(\\epsilon_0\\) acts as a proportionality constant that relates electric flux to enclosed charge.\n\n\n\n\n\n\n\n\n\n\nExercises\n\n\n\n\n\n\nFive point charges are enclosed in a cylindrical surface \\(S\\). If the values of the charges are \\(q_1 = +3 nC\\), \\(q_2 = -2 nC\\), \\(q_3 = +2 nC\\), \\(q_4 = +4 nC\\), and \\(q_5 = -1 nC\\), find the total flux through \\(S\\).\n\n\n\nAnswer\n\n\\[\\sum_{i=1}^{5} q_i = 3 - 2 + 2 + 4 - 1 = 6 nC = 6 \\times 10^{-9} C\\]\n\\[\\Phi_E = \\frac{q_enc}{\\epsilon_0} = \\frac{6 \\times 10^{-9}C}{8.854 \\times 10^{-12} \\frac{C}{V \\cdot m}} = \\boxed{678 \\hspace{1mm} Vm}\\]\n\n\n\n\n\n\n\n\n\n\n\n\nExpand\n\nThe electric field produced by electric diverges from positive charge and converges upon negative charge.\n\\[\\vec{\\nabla} \\cdot \\vec{E} = \\frac{\\rho}{\\epsilon_0}\\]\n\n\n\n\n\n\nExpand To Learn About Left Hand Side\n\n\n\n\n\n\n\nWhat does the left hand side represent?\n\n\n\nAnswer\n\n\nThe tendency of electric field to flow away from a point in space - AKA the divergence.\n\n\nWhat is the difference between differential and integral form of Gauss’s Law?\n\n\n\nAnswer\n\n\nDifferential deals with individual points in space, whereareas integral deals with a closed surface.\n\n\nWhat is \\(\\vec{\\nabla}\\)?\n\n\n\nAnswer\n\n\nIt is called “del” or “nabla”. It tells you to take the derivative of what ever quantity comes after it.\n\\[\\vec{\\nabla} =\\hat{i} \\frac{\\partial}{\\partial x} + \\hat{j} \\frac{\\partial}{\\partial y} + \\hat{k} \\frac{\\partial}{\\partial z}\n\\]\nIt is an mathematical operator, which just means that it needs something to act on and cannot just appear by itself.\n\\(\\vec{\\nabla}\\) is gradient, \\(\\vec{\\nabla} \\cdot\\) is divergence, and \\(\\vec{\\nabla} \\times\\) is curl.\n\n\nWhat is \\(\\vec{\\nabla} \\cdot\\) specifically?\n\n\n\nExpand\n\nOliver Heaviside suggested the word “divergence” to describe the rate at which electric field flow outwards from a positive charge.\n\nsource - diverge from that point (positive charge for electric field)\nsink - converge to that point (negative charge for magnetic field)\n\n\n\n\n\n\n\n\n\n\n\n\nExpand To Learn About Right Hand Side\n\n\n\n\n\n\nWhat is the right hand side in words?\n\n\n\nAnswer\n\n\n\n\n\n\n\n\n\n\n\n\nExercises\n\n\n\n\n\n\nFive point charges are enclosed in a cylindrical surface \\(S\\). If the values of the charges are \\(q_1 = +3 nC\\), \\(q_2 = -2 nC\\), \\(q_3 = +2 nC\\), \\(q_4 = +4 nC\\), and \\(q_5 = -1 nC\\), find the total flux through \\(S\\).\n\n\n\nAnswer\n\n\\[\\sum_{i=1}^{5} q_i = 3 - 2 + 2 + 4 - 1 = 6 nC = 6 \\times 10^{-9} C\\]\n\\[\\Phi_E = \\frac{q_enc}{\\epsilon_0} = \\frac{6 \\times 10^{-9}C}{8.854 \\times 10^{-12} \\frac{C}{V \\cdot m}} = \\boxed{678 \\hspace{1mm} Vm}\\]"
+  },
+  {
+    "objectID": "work/summary.html",
+    "href": "work/summary.html",
     "title": "Summary",
     "section": "",
     "text": "Summary\nIn summary, this book has no content whatsoever."
   },
   {
-    "objectID": "notes/textbooks.html",
-    "href": "notes/textbooks.html",
-    "title": "Textbooks",
-    "section": "",
-    "text": "Textbooks"
-  },
-  {
-    "objectID": "notes/textbooks/danFleisch.html",
-    "href": "notes/textbooks/danFleisch.html",
-    "title": "Maxwell’s Equations - Dan Fleisch",
-    "section": "",
-    "text": "Sources: Official Website\n\n\n1. Find the electric flux through the surface of a sphere containing \\(15\\) protons and \\(10\\) electrons. Does the size of the sphere matter?\n\n\nAnswer\n\n\n2. A cube of side L contains a flat plate with variable surface charge density of \\(σ = -3xy\\). If the plate extends from \\(x = 0\\)to \\(x = L\\) and from \\(y = 0\\) to \\(y = L\\), what is the total electric flux through the walls of the cube?\n\n\nAnswer\n\n\n3. Find the total electric flux through a closed cylinder containing a line charge along its axis with linear charge density \\(λ = λ_0(1-x/h)\\) C/m if the cylinder and the line charge extend from \\(x = 0\\) to \\(x = h\\).\n\n\nAnswer\n\n\n4. What is the flux through any closed surface surrounding a charged sphere of radius \\(a_0\\) with volume charge density of \\(ρ = ρ_0(r/a_0)\\), where \\(r\\) is the distance from the center of the sphere?\n\n\nAnswer\n\n\n5. A circular disk with surface charge density \\(2 \\times 10^{-10}\\) C/m² is surrounded by a sphere with radius of one meter. If the flux through the sphere is \\(5.2 \\times 10^{-2}\\) V·m, what is the diameter of the disk?\n\n\nAnswer"
-  },
-  {
-    "objectID": "notes/textbooks/danFleisch.html#chapter-1-gausss-law-for-electric-fields",
-    "href": "notes/textbooks/danFleisch.html#chapter-1-gausss-law-for-electric-fields",
-    "title": "Maxwell’s Equations - Dan Fleisch",
-    "section": "",
-    "text": "Find the electric flux through the surface of a sphere containing \\(15\\) protons and \\(10\\) electrons. Does the size of the sphere matter?\n\n\nAnswer\n\n\n\n\n\nA cube of side L contains a flat plate with variable surface charge density of \\(σ = -3xy\\). If the plate extends from \\(x = 0\\)to \\(x = L\\) and from \\(y = 0\\) to \\(y = L\\), what is the total electric flux through the walls of the cube?\n\n\nAnswer\n\n\n\n\n\n3 Cylinder\nFind the total electric flux through a closed cylinder containing a line charge along its axis with linear charge density \\(λ = λ_0(1-x/h)\\) C/m if the cylinder and the line charge extend from \\(x = 0\\) to \\(x = h\\).\n\n\nAnswer\n\n\n\n\n\nWhat is the flux through any closed surface surrounding a charged sphere of radius \\(a_0\\) with volume charge density of \\(ρ = ρ_0(r/a_0)\\), where \\(r\\) is the distance from the center of the sphere?\n\n\nAnswer\n\n\n\n\n\nA circular disk with surface charge density \\(2 \\times 10^{-10}\\) C/m² is surrounded by a sphere with radius of one meter. If the flux through the sphere is \\(5.2 \\times 10^{-2}\\) V·m, what is the diameter of the disk?\n\n\nAnswer"
-  },
-  {
-    "objectID": "notes/courses/course1.html",
-    "href": "notes/courses/course1.html",
-    "title": "fast.ai - Practical Deep Learning",
-    "section": "",
-    "text": "fast.ai - Practical Deep Learning"
-  },
-  {
-    "objectID": "notes/textbooks/danFleisch.html#gausss-law-for-electric-fields",
-    "href": "notes/textbooks/danFleisch.html#gausss-law-for-electric-fields",
-    "title": "Maxwell’s Equations - Dan Fleisch",
-    "section": "",
-    "text": "1. Find the electric flux through the surface of a sphere containing \\(15\\) protons and \\(10\\) electrons. Does the size of the sphere matter?\n\n\nAnswer\n\n\n2. A cube of side L contains a flat plate with variable surface charge density of \\(σ = -3xy\\). If the plate extends from \\(x = 0\\)to \\(x = L\\) and from \\(y = 0\\) to \\(y = L\\), what is the total electric flux through the walls of the cube?\n\n\nAnswer\n\n\n3. Find the total electric flux through a closed cylinder containing a line charge along its axis with linear charge density \\(λ = λ_0(1-x/h)\\) C/m if the cylinder and the line charge extend from \\(x = 0\\) to \\(x = h\\).\n\n\nAnswer\n\n\n4. What is the flux through any closed surface surrounding a charged sphere of radius \\(a_0\\) with volume charge density of \\(ρ = ρ_0(r/a_0)\\), where \\(r\\) is the distance from the center of the sphere?\n\n\nAnswer\n\n\n5. A circular disk with surface charge density \\(2 \\times 10^{-10}\\) C/m² is surrounded by a sphere with radius of one meter. If the flux through the sphere is \\(5.2 \\times 10^{-2}\\) V·m, what is the diameter of the disk?\n\n\nAnswer"
-  },
-  {
-    "objectID": "notes/papers/photonics.html",
-    "href": "notes/papers/photonics.html",
-    "title": "Optical Computing",
-    "section": "",
-    "text": "Optical Computing\nWetzstein, G., Ozcan, A., Gigan, S. et al. Inference in artificial intelligence with deep optics and photonics. Nature 588, 39–47 (2020). https://doi.org/10.1038/s41586-020-2973-6\nGeneral Optical computing is not practical yet, but using optics for inference for visual computing applications is practical. This paper is a review on recent work on optical computing for AI.\nMotivation 1: Edge devices (cameras, cars, robots, headsets, IoT) need leaner (low latency, light, small, low power) computational imaging systems.\nOptical computing systems promise small form factor, massive parallelism, little to no power consumption. Optical interconnects are already widely used in data centers today.\nLinear optical elements can calculate convolution, fourier transforms, random projections, as a byproduct of light-matter interaction. These operations are what’s needed for DNNs.\n“Incorporating all-optical nonlinearities into photonic circuits is one of the key requirements for truly deep photonic networks. Yet, the challenge of efficiently implementing photonic nonlinear activation functions at low optical signal intensities was one of the primary reasons that interest in ONNs waned in the 1990s. Creative approaches from the last decade, such as nonlinear thresholders based on all-optical micro-ring resonators35, saturable absorbers29,36, electro-absorption modulators37, or hybrid electro-optical approaches38, represent possible solutions for overcoming this challenge in the near future.”\nAlthough programmability has traditionally been more difficult with photonic systems, first steps towards simplifying the process have recently been demonstrated\n“One direction that seems particularly well suited for optical and photonic processing is optical inference with incoherent light to rapidly process scene information under ambient lighting conditions. Such an approach presents many exciting opportunities for autonomous vehicles, robotics and computer vision, which we discuss next.”"
-  },
-  {
-    "objectID": "notes/papers/references.html",
-    "href": "notes/papers/references.html",
-    "title": "References",
-    "section": "",
-    "text": "References"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#paperspace-your-dl-workstation-in-cloud",
-    "href": "notes/courses/fastai_lesson3.html#paperspace-your-dl-workstation-in-cloud",
-    "title": "Lesson 3",
-    "section": "Paperspace: Your DL Workstation in Cloud!",
-    "text": "Paperspace: Your DL Workstation in Cloud!\n\nDoes Jeremy speak highly of it? Why?"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#jupyterlab-real-beginner-friendly",
-    "href": "notes/courses/fastai_lesson3.html#jupyterlab-real-beginner-friendly",
-    "title": "Lesson 3",
-    "section": "JupyterLab: Real Beginner Friendly",
-    "text": "JupyterLab: Real Beginner Friendly\n\nWhy is JupyterLab good for beginners?"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#make-a-better-pet-detector",
-    "href": "notes/courses/fastai_lesson3.html#make-a-better-pet-detector",
-    "title": "Lesson 3",
-    "section": "Make a Better Pet Detector",
-    "text": "Make a Better Pet Detector\n\nAfter training, think about how to improve the model"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#comparison-of-all-image-models",
-    "href": "notes/courses/fastai_lesson3.html#comparison-of-all-image-models",
-    "title": "Lesson 3",
-    "section": "Comparison of All (Image) Models",
-    "text": "Comparison of All (Image) Models\n\nDid anyone compare most image models and share the findings?\n\nWhere to find the notebook for comparison?\n\nWhich 3 criteria are used for comparison?"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#try-out-new-models",
-    "href": "notes/courses/fastai_lesson3.html#try-out-new-models",
-    "title": "Lesson 3",
-    "section": "Try Out New Models",
-    "text": "Try Out New Models\n\nHow to select and try out models with high scores\n\nWhere is the train.ipynb file?\n\nHow to try models on TIMM?\n\nHow to compare them by loss?\n\nWhy is this model impressive?\n\nWhat can the name of a model tell us?\n\nWhy does Jeremy only train for 3 epochs? (18:58)"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#get-the-categories-of-a-model",
-    "href": "notes/courses/fastai_lesson3.html#get-the-categories-of-a-model",
-    "title": "Lesson 3",
-    "section": "Get the Categories of a Model",
-    "text": "Get the Categories of a Model\n\nHow to get label/category info from the model\n\nThe rest we learned from the last lecture"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#whats-in-the-model",
-    "href": "notes/courses/fastai_lesson3.html#whats-in-the-model",
-    "title": "Lesson 3",
-    "section": "What’s in the Model",
-    "text": "What’s in the Model\n\nWhat two things are stored in the model?"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#what-does-model-architecture-look-like",
-    "href": "notes/courses/fastai_lesson3.html#what-does-model-architecture-look-like",
-    "title": "Lesson 3",
-    "section": "What Does Model Architecture Look Like?",
-    "text": "What Does Model Architecture Look Like?"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#parameters-of-a-model",
-    "href": "notes/courses/fastai_lesson3.html#parameters-of-a-model",
-    "title": "Lesson 3",
-    "section": "Parameters of a Model",
-    "text": "Parameters of a Model\n\nHow to zoom in on a model layer\n\nHow to check out a layer’s parameters\n\nWhat do a layer’s parameters look like?"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#the-investigating-questions",
-    "href": "notes/courses/fastai_lesson3.html#the-investigating-questions",
-    "title": "Lesson 3",
-    "section": "The Investigating Questions",
-    "text": "The Investigating Questions\n\nWhat are the weights/numbers?\n\nHow can they reveal something important?\n\nWhere is the notebook on how neural nets work?"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#create-a-general-quadratic-function",
-    "href": "notes/courses/fastai_lesson3.html#create-a-general-quadratic-function",
-    "title": "Lesson 3",
-    "section": "Create a General Quadratic Function",
-    "text": "Create a General Quadratic Function\n\nHow to create a function that can generate any quadratic by changing 3 parameters\n\nHow to generate output from a specific quadratic by changing 1 parameter\n\nWhy create a general function with multiple parameters instead of hard-coding coefficients?"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#fit-a-function-by-hand-and-eye",
-    "href": "notes/courses/fastai_lesson3.html#fit-a-function-by-hand-and-eye",
-    "title": "Lesson 3",
-    "section": "Fit a Function by Hand and Eye",
-    "text": "Fit a Function by Hand and Eye\n\nWhat does “fit a function” mean? (tune parameters based on data)\n\nHow to create a random dataset\n\nHow to fit the quadratic by hand using Jupyter widgets\n\nLimitations of the manual/visual approach\n\nWhere is this notebook?"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#loss-fit-a-function-better-without-eyes",
-    "href": "notes/courses/fastai_lesson3.html#loss-fit-a-function-better-without-eyes",
-    "title": "Lesson 3",
-    "section": "Loss: Fit a Function Better Without Eyes",
-    "text": "Loss: Fit a Function Better Without Eyes\n\nWhy we need a loss/loss function\n\nWhat is mean squared error?\n\nHow loss helps improve accuracy over manual fitting"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#automate-the-search-of-parameters",
-    "href": "notes/courses/fastai_lesson3.html#automate-the-search-of-parameters",
-    "title": "Lesson 3",
-    "section": "Automate the Search of Parameters",
-    "text": "Automate the Search of Parameters\n\nHow to update parameters to reduce loss\n\nDerivative material on Khan Academy?\n\nWhat do you need to know about derivatives now? (34:26)\n\nWhat is the slope/gradient?\n\nCan PyTorch compute gradients for us?\n\nHow to define a loss function on the quadratic (35:02)\n\nWhat to know about tensors and derivatives (36:02)\n\nHow to create a rank-1 tensor for storing parameters (36:49)\n\nHow to enable PyTorch gradient tracking (37:10)\n\nHow to calculate gradients from loss (37:38)\n\nWhat do the gradients mean? (38:34)\n\nHow to update parameters using gradients (39:18)\n\nHow to automate the full gradient descent process (41:05)\n\nWhy this process is called gradient descent\n\nRelated notebook"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#the-mathematical-functions",
-    "href": "notes/courses/fastai_lesson3.html#the-mathematical-functions",
-    "title": "Lesson 3",
-    "section": "The Mathematical Functions",
-    "text": "The Mathematical Functions\n\nBeyond data/loss/derivative, what else is essential for learning parameters?\n\nWhy not use just quadratic functions?"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#relu-rectified-linear-function",
-    "href": "notes/courses/fastai_lesson3.html#relu-rectified-linear-function",
-    "title": "Lesson 3",
-    "section": "ReLU: Rectified Linear Function",
-    "text": "ReLU: Rectified Linear Function\n\nReal-world models need complex functions – how complex?\n\nCan we build infinite complexity using simple additions?\n\nWhat is a rectified linear function?\n\nWhat does a ReLU plot look like?\n\nAdjusting the 2 parameters with widgets\n\nHow the function varies under different parameters (44:46)"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#infinitely-complex-function",
-    "href": "notes/courses/fastai_lesson3.html#infinitely-complex-function",
-    "title": "Lesson 3",
-    "section": "Infinitely Complex Function",
-    "text": "Infinitely Complex Function\n\nHow powerful are combinations of simple functions?\n\nCreate a double ReLU function and adjust 4 parameters\n\nComparison between double and single ReLU\n\nHow complex can it get with millions of ReLUs?"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#circles-to-an-owl",
-    "href": "notes/courses/fastai_lesson3.html#circles-to-an-owl",
-    "title": "Lesson 3",
-    "section": "2 Circles to an Owl",
-    "text": "2 Circles to an Owl\n\nConcise summary of core deep learning concepts"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#a-chart-of-all-image-models-compared",
-    "href": "notes/courses/fastai_lesson3.html#a-chart-of-all-image-models-compared",
-    "title": "Lesson 3",
-    "section": "A Chart of All Image Models Compared",
-    "text": "A Chart of All Image Models Compared\n\nCan it be done with brute-force code?\n\nDid Jeremy look for this comparison?\n\nWhat is the wrong way students use the chart? (50:45)\n\nHow Jeremy uses the chart\n\nHow he selects which models to try step-by-step"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#do-i-have-enough-data",
-    "href": "notes/courses/fastai_lesson3.html#do-i-have-enough-data",
-    "title": "Lesson 3",
-    "section": "Do I Have Enough Data?",
-    "text": "Do I Have Enough Data?\n\nDid you train a model on your dataset?\n\nIs the result satisfying?\n\nMistake often made in DL industry (52:55)\n\nJeremy’s suggestions\n\nRole of semi-supervised learning and augmentation\n\nHow labeled and unlabeled data can help"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#interpret-gradients-in-unit",
-    "href": "notes/courses/fastai_lesson3.html#interpret-gradients-in-unit",
-    "title": "Lesson 3",
-    "section": "Interpret Gradients in Unit",
-    "text": "Interpret Gradients in Unit\n\nHow much loss decreases when a parameter increases by 1 unit? (55:24)"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#learning-rate",
-    "href": "notes/courses/fastai_lesson3.html#learning-rate",
-    "title": "Lesson 3",
-    "section": "Learning Rate",
-    "text": "Learning Rate\n\nWhy avoid large step updates?\n\nJeremy uses quadratic zoom analogy – why?\n\nWhat happens with large step updates? (57:19)\n\nIs large loss drop always due to large parameter increase?\n\nWhat is the learning rate? Why small? How to choose it? (58:07)\n\nToo large? Too small? Consequences"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#break",
-    "href": "notes/courses/fastai_lesson3.html#break",
-    "title": "Lesson 3",
-    "section": "Break",
-    "text": "Break"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#matrix-multiplication",
-    "href": "notes/courses/fastai_lesson3.html#matrix-multiplication",
-    "title": "Lesson 3",
-    "section": "Matrix Multiplication",
-    "text": "Matrix Multiplication\n\nHow to compute millions of ReLUs efficiently\n\nWhat linear algebra you need (1:01:33)\n\nHow easy is matrix multiplication? (1:01:51)\n\nDataset and parameters in matrix multiplication\n\nDoes matrix multiplication do the rectifying?\n\nWhat are GPUs good at? (1:03:49)"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#build-a-regression-model-in-spreadsheet",
-    "href": "notes/courses/fastai_lesson3.html#build-a-regression-model-in-spreadsheet",
-    "title": "Lesson 3",
-    "section": "Build a Regression Model in Spreadsheet",
-    "text": "Build a Regression Model in Spreadsheet\n\nTitanic competition on Kaggle intro (1:05:01)\n\nWhat is the dataset? (1:05:18)\n\nWhat to do with train.csv\n\nClean and transform dataset (1:07:17)\n\nPrepare parameters for multiplication (1:08:50)\n\nProblem with ‘Fare’ column scale (1:09:35)\n\nNormalize ‘Fare’, ‘Age’\n\nWhat is data normalization?\n\nDoes fastai do this? Will we learn how?\n\nWhy log-transform ‘Fare’? (1:10:59)\n\nWhy even distribution matters\n\nHow to use MMULT in spreadsheet (1:11:56)\n\nUse MMULT to add constant\n\nModel result (1:13:41)\n\nLinear regression only? No ReLU?\n\nCan gradient descent solve regression? How?"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#build-a-neural-net-by-adding-two-regression-models",
-    "href": "notes/courses/fastai_lesson3.html#build-a-neural-net-by-adding-two-regression-models",
-    "title": "Lesson 3",
-    "section": "Build a Neural Net by Adding Two Regression Models",
-    "text": "Build a Neural Net by Adding Two Regression Models\n\nWhat it takes to build a neural net\n\nWhy not add results before ReLU?\n\nWhy add after ReLU?\n\nWhat the prediction looks like\n\nNow update 2 sets of parameters"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#matrix-multiplication-makes-training-faster",
-    "href": "notes/courses/fastai_lesson3.html#matrix-multiplication-makes-training-faster",
-    "title": "Lesson 3",
-    "section": "Matrix Multiplication Makes Training Faster",
-    "text": "Matrix Multiplication Makes Training Faster\n\nHow to use MMULT instead of individual additions"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#watch-out-its-chapter-4",
-    "href": "notes/courses/fastai_lesson3.html#watch-out-its-chapter-4",
-    "title": "Lesson 3",
-    "section": "Watch Out! It’s Chapter 4",
-    "text": "Watch Out! It’s Chapter 4\n\nTry the Titanic competition\n\nWhy Chapter 4 is tough for many\n\nHow to work through spreadsheet examples"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#create-dummy-variables-of-3-classes",
-    "href": "notes/courses/fastai_lesson3.html#create-dummy-variables-of-3-classes",
-    "title": "Lesson 3",
-    "section": "Create Dummy Variables of 3 Classes",
-    "text": "Create Dummy Variables of 3 Classes\n\nDo we need only 2 columns for 3-class dummy variable?"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#taste-nlp",
-    "href": "notes/courses/fastai_lesson3.html#taste-nlp",
-    "title": "Lesson 3",
-    "section": "Taste NLP",
-    "text": "Taste NLP\n\nWhat NLP models do\n\nOpportunities for non-English speaker students\n\nWhat tasks NLP can do (1:25:57)"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#fastai-nlp-library-vs-hugging-face",
-    "href": "notes/courses/fastai_lesson3.html#fastai-nlp-library-vs-hugging-face",
-    "title": "Lesson 3",
-    "section": "fastai NLP Library vs Hugging Face",
-    "text": "fastai NLP Library vs Hugging Face\n\nHow these libraries differ\n\nWhy we use transformers in this lecture"
-  },
-  {
-    "objectID": "notes/courses/fastai_lesson3.html#homework",
-    "href": "notes/courses/fastai_lesson3.html#homework",
-    "title": "Lesson 3",
-    "section": "Homework",
-    "text": "Homework\n\nHomework to prepare for the next lesson"
-  },
-  {
-    "objectID": "notes/courses/fastai.html",
-    "href": "notes/courses/fastai.html",
+    "objectID": "work/courses/fastai.html",
+    "href": "work/courses/fastai.html",
     "title": "Practical Deep Learning (fast.ai)",
     "section": "",
     "text": "Source: https://course.fast.ai/\n\n\nDaniel 深度碎片 on forums.fast.ai has been kind enough to create summaries of each lesson in the form of a list of questions. These summaries can be used to preview a lesson or refresh your memory afterward.\n\n\n\nCan there be substantial new content given we have already 4 versions and a book?\n\n\n\n\n\nHow many channels are available to read the book? (physical, GitHub, Colab, and others)\n\n\n\n\n\nAre there interesting materials/stories covered by the book but not the lecture?\nWhere can you find questionnaires and quizzes of the lectures?\n\n\n\n\n\nWhere can you get more quizzes of fastai and memorize them forever?\n\n\n\n\n\nHow to make the most out of fastai forum?\n\n\n\n\n\n\n\n\nWill we learn to put a model in production today?\n\n\n\n\n\nWhat is the first step before building a model?\n\n\n\n\n\nDo you want to navigate the notebook with a TOC?\nHow about collapsible sections?\nHow about moving between start and end of sections fast?\nHow to install Jupyter extensions?\n\n\n\n\n\nWhy use ggd rather than Bing for searching and downloading images?\nHow to clean/remove broken images?\n\n\n\n\n\nHow to get basic info, source code, full docs on fastai code quickly?\n\n\n\n\n\nHow can you specify the resize options to your data?\nWhy should we always use RandomResizedCrop and aug_transforms together?\nHow do RandomResizedCrop and aug_transforms differ?\n\n\n\n\n\nWhen resized, are we making many copies of the image?\n\n\n\n\n\nHow many epochs do we usually go when using RandomResizedCrop and aug_transforms?\n\n\n\n\n\nHow to create a confusion matrix on your model performance?\nWhen to use a confusion matrix? (category-level practice)\nHow to interpret a confusion matrix?\nWhat is the most obvious thing it tells us?\nHow hard is it to tell grizzly and black bears apart?\n\n\n\n\n\nDoes plot_top_losses give us the images with the highest losses?\nAre those images ones the model made confidently wrong predictions? (practice)\nDo those images include ones that the model made correct predictions unconfidently?\nWhat does looking at those high loss images help with? (expert examination or simple data cleaning)\n\n\n\n\n\nHow to display and make cleaning choices on each of those top loss images in each data folder? (practice)\nWithout expert knowledge on telling apart grizzly and black bears, we can at least clean images which mess up teddy bears.\n\n\n\n\n\nHow can training the model help us see problems in the dataset? (practice)\nWon’t we have more ideas to improve the dataset once we spot the problems?\n\n\n\n\n\nHow to use GPU RAM locally without much trouble?\n\n\n\n\n\nWhat is the preferred way of lecture watching and coding by the majority of students?\n\n\n\n\n\n\n\n\nIs GitHub Desktop a less cool but easier and more robust way to version control than git?\n\n\n\n\n\nHow to set up a terminal for Windows?\nWhy does Jeremy prefer Windows over Mac?\n\n\n\n\n\nGo to huggingface.co/spaces and create a new space\n\n\n\n\n\nHow to use git to download your space folder?\nHow to open VSCode to add an app.py file?\nHow to use VSCode to push your space folder up to Hugging Face Spaces online?\nThen go back to your space on Hugging Face to see the app running\n\n\n\n\n\nWhere is the model we are going to train and download from Kaggle notebook?\nHow to export your model after training it on Kaggle?\nWhere do you download the model?\nHow to open a folder in terminal? open .\nMake sure the model is downloaded into its own Hugging Face Space folder\n\n\n\n\n\nHow to load the downloaded model to make predictions?\nHow to make predictions with the loaded model?\nHow to export selected cells of a Jupyter notebook into a Python file?\nHow to see how long a code runs in a Jupyter cell?\n\n\n\n\n\nHow to prepare your prediction result into a form Gradio prefers? (code)\nHow to build a Gradio interface for your model?\nHow to launch your app with the model locally?\n(Not in video: run the code on Kaggle in cloud)\n\n\n\n\n\nMake sure to create a new space first (e.g., testing)\nHow to turn the notebook into a Python script?\nHow to push the folder up to GitHub and run app in cloud?\n(Not in Video: if stuck, check out Tanishq’s tutorial – shooting)\n\n\n\n\n\nHow many epochs are ideal for fine-tuning?\nHow to save model from Colab?\n\n\n\n\n\nHow to download github/fastai/fastsetup using git?\ngit clone https://github.com/fastai/fastsetup.git\nHow to download and install mamba?\n./setup_conda.sh\n(Not in Video: problem of running ./setup_conda.sh)\nHow to download and install fastai?\nmamba install -c fastchan fastai\nHow to install nbdev?\nmamba install -c fastchan nbdev\nHow to start using Jupyter Notebook?\njupyter notebook --no-browser\n(Not in Video: other problem related to Xcode)"
   },
   {
-    "objectID": "notes/courses/fastai.html#lesson-2",
-    "href": "notes/courses/fastai.html#lesson-2",
+    "objectID": "work/courses/fastai.html#lesson-2",
+    "href": "work/courses/fastai.html#lesson-2",
     "title": "Practical Deep Learning (fast.ai)",
     "section": "",
     "text": "Daniel 深度碎片 on forums.fast.ai has been kind enough to create summaries of each lesson in the form of a list of questions. These summaries can be used to preview a lesson or refresh your memory afterward.\n\n\n\nCan there be substantial new content given we have already 4 versions and a book?\n\n\n\n\n\nHow many channels are available to read the book? (physical, GitHub, Colab, and others)\n\n\n\n\n\nAre there interesting materials/stories covered by the book but not the lecture?\nWhere can you find questionnaires and quizzes of the lectures?\n\n\n\n\n\nWhere can you get more quizzes of fastai and memorize them forever?\n\n\n\n\n\nHow to make the most out of fastai forum?\n\n\n\n\n\n\n\n\nWill we learn to put a model in production today?\n\n\n\n\n\nWhat is the first step before building a model?\n\n\n\n\n\nDo you want to navigate the notebook with a TOC?\nHow about collapsible sections?\nHow about moving between start and end of sections fast?\nHow to install Jupyter extensions?\n\n\n\n\n\nWhy use ggd rather than Bing for searching and downloading images?\nHow to clean/remove broken images?\n\n\n\n\n\nHow to get basic info, source code, full docs on fastai code quickly?\n\n\n\n\n\nHow can you specify the resize options to your data?\nWhy should we always use RandomResizedCrop and aug_transforms together?\nHow do RandomResizedCrop and aug_transforms differ?\n\n\n\n\n\nWhen resized, are we making many copies of the image?\n\n\n\n\n\nHow many epochs do we usually go when using RandomResizedCrop and aug_transforms?\n\n\n\n\n\nHow to create a confusion matrix on your model performance?\nWhen to use a confusion matrix? (category-level practice)\nHow to interpret a confusion matrix?\nWhat is the most obvious thing it tells us?\nHow hard is it to tell grizzly and black bears apart?\n\n\n\n\n\nDoes plot_top_losses give us the images with the highest losses?\nAre those images ones the model made confidently wrong predictions? (practice)\nDo those images include ones that the model made correct predictions unconfidently?\nWhat does looking at those high loss images help with? (expert examination or simple data cleaning)\n\n\n\n\n\nHow to display and make cleaning choices on each of those top loss images in each data folder? (practice)\nWithout expert knowledge on telling apart grizzly and black bears, we can at least clean images which mess up teddy bears.\n\n\n\n\n\nHow can training the model help us see problems in the dataset? (practice)\nWon’t we have more ideas to improve the dataset once we spot the problems?\n\n\n\n\n\nHow to use GPU RAM locally without much trouble?\n\n\n\n\n\nWhat is the preferred way of lecture watching and coding by the majority of students?\n\n\n\n\n\n\n\n\nIs GitHub Desktop a less cool but easier and more robust way to version control than git?\n\n\n\n\n\nHow to set up a terminal for Windows?\nWhy does Jeremy prefer Windows over Mac?\n\n\n\n\n\nGo to huggingface.co/spaces and create a new space\n\n\n\n\n\nHow to use git to download your space folder?\nHow to open VSCode to add an app.py file?\nHow to use VSCode to push your space folder up to Hugging Face Spaces online?\nThen go back to your space on Hugging Face to see the app running\n\n\n\n\n\nWhere is the model we are going to train and download from Kaggle notebook?\nHow to export your model after training it on Kaggle?\nWhere do you download the model?\nHow to open a folder in terminal? open .\nMake sure the model is downloaded into its own Hugging Face Space folder\n\n\n\n\n\nHow to load the downloaded model to make predictions?\nHow to make predictions with the loaded model?\nHow to export selected cells of a Jupyter notebook into a Python file?\nHow to see how long a code runs in a Jupyter cell?\n\n\n\n\n\nHow to prepare your prediction result into a form Gradio prefers? (code)\nHow to build a Gradio interface for your model?\nHow to launch your app with the model locally?\n(Not in video: run the code on Kaggle in cloud)\n\n\n\n\n\nMake sure to create a new space first (e.g., testing)\nHow to turn the notebook into a Python script?\nHow to push the folder up to GitHub and run app in cloud?\n(Not in Video: if stuck, check out Tanishq’s tutorial – shooting)\n\n\n\n\n\nHow many epochs are ideal for fine-tuning?\nHow to save model from Colab?\n\n\n\n\n\nHow to download github/fastai/fastsetup using git?\ngit clone https://github.com/fastai/fastsetup.git\nHow to download and install mamba?\n./setup_conda.sh\n(Not in Video: problem of running ./setup_conda.sh)\nHow to download and install fastai?\nmamba install -c fastchan fastai\nHow to install nbdev?\nmamba install -c fastchan nbdev\nHow to start using Jupyter Notebook?\njupyter notebook --no-browser\n(Not in Video: other problem related to Xcode)"

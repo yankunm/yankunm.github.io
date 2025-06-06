@@ -1,0 +1,38 @@
+project:
+  type: book
+  output-dir: ../docs/notes_output  # ← important
+
+book:
+  title: "Alex Meng's Notes"
+  author: "Alex Meng"
+  date: "6/6/2025"
+  chapters:
+    - index.qmd
+    - part: "COURSES"
+      chapters:
+        - courses/fastai.qmd
+    - part: "PAPERS"
+      chapters: 
+        - papers/photonics.qmd
+    - part: "TEXTBOOKS"
+      chapters:
+        - textbooks/danFleisch.qmd
+        - textbooks/balanis.qmd
+  navbar:
+    left:
+      - text: Back to Home
+        href: https://yankunm.github.io/
+  page-footer: "Copyright 2025, Alex Meng" 
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+  pdf:
+    documentclass: scrreprt
+
+
+

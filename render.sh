@@ -4,7 +4,7 @@
 quarto render .
 
 # Render the notes subdirectory
-quarto render ./notes
+quarto render ./work
 
 # Ensure assets consistency
 cp assets/* ./docs/assets/

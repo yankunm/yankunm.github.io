@@ -1,3 +1,0 @@
-# Preface {.unnumbered}
-
-I believe the best way to learn is to solve problems. Solving a problem one time does not mean you understand it, so I would like to keep a catalog some of problems I solved for future reference. 
