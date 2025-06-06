@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Optical Computing – Alex Meng’s Notes</title>
+<title>EE647 Nanophotonics (KAIST) – Alex Meng’s Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../textbooks/danFleisch.html" rel="next">
-<link href="../courses/fastai.html" rel="prev">
+<link href="../courses/fastai.html" rel="next">
+<link href="../index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -105,7 +105,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../papers/photonics.html">PAPERS</a></li><li class="breadcrumb-item"><a href="../papers/photonics.html">Optical Computing</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../courses/ee647nanophotonics.html">COURSES</a></li><li class="breadcrumb-item"><a href="../courses/ee647nanophotonics.html">EE647 Nanophotonics (KAIST)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -134,7 +134,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../courses/ee647nanophotonics.html" class="sidebar-item-text sidebar-link">
+  <a href="../courses/ee647nanophotonics.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">EE647 Nanophotonics (KAIST)</span></a>
   </div>
 </li>
@@ -157,7 +157,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../papers/photonics.html" class="sidebar-item-text sidebar-link active">
+  <a href="../papers/photonics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Optical Computing</span></a>
   </div>
 </li>
@@ -197,9 +197,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../papers/photonics.html">PAPERS</a></li><li class="breadcrumb-item"><a href="../papers/photonics.html">Optical Computing</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../courses/ee647nanophotonics.html">COURSES</a></li><li class="breadcrumb-item"><a href="../courses/ee647nanophotonics.html">EE647 Nanophotonics (KAIST)</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Optical Computing</h1>
+<h1 class="title">EE647 Nanophotonics (KAIST)</h1>
 </div>
 
 
@@ -216,14 +216,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Wetzstein, G., Ozcan, A., Gigan, S. et al.&nbsp;Inference in artificial intelligence with deep optics and photonics. Nature 588, 39–47 (2020). https://doi.org/10.1038/s41586-020-2973-6</p>
-<p>General Optical computing is not practical yet, but using optics for inference for visual computing applications is practical. This paper is a review on recent work on optical computing for AI.</p>
-<p><strong>Motivation 1:</strong> Edge devices (cameras, cars, robots, headsets, IoT) need leaner (low latency, light, small, low power) computational imaging systems.</p>
-<p>Optical computing systems promise small form factor, massive parallelism, little to no power consumption. <a href="https://nvidianews.nvidia.com/news/nvidia-spectrum-x-co-packaged-optics-networking-switches-ai-factories">Optical interconnects are already widely used in data centers today</a>.</p>
-<p>Linear optical elements can calculate convolution, fourier transforms, random projections, as a byproduct of light-matter interaction. These operations are what’s needed for DNNs.</p>
-<p>“Incorporating all-optical nonlinearities into photonic circuits is one of the key requirements for truly deep photonic networks. Yet, the challenge of efficiently implementing photonic nonlinear activation functions at low optical signal intensities was one of the primary reasons that interest in ONNs waned in the 1990s. Creative approaches from the last decade, such as nonlinear thresholders based on all-optical micro-ring resonators35, saturable absorbers29,36, electro-absorption modulators37, or hybrid electro-optical approaches38, represent possible solutions for overcoming this challenge in the near future.”</p>
-<p><a href="https://doi.org/10.1103/PhysRevX.9.021032">Although programmability has traditionally been more difficult with photonic systems, first steps towards simplifying the process have recently been demonstrated</a></p>
-<p>“One direction that seems particularly well suited for optical and photonic processing is <strong>optical inference with incoherent light to rapidly process scene information under ambient lighting conditions</strong>. Such an approach presents many exciting opportunities for autonomous vehicles, robotics and computer vision, which we discuss next.”</p>
+<p>Youtube Playlist Self-Study: <a href="https://youtu.be/Fc8E79NvqvM?si=GojK7m_WN4UGQGXR">link</a></p>
+<p>Instructor: <a href="https://janglab.org/team.html">Min Seok Jang</a></p>
+<p>Begin Date: 6/6/2025</p>
+<p>Expected End Date: 8/1/2025</p>
 
 
 
@@ -629,13 +625,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../courses/fastai.html" class="pagination-link" aria-label="Practical Deep Learning (fast.ai)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Practical Deep Learning (fast.ai)</span>
+      <a href="../index.html" class="pagination-link" aria-label="Preface">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../textbooks/danFleisch.html" class="pagination-link" aria-label="Maxwell's Equations - Dan Fleisch">
-        <span class="nav-page-text">Maxwell’s Equations - Dan Fleisch</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../courses/fastai.html" class="pagination-link" aria-label="Practical Deep Learning (fast.ai)">
+        <span class="nav-page-text">Practical Deep Learning (fast.ai)</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

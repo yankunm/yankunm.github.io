@@ -1,0 +1,9 @@
+# EE647 Nanophotonics (KAIST) {.unnumbered}
+
+Youtube Playlist Self-Study: [link](https://youtu.be/Fc8E79NvqvM?si=GojK7m_WN4UGQGXR)
+
+Instructor: [Min Seok Jang](https://janglab.org/team.html)
+
+Begin Date: 6/6/2025
+
+Expected End Date: 8/1/2025

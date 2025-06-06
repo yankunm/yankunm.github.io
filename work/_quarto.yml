@@ -10,6 +10,7 @@ book:
     - index.qmd
     - part: "COURSES"
       chapters:
+        - courses/ee647nanophotonics.qmd
         - courses/fastai.qmd
     - part: "PAPERS"
       chapters: 

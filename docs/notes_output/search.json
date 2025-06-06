@@ -10,6 +10,17 @@
     ]
   },
   {
+    "objectID": "courses/ee647nanophotonics.html",
+    "href": "courses/ee647nanophotonics.html",
+    "title": "EE647 Nanophotonics (KAIST)",
+    "section": "",
+    "text": "Youtube Playlist Self-Study: link\nInstructor: Min Seok Jang\nBegin Date: 6/6/2025\nExpected End Date: 8/1/2025",
+    "crumbs": [
+      "COURSES",
+      "EE647 Nanophotonics (KAIST)"
+    ]
+  },
+  {
     "objectID": "courses/fastai.html",
     "href": "courses/fastai.html",
     "title": "Practical Deep Learning (fast.ai)",
@@ -67,67 +78,67 @@
   {
     "objectID": "textbooks/balanis.html",
     "href": "textbooks/balanis.html",
-    "title": "Advanced Engineering Electromagnetics",
+    "title": "Advanced Engineering Electromagnetics - C. Balanis",
     "section": "",
     "text": "1 Time-Varying and Time-Harmonic Electromagnetic Fields\nLink: Internet Archive",
     "crumbs": [
       "TEXTBOOKS",
-      "Advanced Engineering Electromagnetics"
+      "Advanced Engineering Electromagnetics - C. Balanis"
     ]
   },
   {
     "objectID": "textbooks/balanis.html#time-varying-and-time-harmonic-electromagnetic-fields",
     "href": "textbooks/balanis.html#time-varying-and-time-harmonic-electromagnetic-fields",
-    "title": "Advanced Engineering Electromagnetics",
+    "title": "Advanced Engineering Electromagnetics - C. Balanis",
     "section": "",
     "text": "Maxwell’s Equations\n\n\nExpand\n\n\nWho is James Clerk Maxwell?\n\n\n\nAnswer\n\n\n\n\nJames Clerk Maxwell\n\n\nA Scottish physicist and mathematician that lived from 1831 to 1879.\nThe Father of Modern Physics\n\nSee my notes on Dan Fleisch’s A student’s guide to Maxwell’s Equations for detailed explanation of the differential and integral forms of the four maxwell’s equations.\n\n\n\nConstitutive Parameters and Relations\n\n\nExpand\n\n\n\n\n\nCircuit-Field Relations\n\n\nExpand\n\n\n\nWhat is Circuit Theory?\n\n\n\nAnswer\n\nA special case of electromagnetic theory, when the physical dimensions of the circuit are small compared to the wavelength.\n\n\nKVL\n\n\nKCL\n\n\nElement Laws",
     "crumbs": [
       "TEXTBOOKS",
-      "Advanced Engineering Electromagnetics"
+      "Advanced Engineering Electromagnetics - C. Balanis"
     ]
   },
   {
     "objectID": "textbooks/balanis.html#electrical-properties-of-matter",
     "href": "textbooks/balanis.html#electrical-properties-of-matter",
-    "title": "Advanced Engineering Electromagnetics",
+    "title": "Advanced Engineering Electromagnetics - C. Balanis",
     "section": "2 Electrical Properties of Matter",
     "text": "2 Electrical Properties of Matter\n\nIntroduction\n\n\nExpand\n\n\n\n\n\nDielectrics, Polarization, and Permittivity\n\n\nExpand\n\n\n\n\n\nMagnetics, Magnetization, and Permeability\n\n\nExpand\n\n\n\n\n\nCurrent, Conductors, and Conductivity\n\n\nExpand\n\n\nCurrent\n\n\n\nConductors\n\n\n\nConductivity",
     "crumbs": [
       "TEXTBOOKS",
-      "Advanced Engineering Electromagnetics"
+      "Advanced Engineering Electromagnetics - C. Balanis"
     ]
   },
   {
     "objectID": "textbooks/balanis.html#wave-equation-and-its-solutions",
     "href": "textbooks/balanis.html#wave-equation-and-its-solutions",
-    "title": "Advanced Engineering Electromagnetics",
+    "title": "Advanced Engineering Electromagnetics - C. Balanis",
     "section": "3 Wave Equation and Its Solutions",
     "text": "3 Wave Equation and Its Solutions\n\nIntroduction\n\n\nExpand\n\n\n\n\n\nTime-Varying Electromagnetic Fields\n\n\nExpand\n\n\n\n\n\nTime-Harmonic Electromagnetic Fields\n\n\nExpand\n\n\n\n\n\nSolution to the Wave Equation\n\n\nExpand\n\n\nRectangular Coordinate System\n\n\n\nCylindrical Coordinate System\n\n\n\nSpherical Coordinate System",
     "crumbs": [
       "TEXTBOOKS",
-      "Advanced Engineering Electromagnetics"
+      "Advanced Engineering Electromagnetics - C. Balanis"
     ]
   },
   {
     "objectID": "textbooks/balanis.html#wave-propagation-and-polarization",
     "href": "textbooks/balanis.html#wave-propagation-and-polarization",
-    "title": "Advanced Engineering Electromagnetics",
+    "title": "Advanced Engineering Electromagnetics - C. Balanis",
     "section": "4 Wave Propagation and Polarization",
     "text": "4 Wave Propagation and Polarization\n\nIntroduction\n\n\nExpand\n\n\n\n\n\nTransverse Electromagnetic Modes\n\n\nExpand\n\n\n\n\n\nTransverse Electromagnetic Modes in Lossy Media\n\n\nExpand\n\n\n\n\n\nPolarization\n\n\nExpand\n\n\n\n\n\nExercises\n\n\nExpand",
     "crumbs": [
       "TEXTBOOKS",
-      "Advanced Engineering Electromagnetics"
+      "Advanced Engineering Electromagnetics - C. Balanis"
     ]
   },
   {
     "objectID": "textbooks/balanis.html#reflection-and-transmission",
     "href": "textbooks/balanis.html#reflection-and-transmission",
-    "title": "Advanced Engineering Electromagnetics",
+    "title": "Advanced Engineering Electromagnetics - C. Balanis",
     "section": "5 Reflection and Transmission",
     "text": "5 Reflection and Transmission\n\nIntroduction\n\n\nExpand\n\n\n\n\n\nNormal Incidence - Lossless Media\n\n\nExpand\n\n\n\n\n\nOblique Incidence - Lossless Media\n\n\nExpand\n\n\nPerpendicular Polarization\n\n\n\nParallel Polarization\n\n\n\nTotal Transmission - Brewster Angle\n\n\n\nTotal Reflection - Critical Angle",
     "crumbs": [
       "TEXTBOOKS",
-      "Advanced Engineering Electromagnetics"
+      "Advanced Engineering Electromagnetics - C. Balanis"
     ]
   }
 ]
