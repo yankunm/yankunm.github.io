@@ -8,6 +8,10 @@ Instructor: Daniel Bourke
 
 [Wikipedia: Deep Learning](https://en.wikipedia.org/wiki/Deep_learning)
 
+Here we master the basics of Deep Learning through the **PyTorch Workflow**:
+
+![](pics/Pytorch_Workflow.png)
+
 ## Introduction
 
 AI includes machine learning, which includes deep learning. All three aim to approximate the rules of a system from examples.
@@ -62,19 +66,6 @@ If you can encode something into numbers, you can build a deep learning model to
 
 Computer Vision, NLP, Recommendation, and literally anything complex.
 
-### PyTorch Workflow
-
-```{mermaid}
-flowchart LR
-  A[Get Data Ready] -->B[Build or pick a pretrained model]
-  B --> E[Fit the model to the data and make a prediction]
-  E --> H[Evaluate the model]
-  H --> I[Improve through experimentation]
-  I --> J[Save and reload trained model]
-  B --> F[Pick a loss function & optimizer]
-  F --> G[Build a training loop]
-  G --> B
-```
 
 
 

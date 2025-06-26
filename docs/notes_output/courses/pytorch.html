@@ -179,7 +179,6 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#what-are-neural-networks" id="toc-what-are-neural-networks" class="nav-link" data-scroll-target="#what-are-neural-networks">What are “Neural Networks”?</a></li>
   <li><a href="#learning-paradigms" id="toc-learning-paradigms" class="nav-link" data-scroll-target="#learning-paradigms">Learning Paradigms</a></li>
-  <li><a href="#pytorch-workflow" id="toc-pytorch-workflow" class="nav-link" data-scroll-target="#pytorch-workflow">PyTorch Workflow</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -210,6 +209,8 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="https://youtu.be/V_xro1bcAuA?si=QGvYQNP-fEinPys7">Youtube</a></p>
 <p><a href="https://docs.pytorch.org/docs/stable/index.html">PyTorch Docs</a></p>
 <p><a href="https://en.wikipedia.org/wiki/Deep_learning">Wikipedia: Deep Learning</a></p>
+<p>Here we master the basics of Deep Learning through the <strong>PyTorch Workflow</strong>:</p>
+<p><img src="pics/Pytorch_Workflow.png" class="img-fluid"></p>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>AI includes machine learning, which includes deep learning. All three aim to approximate the rules of a system from examples.</p>
@@ -295,32 +296,9 @@ ul.task-list li input[type="checkbox"] {
 <h4 class="anchored" data-anchor-id="what-are-deep-learning-used-for">What are deep learning used for?</h4>
 <p>If you can encode something into numbers, you can build a deep learning model to find pattern in those numbers.</p>
 <p>Computer Vision, NLP, Recommendation, and literally anything complex.</p>
-</section>
-</section>
-<section id="pytorch-workflow" class="level3">
-<h3 class="anchored" data-anchor-id="pytorch-workflow">PyTorch Workflow</h3>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-  A[Get Data Ready] --&gt;B[Build or pick a pretrained model]
-  B --&gt; E[Fit the model to the data and make a prediction]
-  E --&gt; H[Evaluate the model]
-  H --&gt; I[Improve through experimentation]
-  I --&gt; J[Save and reload trained model]
-  B --&gt; F[Pick a loss function &amp; optimizer]
-  F --&gt; G[Build a training loop]
-  G --&gt; B
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
 
 
+</section>
 </section>
 </section>
 
