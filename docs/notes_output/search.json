@@ -4,53 +4,9 @@
     "href": "index.html",
     "title": "Alex Meng’s Notes",
     "section": "",
-    "text": "Preface\nThis is where I will store my notes for the courses I am taking, the papers I am reading, and the textbooks I am studying, starting May 2025.",
+    "text": "Preface\nIf you are reading this, you may be interesed in seeing what is “Alex’s Notes”.\nThese notes are just things that I am documenting, that I wish could become a useful resource for my future students, either when I TA or become a professor.\nHere’s how to learn anything:\n\nWrite it out! (Document, Code along)\nEXPERIMENT and explore\nVisualize things you don’t understand\nAsk Questions\nAnswer Exercise and Problems (stretch your knowledge)\nShare with like-minded individuals",
     "crumbs": [
       "Preface"
-    ]
-  },
-  {
-    "objectID": "courses/ee647nanophotonics.html",
-    "href": "courses/ee647nanophotonics.html",
-    "title": "EE647 Nanophotonics (KAIST)",
-    "section": "",
-    "text": "Youtube Playlist Self-Study: link\nInstructor: Min Seok Jang\nBegin Date: 6/6/2025\nExpected End Date: 8/1/2025",
-    "crumbs": [
-      "COURSES",
-      "EE647 Nanophotonics (KAIST)"
-    ]
-  },
-  {
-    "objectID": "courses/fastai.html",
-    "href": "courses/fastai.html",
-    "title": "Practical Deep Learning (fast.ai)",
-    "section": "",
-    "text": "Lesson 2\nSource: https://course.fast.ai/\nDaniel 深度碎片 on forums.fast.ai has been kind enough to create summaries of each lesson in the form of a list of questions. These summaries can be used to preview a lesson or refresh your memory afterward.",
-    "crumbs": [
-      "COURSES",
-      "Practical Deep Learning (fast.ai)"
-    ]
-  },
-  {
-    "objectID": "courses/fastai.html#lesson-2",
-    "href": "courses/fastai.html#lesson-2",
-    "title": "Practical Deep Learning (fast.ai)",
-    "section": "",
-    "text": "New exciting content to come\n\nCan there be substantial new content given we have already 4 versions and a book?\n\n\n\nWays of reading the book\n\nHow many channels are available to read the book? (physical, GitHub, Colab, and others)\n\n\n\nExtra sweets from the book\n\nAre there interesting materials/stories covered by the book but not the lecture?\nWhere can you find questionnaires and quizzes of the lectures?\n\n\n\naiquizzes.com\n\nWhere can you get more quizzes of fastai and memorize them forever?\n\n\n\nIntroducing the forum\n\nHow to make the most out of fastai forum?\n\n\n\nStudents’ works after week 1\n\n\nA Wow moment\n\nWill we learn to put a model in production today?\n\n\n\nFind a problem and some data\n\nWhat is the first step before building a model?\n\n\n\nAccess to the magics of Jupyter notebook\n\nDo you want to navigate the notebook with a TOC?\nHow about collapsible sections?\nHow about moving between start and end of sections fast?\nHow to install Jupyter extensions?\n\n\n\nDownload and clean your data\n\nWhy use ggd rather than Bing for searching and downloading images?\nHow to clean/remove broken images?\n\n\n\nGet to docs quickly\n\nHow to get basic info, source code, full docs on fastai code quickly?\n\n\n\nResize your data before training\n\nHow can you specify the resize options to your data?\nWhy should we always use RandomResizedCrop and aug_transforms together?\nHow do RandomResizedCrop and aug_transforms differ?\n\n\n\nData images instantly transformed, not copied\n\nWhen resized, are we making many copies of the image?\n\n\n\nMore epochs for fancy resize\n\nHow many epochs do we usually go when using RandomResizedCrop and aug_transforms?\n\n\n\nConfusion matrix: where do models get it wrong the most?\n\nHow to create a confusion matrix on your model performance?\nWhen to use a confusion matrix? (category-level practice)\nHow to interpret a confusion matrix?\nWhat is the most obvious thing it tells us?\nHow hard is it to tell grizzly and black bears apart?\n\n\n\nCheck out images with worse predictions\n\nDoes plot_top_losses give us the images with the highest losses?\nAre those images ones the model made confidently wrong predictions? (practice)\nDo those images include ones that the model made correct predictions unconfidently?\nWhat does looking at those high loss images help with? (expert examination or simple data cleaning)\n\n\n\nWhat if you want to clean the data a little\n\nHow to display and make cleaning choices on each of those top loss images in each data folder? (practice)\nWithout expert knowledge on telling apart grizzly and black bears, we can at least clean images which mess up teddy bears.\n\n\n\nMyth breaker: train model and then clean data\n\nHow can training the model help us see problems in the dataset? (practice)\nWon’t we have more ideas to improve the dataset once we spot the problems?\n\n\n\nTurn off GPU when not using\n\nHow to use GPU RAM locally without much trouble?\n\n\n\nWatch first, then watch and code along\n\nWhat is the preferred way of lecture watching and coding by the majority of students?\n\n\n\nA Gradio + Hugging Face tutorial\n\n\nGit and GitHub Desktop\n\nIs GitHub Desktop a less cool but easier and more robust way to version control than git?\n\n\n\nTerminal for Windows\n\nHow to set up a terminal for Windows?\nWhy does Jeremy prefer Windows over Mac?\n\n\n\nGet started with Hugging Face Spaces\n\nGo to huggingface.co/spaces and create a new space\n\n\n\nGet the default app up and running\n\nHow to use git to download your space folder?\nHow to open VSCode to add an app.py file?\nHow to use VSCode to push your space folder up to Hugging Face Spaces online?\nThen go back to your space on Hugging Face to see the app running\n\n\n\nTrain and download your model\n\nWhere is the model we are going to train and download from Kaggle notebook?\nHow to export your model after training it on Kaggle?\nWhere do you download the model?\nHow to open a folder in terminal? open .\nMake sure the model is downloaded into its own Hugging Face Space folder\n\n\n\nPredict with loaded model\n\nHow to load the downloaded model to make predictions?\nHow to make predictions with the loaded model?\nHow to export selected cells of a Jupyter notebook into a Python file?\nHow to see how long a code runs in a Jupyter cell?\n\n\n\nTurn your model into a Gradio app locally\n\nHow to prepare your prediction result into a form Gradio prefers? (code)\nHow to build a Gradio interface for your model?\nHow to launch your app with the model locally?\n(Not in video: run the code on Kaggle in cloud)\n\n\n\nPush this app onto Hugging Face Spaces\n\nMake sure to create a new space first (e.g., testing)\nHow to turn the notebook into a Python script?\nHow to push the folder up to GitHub and run app in cloud?\n(Not in Video: if stuck, check out Tanishq’s tutorial – shooting)\n\n\n\nAdditional questions\n\nHow many epochs are ideal for fine-tuning?\nHow to save model from Colab?\n\n\n\nHow to install fastai properly\n\nHow to download github/fastai/fastsetup using git?\ngit clone https://github.com/fastai/fastsetup.git\nHow to download and install mamba?\n./setup_conda.sh\n(Not in Video: problem of running ./setup_conda.sh)\nHow to download and install fastai?\nmamba install -c fastchan fastai\nHow to install nbdev?\nmamba install -c fastchan nbdev\nHow to start using Jupyter Notebook?\njupyter notebook --no-browser\n(Not in Video: other problem related to Xcode)\n\n\n\nThe workflow summary\n\n\nHuggingFace API + Gradio + JavaScript = real app\n\n\nHow easy does HuggingFace API work?\n\n\nHow easy to get started with JS + HF API + Gradio?\n\n\nApp example of having multiple inputs and outputs\n\n\nApp example of combining two models\n\n\nHow to turn your model into your own web app with fastpages\n\n\nHow to fork a public fastpages for your own use",
-    "crumbs": [
-      "COURSES",
-      "Practical Deep Learning (fast.ai)"
-    ]
-  },
-  {
-    "objectID": "papers/photonics.html",
-    "href": "papers/photonics.html",
-    "title": "Optical Computing",
-    "section": "",
-    "text": "Wetzstein, G., Ozcan, A., Gigan, S. et al. Inference in artificial intelligence with deep optics and photonics. Nature 588, 39–47 (2020). https://doi.org/10.1038/s41586-020-2973-6\nGeneral Optical computing is not practical yet, but using optics for inference for visual computing applications is practical. This paper is a review on recent work on optical computing for AI.\nMotivation 1: Edge devices (cameras, cars, robots, headsets, IoT) need leaner (low latency, light, small, low power) computational imaging systems.\nOptical computing systems promise small form factor, massive parallelism, little to no power consumption. Optical interconnects are already widely used in data centers today.\nLinear optical elements can calculate convolution, fourier transforms, random projections, as a byproduct of light-matter interaction. These operations are what’s needed for DNNs.\n“Incorporating all-optical nonlinearities into photonic circuits is one of the key requirements for truly deep photonic networks. Yet, the challenge of efficiently implementing photonic nonlinear activation functions at low optical signal intensities was one of the primary reasons that interest in ONNs waned in the 1990s. Creative approaches from the last decade, such as nonlinear thresholders based on all-optical micro-ring resonators35, saturable absorbers29,36, electro-absorption modulators37, or hybrid electro-optical approaches38, represent possible solutions for overcoming this challenge in the near future.”\nAlthough programmability has traditionally been more difficult with photonic systems, first steps towards simplifying the process have recently been demonstrated\n“One direction that seems particularly well suited for optical and photonic processing is optical inference with incoherent light to rapidly process scene information under ambient lighting conditions. Such an approach presents many exciting opportunities for autonomous vehicles, robotics and computer vision, which we discuss next.”",
-    "crumbs": [
-      "PAPERS",
-      "Optical Computing"
     ]
   },
   {
@@ -60,7 +16,7 @@
     "section": "",
     "text": "1 Gauss’s law for electric fields\nWebsite: Official Website",
     "crumbs": [
-      "TEXTBOOKS",
+      "ELECTROMAGNETICS",
       "Maxwell's Equations - Dan Fleisch"
     ]
   },
@@ -71,7 +27,7 @@
     "section": "",
     "text": "Introduction\n\n\nExpand\n\n\nWhat are the two kinds of Electric Fields in Maxwell’s Equation?\n\n\n\nAnswer\n\n\nElectrostatic Fields (from electric charge)\nInduced Electric Field (from changing magnetic field)\n\n\n\nWhat type of fields does Gauss’s law deal with?\n\n\n\nAnswer\n\nElectrostatic Fields (from electric charge)\n\n\n\n\nIntegral Form of Gauss’s Law\n\n\nExpand\n\nElectric charge produces an electric field. The flux of that field passing through any closed surface is proportional to the total charge contained within that surface.\n\\[\\oint_S \\vec{E} \\cdot \\hat{n} da = \\frac{q_{enc}}{\\epsilon_0}\\]\n\n\n\n\n\n\nExpand To Learn About Left Hand Side\n\n\n\n\n\n\n\nWhat does the left hand side represent?\n\n\n\nAnswer\n\nThe number of electric field lines (AKA electric flux) passing through a closed surface \\(S\\).\n\n\nWhat is Electric field?\n\n\n\nAnswer\n\nThe electrical force exerted on one coulomb of charge at that point in space is the electric field at that location.\n\\[\\vec{E} = \\frac{\\vec{F}_e}{q_0}\\]\n\\(\\vec{E}\\) has units of \\(\\frac{N}{C} = \\frac{V}{m}\\)\nSpacing of electric field lines tells you the strength of it.\n\nElectric field lines go from positive to negative\nElectric field lines vector sums, so they never cross\n\n\n\nWhy do physicists and engineers always talk about small test charges?\n\n\n\nAnswer\n\nBecause the job of this charge is to test the electric field at a location, not to add another electric field into the mix (although you can’t stop it from doing so). Making the test charge infinitesimally small minimizes the effect of the test charge’s own field.\n\n\nWhat is the dot product? Why are we taking the dot product between \\(\\vec{E}\\) and \\(\\hat{n}\\) in Gauss’s Law?\n\n\n\nAnswer\n\nConsider vectors \\(\\vec{A}\\) and \\(\\vec{B}\\) in space.\nWhat is the projection of \\(\\vec{A}\\) onto \\(\\vec{B}\\)? From trig, it’s \\(|A| \\cos \\theta\\).\nNow the dot product is that projection, multiplied by the magnitude of \\(\\vec{B}\\).\n\\[\\vec{A} \\cdot \\vec{B} = |A| |B| \\cos \\theta\\]\n\n\nWhat is \\(\\hat{n}\\)?\n\n\n\nAnswer\n\nIt is the unit normal vector, which has a length of one, and points in the direction perpendicular to the surface.\nNote that since \\(da\\) is the tiny amount of area we are considering\n\\[\\hat{n} da = d \\vec{a}\\]\n\n\nWhat is the difference between closed surface and open surface?\n\n\n\nAnswer\n\n\nOpen Surface - any surface for which it is possible to get from one side to the other without going through the surface\nClosed Surface - a surface that divides space into an “inside” and “outside”. Unit Normal Vector \\(\\hat{n}\\) always points outwards, away from the volume enclosed by the surface.\n\n\n\nWhat does \\(\\vec{E} \\cdot \\hat{n}\\) represent?\n\n\n\nAnswer\n\nThe component of the electric field vector that is perpendicular to the surface.\n\\[\\vec{E} \\cdot \\hat{n} = |\\vec{E}| \\cos \\theta\\]\n\n\nHow do you find the mass of a surface with varying density function \\(\\sigma(x, y)\\)?\n\n\n\nAnswer\n\nSince mass is density times volume, we can write:\n\\[Mass = \\sigma \\cdot Area\\]\n\\[Mass_S = \\Sigma_{i = 1}^{N} \\sigma_i \\cdot Area_i\\]\nIf we let Areas to become infinitesimally small \\(dA\\), we get \\[Mass = \\int_{S} \\sigma dA\\]\nThis is a surface intergal.\n\n\nWhat does \\(\\int_S \\vec{A} \\cdot \\hat{n} da\\) represent?\n\n\n\nAnswer\n\nIt represents the flux of a vector field.\nWhat’s a vector field?\nIt is magnitude and direction quantities distributed in space.\n\nScalar Field - something like temperature distribution in a room, where at each point theres a number\nVector Field - something like flow of fluid, there at every point it has a speed and direction\n\n\n\nWhat’s flux \\(\\Phi\\)?\n\n\n\nAnswer\n\nFlux \\(\\Phi\\) of a field over a surface is the amount of flow through that surface.\n\\[\\Phi = \\vec{A} \\cdot \\hat{n} \\times (Surface Area)\\]\n\n\n\n\n\n\n\n\n\n\n\n\nExpand To Learn About Right Hand Side\n\n\n\n\n\n\nWhat is the right hand side in words?\n\n\n\nAnswer\n\nThe total amount of enclosed charge normalized by the permittivity of free space.\n\n\nWhat is \\(\\epsilon_0\\) and why is it there?\n\n\n\nAnswer\n\nIt is called the permitivity of free space or “vacuum permitivity”.\n\\[\\epsilon_0 = 8.854 \\times 10^{-12} \\frac{F}{m}\\]\nWhen we say the permitivity of a material, when are referring to its reponse to an electric field. It is also the key parameter in determining the speed at which an electromagnetic wave propagates through that medium.\nHigh permitivity means it provides higher capacitance.\nIn Gauss’s Law, \\(\\epsilon_0\\) acts as a proportionality constant that relates electric flux to enclosed charge.\n\n\n\n\n\n\n\n\n\n\nExercises\n\n\n\n\n\n\nFive point charges are enclosed in a cylindrical surface \\(S\\). If the values of the charges are \\(q_1 = +3 nC\\), \\(q_2 = -2 nC\\), \\(q_3 = +2 nC\\), \\(q_4 = +4 nC\\), and \\(q_5 = -1 nC\\), find the total flux through \\(S\\).\n\n\n\nAnswer\n\n\\[\\sum_{i=1}^{5} q_i = 3 - 2 + 2 + 4 - 1 = 6 nC = 6 \\times 10^{-9} C\\]\n\\[\\Phi_E = \\frac{q_enc}{\\epsilon_0} = \\frac{6 \\times 10^{-9}C}{8.854 \\times 10^{-12} \\frac{C}{V \\cdot m}} = \\boxed{678 \\hspace{1mm} Vm}\\]\n\n\n\n\n\n\n\n\nDifferential Form of Gauss’s Law\n\n\n\nExpand\n\nThe electric field produced by electric diverges from positive charge and converges upon negative charge.\n\\[\\vec{\\nabla} \\cdot \\vec{E} = \\frac{\\rho}{\\epsilon_0}\\]\n\n\n\n\n\n\nExpand To Learn About Left Hand Side\n\n\n\n\n\n\n\nWhat does the left hand side represent?\n\n\n\nAnswer\n\n\nThe tendency of electric field to flow away from a point in space - AKA the divergence.\n\n\nWhat is the difference between differential and integral form of Gauss’s Law?\n\n\n\nAnswer\n\n\nDifferential deals with individual points in space, whereareas integral deals with a closed surface.\n\n\nWhat is \\(\\vec{\\nabla}\\)?\n\n\n\nAnswer\n\n\nIt is called “del” or “nabla”. It tells you to take the derivative of what ever quantity comes after it.\n\\[\\vec{\\nabla} =\\hat{i} \\frac{\\partial}{\\partial x} + \\hat{j} \\frac{\\partial}{\\partial y} + \\hat{k} \\frac{\\partial}{\\partial z}\n\\]\nIt is an mathematical operator, which just means that it needs something to act on and cannot just appear by itself.\n\\(\\vec{\\nabla}\\) is gradient, \\(\\vec{\\nabla} \\cdot\\) is divergence, and \\(\\vec{\\nabla} \\times\\) is curl.\n\n\nWhat is \\(\\vec{\\nabla} \\cdot\\) specifically?\n\n\n\nExpand\n\nOliver Heaviside suggested the word “divergence” to describe the rate at which electric field flow outwards from a positive charge.\n\nsource - diverge from that point (positive charge for electric field)\nsink - converge to that point (negative charge for magnetic field)\n\n\n\n\n\n\n\n\n\n\n\n\nExpand To Learn About Right Hand Side\n\n\n\n\n\n\nWhat is the right hand side in words?\n\n\n\nAnswer\n\n\n\n\n\n\n\n\n\n\n\n\nExercises\n\n\n\n\n\n\nFive point charges are enclosed in a cylindrical surface \\(S\\). If the values of the charges are \\(q_1 = +3 nC\\), \\(q_2 = -2 nC\\), \\(q_3 = +2 nC\\), \\(q_4 = +4 nC\\), and \\(q_5 = -1 nC\\), find the total flux through \\(S\\).\n\n\n\nAnswer\n\n\\[\\sum_{i=1}^{5} q_i = 3 - 2 + 2 + 4 - 1 = 6 nC = 6 \\times 10^{-9} C\\]\n\\[\\Phi_E = \\frac{q_enc}{\\epsilon_0} = \\frac{6 \\times 10^{-9}C}{8.854 \\times 10^{-12} \\frac{C}{V \\cdot m}} = \\boxed{678 \\hspace{1mm} Vm}\\]",
     "crumbs": [
-      "TEXTBOOKS",
+      "ELECTROMAGNETICS",
       "Maxwell's Equations - Dan Fleisch"
     ]
   },
@@ -82,7 +38,7 @@
     "section": "",
     "text": "1 Time-Varying and Time-Harmonic Electromagnetic Fields\nLink: Internet Archive",
     "crumbs": [
-      "TEXTBOOKS",
+      "ELECTROMAGNETICS",
       "Advanced Engineering Electromagnetics - C. Balanis"
     ]
   },
@@ -93,7 +49,7 @@
     "section": "",
     "text": "Maxwell’s Equations\n\n\nExpand\n\n\nWho is James Clerk Maxwell?\n\n\n\nAnswer\n\n\n\n\nJames Clerk Maxwell\n\n\nA Scottish physicist and mathematician that lived from 1831 to 1879.\nThe Father of Modern Physics\n\nSee my notes on Dan Fleisch’s A student’s guide to Maxwell’s Equations for detailed explanation of the differential and integral forms of the four maxwell’s equations.\n\n\n\nConstitutive Parameters and Relations\n\n\nExpand\n\n\n\n\n\nCircuit-Field Relations\n\n\nExpand\n\n\n\nWhat is Circuit Theory?\n\n\n\nAnswer\n\nA special case of electromagnetic theory, when the physical dimensions of the circuit are small compared to the wavelength.\n\n\nKVL\n\n\nKCL\n\n\nElement Laws",
     "crumbs": [
-      "TEXTBOOKS",
+      "ELECTROMAGNETICS",
       "Advanced Engineering Electromagnetics - C. Balanis"
     ]
   },
@@ -104,7 +60,7 @@
     "section": "2 Electrical Properties of Matter",
     "text": "2 Electrical Properties of Matter\n\nIntroduction\n\n\nExpand\n\n\n\n\n\nDielectrics, Polarization, and Permittivity\n\n\nExpand\n\n\n\n\n\nMagnetics, Magnetization, and Permeability\n\n\nExpand\n\n\n\n\n\nCurrent, Conductors, and Conductivity\n\n\nExpand\n\n\nCurrent\n\n\n\nConductors\n\n\n\nConductivity",
     "crumbs": [
-      "TEXTBOOKS",
+      "ELECTROMAGNETICS",
       "Advanced Engineering Electromagnetics - C. Balanis"
     ]
   },
@@ -115,7 +71,7 @@
     "section": "3 Wave Equation and Its Solutions",
     "text": "3 Wave Equation and Its Solutions\n\nIntroduction\n\n\nExpand\n\n\n\n\n\nTime-Varying Electromagnetic Fields\n\n\nExpand\n\n\n\n\n\nTime-Harmonic Electromagnetic Fields\n\n\nExpand\n\n\n\n\n\nSolution to the Wave Equation\n\n\nExpand\n\n\nRectangular Coordinate System\n\n\n\nCylindrical Coordinate System\n\n\n\nSpherical Coordinate System",
     "crumbs": [
-      "TEXTBOOKS",
+      "ELECTROMAGNETICS",
       "Advanced Engineering Electromagnetics - C. Balanis"
     ]
   },
@@ -126,7 +82,7 @@
     "section": "4 Wave Propagation and Polarization",
     "text": "4 Wave Propagation and Polarization\n\nIntroduction\n\n\nExpand\n\n\n\n\n\nTransverse Electromagnetic Modes\n\n\nExpand\n\n\n\n\n\nTransverse Electromagnetic Modes in Lossy Media\n\n\nExpand\n\n\n\n\n\nPolarization\n\n\nExpand\n\n\n\n\n\nExercises\n\n\nExpand",
     "crumbs": [
-      "TEXTBOOKS",
+      "ELECTROMAGNETICS",
       "Advanced Engineering Electromagnetics - C. Balanis"
     ]
   },
@@ -137,8 +93,30 @@
     "section": "5 Reflection and Transmission",
     "text": "5 Reflection and Transmission\n\nIntroduction\n\n\nExpand\n\n\n\n\n\nNormal Incidence - Lossless Media\n\n\nExpand\n\n\n\n\n\nOblique Incidence - Lossless Media\n\n\nExpand\n\n\nPerpendicular Polarization\n\n\n\nParallel Polarization\n\n\n\nTotal Transmission - Brewster Angle\n\n\n\nTotal Reflection - Critical Angle",
     "crumbs": [
-      "TEXTBOOKS",
+      "ELECTROMAGNETICS",
       "Advanced Engineering Electromagnetics - C. Balanis"
+    ]
+  },
+  {
+    "objectID": "courses/pytorch.html",
+    "href": "courses/pytorch.html",
+    "title": "Deep Learning with PyTorch",
+    "section": "",
+    "text": "Introduction\nInstructor: Daniel Bourke\nYoutube\nPyTorch Docs\nWikipedia: Deep Learning\nAI includes machine learning, which includes deep learning. All three aim to approximate the rules of a system from examples.\nBefore using machine learning, ask: Can you write down all the rules to solve this problem? If yes, use a rule-based system—it’s simpler, faster, and more interpretable.\nBut when rules are too complex or unclear, machine learning or deep learning helps.\nDeep Learning is good for:\nDeep Learning is not good for:\nMachine Learning is better than Deep Learning at structured Data, neural networks typically work best with unstructured data.",
+    "crumbs": [
+      "MACHINE LEARNING",
+      "Deep Learning with PyTorch"
+    ]
+  },
+  {
+    "objectID": "courses/pytorch.html#introduction",
+    "href": "courses/pytorch.html#introduction",
+    "title": "Deep Learning with PyTorch",
+    "section": "",
+    "text": "Problems with long lists of rules\nContinually changing environments\nDiscovering insights within large collections of data\n\n\n\nWhen you need explainability\nWhen the traditional approach is a better option\nWhen errors are unacceptable\n\n\n\nWhat are “Neural Networks”?\n\n\n\n\n\nflowchart LR\n  A[Unstructured Data / Inputs] --&gt;B[Numbers]\n  B --&gt; C(Neural Network)\n  C --&gt; D[Weight Matrix]\n  D --&gt; E[Outputs]\n\n\n\n\n\n\n\nAnatomy of Neural Networks\n\n\n\n\n\nflowchart LR\n    A(Input Layer) --&gt; B[Hidden Layers]\n    B --&gt; C(Output Layers)\n\n\n\n\n\n\nEach layer is a combination of functions, linear or non-linear.\n\n\n\nLearning Paradigms\n\n\n\n\n\n\n\n\n\nSupervised\nUnsupervised & Self-supervised\nTransfer\nReinforcement\n\n\n\n\nLot of Data that are labeled\nJust Data\nBuilding on top of already learned model\nAction and Reward\n\n\n\n\nWhat are deep learning used for?\nIf you can encode something into numbers, you can build a deep learning model to find pattern in those numbers.\nComputer Vision, NLP, Recommendation, and literally anything complex.\n\n\n\nPyTorch Workflow\n\n\n\n\n\nflowchart LR\n  A[Get Data Ready] --&gt;B[Build or pick a pretrained model]\n  B --&gt; E[Fit the model to the data and make a prediction]\n  E --&gt; H[Evaluate the model]\n  H --&gt; I[Improve through experimentation]\n  I --&gt; J[Save and reload trained model]\n  B --&gt; F[Pick a loss function & optimizer]\n  F --&gt; G[Build a training loop]\n  G --&gt; B",
+    "crumbs": [
+      "MACHINE LEARNING",
+      "Deep Learning with PyTorch"
     ]
   }
 ]

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Practical Deep Learning (fast.ai) – Alex Meng’s Notes</title>
+<title>fastai – AM</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,25 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../papers/photonics.html" rel="next">
-<link href="../courses/ee647nanophotonics.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-434a87f1a65cf5564e22d224e5738d6d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,15 +71,15 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Alex Meng’s Notes</span>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">AM</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -91,8 +89,16 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://yankunm.github.io/"> 
-<span class="menu-text">Back to Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../notes_output/index.html"> 
+<span class="menu-text">Alex Meng’s Notes</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -100,169 +106,20 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../courses/ee647nanophotonics.html">COURSES</a></li><li class="breadcrumb-item"><a href="../courses/fastai.html">Practical Deep Learning (fast.ai)</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">COURSES</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../courses/ee647nanophotonics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">EE647 Nanophotonics (KAIST)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../courses/fastai.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Practical Deep Learning (fast.ai)</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">PAPERS</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../papers/photonics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Optical Computing</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">TEXTBOOKS</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../textbooks/danFleisch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Maxwell’s Equations - Dan Fleisch</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../textbooks/balanis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Advanced Engineering Electromagnetics - C. Balanis</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#lesson-2" id="toc-lesson-2" class="nav-link active" data-scroll-target="#lesson-2">Lesson 2</a>
-  <ul class="collapse">
-  <li><a href="#new-exciting-content-to-come" id="toc-new-exciting-content-to-come" class="nav-link" data-scroll-target="#new-exciting-content-to-come">New exciting content to come</a></li>
-  <li><a href="#ways-of-reading-the-book" id="toc-ways-of-reading-the-book" class="nav-link" data-scroll-target="#ways-of-reading-the-book">Ways of reading the book</a></li>
-  <li><a href="#extra-sweets-from-the-book" id="toc-extra-sweets-from-the-book" class="nav-link" data-scroll-target="#extra-sweets-from-the-book">Extra sweets from the book</a></li>
-  <li><a href="#aiquizzes.com" id="toc-aiquizzes.com" class="nav-link" data-scroll-target="#aiquizzes.com">aiquizzes.com</a></li>
-  <li><a href="#introducing-the-forum" id="toc-introducing-the-forum" class="nav-link" data-scroll-target="#introducing-the-forum">Introducing the forum</a></li>
-  <li><a href="#students-works-after-week-1" id="toc-students-works-after-week-1" class="nav-link" data-scroll-target="#students-works-after-week-1">Students’ works after week 1</a></li>
-  <li><a href="#a-wow-moment" id="toc-a-wow-moment" class="nav-link" data-scroll-target="#a-wow-moment">A Wow moment</a></li>
-  <li><a href="#find-a-problem-and-some-data" id="toc-find-a-problem-and-some-data" class="nav-link" data-scroll-target="#find-a-problem-and-some-data">Find a problem and some data</a></li>
-  <li><a href="#access-to-the-magics-of-jupyter-notebook" id="toc-access-to-the-magics-of-jupyter-notebook" class="nav-link" data-scroll-target="#access-to-the-magics-of-jupyter-notebook">Access to the magics of Jupyter notebook</a></li>
-  <li><a href="#download-and-clean-your-data" id="toc-download-and-clean-your-data" class="nav-link" data-scroll-target="#download-and-clean-your-data">Download and clean your data</a></li>
-  <li><a href="#get-to-docs-quickly" id="toc-get-to-docs-quickly" class="nav-link" data-scroll-target="#get-to-docs-quickly">Get to docs quickly</a></li>
-  <li><a href="#resize-your-data-before-training" id="toc-resize-your-data-before-training" class="nav-link" data-scroll-target="#resize-your-data-before-training">Resize your data before training</a></li>
-  <li><a href="#data-images-instantly-transformed-not-copied" id="toc-data-images-instantly-transformed-not-copied" class="nav-link" data-scroll-target="#data-images-instantly-transformed-not-copied">Data images instantly transformed, not copied</a></li>
-  <li><a href="#more-epochs-for-fancy-resize" id="toc-more-epochs-for-fancy-resize" class="nav-link" data-scroll-target="#more-epochs-for-fancy-resize">More epochs for fancy resize</a></li>
-  <li><a href="#confusion-matrix-where-do-models-get-it-wrong-the-most" id="toc-confusion-matrix-where-do-models-get-it-wrong-the-most" class="nav-link" data-scroll-target="#confusion-matrix-where-do-models-get-it-wrong-the-most">Confusion matrix: where do models get it wrong the most?</a></li>
-  <li><a href="#check-out-images-with-worse-predictions" id="toc-check-out-images-with-worse-predictions" class="nav-link" data-scroll-target="#check-out-images-with-worse-predictions">Check out images with worse predictions</a></li>
-  <li><a href="#what-if-you-want-to-clean-the-data-a-little" id="toc-what-if-you-want-to-clean-the-data-a-little" class="nav-link" data-scroll-target="#what-if-you-want-to-clean-the-data-a-little">What if you want to clean the data a little</a></li>
-  <li><a href="#myth-breaker-train-model-and-then-clean-data" id="toc-myth-breaker-train-model-and-then-clean-data" class="nav-link" data-scroll-target="#myth-breaker-train-model-and-then-clean-data">Myth breaker: train model and then clean data</a></li>
-  <li><a href="#turn-off-gpu-when-not-using" id="toc-turn-off-gpu-when-not-using" class="nav-link" data-scroll-target="#turn-off-gpu-when-not-using">Turn off GPU when not using</a></li>
-  <li><a href="#watch-first-then-watch-and-code-along" id="toc-watch-first-then-watch-and-code-along" class="nav-link" data-scroll-target="#watch-first-then-watch-and-code-along">Watch first, then watch and code along</a></li>
-  <li><a href="#a-gradio-hugging-face-tutorial" id="toc-a-gradio-hugging-face-tutorial" class="nav-link" data-scroll-target="#a-gradio-hugging-face-tutorial">A Gradio + Hugging Face tutorial</a></li>
-  <li><a href="#git-and-github-desktop" id="toc-git-and-github-desktop" class="nav-link" data-scroll-target="#git-and-github-desktop">Git and GitHub Desktop</a></li>
-  <li><a href="#terminal-for-windows" id="toc-terminal-for-windows" class="nav-link" data-scroll-target="#terminal-for-windows">Terminal for Windows</a></li>
-  <li><a href="#get-started-with-hugging-face-spaces" id="toc-get-started-with-hugging-face-spaces" class="nav-link" data-scroll-target="#get-started-with-hugging-face-spaces">Get started with Hugging Face Spaces</a></li>
-  <li><a href="#get-the-default-app-up-and-running" id="toc-get-the-default-app-up-and-running" class="nav-link" data-scroll-target="#get-the-default-app-up-and-running">Get the default app up and running</a></li>
-  <li><a href="#train-and-download-your-model" id="toc-train-and-download-your-model" class="nav-link" data-scroll-target="#train-and-download-your-model">Train and download your model</a></li>
-  <li><a href="#predict-with-loaded-model" id="toc-predict-with-loaded-model" class="nav-link" data-scroll-target="#predict-with-loaded-model">Predict with loaded model</a></li>
-  <li><a href="#turn-your-model-into-a-gradio-app-locally" id="toc-turn-your-model-into-a-gradio-app-locally" class="nav-link" data-scroll-target="#turn-your-model-into-a-gradio-app-locally">Turn your model into a Gradio app locally</a></li>
-  <li><a href="#push-this-app-onto-hugging-face-spaces" id="toc-push-this-app-onto-hugging-face-spaces" class="nav-link" data-scroll-target="#push-this-app-onto-hugging-face-spaces">Push this app onto Hugging Face Spaces</a></li>
-  <li><a href="#additional-questions" id="toc-additional-questions" class="nav-link" data-scroll-target="#additional-questions">Additional questions</a></li>
-  <li><a href="#how-to-install-fastai-properly" id="toc-how-to-install-fastai-properly" class="nav-link" data-scroll-target="#how-to-install-fastai-properly">How to install fastai properly</a></li>
-  <li><a href="#the-workflow-summary" id="toc-the-workflow-summary" class="nav-link" data-scroll-target="#the-workflow-summary">The workflow summary</a></li>
-  <li><a href="#huggingface-api-gradio-javascript-real-app" id="toc-huggingface-api-gradio-javascript-real-app" class="nav-link" data-scroll-target="#huggingface-api-gradio-javascript-real-app">HuggingFace API + Gradio + JavaScript = real app</a></li>
-  <li><a href="#how-easy-does-huggingface-api-work" id="toc-how-easy-does-huggingface-api-work" class="nav-link" data-scroll-target="#how-easy-does-huggingface-api-work">How easy does HuggingFace API work?</a></li>
-  <li><a href="#how-easy-to-get-started-with-js-hf-api-gradio" id="toc-how-easy-to-get-started-with-js-hf-api-gradio" class="nav-link" data-scroll-target="#how-easy-to-get-started-with-js-hf-api-gradio">How easy to get started with JS + HF API + Gradio?</a></li>
-  <li><a href="#app-example-of-having-multiple-inputs-and-outputs" id="toc-app-example-of-having-multiple-inputs-and-outputs" class="nav-link" data-scroll-target="#app-example-of-having-multiple-inputs-and-outputs">App example of having multiple inputs and outputs</a></li>
-  <li><a href="#app-example-of-combining-two-models" id="toc-app-example-of-combining-two-models" class="nav-link" data-scroll-target="#app-example-of-combining-two-models">App example of combining two models</a></li>
-  <li><a href="#how-to-turn-your-model-into-your-own-web-app-with-fastpages" id="toc-how-to-turn-your-model-into-your-own-web-app-with-fastpages" class="nav-link" data-scroll-target="#how-to-turn-your-model-into-your-own-web-app-with-fastpages">How to turn your model into your own web app with fastpages</a></li>
-  <li><a href="#how-to-fork-a-public-fastpages-for-your-own-use" id="toc-how-to-fork-a-public-fastpages-for-your-own-use" class="nav-link" data-scroll-target="#how-to-fork-a-public-fastpages-for-your-own-use">How to fork a public fastpages for your own use</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../courses/ee647nanophotonics.html">COURSES</a></li><li class="breadcrumb-item"><a href="../courses/fastai.html">Practical Deep Learning (fast.ai)</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Practical Deep Learning (fast.ai)</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<section id="practical-deep-learning-fast.ai" class="level1 unnumbered">
+<h1 class="unnumbered">Practical Deep Learning (fast.ai)</h1>
 <p>Source: <a href="https://course.fast.ai/">https://course.fast.ai/</a></p>
 <section id="lesson-2" class="level2">
 <h2 class="anchored" data-anchor-id="lesson-2">Lesson 2</h2>
@@ -517,6 +374,7 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="how-to-fork-a-public-fastpages-for-your-own-use">How to fork a public fastpages for your own use</h3>
 
 
+</section>
 </section>
 </section>
 
@@ -920,32 +778,7 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../courses/ee647nanophotonics.html" class="pagination-link" aria-label="EE647 Nanophotonics (KAIST)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">EE647 Nanophotonics (KAIST)</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../papers/photonics.html" class="pagination-link" aria-label="Optical Computing">
-        <span class="nav-page-text">Optical Computing</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
-<p>Copyright 2025, Alex Meng</p>
-</div>
-    <div class="nav-footer-right">
-      &nbsp;
-    </div>
-  </div>
-</footer>
 
 
 

@@ -21,7 +21,7 @@ I am an incoming PhD student in the Department of Electrical and Computer Engine
 
 ## Research Interests
  
-* **Optical Computing**: Exploring the use of light for data processing and communication to enable faster, more energy-efficient computing architectures.
+* **Quantum + Photonic Computing**: Nanophotonics, AI/ML for designing optical metasurfaces, Optical Neural Networks, Photonic Integrated Circuits, silicon photonics
 
 ## News
 

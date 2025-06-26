@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Optical Computing – Alex Meng’s Notes</title>
+<title>Deep Learning with PyTorch – Alex Meng’s Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../textbooks/danFleisch.html" rel="next">
-<link href="../courses/fastai.html" rel="prev">
+<link href="../textbooks/balanis.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -69,6 +68,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -105,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../papers/photonics.html">PAPERS</a></li><li class="breadcrumb-item"><a href="../papers/photonics.html">Optical Computing</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../courses/pytorch.html">MACHINE LEARNING</a></li><li class="breadcrumb-item"><a href="../courses/pytorch.html">Deep Learning with PyTorch</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -126,52 +128,12 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">COURSES</span></a>
+ <span class="menu-text">ELECTROMAGNETICS</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../courses/ee647nanophotonics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">EE647 Nanophotonics (KAIST)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../courses/fastai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Practical Deep Learning (fast.ai)</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">PAPERS</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../papers/photonics.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Optical Computing</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">TEXTBOOKS</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../textbooks/danFleisch.html" class="sidebar-item-text sidebar-link">
@@ -186,20 +148,48 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">MACHINE LEARNING</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../courses/pytorch.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Deep Learning with PyTorch</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#what-are-neural-networks" id="toc-what-are-neural-networks" class="nav-link" data-scroll-target="#what-are-neural-networks">What are “Neural Networks”?</a></li>
+  <li><a href="#learning-paradigms" id="toc-learning-paradigms" class="nav-link" data-scroll-target="#learning-paradigms">Learning Paradigms</a></li>
+  <li><a href="#pytorch-workflow" id="toc-pytorch-workflow" class="nav-link" data-scroll-target="#pytorch-workflow">PyTorch Workflow</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../papers/photonics.html">PAPERS</a></li><li class="breadcrumb-item"><a href="../papers/photonics.html">Optical Computing</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../courses/pytorch.html">MACHINE LEARNING</a></li><li class="breadcrumb-item"><a href="../courses/pytorch.html">Deep Learning with PyTorch</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Optical Computing</h1>
+<h1 class="title">Deep Learning with PyTorch</h1>
 </div>
 
 
@@ -216,16 +206,123 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Wetzstein, G., Ozcan, A., Gigan, S. et al.&nbsp;Inference in artificial intelligence with deep optics and photonics. Nature 588, 39–47 (2020). https://doi.org/10.1038/s41586-020-2973-6</p>
-<p>General Optical computing is not practical yet, but using optics for inference for visual computing applications is practical. This paper is a review on recent work on optical computing for AI.</p>
-<p><strong>Motivation 1:</strong> Edge devices (cameras, cars, robots, headsets, IoT) need leaner (low latency, light, small, low power) computational imaging systems.</p>
-<p>Optical computing systems promise small form factor, massive parallelism, little to no power consumption. <a href="https://nvidianews.nvidia.com/news/nvidia-spectrum-x-co-packaged-optics-networking-switches-ai-factories">Optical interconnects are already widely used in data centers today</a>.</p>
-<p>Linear optical elements can calculate convolution, fourier transforms, random projections, as a byproduct of light-matter interaction. These operations are what’s needed for DNNs.</p>
-<p>“Incorporating all-optical nonlinearities into photonic circuits is one of the key requirements for truly deep photonic networks. Yet, the challenge of efficiently implementing photonic nonlinear activation functions at low optical signal intensities was one of the primary reasons that interest in ONNs waned in the 1990s. Creative approaches from the last decade, such as nonlinear thresholders based on all-optical micro-ring resonators35, saturable absorbers29,36, electro-absorption modulators37, or hybrid electro-optical approaches38, represent possible solutions for overcoming this challenge in the near future.”</p>
-<p><a href="https://doi.org/10.1103/PhysRevX.9.021032">Although programmability has traditionally been more difficult with photonic systems, first steps towards simplifying the process have recently been demonstrated</a></p>
-<p>“One direction that seems particularly well suited for optical and photonic processing is <strong>optical inference with incoherent light to rapidly process scene information under ambient lighting conditions</strong>. Such an approach presents many exciting opportunities for autonomous vehicles, robotics and computer vision, which we discuss next.”</p>
+<p>Instructor: Daniel Bourke</p>
+<p><a href="https://youtu.be/V_xro1bcAuA?si=QGvYQNP-fEinPys7">Youtube</a></p>
+<p><a href="https://docs.pytorch.org/docs/stable/index.html">PyTorch Docs</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Deep_learning">Wikipedia: Deep Learning</a></p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>AI includes machine learning, which includes deep learning. All three aim to approximate the rules of a system from examples.</p>
+<p>Before using machine learning, ask: Can you write down all the rules to solve this problem? If yes, use a rule-based system—it’s simpler, faster, and more interpretable.</p>
+<p>But when rules are too complex or unclear, machine learning or deep learning helps.</p>
+<p>Deep Learning is good for:</p>
+<ul>
+<li>Problems with long lists of rules</li>
+<li>Continually changing environments</li>
+<li>Discovering insights within large collections of data</li>
+</ul>
+<p>Deep Learning is not good for:</p>
+<ul>
+<li>When you need explainability</li>
+<li>When the traditional approach is a better option</li>
+<li>When errors are unacceptable</li>
+</ul>
+<p>Machine Learning is better than Deep Learning at structured Data, neural networks typically work best with unstructured data.</p>
+<section id="what-are-neural-networks" class="level3">
+<h3 class="anchored" data-anchor-id="what-are-neural-networks">What are “Neural Networks”?</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A[Unstructured Data / Inputs] --&gt;B[Numbers]
+  B --&gt; C(Neural Network)
+  C --&gt; D[Weight Matrix]
+  D --&gt; E[Outputs]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<section id="anatomy-of-neural-networks" class="level4">
+<h4 class="anchored" data-anchor-id="anatomy-of-neural-networks">Anatomy of Neural Networks</h4>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A(Input Layer) --&gt; B[Hidden Layers]
+    B --&gt; C(Output Layers)
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Each layer is a combination of functions, linear or non-linear.</p>
+</section>
+</section>
+<section id="learning-paradigms" class="level3">
+<h3 class="anchored" data-anchor-id="learning-paradigms">Learning Paradigms</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 30%">
+<col style="width: 21%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Supervised</th>
+<th style="text-align: center;">Unsupervised &amp; Self-supervised</th>
+<th style="text-align: center;">Transfer</th>
+<th style="text-align: center;">Reinforcement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Lot of Data that are labeled</td>
+<td style="text-align: center;">Just Data</td>
+<td style="text-align: center;">Building on top of already learned model</td>
+<td style="text-align: center;">Action and Reward</td>
+</tr>
+</tbody>
+</table>
+<section id="what-are-deep-learning-used-for" class="level4">
+<h4 class="anchored" data-anchor-id="what-are-deep-learning-used-for">What are deep learning used for?</h4>
+<p>If you can encode something into numbers, you can build a deep learning model to find pattern in those numbers.</p>
+<p>Computer Vision, NLP, Recommendation, and literally anything complex.</p>
+</section>
+</section>
+<section id="pytorch-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="pytorch-workflow">PyTorch Workflow</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A[Get Data Ready] --&gt;B[Build or pick a pretrained model]
+  B --&gt; E[Fit the model to the data and make a prediction]
+  E --&gt; H[Evaluate the model]
+  H --&gt; I[Improve through experimentation]
+  I --&gt; J[Save and reload trained model]
+  B --&gt; F[Pick a loss function &amp; optimizer]
+  F --&gt; G[Build a training loop]
+  G --&gt; B
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -629,14 +726,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../courses/fastai.html" class="pagination-link" aria-label="Practical Deep Learning (fast.ai)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Practical Deep Learning (fast.ai)</span>
+      <a href="../textbooks/balanis.html" class="pagination-link" aria-label="Advanced Engineering Electromagnetics - C. Balanis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Advanced Engineering Electromagnetics - C. Balanis</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../textbooks/danFleisch.html" class="pagination-link" aria-label="Maxwell's Equations - Dan Fleisch">
-        <span class="nav-page-text">Maxwell’s Equations - Dan Fleisch</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

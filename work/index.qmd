@@ -1,3 +1,14 @@
 # Preface {.unnumbered}
 
-This is where I will store my notes for the courses I am taking, the papers I am reading, and the textbooks I am studying, starting May 2025.
+If you are reading this, you may be interesed in seeing what is "Alex's Notes". 
+
+These notes are just things that I am documenting, that I wish could become a useful resource for my future students, either when I TA or become a professor.
+
+Here's how to learn anything:
+
+1. Write it out! (Document, Code along)
+2. EXPERIMENT and explore
+3. Visualize things you don't understand
+4. Ask Questions
+5. Answer Exercise and Problems (stretch your knowledge)
+6. Share with like-minded individuals

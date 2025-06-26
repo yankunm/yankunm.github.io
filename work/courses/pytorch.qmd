@@ -1,0 +1,84 @@
+# Deep Learning with PyTorch {.unnumbered}
+
+Instructor: Daniel Bourke
+
+[Youtube](https://youtu.be/V_xro1bcAuA?si=QGvYQNP-fEinPys7)
+
+[PyTorch Docs](https://docs.pytorch.org/docs/stable/index.html)
+
+[Wikipedia: Deep Learning](https://en.wikipedia.org/wiki/Deep_learning)
+
+## Introduction
+
+AI includes machine learning, which includes deep learning. All three aim to approximate the rules of a system from examples.
+
+Before using machine learning, ask: Can you write down all the rules to solve this problem? If yes, use a rule-based system—it's simpler, faster, and more interpretable.
+
+But when rules are too complex or unclear, machine learning or deep learning helps.
+
+Deep Learning is good for:
+
+* Problems with long lists of rules
+* Continually changing environments
+* Discovering insights within large collections of data
+
+Deep Learning is not good for:
+
+* When you need explainability
+* When the traditional approach is a better option
+* When errors are unacceptable
+
+Machine Learning is better than Deep Learning at structured Data, neural networks typically work best with unstructured data.
+
+### What are "Neural Networks"?
+
+```{mermaid}
+flowchart LR
+  A[Unstructured Data / Inputs] -->B[Numbers]
+  B --> C(Neural Network)
+  C --> D[Weight Matrix]
+  D --> E[Outputs]
+```
+
+#### Anatomy of Neural Networks
+
+```{mermaid}
+flowchart LR
+    A(Input Layer) --> B[Hidden Layers]
+    B --> C(Output Layers)
+```
+
+Each layer is a combination of functions, linear or non-linear.
+
+### Learning Paradigms
+
+| Supervised | Unsupervised & Self-supervised | Transfer | Reinforcement |
+|:----------:|:------------:|:--------:|:--------:|
+| Lot of Data that are labeled | Just Data   | Building on top of already learned model  | Action and Reward |
+
+#### What are deep learning used for?
+
+If you can encode something into numbers, you can build a deep learning model to find pattern in those numbers.
+
+Computer Vision, NLP, Recommendation, and literally anything complex.
+
+### PyTorch Workflow
+
+```{mermaid}
+flowchart LR
+  A[Get Data Ready] -->B[Build or pick a pretrained model]
+  B --> E[Fit the model to the data and make a prediction]
+  E --> H[Evaluate the model]
+  H --> I[Improve through experimentation]
+  I --> J[Save and reload trained model]
+  B --> F[Pick a loss function & optimizer]
+  F --> G[Build a training loop]
+  G --> B
+```
+
+
+
+
+
+
+
