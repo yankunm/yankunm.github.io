@@ -10,113 +10,25 @@
     ]
   },
   {
-    "objectID": "textbooks/danFleisch.html",
-    "href": "textbooks/danFleisch.html",
-    "title": "Maxwell’s Equations - Dan Fleisch",
+    "objectID": "courses/dls.html",
+    "href": "courses/dls.html",
+    "title": "Deep Learning Systems",
     "section": "",
-    "text": "1 Gauss’s law for electric fields\nWebsite: Official Website",
-    "crumbs": [
-      "ELECTROMAGNETICS",
-      "Maxwell's Equations - Dan Fleisch"
-    ]
-  },
-  {
-    "objectID": "textbooks/danFleisch.html#gausss-law-for-electric-fields",
-    "href": "textbooks/danFleisch.html#gausss-law-for-electric-fields",
-    "title": "Maxwell’s Equations - Dan Fleisch",
-    "section": "",
-    "text": "Introduction\n\n\nExpand\n\n\nWhat are the two kinds of Electric Fields in Maxwell’s Equation?\n\n\n\nAnswer\n\n\nElectrostatic Fields (from electric charge)\nInduced Electric Field (from changing magnetic field)\n\n\n\nWhat type of fields does Gauss’s law deal with?\n\n\n\nAnswer\n\nElectrostatic Fields (from electric charge)\n\n\n\n\nIntegral Form of Gauss’s Law\n\n\nExpand\n\nElectric charge produces an electric field. The flux of that field passing through any closed surface is proportional to the total charge contained within that surface.\n\\[\\oint_S \\vec{E} \\cdot \\hat{n} da = \\frac{q_{enc}}{\\epsilon_0}\\]\n\n\n\n\n\n\nExpand To Learn About Left Hand Side\n\n\n\n\n\n\n\nWhat does the left hand side represent?\n\n\n\nAnswer\n\nThe number of electric field lines (AKA electric flux) passing through a closed surface \\(S\\).\n\n\nWhat is Electric field?\n\n\n\nAnswer\n\nThe electrical force exerted on one coulomb of charge at that point in space is the electric field at that location.\n\\[\\vec{E} = \\frac{\\vec{F}_e}{q_0}\\]\n\\(\\vec{E}\\) has units of \\(\\frac{N}{C} = \\frac{V}{m}\\)\nSpacing of electric field lines tells you the strength of it.\n\nElectric field lines go from positive to negative\nElectric field lines vector sums, so they never cross\n\n\n\nWhy do physicists and engineers always talk about small test charges?\n\n\n\nAnswer\n\nBecause the job of this charge is to test the electric field at a location, not to add another electric field into the mix (although you can’t stop it from doing so). Making the test charge infinitesimally small minimizes the effect of the test charge’s own field.\n\n\nWhat is the dot product? Why are we taking the dot product between \\(\\vec{E}\\) and \\(\\hat{n}\\) in Gauss’s Law?\n\n\n\nAnswer\n\nConsider vectors \\(\\vec{A}\\) and \\(\\vec{B}\\) in space.\nWhat is the projection of \\(\\vec{A}\\) onto \\(\\vec{B}\\)? From trig, it’s \\(|A| \\cos \\theta\\).\nNow the dot product is that projection, multiplied by the magnitude of \\(\\vec{B}\\).\n\\[\\vec{A} \\cdot \\vec{B} = |A| |B| \\cos \\theta\\]\n\n\nWhat is \\(\\hat{n}\\)?\n\n\n\nAnswer\n\nIt is the unit normal vector, which has a length of one, and points in the direction perpendicular to the surface.\nNote that since \\(da\\) is the tiny amount of area we are considering\n\\[\\hat{n} da = d \\vec{a}\\]\n\n\nWhat is the difference between closed surface and open surface?\n\n\n\nAnswer\n\n\nOpen Surface - any surface for which it is possible to get from one side to the other without going through the surface\nClosed Surface - a surface that divides space into an “inside” and “outside”. Unit Normal Vector \\(\\hat{n}\\) always points outwards, away from the volume enclosed by the surface.\n\n\n\nWhat does \\(\\vec{E} \\cdot \\hat{n}\\) represent?\n\n\n\nAnswer\n\nThe component of the electric field vector that is perpendicular to the surface.\n\\[\\vec{E} \\cdot \\hat{n} = |\\vec{E}| \\cos \\theta\\]\n\n\nHow do you find the mass of a surface with varying density function \\(\\sigma(x, y)\\)?\n\n\n\nAnswer\n\nSince mass is density times volume, we can write:\n\\[Mass = \\sigma \\cdot Area\\]\n\\[Mass_S = \\Sigma_{i = 1}^{N} \\sigma_i \\cdot Area_i\\]\nIf we let Areas to become infinitesimally small \\(dA\\), we get \\[Mass = \\int_{S} \\sigma dA\\]\nThis is a surface intergal.\n\n\nWhat does \\(\\int_S \\vec{A} \\cdot \\hat{n} da\\) represent?\n\n\n\nAnswer\n\nIt represents the flux of a vector field.\nWhat’s a vector field?\nIt is magnitude and direction quantities distributed in space.\n\nScalar Field - something like temperature distribution in a room, where at each point theres a number\nVector Field - something like flow of fluid, there at every point it has a speed and direction\n\n\n\nWhat’s flux \\(\\Phi\\)?\n\n\n\nAnswer\n\nFlux \\(\\Phi\\) of a field over a surface is the amount of flow through that surface.\n\\[\\Phi = \\vec{A} \\cdot \\hat{n} \\times (Surface Area)\\]\n\n\n\n\n\n\n\n\n\n\n\n\nExpand To Learn About Right Hand Side\n\n\n\n\n\n\nWhat is the right hand side in words?\n\n\n\nAnswer\n\nThe total amount of enclosed charge normalized by the permittivity of free space.\n\n\nWhat is \\(\\epsilon_0\\) and why is it there?\n\n\n\nAnswer\n\nIt is called the permitivity of free space or “vacuum permitivity”.\n\\[\\epsilon_0 = 8.854 \\times 10^{-12} \\frac{F}{m}\\]\nWhen we say the permitivity of a material, when are referring to its reponse to an electric field. It is also the key parameter in determining the speed at which an electromagnetic wave propagates through that medium.\nHigh permitivity means it provides higher capacitance.\nIn Gauss’s Law, \\(\\epsilon_0\\) acts as a proportionality constant that relates electric flux to enclosed charge.\n\n\n\n\n\n\n\n\n\n\nExercises\n\n\n\n\n\n\nFive point charges are enclosed in a cylindrical surface \\(S\\). If the values of the charges are \\(q_1 = +3 nC\\), \\(q_2 = -2 nC\\), \\(q_3 = +2 nC\\), \\(q_4 = +4 nC\\), and \\(q_5 = -1 nC\\), find the total flux through \\(S\\).\n\n\n\nAnswer\n\n\\[\\sum_{i=1}^{5} q_i = 3 - 2 + 2 + 4 - 1 = 6 nC = 6 \\times 10^{-9} C\\]\n\\[\\Phi_E = \\frac{q_enc}{\\epsilon_0} = \\frac{6 \\times 10^{-9}C}{8.854 \\times 10^{-12} \\frac{C}{V \\cdot m}} = \\boxed{678 \\hspace{1mm} Vm}\\]\n\n\n\n\n\n\n\n\nDifferential Form of Gauss’s Law\n\n\n\nExpand\n\nThe electric field produced by electric diverges from positive charge and converges upon negative charge.\n\\[\\vec{\\nabla} \\cdot \\vec{E} = \\frac{\\rho}{\\epsilon_0}\\]\n\n\n\n\n\n\nExpand To Learn About Left Hand Side\n\n\n\n\n\n\n\nWhat does the left hand side represent?\n\n\n\nAnswer\n\n\nThe tendency of electric field to flow away from a point in space - AKA the divergence.\n\n\nWhat is the difference between differential and integral form of Gauss’s Law?\n\n\n\nAnswer\n\n\nDifferential deals with individual points in space, whereareas integral deals with a closed surface.\n\n\nWhat is \\(\\vec{\\nabla}\\)?\n\n\n\nAnswer\n\n\nIt is called “del” or “nabla”. It tells you to take the derivative of what ever quantity comes after it.\n\\[\\vec{\\nabla} =\\hat{i} \\frac{\\partial}{\\partial x} + \\hat{j} \\frac{\\partial}{\\partial y} + \\hat{k} \\frac{\\partial}{\\partial z}\n\\]\nIt is an mathematical operator, which just means that it needs something to act on and cannot just appear by itself.\n\\(\\vec{\\nabla}\\) is gradient, \\(\\vec{\\nabla} \\cdot\\) is divergence, and \\(\\vec{\\nabla} \\times\\) is curl.\n\n\nWhat is \\(\\vec{\\nabla} \\cdot\\) specifically?\n\n\n\nExpand\n\nOliver Heaviside suggested the word “divergence” to describe the rate at which electric field flow outwards from a positive charge.\n\nsource - diverge from that point (positive charge for electric field)\nsink - converge to that point (negative charge for magnetic field)\n\n\n\n\n\n\n\n\n\n\n\n\nExpand To Learn About Right Hand Side\n\n\n\n\n\n\nWhat is the right hand side in words?\n\n\n\nAnswer\n\n\n\n\n\n\n\n\n\n\n\n\nExercises\n\n\n\n\n\n\nFive point charges are enclosed in a cylindrical surface \\(S\\). If the values of the charges are \\(q_1 = +3 nC\\), \\(q_2 = -2 nC\\), \\(q_3 = +2 nC\\), \\(q_4 = +4 nC\\), and \\(q_5 = -1 nC\\), find the total flux through \\(S\\).\n\n\n\nAnswer\n\n\\[\\sum_{i=1}^{5} q_i = 3 - 2 + 2 + 4 - 1 = 6 nC = 6 \\times 10^{-9} C\\]\n\\[\\Phi_E = \\frac{q_enc}{\\epsilon_0} = \\frac{6 \\times 10^{-9}C}{8.854 \\times 10^{-12} \\frac{C}{V \\cdot m}} = \\boxed{678 \\hspace{1mm} Vm}\\]",
-    "crumbs": [
-      "ELECTROMAGNETICS",
-      "Maxwell's Equations - Dan Fleisch"
-    ]
-  },
-  {
-    "objectID": "textbooks/balanis.html",
-    "href": "textbooks/balanis.html",
-    "title": "Advanced Engineering Electromagnetics - C. Balanis",
-    "section": "",
-    "text": "1 Time-Varying and Time-Harmonic Electromagnetic Fields\nLink: Internet Archive",
-    "crumbs": [
-      "ELECTROMAGNETICS",
-      "Advanced Engineering Electromagnetics - C. Balanis"
-    ]
-  },
-  {
-    "objectID": "textbooks/balanis.html#time-varying-and-time-harmonic-electromagnetic-fields",
-    "href": "textbooks/balanis.html#time-varying-and-time-harmonic-electromagnetic-fields",
-    "title": "Advanced Engineering Electromagnetics - C. Balanis",
-    "section": "",
-    "text": "Maxwell’s Equations\n\n\nExpand\n\n\nWho is James Clerk Maxwell?\n\n\n\nAnswer\n\n\n\n\nJames Clerk Maxwell\n\n\nA Scottish physicist and mathematician that lived from 1831 to 1879.\nThe Father of Modern Physics\n\nSee my notes on Dan Fleisch’s A student’s guide to Maxwell’s Equations for detailed explanation of the differential and integral forms of the four maxwell’s equations.\n\n\n\nConstitutive Parameters and Relations\n\n\nExpand\n\n\n\n\n\nCircuit-Field Relations\n\n\nExpand\n\n\n\nWhat is Circuit Theory?\n\n\n\nAnswer\n\nA special case of electromagnetic theory, when the physical dimensions of the circuit are small compared to the wavelength.\n\n\nKVL\n\n\nKCL\n\n\nElement Laws",
-    "crumbs": [
-      "ELECTROMAGNETICS",
-      "Advanced Engineering Electromagnetics - C. Balanis"
-    ]
-  },
-  {
-    "objectID": "textbooks/balanis.html#electrical-properties-of-matter",
-    "href": "textbooks/balanis.html#electrical-properties-of-matter",
-    "title": "Advanced Engineering Electromagnetics - C. Balanis",
-    "section": "2 Electrical Properties of Matter",
-    "text": "2 Electrical Properties of Matter\n\nIntroduction\n\n\nExpand\n\n\n\n\n\nDielectrics, Polarization, and Permittivity\n\n\nExpand\n\n\n\n\n\nMagnetics, Magnetization, and Permeability\n\n\nExpand\n\n\n\n\n\nCurrent, Conductors, and Conductivity\n\n\nExpand\n\n\nCurrent\n\n\n\nConductors\n\n\n\nConductivity",
-    "crumbs": [
-      "ELECTROMAGNETICS",
-      "Advanced Engineering Electromagnetics - C. Balanis"
-    ]
-  },
-  {
-    "objectID": "textbooks/balanis.html#wave-equation-and-its-solutions",
-    "href": "textbooks/balanis.html#wave-equation-and-its-solutions",
-    "title": "Advanced Engineering Electromagnetics - C. Balanis",
-    "section": "3 Wave Equation and Its Solutions",
-    "text": "3 Wave Equation and Its Solutions\n\nIntroduction\n\n\nExpand\n\n\n\n\n\nTime-Varying Electromagnetic Fields\n\n\nExpand\n\n\n\n\n\nTime-Harmonic Electromagnetic Fields\n\n\nExpand\n\n\n\n\n\nSolution to the Wave Equation\n\n\nExpand\n\n\nRectangular Coordinate System\n\n\n\nCylindrical Coordinate System\n\n\n\nSpherical Coordinate System",
-    "crumbs": [
-      "ELECTROMAGNETICS",
-      "Advanced Engineering Electromagnetics - C. Balanis"
-    ]
-  },
-  {
-    "objectID": "textbooks/balanis.html#wave-propagation-and-polarization",
-    "href": "textbooks/balanis.html#wave-propagation-and-polarization",
-    "title": "Advanced Engineering Electromagnetics - C. Balanis",
-    "section": "4 Wave Propagation and Polarization",
-    "text": "4 Wave Propagation and Polarization\n\nIntroduction\n\n\nExpand\n\n\n\n\n\nTransverse Electromagnetic Modes\n\n\nExpand\n\n\n\n\n\nTransverse Electromagnetic Modes in Lossy Media\n\n\nExpand\n\n\n\n\n\nPolarization\n\n\nExpand\n\n\n\n\n\nExercises\n\n\nExpand",
-    "crumbs": [
-      "ELECTROMAGNETICS",
-      "Advanced Engineering Electromagnetics - C. Balanis"
-    ]
-  },
-  {
-    "objectID": "textbooks/balanis.html#reflection-and-transmission",
-    "href": "textbooks/balanis.html#reflection-and-transmission",
-    "title": "Advanced Engineering Electromagnetics - C. Balanis",
-    "section": "5 Reflection and Transmission",
-    "text": "5 Reflection and Transmission\n\nIntroduction\n\n\nExpand\n\n\n\n\n\nNormal Incidence - Lossless Media\n\n\nExpand\n\n\n\n\n\nOblique Incidence - Lossless Media\n\n\nExpand\n\n\nPerpendicular Polarization\n\n\n\nParallel Polarization\n\n\n\nTotal Transmission - Brewster Angle\n\n\n\nTotal Reflection - Critical Angle",
-    "crumbs": [
-      "ELECTROMAGNETICS",
-      "Advanced Engineering Electromagnetics - C. Balanis"
-    ]
-  },
-  {
-    "objectID": "courses/pytorch.html",
-    "href": "courses/pytorch.html",
-    "title": "Deep Learning with PyTorch",
-    "section": "",
-    "text": "Introduction\nInstructor: Daniel Bourke\nYoutube\nPyTorch Docs\nWikipedia: Deep Learning\nHere we master the basics of Deep Learning through the PyTorch Workflow:\nAI includes machine learning, which includes deep learning. All three aim to approximate the rules of a system from examples.\nBefore using machine learning, ask: Can you write down all the rules to solve this problem? If yes, use a rule-based system—it’s simpler, faster, and more interpretable.\nBut when rules are too complex or unclear, machine learning or deep learning helps.\nDeep Learning is good for:\nDeep Learning is not good for:\nMachine Learning is better than Deep Learning at structured Data, neural networks typically work best with unstructured data.",
+    "text": "1 ML Basics\nIn this set of notes, we will create a minimal version of PyTorch / Tensorflow from scratch, of what I call “PyStickOnFire”.\nThe (Supervised) Machine learning idea: we take a bunch of labeled data, feed them to a machine learning algorithm, and it outputs a “program” that solves the task.\nflowchart LR\n  A[Training Data Set X] --&gt;B[Machine Learning Algorithm]\n  B --&gt; C(Model h)\nIn this set of notes, we will focus on what the machine learning algorithm box contains. In general, it consists of three things:\nAll alogrithms in machine learning fit in this structure. Let’s look at softmax regression to illustrate these three basic components.",
     "crumbs": [
       "MACHINE LEARNING",
-      "Deep Learning with PyTorch"
+      "Deep Learning Systems"
     ]
   },
   {
-    "objectID": "courses/pytorch.html#introduction",
-    "href": "courses/pytorch.html#introduction",
-    "title": "Deep Learning with PyTorch",
+    "objectID": "courses/dls.html#ml-basics",
+    "href": "courses/dls.html#ml-basics",
+    "title": "Deep Learning Systems",
     "section": "",
-    "text": "Problems with long lists of rules\nContinually changing environments\nDiscovering insights within large collections of data\n\n\n\nWhen you need explainability\nWhen the traditional approach is a better option\nWhen errors are unacceptable\n\n\n\nWhat are “Neural Networks”?\n\n\n\n\n\nflowchart LR\n  A[Unstructured Data / Inputs] --&gt;B[Numbers]\n  B --&gt; C(Neural Network)\n  C --&gt; D[Weight Matrix]\n  D --&gt; E[Outputs]\n\n\n\n\n\n\n\nAnatomy of Neural Networks\n\n\n\n\n\nflowchart LR\n    A(Input Layer) --&gt; B[Hidden Layers]\n    B --&gt; C(Output Layers)\n\n\n\n\n\n\nEach layer is a combination of functions, linear or non-linear.\n\n\n\nLearning Paradigms\n\n\n\n\n\n\n\n\n\nSupervised\nUnsupervised & Self-supervised\nTransfer\nReinforcement\n\n\n\n\nLot of Data that are labeled\nJust Data\nBuilding on top of already learned model\nAction and Reward\n\n\n\n\nWhat are deep learning used for?\nIf you can encode something into numbers, you can build a deep learning model to find pattern in those numbers.\nComputer Vision, NLP, Recommendation, and literally anything complex.",
+    "text": "The hypothesis class (the structure of \\(h\\) in terms of a set of parameters)\nThe loss function (specifies how good a given hypothesis is)\nAn optimization method (the way to minimize the loss function)\n\n\n\nMulti-class Classification (Softmax Regression)\nConsider a k-class classification setting, where we have\n\ntraining data: \\[x^{(i)} \\in \\mathbb{R}^{n}, y^{(i)} \\in \\{1, \\dots, k \\} \\text{ for } i = 1, \\dots, m\\]\n\n\\(n =\\) dimensionality of input data\n\\(k =\\) number of different classes / labels\n\\(m =\\) number of data points in the training data\n\n\nwhere the training data are vectors that looks like \\[X = \\{ \\begin{bmatrix} x^{(1)}_1 \\\\ x^{(1)}_2 \\\\ \\vdots \\\\ x^{(1)}_n \\end{bmatrix} , \\dots, \\begin{bmatrix} x^{(m)}_1 \\\\ x^{(m)}_2 \\\\ \\vdots \\\\ x^{(m)}_n \\end{bmatrix} \\}\\] and the labels are just a set of scalars of size \\(k\\).\n\n1st Element: The Hypothesis Function\nThe hypothesis function is a mapping from one input to one output. (Duhh… just like every other function there is). \\[h: \\mathbb{R^n} \\rightarrow \\mathbb{R^k}\\] \\[h(x) = \\begin{bmatrix} h_1(x) \\\\ h_2(x) \\\\ \\vdots \\\\ h_k(x)\\end{bmatrix}\\]\nSo what really is \\(h_i(x)\\)? It is the hypothesis, the “belief”, the probability of how likely \\(x\\) maps to class \\(i\\).\nA linear hypothesis function uses matrix multiplication, or some other linear way, for this transformation:\n\\[h_\\theta(x) = \\theta^T x\\]\nfor parameters \\(\\theta \\in \\mathbb{R^{n \\times k}}\\) (\\(n\\) rows and \\(k\\) columns, so transpose becomes \\(k \\times n\\), and \\(x \\in \\mathbb{R^{n \\times 1}}\\), so multiplication will work). Now we say \\(h_\\theta\\) because \\(\\theta\\) is the parameters.\nNotice how so far we only have one input and one output, \\(h\\) is only working on one instance of the training set. However, in order to implement these operations efficiently in the future, we shall use the matrix batch notation.\n\\[X \\in \\mathbb{R^{m \\times n}} = \\begin{bmatrix} -x^{(1)^{T}}- \\\\ -x^{(2)^{T}}- \\\\ \\vdots \\\\ -x^{(m)^{T}}- \\end{bmatrix}\\]\n\\[y \\in \\{ 1, \\dots, k \\}^m = \\begin{bmatrix} y^{(1)} \\\\ y^{(2)} \\\\ \\vdots \\\\ y^{(m)}  \\end{bmatrix}\\]\n\\[h_\\theta(X) = \\begin{bmatrix} -h_\\theta(x^{(1)})^{T}- \\\\ -h_\\theta(x^{(2)})^{T}- \\\\ \\vdots \\\\ -h_\\theta(x^{(m)})^{T}- \\end{bmatrix} = \\begin{bmatrix} -x^{(1)^{T}} \\theta- \\\\ -x^{(2)^{T}} \\theta- \\\\ \\vdots \\\\ -x^{(m)^{T}} \\theta- \\end{bmatrix} = X\\theta\\]\n\n\\(n =\\) dimensionality of input data\n\\(k =\\) number of different classes / labels\n\\(m =\\) number of data points in the training data\n\nEach row is for a data point, the first example is in first row (originally a column vector, now we transposed it to row vector), and the second example is in second row, and so on… Note that this is not merely a notation change, but rather how to implement them more efficiently in code later on.\n\n\n2nd Element: The Loss Function\nHow are we going to evaluate the quality of our predictions?\nClassification Error:\n\\[l_{err}(h(x),y) = \\begin{cases} 0, & \\text{if } argmax_i h_i(x) = y \\\\ 1, & \\text{otherwise} \\end{cases}\\]\nThe error is not differentiable, so it is not good for optimization.\nA better choice: Cross-Entropy Loss or Softmax\nThe idea is that we want to map our outputs into being actual probabilities\n\\[h_i(x) \\rightarrow prob[label == i]\\]\nProbability has to be positive and sum to 1. In order to ensure \\(h_i(x)\\) is positive, we can exponentiate it. In order to ensure all \\(h_i(x)'s\\) to sum to 1, we need to normalize them.\n\\[prob[label == i] = normalize(\\exp(h(x)))= \\frac{\\exp(h_i(x))}{\\sum_{j = 1}^{k} \\exp(h_j(x))} = softmax(h(x))\\]\nThis is called the softmax operation, a mapping between scalar values and a probability distribution.\nSo now we have a probability, We need some way of quantifying whether the vector of probabilities \\(softmax(h(x))\\) is good or not. We want \\(prob[label == y]\\) to be high, as large as possible, so the loss function idea can be minimizing the negative of this probability (double negative makes a positive!).\n\\[l_{cross-entropy} (h(x), y) = - prob[label = y]\\]\nBecause minimizing probabilities is not numerically good: Probabilities are bounded between \\(0\\) and \\(1\\), so their gradients near \\(0\\) can become tiny (vanishing gradients). Logs transform that range \\((0,1)\\) into \\((−\\infty,0)\\), making the loss surface smoother and the gradients more useful. So we take the log of it\n\\[l_{ce} (h(x), y) = - log(prob[label = y])\\]\nThis is commonly known as the negative log loss or cross-entropy loss.",
     "crumbs": [
       "MACHINE LEARNING",
-      "Deep Learning with PyTorch"
+      "Deep Learning Systems"
     ]
   }
 ]

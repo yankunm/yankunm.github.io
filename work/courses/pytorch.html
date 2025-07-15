@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<head>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta charset="utf-8" />
+<meta name="generator" content="quarto-1.7.31" />
 
-<meta name="author" content="Alex Meng">
-<meta name="dcterms.date" content="2025-06-06">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 
-<title>Alex Meng’s Notes</title>
+
+<title>Deep Learning with PyTorch – Alex Meng's Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,25 +24,7 @@ ul.task-list li input[type="checkbox"] {
 }
 </style>
 
-
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./courses/dls.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<!-- htmldependencies:E3FAD763 -->
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,23 +52,28 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script  src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script  src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link  href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet" />
 
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-light">
+<body>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Alex Meng’s Notes</span>
+    <a class="navbar-brand" href="/index.html">
+    <span class="navbar-title">Alex Meng&#39;s Notes</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+  aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation"
+  onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -103,11 +90,16 @@ ul.task-list li input[type="checkbox"] {
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn"
+      data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" 
+      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
+      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <h1 class="quarto-secondary-nav-title no-breadcrumbs"></h1>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" role="link"
+        aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
+        onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -120,14 +112,14 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">MACHINE LEARNING</span></a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1"  role="navigation" aria-expanded="true">
+ <span class="menu-text">ELECTROMAGNETICS</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -135,8 +127,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./courses/dls.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Deep Learning Systems</span></a>
+  <a href="/textbooks/danFleisch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Maxwell's Equations - Dan Fleisch</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/textbooks/balanis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Advanced Engineering Electromagnetics - C. Balanis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2"  role="navigation" aria-expanded="true">
+ <span class="menu-text">MACHINE LEARNING</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/courses/pytorch.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Deep Learning with PyTorch</span></a>
   </div>
 </li>
       </ul>
@@ -144,42 +159,24 @@ ul.task-list li input[type="checkbox"] {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" ></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
-  </ul>
-</nav>
+        <div id="quarto-toc-target"></div>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Alex Meng’s Notes</h1>
+<h1 class="title">Deep Learning with PyTorch</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Alex Meng </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">June 6, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -188,26 +185,123 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p>If you are reading this, you may be interesed in seeing what is “Alex’s Notes”.</p>
-<p>These notes are just things that I am documenting, that I wish could become a useful resource for my future students, either when I TA or become a professor.</p>
-<p>Here’s how to learn anything:</p>
-<ol type="1">
-<li>Write it out! (Document, Code along)</li>
-<li>EXPERIMENT and explore</li>
-<li>Visualize things you don’t understand</li>
-<li>Ask Questions</li>
-<li>Answer Exercise and Problems (stretch your knowledge)</li>
-<li>Share with like-minded individuals</li>
-</ol>
-
-
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction">Introduction</a>
+  <ul>
+  <li><a href="#what-are-neural-networks" id="toc-what-are-neural-networks">What are “Neural Networks”?</a></li>
+  <li><a href="#learning-paradigms" id="toc-learning-paradigms">Learning Paradigms</a></li>
+  </ul></li>
+  </ul>
+</nav>
+<p>Instructor: Daniel Bourke</p>
+<p><a href="https://youtu.be/V_xro1bcAuA?si=QGvYQNP-fEinPys7">Youtube</a></p>
+<p><a href="https://docs.pytorch.org/docs/stable/index.html">PyTorch Docs</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Deep_learning">Wikipedia: Deep Learning</a></p>
+<p>Here we master the basics of Deep Learning through the <strong>PyTorch Workflow</strong>:</p>
+<p><img src="pics/Pytorch_Workflow.png" class="img-fluid" /></p>
+<section id="introduction" class="level2">
+<h2>Introduction</h2>
+<p>AI includes machine learning, which includes deep learning. All three aim to approximate the rules of a system from examples.</p>
+<p>Before using machine learning, ask: Can you write down all the rules to solve this problem? If yes, use a rule-based system—it’s simpler, faster, and more interpretable.</p>
+<p>But when rules are too complex or unclear, machine learning or deep learning helps.</p>
+<p>Deep Learning is good for:</p>
+<ul>
+<li>Problems with long lists of rules</li>
+<li>Continually changing environments</li>
+<li>Discovering insights within large collections of data</li>
+</ul>
+<p>Deep Learning is not good for:</p>
+<ul>
+<li>When you need explainability</li>
+<li>When the traditional approach is a better option</li>
+<li>When errors are unacceptable</li>
+</ul>
+<p>Machine Learning is better than Deep Learning at structured Data, neural networks typically work best with unstructured data.</p>
+<section id="what-are-neural-networks" class="level3">
+<h3>What are “Neural Networks”?</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p><figure class=''></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A[Unstructured Data / Inputs] --&gt;B[Numbers]
+  B --&gt; C(Neural Network)
+  C --&gt; D[Weight Matrix]
+  D --&gt; E[Outputs]
+</pre>
+</div>
+<p></figure></p>
+</div>
+</div>
+</div>
+<section id="anatomy-of-neural-networks" class="level4">
+<h4>Anatomy of Neural Networks</h4>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p><figure class=''></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A(Input Layer) --&gt; B[Hidden Layers]
+    B --&gt; C(Output Layers)
+</pre>
+</div>
+<p></figure></p>
+</div>
+</div>
+</div>
+<p>Each layer is a combination of functions, linear or non-linear.</p>
+</section>
+</section>
+<section id="learning-paradigms" class="level3">
+<h3>Learning Paradigms</h3>
+<table class="caption-top">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 30%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Supervised</th>
+<th style="text-align: center;">Unsupervised &amp; Self-supervised</th>
+<th style="text-align: center;">Transfer</th>
+<th style="text-align: center;">Reinforcement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Lot of Data that are labeled</td>
+<td style="text-align: center;">Just Data</td>
+<td style="text-align: center;">Building on top of already learned model</td>
+<td style="text-align: center;">Action and Reward</td>
+</tr>
+</tbody>
+</table>
+<section id="what-are-deep-learning-used-for" class="level4">
+<h4>What are deep learning used for?</h4>
+<p>If you can encode something into numbers, you can build a deep learning model to find pattern in those numbers.</p>
+<p>Computer Vision, NLP, Recommendation, and literally anything complex.</p>
+<div id="quarto-navigation-envelope" class="hidden">
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyLXRpdGxl">Alex Meng’s Notes</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXItdGl0bGU=">Alex Meng’s Notes</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1wcmV2">Advanced Engineering Electromagnetics - C. Balanis</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9pbmRleC5odG1sUHJlZmFjZQ==">Preface</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tMQ==">ELECTROMAGNETICS</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi90ZXh0Ym9va3MvZGFuRmxlaXNjaC5odG1sTWF4d2VsbCdzLUVxdWF0aW9ucy0tLURhbi1GbGVpc2No">Maxwell’s Equations - Dan Fleisch</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi90ZXh0Ym9va3MvYmFsYW5pcy5odG1sQWR2YW5jZWQtRW5naW5lZXJpbmctRWxlY3Ryb21hZ25ldGljcy0tLUMuLUJhbGFuaXM=">Advanced Engineering Electromagnetics - C. Balanis</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tMg==">MACHINE LEARNING</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb3Vyc2VzL3B5dG9yY2guaHRtbERlZXAtTGVhcm5pbmctd2l0aC1QeVRvcmNo">Deep Learning with PyTorch</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QmFjayB0byBIb21l">Back to Home</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6aHR0cHM6Ly95YW5rdW5tLmdpdGh1Yi5pby8=">https://yankunm.github.io/</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWJyZWFkY3J1bWJzLU1BQ0hJTkUtTEVBUk5JTkc=">MACHINE LEARNING</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWJyZWFkY3J1bWJzLURlZXAtTGVhcm5pbmctd2l0aC1QeVRvcmNo">Deep Learning with PyTorch</span></p>
+<div class="hidden quarto-markdown-envelope-contents" data-render-id="Zm9vdGVyLWNlbnRlcg==">
+<p>Copyright 2025, Alex Meng</p>
+</div>
+</div>
+<div id="quarto-meta-markdown" class="hidden">
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW1ldGF0aXRsZQ==">Deep Learning with PyTorch – Alex Meng’s Notes</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkdGl0bGU=">Deep Learning with PyTorch – Alex Meng’s Notes</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZHRpdGxl">Deep Learning with PyTorch – Alex Meng’s Notes</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW1ldGFzaXRlbmFtZQ==">Alex Meng’s Notes</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkZGVzYw=="></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZGRkZXNj"></span></p>
+</div>
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+<script id = "quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -608,11 +702,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a  href="/textbooks/balanis.html" class="pagination-link" aria-label="Advanced Engineering Electromagnetics - C. Balanis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Advanced Engineering Electromagnetics - C. Balanis</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./courses/dls.html" class="pagination-link" aria-label="Deep Learning Systems">
-        <span class="nav-page-text">Deep Learning Systems</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -622,15 +716,14 @@ ul.task-list li input[type="checkbox"] {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Copyright 2025, Alex Meng</p>
-</div>
+      <div class='footer-contents'>Copyright 2025, Alex Meng</div>  
+    </div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
 
+</body>
 
-
-
-</body></html>
+</html>
