@@ -181,9 +181,12 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#ml-basics" id="toc-ml-basics" class="nav-link active" data-scroll-target="#ml-basics">1 ML Basics</a>
+  <li><a href="#chapter-1-machine-learning-refresher" id="toc-chapter-1-machine-learning-refresher" class="nav-link active" data-scroll-target="#chapter-1-machine-learning-refresher">Chapter 1: Machine Learning Refresher</a>
   <ul class="collapse">
   <li><a href="#multi-class-classification-softmax-regression" id="toc-multi-class-classification-softmax-regression" class="nav-link" data-scroll-target="#multi-class-classification-softmax-regression">Multi-class Classification (Softmax Regression)</a></li>
+  <li><a href="#st-element-the-hypothesis-function" id="toc-st-element-the-hypothesis-function" class="nav-link" data-scroll-target="#st-element-the-hypothesis-function">1st Element: The Hypothesis Function</a></li>
+  <li><a href="#nd-element-the-loss-function" id="toc-nd-element-the-loss-function" class="nav-link" data-scroll-target="#nd-element-the-loss-function">2nd Element: The Loss Function</a></li>
+  <li><a href="#rd-element-optimization" id="toc-rd-element-optimization" class="nav-link" data-scroll-target="#rd-element-optimization">3rd Element: Optimization</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -211,8 +214,8 @@ window.Quarto = {
 
 
 <p>In this set of notes, we will create a minimal version of PyTorch / Tensorflow from scratch, of what I call “PyStickOnFire”.</p>
-<section id="ml-basics" class="level2">
-<h2 class="anchored" data-anchor-id="ml-basics">1 ML Basics</h2>
+<section id="chapter-1-machine-learning-refresher" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-1-machine-learning-refresher">Chapter 1: Machine Learning Refresher</h2>
 <p>The (Supervised) Machine learning idea: we take a bunch of labeled data, feed them to a machine learning algorithm, and it outputs a “program” that solves the task.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -247,8 +250,9 @@ window.Quarto = {
 </ul></li>
 </ul>
 <p>where the training data are vectors that looks like <span class="math display">\[X = \{ \begin{bmatrix} x^{(1)}_1 \\ x^{(1)}_2 \\ \vdots \\ x^{(1)}_n \end{bmatrix} , \dots, \begin{bmatrix} x^{(m)}_1 \\ x^{(m)}_2 \\ \vdots \\ x^{(m)}_n \end{bmatrix} \}\]</span> and the labels are just a set of scalars of size <span class="math inline">\(k\)</span>.</p>
-<section id="st-element-the-hypothesis-function" class="level4">
-<h4 class="anchored" data-anchor-id="st-element-the-hypothesis-function">1st Element: The Hypothesis Function</h4>
+</section>
+<section id="st-element-the-hypothesis-function" class="level3">
+<h3 class="anchored" data-anchor-id="st-element-the-hypothesis-function">1st Element: The Hypothesis Function</h3>
 <p>The hypothesis function is a mapping from one input to one output. (Duhh… just like every other function there is). <span class="math display">\[h: \mathbb{R^n} \rightarrow \mathbb{R^k}\]</span> <span class="math display">\[h(x) = \begin{bmatrix} h_1(x) \\ h_2(x) \\ \vdots \\ h_k(x)\end{bmatrix}\]</span></p>
 <p>So what really is <span class="math inline">\(h_i(x)\)</span>? It is the hypothesis, the “belief”, the probability of how likely <span class="math inline">\(x\)</span> maps to class <span class="math inline">\(i\)</span>.</p>
 <p>A <strong>linear hypothesis function</strong> uses matrix multiplication, or some other linear way, for this transformation:</p>
@@ -265,8 +269,8 @@ window.Quarto = {
 </ul>
 <p>Each row is for a data point, the first example is in first row (originally a column vector, now we transposed it to row vector), and the second example is in second row, and so on… Note that this is not merely a notation change, but rather how to implement them more efficiently in code later on.</p>
 </section>
-<section id="nd-element-the-loss-function" class="level4">
-<h4 class="anchored" data-anchor-id="nd-element-the-loss-function">2nd Element: The Loss Function</h4>
+<section id="nd-element-the-loss-function" class="level3">
+<h3 class="anchored" data-anchor-id="nd-element-the-loss-function">2nd Element: The Loss Function</h3>
 <p>How are we going to evaluate the quality of our predictions?</p>
 <p><strong>Classification Error:</strong></p>
 <p><span class="math display">\[l_{err}(h(x),y) = \begin{cases} 0, &amp; \text{if } argmax_i h_i(x) = y \\ 1, &amp; \text{otherwise} \end{cases}\]</span></p>
@@ -280,8 +284,62 @@ window.Quarto = {
 <p>So now we have a probability, We need some way of quantifying whether the vector of probabilities <span class="math inline">\(softmax(h(x))\)</span> is good or not. We want <span class="math inline">\(prob[label == y]\)</span> to be high, as large as possible, so the loss function idea can be minimizing the negative of this probability (double negative makes a positive!).</p>
 <p><span class="math display">\[l_{cross-entropy} (h(x), y) = - prob[label = y]\]</span></p>
 <p>Because minimizing probabilities is not numerically good: Probabilities are bounded between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, so their gradients near <span class="math inline">\(0\)</span> can become tiny (vanishing gradients). Logs transform that range <span class="math inline">\((0,1)\)</span> into <span class="math inline">\((−\infty,0)\)</span>, making the loss surface smoother and the gradients more useful. So we take the log of it</p>
-<p><span class="math display">\[l_{ce} (h(x), y) = - log(prob[label = y])\]</span></p>
-<p>This is commonly known as the <strong>negative log loss</strong> or <strong>cross-entropy loss</strong>.</p>
+<p><span class="math display">\[l_{ce} (h(x), y) = - log(prob[label = y]) = -h_y(x) + log \sum_{j=1}^{k} exp(h_j(x))\]</span></p>
+<p>This is commonly known as the <strong>negative log loss</strong> or <strong>cross-entropy loss</strong>. This is also a case of <em>convex optimization</em>.</p>
+</section>
+<section id="rd-element-optimization" class="level3">
+<h3 class="anchored" data-anchor-id="rd-element-optimization">3rd Element: Optimization</h3>
+<p>How do we find good values for <span class="math inline">\(\theta\)</span>?</p>
+<p>This element we will spend the most time to cover because we not only what to know what the optimization is, but how we are optimizing it.</p>
+<p><em>The following problem is the problem that almost all machine algorithms are solving.</em> Here is the problem,</p>
+<p><span class="math display">\[
+\min_{\theta} \frac{1}{m} \sum_{i=1}^{m} l(h_\theta(x^{(i)}), y^{(i)})
+\]</span></p>
+<p>We are searching over all possible values of <span class="math inline">\(\theta\)</span>, the one that minimizes the <em>average</em> loss. For example, here’s softmax regression,</p>
+<p><span class="math display">\[
+\min_{\theta} f(\theta) = \min_{\theta} \frac{1}{m} \sum_{i=1}^{m} l_{ce}(\theta^T x^{(i)}, y^{(i)})
+\]</span></p>
+<p><em>Now we know the “what”, but, how do we find that?</em> How do we solve <span class="math inline">\(\min_{\theta} f(\theta) ?\)</span></p>
+<section id="the-gradient" class="level4">
+<h4 class="anchored" data-anchor-id="the-gradient">The Gradient</h4>
+<p>For our <span class="math inline">\(f(\theta)\)</span> (the function that we are trying to minimize), remember, this function takes the parameter (which is of dimension n examples by k output classes) and outputs a loss scalar, in other words <span class="math display">\[f: \mathbb{R^{n \times k}} \rightarrow \mathbb{R}\]</span></p>
+<p><span class="math display">\[f(\theta) \in \mathbb{R}\]</span></p>
+<p>Remember that the gradient is a multidimensional derivative that has a direction, which points to the direction of <em>sharpest increase (locally)</em>. The gradient operator can only act on a scalar and return a vector.</p>
+<p>Here is the definition of the gradient in our case,</p>
+<p><span class="math display">\[\nabla_\theta f(\theta) = \begin{bmatrix}
+\frac{\partial f}{\partial \theta_{11}} \frac{\partial f}{\partial \theta_{12}} \dots \frac{\partial f}{\partial \theta_{1k}} \\
+\frac{\partial f}{\partial \theta_{21}} \frac{\partial f}{\partial \theta_{22}}  \dots \frac{\partial f}{\partial \theta_{2k}} \\
+\vdots \\
+\frac{\partial f}{\partial \theta_{n1}} \frac{\partial f}{\partial \theta_{n2}}  \dots \frac{\partial f}{\partial \theta_{nk}}
+\end{bmatrix} \in \mathbb{R^{n \times k}}\]</span></p>
+<p>The derivative of a function is the slope of the function, change in <span class="math inline">\(y\)</span> over change in <span class="math inline">\(x\)</span>.</p>
+</section>
+<section id="gradient-descent" class="level4">
+<h4 class="anchored" data-anchor-id="gradient-descent">Gradient Descent</h4>
+<p>If the gradient points in the direction of maximum increase, to minimize a function, we can repeatedly step in the opposite direction. In other words,</p>
+<p><span class="math display">\[\theta = \theta - \alpha \nabla_\theta f(\theta)\]</span></p>
+<p>where <span class="math inline">\(\alpha\)</span> is called the <em>learning rate</em> or <em>step size</em>. Note that the learning rate must be positive for the stepping direction to be in the negative direction from the gradient. <strong>This basic idea powers all deep learning. It is really hard to encapsulate how impactful this one line of math has been.</strong></p>
+<p>The choice of the step size <span class="math inline">\(\alpha\)</span> is really really really important. Too small slows down progress, but too big will overshoot.</p>
+<p>Now, another problem, calculating the gradient many many times over all data points is computationally intensive and memory expensive.</p>
+<p>In order to calculate the gradient of <span class="math inline">\(f(\theta)\)</span>, which is essentially the sum of gradients,</p>
+<p><span class="math display">\[\nabla_\theta \frac{1}{m} \sum_{i=1}^{m} l(h_\theta(x^{(i)}), y^{(i)}) =  \frac{1}{m} \sum_{i=1}^{m} \nabla_\theta l(h_\theta(x^{(i)}), y^{(i)})\]</span></p>
+<p>We have to calculate the gradient <span class="math inline">\(m\)</span> times, which is very expensive. <em>Can we reduce the number of times we take gradient?</em> Yes, and that’s what we actually do in practice.</p>
+</section>
+<section id="stochastic-gradient-descent" class="level4">
+<h4 class="anchored" data-anchor-id="stochastic-gradient-descent">Stochastic Gradient Descent</h4>
+<p>We split up the dataset into <em>minibatches</em>, which are subsets of data of size <span class="math inline">\(B\)</span>.</p>
+<p>We repeat the process of sampling minibatches and taking steps to update <span class="math inline">\(\theta\)</span>.</p>
+<ul>
+<li>Sample: <span class="math inline">\(X \in \mathbb{R^{B \times n}}, y \in \{ 1, \dots, k\}^B\)</span></li>
+<li>Update: <span class="math inline">\(\theta = \theta - \frac{\alpha}{B} \sum_{i=1}^{B} \nabla_\theta l(h_\theta(x^{(i)}), y^{(i)})\)</span></li>
+</ul>
+</section>
+<section id="calculating-the-gradient-in-practice" class="level4">
+<h4 class="anchored" data-anchor-id="calculating-the-gradient-in-practice">Calculating the gradient in practice</h4>
+<p>As an example, how do we compute the gradient for softmax objective? We can do it by hand, but it is cumbersome. You can use something like chain rule. We want derivative of a vector with respect to a matrix……We need some more general and generic way to take derivatives. What can we do?</p>
+<p>In practice, we just specify the hypothesis function and the loss function, and use <strong>Automatic Differentiation</strong>. But how?</p>
+<p>We can either do it through the “right” way, use matrix differential calculus, jacobians, kronecker products, and vectorization. Or we could take a shortcut (<strong>what everyone actually does</strong>): We pretend everything is scalar, use typical chain rule, and then transpose/rearrange outputs to make sizes work, and then check your answers numerically.</p>
+<p><span class="math display">\[\frac{\partial}{\partial \theta} l_{ce} (\theta^T x, y)= \frac{\partial l_{ce} (\theta^T x, y)}{\partial \theta^T x} \cdot \frac{\partial \theta^T x}{\partial \theta}\]</span></p>
 
 
 </section>
