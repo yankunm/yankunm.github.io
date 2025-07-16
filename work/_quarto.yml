@@ -8,14 +8,8 @@ book:
   date: "6/6/2025"
   chapters:
     - index.qmd
-    # - part: "ELECTROMAGNETICS"
-    #   chapters:
-        # - textbooks/danFleisch.qmd
-        # - textbooks/balanis.qmd
     - part: "MACHINE LEARNING"
       chapters:
-        # - courses/ee647nanophotonics.qmd
-        # - courses/fastai.qmd
         - courses/dls.qmd
   navbar:
     left:
