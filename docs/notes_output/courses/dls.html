@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../courses/optics.html" rel="next">
 <link href="../index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -136,7 +137,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../courses/dls.html">MACHINE LEARNING</a></li><li class="breadcrumb-item"><a href="../courses/dls.html">Deep Learning Systems</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../courses/dls.html">Deep Learning Systems</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -154,23 +155,18 @@ window.Quarto = {
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">MACHINE LEARNING</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../courses/dls.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Deep Learning Systems</span></a>
   </div>
 </li>
-      </ul>
-  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../courses/optics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optics</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -194,7 +190,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../courses/dls.html">MACHINE LEARNING</a></li><li class="breadcrumb-item"><a href="../courses/dls.html">Deep Learning Systems</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Deep Learning Systems</h1>
 </div>
@@ -231,7 +227,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>In this set of notes, we will focus on what the machine learning algorithm box contains. In general, it consists of three things:</p>
+<p>We will focus on what the machine learning algorithm box contains. In general, it consists of three things:</p>
 <ol type="1">
 <li>The hypothesis class (the structure of <span class="math inline">\(h\)</span> in terms of a set of parameters)</li>
 <li>The loss function (specifies how good a given hypothesis is)</li>
@@ -272,7 +268,7 @@ window.Quarto = {
 <section id="nd-element-the-loss-function" class="level3">
 <h3 class="anchored" data-anchor-id="nd-element-the-loss-function">2nd Element: The Loss Function</h3>
 <p>How are we going to evaluate the quality of our predictions?</p>
-<p><strong>Classification Error:</strong></p>
+<p><strong>Classification Error</strong></p>
 <p><span class="math display">\[l_{err}(h(x),y) = \begin{cases} 0, &amp; \text{if } argmax_i h_i(x) = y \\ 1, &amp; \text{otherwise} \end{cases}\]</span></p>
 <p>The error is not differentiable, so it is not good for optimization.</p>
 <p><strong>A better choice: Cross-Entropy Loss or Softmax</strong></p>
@@ -320,10 +316,6 @@ window.Quarto = {
 <p><span class="math display">\[\theta = \theta - \alpha \nabla_\theta f(\theta)\]</span></p>
 <p>where <span class="math inline">\(\alpha\)</span> is called the <em>learning rate</em> or <em>step size</em>. Note that the learning rate must be positive for the stepping direction to be in the negative direction from the gradient. <strong>This basic idea powers all deep learning. It is really hard to encapsulate how impactful this one line of math has been.</strong></p>
 <p>The choice of the step size <span class="math inline">\(\alpha\)</span> is really really really important. Too small slows down progress, but too big will overshoot.</p>
-<p>Now, another problem, calculating the gradient many many times over all data points is computationally intensive and memory expensive.</p>
-<p>In order to calculate the gradient of <span class="math inline">\(f(\theta)\)</span>, which is essentially the sum of gradients,</p>
-<p><span class="math display">\[\nabla_\theta \frac{1}{m} \sum_{i=1}^{m} l(h_\theta(x^{(i)}), y^{(i)}) =  \frac{1}{m} \sum_{i=1}^{m} \nabla_\theta l(h_\theta(x^{(i)}), y^{(i)})\]</span></p>
-<p>We have to calculate the gradient <span class="math inline">\(m\)</span> times, which is very expensive. <em>Can we reduce the number of times we take gradient?</em> Yes, and that’s what we actually do in practice.</p>
 </section>
 <section id="stochastic-gradient-descent" class="level4">
 <h4 class="anchored" data-anchor-id="stochastic-gradient-descent">Stochastic Gradient Descent</h4>
@@ -336,6 +328,9 @@ window.Quarto = {
 </section>
 <section id="calculating-the-gradient-in-practice" class="level4">
 <h4 class="anchored" data-anchor-id="calculating-the-gradient-in-practice">Calculating the gradient in practice</h4>
+<p>In order to calculate the gradient of <span class="math inline">\(f(\theta)\)</span>, which is essentially the sum of gradients,</p>
+<p><span class="math display">\[\nabla_\theta \frac{1}{m} \sum_{i=1}^{m} l(h_\theta(x^{(i)}), y^{(i)}) =  \frac{1}{m} \sum_{i=1}^{m} \nabla_\theta l(h_\theta(x^{(i)}), y^{(i)})\]</span></p>
+<p>We have to calculate the gradient <span class="math inline">\(m\)</span> times, which is very expensive. <em>Can we reduce the number of times we take gradient?</em> Yes, and that’s what we actually do in practice.</p>
 <p>As an example, how do we compute the gradient for softmax objective? We can do it by hand, but it is cumbersome. You can use something like chain rule. We want derivative of a vector with respect to a matrix……We need some more general and generic way to take derivatives. What can we do?</p>
 <p>In practice, we just specify the hypothesis function and the loss function, and use <strong>Automatic Differentiation</strong>. But how?</p>
 <p>We can either do it through the “right” way, use matrix differential calculus, jacobians, kronecker products, and vectorization. Or we could take a shortcut (<strong>what everyone actually does</strong>): We pretend everything is scalar, use typical chain rule, and then transpose/rearrange outputs to make sizes work, and then check your answers numerically.</p>
@@ -753,6 +748,9 @@ window.Quarto = {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../courses/optics.html" class="pagination-link" aria-label="Optics">
+        <span class="nav-page-text">Optics</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

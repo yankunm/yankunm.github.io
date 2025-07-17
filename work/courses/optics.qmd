@@ -1,0 +1,52 @@
+# Optics {.unnumbered}
+
+## Q1: One Dimensional Wave Equation
+
+The wave equation is given by 
+
+$$\psi(x,t) = \frac{3}{[10(x - vt)^2 + 1]}$$
+
+Show, using brute force, that this is a solution to the one dimensional differential wave equation.
+
+Great! Let's start with what is a wave. 
+
+***Def.*** *A classical traveling wave is a self-sustaining disturbance $\psi$ of a medium, and the disturbance $\psi$ moves through space transporting energy and momentum.*
+
+Everything is waves. 
+
+Sound! A type of **longitudinal** wave, where the displacement vector points parallel to the direction of motion.
+
+Guitar string! A type of **transverse** wave, where the displacement vector points perpendicular to the direction of motion.
+
+A wave is not a stream of particles! Because the individual atoms stay in equilibrium, but only the disturbance advances through them. Leonardo da Vinci was one of the first person to realize waves does not transport the medium through which it travels.
+
+Imagine disturbance $\psi$ moves in positive direction $x$ with constant velocity $v$.
+
+$$\psi = f(x,t)$$
+
+What is $f(x,0)$? it is the shape (aka the **profile**) of $\psi$ at $t=0$. For example, try visualizing $f(x) = e^{-ax^2}$, you'll see that it is a **gaussian function**. Setting $t=0$ is taking a snapshot of the pulse as it travels by. 
+
+In order to understand this better, let's ignore $t$ by introducing a coordinate system $S^{'}$ that travels with the pilse at the speed $v$. As we move with $S^{'}$, the wave looks stationary! So
+
+$$\psi = f \left( x^{'} \right)$$
+
+where $x^{'} = x - vt$, because after time $t$ the same point on $\psi$ moved a distance of $vt$.
+
+#### General Form of One Dimensional Wave Function
+
+$$\psi(x,t) = f(x - vt)$$
+
+[Jean Le Rond d'Alembert](https://en.wikipedia.org/wiki/Jean_le_Rond_d%27Alembert) was the one that brought partial differential equations to physics and formulated the differential wave equation.
+
+
+
+
+
+
+
+
+
+
+
+
+

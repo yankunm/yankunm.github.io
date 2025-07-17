@@ -8,9 +8,8 @@ book:
   date: "6/6/2025"
   chapters:
     - index.qmd
-    - part: "MACHINE LEARNING"
-      chapters:
-        - courses/dls.qmd
+    - courses/dls.qmd
+    - courses/optics.qmd
   navbar:
     left:
       - text: Back to Home

@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Alex Meng">
-<meta name="dcterms.date" content="2025-06-06">
 
-<title>Alex Meng’s Notes</title>
+<title>Optics – Alex Meng’s Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,24 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./courses/dls.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../courses/dls.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -81,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Alex Meng’s Notes</span>
     </a>
   </div>
@@ -106,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../courses/optics.html">Optics</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -120,19 +147,19 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./courses/dls.html" class="sidebar-item-text sidebar-link">
+  <a href="../courses/dls.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deep Learning Systems</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./courses/optics.html" class="sidebar-item-text sidebar-link">
+  <a href="../courses/optics.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Optics</span></a>
   </div>
 </li>
@@ -146,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#q1-one-dimensional-wave-equation" id="toc-q1-one-dimensional-wave-equation" class="nav-link active" data-scroll-target="#q1-one-dimensional-wave-equation">Q1: One Dimensional Wave Equation</a></li>
   </ul>
 </nav>
     </div>
@@ -155,26 +182,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Alex Meng’s Notes</h1>
+<h1 class="title">Optics</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Alex Meng </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">June 6, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -184,21 +199,30 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p>If you are reading this, you may be interesed in seeing what is “Alex’s Notes”.</p>
-<p>These notes are just things that I am documenting, that I wish could become a useful resource for my future students, either when I TA or become a professor.</p>
-<p>Here’s how to learn anything:</p>
-<ol type="1">
-<li>Write it out! (Document, Code along)</li>
-<li>EXPERIMENT and explore</li>
-<li>Visualize things you don’t understand</li>
-<li>Ask Questions</li>
-<li>Answer Exercise and Problems (stretch your knowledge)</li>
-<li>Share with like-minded individuals</li>
-</ol>
+<section id="q1-one-dimensional-wave-equation" class="level2">
+<h2 class="anchored" data-anchor-id="q1-one-dimensional-wave-equation">Q1: One Dimensional Wave Equation</h2>
+<p>The wave equation is given by</p>
+<p><span class="math display">\[\psi(x,t) = \frac{3}{[10(x - vt)^2 + 1]}\]</span></p>
+<p>Show, using brute force, that this is a solution to the one dimensional differential wave equation.</p>
+<p>Great! Let’s start with what is a wave.</p>
+<p><strong><em>Def.</em></strong> <em>A classical traveling wave is a self-sustaining disturbance <span class="math inline">\(\psi\)</span> of a medium, and the disturbance <span class="math inline">\(\psi\)</span> moves through space transporting energy and momentum.</em></p>
+<p>Everything is waves.</p>
+<p>Sound! A type of <strong>longitudinal</strong> wave, where the displacement vector points parallel to the direction of motion.</p>
+<p>Guitar string! A type of <strong>transverse</strong> wave, where the displacement vector points perpendicular to the direction of motion.</p>
+<p>A wave is not a stream of particles! Because the individual atoms stay in equilibrium, but only the disturbance advances through them. Leonardo da Vinci was one of the first person to realize waves does not transport the medium through which it travels.</p>
+<p>Imagine disturbance <span class="math inline">\(\psi\)</span> moves in positive direction <span class="math inline">\(x\)</span> with constant velocity <span class="math inline">\(v\)</span>.</p>
+<p><span class="math display">\[\psi = f(x,t)\]</span></p>
+<p>What is <span class="math inline">\(f(x,0)\)</span>? it is the shape (aka the <strong>profile</strong>) of <span class="math inline">\(\psi\)</span> at <span class="math inline">\(t=0\)</span>. For example, try visualizing <span class="math inline">\(f(x) = e^{-ax^2}\)</span>, you’ll see that it is a <strong>gaussian function</strong>. Setting <span class="math inline">\(t=0\)</span> is taking a snapshot of the pulse as it travels by.</p>
+<p>In order to understand this better, let’s ignore <span class="math inline">\(t\)</span> by introducing a coordinate system <span class="math inline">\(S^{'}\)</span> that travels with the pilse at the speed <span class="math inline">\(v\)</span>. As we move with <span class="math inline">\(S^{'}\)</span>, the wave looks stationary! So</p>
+<p><span class="math display">\[\psi = f \left( x^{'} \right)\]</span></p>
+<p>where <span class="math inline">\(x^{'} = x - vt\)</span>, because after time <span class="math inline">\(t\)</span> the same point on <span class="math inline">\(\psi\)</span> moved a distance of <span class="math inline">\(vt\)</span>.</p>
+<section id="general-form-of-one-dimensional-wave-function" class="level4">
+<h4 class="anchored" data-anchor-id="general-form-of-one-dimensional-wave-function">General Form of One Dimensional Wave Function</h4>
+<p><span class="math display">\[\psi(x,t) = f(x - vt)\]</span></p>
+<p><a href="https://en.wikipedia.org/wiki/Jean_le_Rond_d%27Alembert">Jean Le Rond d’Alembert</a> was the one that brought partial differential equations to physics and formulated the differential wave equation.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -603,11 +627,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../courses/dls.html" class="pagination-link" aria-label="Deep Learning Systems">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Deep Learning Systems</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./courses/dls.html" class="pagination-link" aria-label="Deep Learning Systems">
-        <span class="nav-page-text">Deep Learning Systems</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

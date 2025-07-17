@@ -12,7 +12,7 @@ flowchart LR
   B --> C(Model h)
 ```
 
-In this set of notes, we will focus on what the machine learning algorithm box contains. In general, it consists of three things:
+We will focus on what the machine learning algorithm box contains. In general, it consists of three things:
 
 1. The hypothesis class (the structure of $h$ in terms of a set of parameters)
 2. The loss function (specifies how good a given hypothesis is)
@@ -88,7 +88,7 @@ Each row is for a data point, the first example is in first row (originally a co
 
 How are we going to evaluate the quality of our predictions?
 
-**Classification Error:**
+**Classification Error**
 
 $$l_{err}(h(x),y) = \begin{cases} 0, & \text{if } argmax_i h_i(x) = y \\ 1, & \text{otherwise} \end{cases}$$
 
@@ -173,14 +173,6 @@ where $\alpha$ is called the *learning rate* or *step size*. Note that the learn
 
 The choice of the step size $\alpha$ is really really really important. Too small slows down progress, but too big will overshoot. 
 
-Now, another problem, calculating the gradient many many times over all data points is computationally intensive and memory expensive. 
-
-In order to calculate the gradient of $f(\theta)$, which is essentially the sum of gradients,
-
-$$\nabla_\theta \frac{1}{m} \sum_{i=1}^{m} l(h_\theta(x^{(i)}), y^{(i)}) =  \frac{1}{m} \sum_{i=1}^{m} \nabla_\theta l(h_\theta(x^{(i)}), y^{(i)})$$
-
-We have to calculate the gradient $m$ times, which is very expensive. *Can we reduce the number of times we take gradient?* Yes, and that's what we actually do in practice.
-
 #### Stochastic Gradient Descent 
 
 We split up the dataset into *minibatches*, which are subsets of data of size $B$. 
@@ -191,6 +183,12 @@ We repeat the process of sampling minibatches and taking steps to update $\theta
 * Update: $\theta = \theta - \frac{\alpha}{B} \sum_{i=1}^{B} \nabla_\theta l(h_\theta(x^{(i)}), y^{(i)})$
 
 #### Calculating the gradient in practice
+
+In order to calculate the gradient of $f(\theta)$, which is essentially the sum of gradients,
+
+$$\nabla_\theta \frac{1}{m} \sum_{i=1}^{m} l(h_\theta(x^{(i)}), y^{(i)}) =  \frac{1}{m} \sum_{i=1}^{m} \nabla_\theta l(h_\theta(x^{(i)}), y^{(i)})$$
+
+We have to calculate the gradient $m$ times, which is very expensive. *Can we reduce the number of times we take gradient?* Yes, and that's what we actually do in practice.
 
 As an example, how do we compute the gradient for softmax objective? We can do it by hand, but it is cumbersome. You can use something like chain rule. We want derivative of a vector with respect to a matrix......We need some more general and generic way to take derivatives. What can we do?
 
