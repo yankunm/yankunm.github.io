@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Optics – Alex Meng’s Notes</title>
+<title>dsa – AM</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,25 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../courses/quant.html" rel="next">
-<link href="../courses/dls.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-434a87f1a65cf5564e22d224e5738d6d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,47 +68,18 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Alex Meng’s Notes</span>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">AM</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -120,8 +89,16 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://yankunm.github.io/"> 
-<span class="menu-text">Back to Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../notes_output/index.html"> 
+<span class="menu-text">Alex Meng’s Notes</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -129,107 +106,22 @@ window.Quarto = {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../courses/optics.html">Optics</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../courses/dls.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Deep Learning Systems</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../courses/optics.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Optics</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../courses/quant.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quant</span></a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#q1-one-dimensional-wave-equation" id="toc-q1-one-dimensional-wave-equation" class="nav-link active" data-scroll-target="#q1-one-dimensional-wave-equation">Q1: One Dimensional Wave Equation</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Optics</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
+<section id="data-structures-and-algorithms" class="level1">
+<h1>Data Structures and Algorithms</h1>
 
 
-</header>
-
-
-<section id="q1-one-dimensional-wave-equation" class="level2">
-<h2 class="anchored" data-anchor-id="q1-one-dimensional-wave-equation">Q1: One Dimensional Wave Equation</h2>
-<p>The wave equation is given by</p>
-<p><span class="math display">\[\psi(x,t) = \frac{3}{[10(x - vt)^2 + 1]}\]</span></p>
-<p>Show, using brute force, that this is a solution to the one dimensional differential wave equation.</p>
-<p>Great! Let’s start with what is a wave.</p>
-<p><strong><em>Def.</em></strong> <em>A classical traveling wave is a self-sustaining disturbance <span class="math inline">\(\psi\)</span> of a medium, and the disturbance <span class="math inline">\(\psi\)</span> moves through space transporting energy and momentum.</em></p>
-<p>Everything is waves.</p>
-<p>Sound! A type of <strong>longitudinal</strong> wave, where the displacement vector points parallel to the direction of motion.</p>
-<p>Guitar string! A type of <strong>transverse</strong> wave, where the displacement vector points perpendicular to the direction of motion.</p>
-<p>A wave is not a stream of particles! Because the individual atoms stay in equilibrium, but only the disturbance advances through them. Leonardo da Vinci was one of the first person to realize waves does not transport the medium through which it travels.</p>
-<p>Imagine disturbance <span class="math inline">\(\psi\)</span> moves in positive direction <span class="math inline">\(x\)</span> with constant velocity <span class="math inline">\(v\)</span>.</p>
-<p><span class="math display">\[\psi = f(x,t)\]</span></p>
-<p>What is <span class="math inline">\(f(x,0)\)</span>? it is the shape (aka the <strong>profile</strong>) of <span class="math inline">\(\psi\)</span> at <span class="math inline">\(t=0\)</span>. For example, try visualizing <span class="math inline">\(f(x) = e^{-ax^2}\)</span>, you’ll see that it is a <strong>gaussian function</strong>. Setting <span class="math inline">\(t=0\)</span> is taking a snapshot of the pulse as it travels by.</p>
-<p>In order to understand this better, let’s ignore <span class="math inline">\(t\)</span> by introducing a coordinate system <span class="math inline">\(S^{'}\)</span> that travels with the pilse at the speed <span class="math inline">\(v\)</span>. As we move with <span class="math inline">\(S^{'}\)</span>, the wave looks stationary! So</p>
-<p><span class="math display">\[\psi = f \left( x^{'} \right)\]</span></p>
-<p>where <span class="math inline">\(x^{'} = x - vt\)</span>, because after time <span class="math inline">\(t\)</span> the same point on <span class="math inline">\(\psi\)</span> moved a distance of <span class="math inline">\(vt\)</span>.</p>
-<section id="general-form-of-one-dimensional-wave-function" class="level4">
-<h4 class="anchored" data-anchor-id="general-form-of-one-dimensional-wave-function">General Form of One Dimensional Wave Function</h4>
-<p><span class="math display">\[\psi(x,t) = f(x - vt)\]</span></p>
-<p><a href="https://en.wikipedia.org/wiki/Jean_le_Rond_d%27Alembert">Jean Le Rond d’Alembert</a> was the one that brought partial differential equations to physics and formulated the differential wave equation.</p>
-
-
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -632,32 +524,7 @@ window.Quarto = {
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../courses/dls.html" class="pagination-link" aria-label="Deep Learning Systems">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Deep Learning Systems</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../courses/quant.html" class="pagination-link" aria-label="Quant">
-        <span class="nav-page-text">Quant</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
-<p>Copyright 2025, Alex Meng</p>
-</div>
-    <div class="nav-footer-right">
-      &nbsp;
-    </div>
-  </div>
-</footer>
 
 
 

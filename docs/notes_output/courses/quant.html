@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Optics – Alex Meng’s Notes</title>
+<title>Quant – Alex Meng’s Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../courses/quant.html" rel="next">
-<link href="../courses/dls.html" rel="prev">
+<link href="../courses/optics.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -134,7 +133,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../courses/optics.html">Optics</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../courses/quant.html">Quant</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -160,13 +159,13 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../courses/optics.html" class="sidebar-item-text sidebar-link active">
+  <a href="../courses/optics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Optics</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../courses/quant.html" class="sidebar-item-text sidebar-link">
+  <a href="../courses/quant.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Quant</span></a>
   </div>
 </li>
@@ -180,7 +179,10 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#q1-one-dimensional-wave-equation" id="toc-q1-one-dimensional-wave-equation" class="nav-link active" data-scroll-target="#q1-one-dimensional-wave-equation">Q1: One Dimensional Wave Equation</a></li>
+  <li><a href="#problem-simplification" id="toc-problem-simplification" class="nav-link active" data-scroll-target="#problem-simplification">1 Problem Simplification</a>
+  <ul class="collapse">
+  <li><a href="#screwy-pirates" id="toc-screwy-pirates" class="nav-link" data-scroll-target="#screwy-pirates">Screwy Pirates</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -189,7 +191,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Optics</h1>
+<h1 class="title">Quant</h1>
 </div>
 
 
@@ -206,27 +208,31 @@ window.Quarto = {
 </header>
 
 
-<section id="q1-one-dimensional-wave-equation" class="level2">
-<h2 class="anchored" data-anchor-id="q1-one-dimensional-wave-equation">Q1: One Dimensional Wave Equation</h2>
-<p>The wave equation is given by</p>
-<p><span class="math display">\[\psi(x,t) = \frac{3}{[10(x - vt)^2 + 1]}\]</span></p>
-<p>Show, using brute force, that this is a solution to the one dimensional differential wave equation.</p>
-<p>Great! Let’s start with what is a wave.</p>
-<p><strong><em>Def.</em></strong> <em>A classical traveling wave is a self-sustaining disturbance <span class="math inline">\(\psi\)</span> of a medium, and the disturbance <span class="math inline">\(\psi\)</span> moves through space transporting energy and momentum.</em></p>
-<p>Everything is waves.</p>
-<p>Sound! A type of <strong>longitudinal</strong> wave, where the displacement vector points parallel to the direction of motion.</p>
-<p>Guitar string! A type of <strong>transverse</strong> wave, where the displacement vector points perpendicular to the direction of motion.</p>
-<p>A wave is not a stream of particles! Because the individual atoms stay in equilibrium, but only the disturbance advances through them. Leonardo da Vinci was one of the first person to realize waves does not transport the medium through which it travels.</p>
-<p>Imagine disturbance <span class="math inline">\(\psi\)</span> moves in positive direction <span class="math inline">\(x\)</span> with constant velocity <span class="math inline">\(v\)</span>.</p>
-<p><span class="math display">\[\psi = f(x,t)\]</span></p>
-<p>What is <span class="math inline">\(f(x,0)\)</span>? it is the shape (aka the <strong>profile</strong>) of <span class="math inline">\(\psi\)</span> at <span class="math inline">\(t=0\)</span>. For example, try visualizing <span class="math inline">\(f(x) = e^{-ax^2}\)</span>, you’ll see that it is a <strong>gaussian function</strong>. Setting <span class="math inline">\(t=0\)</span> is taking a snapshot of the pulse as it travels by.</p>
-<p>In order to understand this better, let’s ignore <span class="math inline">\(t\)</span> by introducing a coordinate system <span class="math inline">\(S^{'}\)</span> that travels with the pilse at the speed <span class="math inline">\(v\)</span>. As we move with <span class="math inline">\(S^{'}\)</span>, the wave looks stationary! So</p>
-<p><span class="math display">\[\psi = f \left( x^{'} \right)\]</span></p>
-<p>where <span class="math inline">\(x^{'} = x - vt\)</span>, because after time <span class="math inline">\(t\)</span> the same point on <span class="math inline">\(\psi\)</span> moved a distance of <span class="math inline">\(vt\)</span>.</p>
-<section id="general-form-of-one-dimensional-wave-function" class="level4">
-<h4 class="anchored" data-anchor-id="general-form-of-one-dimensional-wave-function">General Form of One Dimensional Wave Function</h4>
-<p><span class="math display">\[\psi(x,t) = f(x - vt)\]</span></p>
-<p><a href="https://en.wikipedia.org/wiki/Jean_le_Rond_d%27Alembert">Jean Le Rond d’Alembert</a> was the one that brought partial differential equations to physics and formulated the differential wave equation.</p>
+<p>Being a quant is knowing how to solve problems with logic, math, and intuition. These Problems come from <a href="https://academyflex.com/wp-content/uploads/2024/03/a-practical-guide-to-quantitative-finance-interviews.pdf">A practical guide to Quantitative Finance Interviews by Xinfeng Zhou</a>.</p>
+<section id="problem-simplification" class="level2">
+<h2 class="anchored" data-anchor-id="problem-simplification">1 Problem Simplification</h2>
+<section id="screwy-pirates" class="level3">
+<h3 class="anchored" data-anchor-id="screwy-pirates">Screwy Pirates</h3>
+<p>Five pirates looted a chest full of 100 gold coins. Being a bunch of democratic pirates, they agree on the following method to divide the loot:</p>
+<p>The most senior pirate will propose a distribution of the coins. All pirates, <em>including the most senior pirate</em>, will then vote. If at least <span class="math inline">\(50\%\)</span> of the pirates (<span class="math inline">\(3\)</span> pirates in this case) accept the proposal, the gold is divided as proposed. If not, the most senior pirate will be fed to shark and the process starts over with the next most senior pirate… The process is repeated until a plan is approved. You can assume that all pirates are perfectly rational: they want to stay alive first and to get as much gold as possible second. Finally, being blood-thirsty pirates, they want to have fewer pirates on the boat if given a choice between otherwise equal outcomes.</p>
+<p>How will the gold coins be divided in the end?</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>I have no idea what the five pirates will do, lemme consider a simpler case, 1 pirate.</p>
+<p>1 pirate. Pirate 1 propose to distribute all 100 gold coins to himself, and accept the proposal.</p>
+<p><span class="math display">\[100 \text{ coins to pirate 1}\]</span></p>
+<p>2 pirates. Pirate 2 proposes to get all the gold, 50% good, gets all the gold.</p>
+<p><span class="math display">\[100 \text{ coins to pirate 2}\]</span></p>
+<p>3 pirates. From the perspective of pirate 1, pirate 1 gets nothing if pirate 3 pirate 3 gets voted out (back to case 2), so pirate 1 will try to make pirate 3 win, iff pirate 1 gets at least some benefits. Pirate 3 knows that, so pirate 3 will give 1 coin to pirate 1 and 99 coins to pirate 3, since pirate 1 will think anything is better than nothing.</p>
+<p><span class="math display">\[1 \text{ coin to pirate 1}, 99 \text{ coins to pirate 3}\]</span></p>
+<p>4 pirates. If pirate 4 gives to pirate 2, pirate 2 will vote for pirate 4 because if he doesn’t, it will be back to 3 pirates case where he doesn’t get anything…So</p>
+<p><span class="math display">\[1 \text{ coin pirate 2}, 99 \text{ coins pirate 4}\]</span></p>
+<p>5 pirates. Pirate 5 will give coinds to pirate 1 and pirate 3, because doing that will allow them to get some coins, where if he gets voted out, in 4 pirates case they don’t get anything…So</p>
+<p><span class="math display">\[\boxed{1 \text{ coin for pirate 1}, 1 \text{ coin for pirate 3}, 98 \text{ coins for pirate 5}}\]</span></p>
+We can actually formualte a generalizable law from this using mathematics.
+</details>
 
 
 </section>
@@ -634,14 +640,11 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../courses/dls.html" class="pagination-link" aria-label="Deep Learning Systems">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Deep Learning Systems</span>
+      <a href="../courses/optics.html" class="pagination-link" aria-label="Optics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Optics</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../courses/quant.html" class="pagination-link" aria-label="Quant">
-        <span class="nav-page-text">Quant</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

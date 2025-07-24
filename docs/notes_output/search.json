@@ -14,7 +14,7 @@
     "href": "courses/dls.html",
     "title": "Deep Learning Systems",
     "section": "",
-    "text": "Chapter 1: Machine Learning Refresher\nIn this set of notes, we will create a minimal version of PyTorch / Tensorflow from scratch, of what I call “PyStickOnFire”.\nThe (Supervised) Machine learning idea: we take a bunch of labeled data, feed them to a machine learning algorithm, and it outputs a “program” that solves the task.\nflowchart LR\n  A[Training Data Set X] --&gt;B[Machine Learning Algorithm]\n  B --&gt; C(Model h)\nWe will focus on what the machine learning algorithm box contains. In general, it consists of three things:\nAll alogrithms in machine learning fit in this structure. Let’s look at softmax regression to illustrate these three basic components.",
+    "text": "Chapter 1: Machine Learning Refresher\nIn this set of notes, we will create a minimal version of PyTorch / Tensorflow from scratch, of what I call “PyStickOnFire”.\nThe (Supervised) Machine learning idea: we take a bunch of labeled data, feed them to a machine learning algorithm, and it outputs a “program” that solves the task.\nB[Machine Learning Algorithm] B –&gt; C(Model h) ``` –&gt;\nWe will focus on what the machine learning algorithm box contains. In general, it consists of three things:\nAll alogrithms in machine learning fit in this structure. Let’s look at softmax regression to illustrate these three basic components.",
     "crumbs": [
       "Deep Learning Systems"
     ]
@@ -47,6 +47,26 @@
     "text": "General Form of One Dimensional Wave Function\n\\[\\psi(x,t) = f(x - vt)\\]\nJean Le Rond d’Alembert was the one that brought partial differential equations to physics and formulated the differential wave equation.",
     "crumbs": [
       "Optics"
+    ]
+  },
+  {
+    "objectID": "courses/quant.html",
+    "href": "courses/quant.html",
+    "title": "Quant",
+    "section": "",
+    "text": "1 Problem Simplification\nBeing a quant is knowing how to solve problems with logic, math, and intuition. These Problems come from A practical guide to Quantitative Finance Interviews by Xinfeng Zhou.",
+    "crumbs": [
+      "Quant"
+    ]
+  },
+  {
+    "objectID": "courses/quant.html#problem-simplification",
+    "href": "courses/quant.html#problem-simplification",
+    "title": "Quant",
+    "section": "",
+    "text": "Screwy Pirates\nFive pirates looted a chest full of 100 gold coins. Being a bunch of democratic pirates, they agree on the following method to divide the loot:\nThe most senior pirate will propose a distribution of the coins. All pirates, including the most senior pirate, will then vote. If at least \\(50\\%\\) of the pirates (\\(3\\) pirates in this case) accept the proposal, the gold is divided as proposed. If not, the most senior pirate will be fed to shark and the process starts over with the next most senior pirate… The process is repeated until a plan is approved. You can assume that all pirates are perfectly rational: they want to stay alive first and to get as much gold as possible second. Finally, being blood-thirsty pirates, they want to have fewer pirates on the boat if given a choice between otherwise equal outcomes.\nHow will the gold coins be divided in the end?\n\n\nAnswer\n\nI have no idea what the five pirates will do, lemme consider a simpler case, 1 pirate.\n1 pirate. Pirate 1 propose to distribute all 100 gold coins to himself, and accept the proposal.\n\\[100 \\text{ coins to pirate 1}\\]\n2 pirates. Pirate 2 proposes to get all the gold, 50% good, gets all the gold.\n\\[100 \\text{ coins to pirate 2}\\]\n3 pirates. From the perspective of pirate 1, pirate 1 gets nothing if pirate 3 pirate 3 gets voted out (back to case 2), so pirate 1 will try to make pirate 3 win, iff pirate 1 gets at least some benefits. Pirate 3 knows that, so pirate 3 will give 1 coin to pirate 1 and 99 coins to pirate 3, since pirate 1 will think anything is better than nothing.\n\\[1 \\text{ coin to pirate 1}, 99 \\text{ coins to pirate 3}\\]\n4 pirates. If pirate 4 gives to pirate 2, pirate 2 will vote for pirate 4 because if he doesn’t, it will be back to 3 pirates case where he doesn’t get anything…So\n\\[1 \\text{ coin pirate 2}, 99 \\text{ coins pirate 4}\\]\n5 pirates. Pirate 5 will give coinds to pirate 1 and pirate 3, because doing that will allow them to get some coins, where if he gets voted out, in 4 pirates case they don’t get anything…So\n\\[\\boxed{1 \\text{ coin for pirate 1}, 1 \\text{ coin for pirate 3}, 98 \\text{ coins for pirate 5}}\\]\nWe can actually formualte a generalizable law from this using mathematics.",
+    "crumbs": [
+      "Quant"
     ]
   }
 ]

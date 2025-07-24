@@ -6,11 +6,11 @@ In this set of notes, we will create a minimal version of PyTorch / Tensorflow f
 
 The (Supervised) Machine learning idea: we take a bunch of labeled data, feed them to a machine learning algorithm, and it outputs a "program" that solves the task.
 
-```{mermaid}
+<!-- ```{mermaid}
 flowchart LR
   A[Training Data Set X] -->B[Machine Learning Algorithm]
   B --> C(Model h)
-```
+``` -->
 
 We will focus on what the machine learning algorithm box contains. In general, it consists of three things:
 

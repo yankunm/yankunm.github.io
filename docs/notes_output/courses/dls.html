@@ -69,9 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -167,6 +164,12 @@ window.Quarto = {
  <span class="menu-text">Optics</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../courses/quant.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quant</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -213,20 +216,10 @@ window.Quarto = {
 <section id="chapter-1-machine-learning-refresher" class="level2">
 <h2 class="anchored" data-anchor-id="chapter-1-machine-learning-refresher">Chapter 1: Machine Learning Refresher</h2>
 <p>The (Supervised) Machine learning idea: we take a bunch of labeled data, feed them to a machine learning algorithm, and it outputs a “program” that solves the task.</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-  A[Training Data Set X] --&gt;B[Machine Learning Algorithm]
-  B --&gt; C(Model h)
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+<!-- ```{mermaid}
+flowchart LR
+  A[Training Data Set X] -->
+<p>B[Machine Learning Algorithm] B –&gt; C(Model h) ``` –&gt;</p>
 <p>We will focus on what the machine learning algorithm box contains. In general, it consists of three things:</p>
 <ol type="1">
 <li>The hypothesis class (the structure of <span class="math inline">\(h\)</span> in terms of a set of parameters)</li>
