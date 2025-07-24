@@ -10,6 +10,7 @@ book:
     - index.qmd
     - courses/dls.qmd
     - courses/optics.qmd
+    - courses/quant.qmd
   navbar:
     left:
       - text: Back to Home

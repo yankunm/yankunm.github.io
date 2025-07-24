@@ -1,0 +1,59 @@
+# Quant
+
+Being a quant is knowing how to solve problems with logic, math, and intuition. These Problems come from [A practical guide to Quantitative Finance Interviews by Xinfeng Zhou](https://academyflex.com/wp-content/uploads/2024/03/a-practical-guide-to-quantitative-finance-interviews.pdf).
+
+## 1 Problem Simplification
+
+### Screwy Pirates
+
+Five pirates looted a chest full of 100 gold coins. Being a bunch of democratic pirates,
+they agree on the following method to divide the loot:
+
+The most senior pirate will propose a distribution of the coins. All pirates, *including the
+most senior pirate*, will then vote. If at least $50\%$ of the pirates ($3$ pirates in this case)
+accept the proposal, the gold is divided as proposed. If not, the most senior pirate will be
+fed to shark and the process starts over with the next most senior pirate... The process is
+repeated until a plan is approved. You can assume that all pirates are perfectly rational:
+they want to stay alive first and to get as much gold as possible second. Finally, being
+blood-thirsty pirates, they want to have fewer pirates on the boat if given a choice
+between otherwise equal outcomes.
+
+How will the gold coins be divided in the end?
+
+<details>
+<summary>Answer</summary>
+I have no idea what the five pirates will do, lemme consider a simpler case, 1 pirate.
+
+1 pirate. Pirate 1 propose to distribute all 100 gold coins to himself, and accept the proposal.
+
+$$100 \text{ coins to pirate 1}$$
+
+2 pirates. Pirate 2 proposes to get all the gold, 50% good, gets all the gold.
+
+$$100 \text{ coins to pirate 2}$$
+
+3 pirates. From the perspective of pirate 1, pirate 1 gets nothing if pirate 3 pirate 3 gets voted out (back to case 2), so pirate 1 will try to make pirate 3 win, iff pirate 1 gets at least some benefits. Pirate 3 knows that, so pirate 3 will give 1 coin to pirate 1 and 99 coins to pirate 3, since pirate 1 will think anything is better than nothing. 
+
+$$1 \text{ coin to pirate 1}, 99 \text{ coins to pirate 3}$$
+
+
+4 pirates. If pirate 4 gives to pirate 2, pirate 2 will vote for pirate 4 because if he doesn't, it will be back to 3 pirates case where he doesn't get anything...So
+
+$$1 \text{ coin pirate 2}, 99 \text{ coins pirate 4}$$
+
+5 pirates. Pirate 5 will give coinds to pirate 1 and pirate 3, because doing that will allow them to get some coins, where if he gets voted out, in 4 pirates case they don't get anything...So
+
+$$\boxed{1 \text{ coin for pirate 1}, 1 \text{ coin for pirate 3}, 98 \text{ coins for pirate 5}}$$
+
+We can actually formualte a generalizable law from this using mathematics. 
+</details>
+
+
+
+
+
+
+
+
+
+
