@@ -1,4 +1,4 @@
-# Quant {.unnumbered}
+# Problem Solving {.unnumbered}
 
 Being a quant is knowing how to solve problems with logic, math, and intuition. These Problems come from [A practical guide to Quantitative Finance Interviews by Xinfeng Zhou](https://academyflex.com/wp-content/uploads/2024/03/a-practical-guide-to-quantitative-finance-interviews.pdf).
 

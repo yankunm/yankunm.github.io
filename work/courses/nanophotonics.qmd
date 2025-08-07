@@ -1,0 +1,60 @@
+# Nanophotonics {.unnumbered}
+
+## Metamaterials
+
+Is it possible to design artificial materials that have electromagnetic roperties **not found in nature**?
+
+Yes. There are in general two types:
+
+* Negative Index: $\epsilon < 0, \mu < 0$
+* Hyperbolic: $\epsilon_{||} \epsilon_{\perp} < 0$
+
+
+
+### Introduction
+
+Metamaterials are composed of carefully engineered subwavelength structures (meta-atoms)
+
+$$\text{Actual Atom } \lambda \approx 1 \times 10^{-4} \mu m $$
+$$\text{EM wave of interest } \lambda \approx 1  \mu m $$
+
+$$\implies \text{Room for engineering } \lambda \approx [0.01, 0.1] \mu m $$
+
+### Composite Media
+ 
+When we have composite media, it is not merely a sum of permittivity. The effective dielectric constant of the mixture $\epsilon_{eff}$ depends on not only the **volume fill fraction** but also the detailed geometric structure of the materials. [Here's more details on how to calculate effective permitivity of composite media.](https://en.wikipedia.org/wiki/Effective_medium_approximations)
+
+When we have a layered structure, the $\vec{E}_{||}$ sees a "series capacitor" connection. If we have layered structure of two materials with length $d_a$ and $d_b$,
+
+$$\frac{1}{\epsilon_{||}} = \frac{1}{d_a + d_b} \left( \frac{d_a}{\epsilon_a} + \frac{d_b}{\epsilon_b} \right)$$
+
+## Metasurfaces
+
+First metamaterial got suggested, but since it must be 3D, it is very difficult to fabricate. In order to use a metamaterial, since they are made of metal, highly absorbing, light cannot penetrate through metamaterials. 
+
+Bulk metamaterials is difficult, so why not just do a surface? so this is how metasurfaces came about. 
+
+### Lifeguard Problem
+
+If a lifeguard want to rescue a drowning man, the lifeguard needs to find out the optimal route. Since swimming speed is much slower than the speed at which he cna run, he must optimize the path based on his speed. This leads to **Snell's Law**: Light chooses the path that has minimal action.
+
+This is what happens in typical situation. Metasurface acts like a wall, very thin.
+
+Before:
+
+$$n_t \sin \theta_t - n_i sin \theta_i = 0$$
+
+Now:
+
+Accounting for the time the lifeguard moves through the wall
+
+$$n_t \sin \theta_t - n_i sin \theta_i = \frac{1}{k_0} \frac{d \Phi}{dx}$$
+
+The lifeguard wants to minimize the time to go through the wall. Making metasurface is designing the wall shape so we can control the propagation of light.
+
+### Huygens Construction of Wavefront
+
+Huygen's principle states that in order to describe the propagation of wave and each point of wavefront, you can imagine that each point of wavefront acts as the surce of wave, so you can have a diverging.
+
+Metaatoms have different response to the incident light, so some metaatoms crates the wavefront with a relatively smaller phase shift, and some create larger phase shift. Even though it's thin and flat, you can deflect electromagnetic wave. 
+
