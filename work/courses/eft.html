@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>applied_electromagnetics</title>
+<title>eft</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,17 +23,17 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="Applied_Electromagnetics_files/libs/clipboard/clipboard.min.js"></script>
-<script src="Applied_Electromagnetics_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="Applied_Electromagnetics_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="Applied_Electromagnetics_files/libs/quarto-html/popper.min.js"></script>
-<script src="Applied_Electromagnetics_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="Applied_Electromagnetics_files/libs/quarto-html/anchor.min.js"></script>
-<link href="Applied_Electromagnetics_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="Applied_Electromagnetics_files/libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="Applied_Electromagnetics_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="Applied_Electromagnetics_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="Applied_Electromagnetics_files/libs/bootstrap/bootstrap-81267100e462c21b3d6c0d5bf76a3417.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="eft_files/libs/clipboard/clipboard.min.js"></script>
+<script src="eft_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="eft_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="eft_files/libs/quarto-html/popper.min.js"></script>
+<script src="eft_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="eft_files/libs/quarto-html/anchor.min.js"></script>
+<link href="eft_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="eft_files/libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="eft_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="eft_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="eft_files/libs/bootstrap/bootstrap-81267100e462c21b3d6c0d5bf76a3417.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -76,117 +76,19 @@ window.Quarto = {
 
 
 
-<section id="applied-electromagnetics" class="level1 unnumbered">
-<h1 class="unnumbered">Applied Electromagnetics</h1>
-<section id="electromagnetic-waves" class="level2">
-<h2 class="anchored" data-anchor-id="electromagnetic-waves">Electromagnetic Waves</h2>
+<section id="electromagnetic-field-theory" class="level1">
+<h1>Electromagnetic Field Theory</h1>
+<section id="mathematical-preliminaries" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-preliminaries">Mathematical Preliminaries</h2>
 <ul>
-<li>Maxwell’s Equations predict waves</li>
-<li>Derivation and solution of the wave equation</li>
+<li>Phasors</li>
+<li>Phasor Arithmetic</li>
+<li>Scalars &amp; Vectors</li>
 </ul>
-<p>In source-free media, <span class="math inline">\(\vec{J} = 0\)</span> and <span class="math inline">\(\rho_V = 0\)</span>, maxwell’s equations in the frequency-domain become</p>
-<p><strong>Curl Equations</strong></p>
-<p><span class="math display">\[\nabla \times \vec{E} = -j\omega \vec{B}\]</span> <span class="math display">\[\nabla \times \vec{H} = -j\omega \vec{D}\]</span></p>
-<p><strong>Divergence Equations</strong></p>
-<p><span class="math display">\[\nabla \cdot \vec{D} = 0\]</span> <span class="math display">\[\nabla \cdot \vec{B} = 0\]</span></p>
-<p><strong>Constitutive Relations</strong></p>
-<p><span class="math display">\[\vec{D} = \epsilon \vec{E}\]</span> <span class="math display">\[\vec{B} = \epsilon \vec{H}\]</span></p>
-<p>Substituting constitutive relations into the curl equations, we get:</p>
-<p><span class="math display">\[\nabla \times \vec{E} = -j \omega \mu \vec{H}\]</span></p>
-<p>If we have an oscillating <span class="math inline">\(\vec{H}\)</span> that will induce a circulating <span class="math inline">\(\vec{E}\)</span></p>
-<p><span class="math display">\[\nabla \times \vec{H} =  - j \omega \epsilon \vec{E}\]</span></p>
-<p>If we have an oscillating <span class="math inline">\(\vec{E}\)</span> that will induce a circulating <span class="math inline">\(\vec{H}\)</span></p>
-<p>An oscillating (for some reason) electric field, oscillating electric field will induce a circulating magnetic field.</p>
-</section>
-<section id="derive-wave-equation" class="level2">
-<h2 class="anchored" data-anchor-id="derive-wave-equation">Derive Wave Equation</h2>
-<p><strong>Curl Equations with Constitutive Relations plugged in</strong></p>
-<p><span class="math display">\[
-\nabla \times \vec{E} = -j \omega [\mu] \vec{H} \tag{1}
-\]</span></p>
-<p><span class="math display">\[
-\nabla \times \vec{H} = j \omega [\epsilon] \vec{E} \tag{2}
-\]</span></p>
-<p><strong>Solve (1) for <span class="math inline">\(\vec{H}\)</span></strong></p>
-<p><span class="math display">\[\frac{1}{j \omega [\mu]}  \nabla \times \vec{E} = \vec{H}\tag{3}\]</span></p>
-<p><strong>Substitute (3) into (2)</strong></p>
-<p><span class="math display">\[
-\nabla \times \left( \frac{1}{j \omega [\mu]}  \nabla \times \vec{E} \right) = -j \omega [\epsilon] \vec{E}
-\]</span></p>
-<p>There you go!! That is the wave equation.</p>
-<p><span class="math display">\[
-\nabla \times \left( \frac{1}{[\mu]}  \nabla \times \vec{E} \right) = (j\omega) (-j \omega) [\epsilon] \vec{E}
-\]</span></p>
-<p><span class="math display">\[
-\nabla \times \left( \frac{1}{[\mu]}  \nabla \times \vec{E} \right) = \omega^2 [\epsilon] \vec{E}
-\]</span></p>
-<p>Here we have anisotropic permeability and permitivity, it is usually used in computer simulations.</p>
-<p>We want to bring permeability outside of that curl, so if permeability is inhomogeneous, it is a function of position so we cannot bring it outside.</p>
-<p>If we assume <strong>linear, homogeneous, anisotropic materials</strong>,</p>
-<p><span class="math display">\[
-\nabla \times \left( \frac{1}{[\mu]}  \nabla \times \vec{E} \right) = \omega^2 [\epsilon] \vec{E}
-\]</span></p>
-<p><span class="math display">\[
-\nabla \times \left(  \nabla \times \vec{E} \right) = \omega^2 \mu \epsilon \vec{E}
-\]</span></p>
-<p>Vector Identity: <span class="math inline">\(\nabla \times  \nabla \times \vec{A} = \nabla ( \nabla \cdot \vec{A}) - \nabla^2 \vec{A}\)</span></p>
-<p><span class="math display">\[
-\nabla ( \nabla \cdot \vec{E}) = \nabla^2 \vec{E} + \omega^2 \mu \epsilon \vec{E} \tag{4}
-\]</span></p>
-<p>Since <span class="math inline">\(\nabla \cdot \vec{D} = 0\)</span>,</p>
-<p><span class="math display">\[\nabla \cdot \vec{D} = 0 \implies \nabla \cdot (\epsilon \vec{E}) = 0\]</span></p>
-<p><span class="math display">\[\nabla \cdot \vec{E} = 0\]</span></p>
-<p>So the left-hand side of equation (4) becomes 0, we get</p>
-<p><span class="math display">\[\boxed{\nabla^2 \vec{E} + \omega^2 \mu \epsilon \vec{E} = 0} \tag{5}\]</span></p>
-<p>Let’s call <span class="math inline">\(\omega^2 \mu \epsilon = k^2\)</span>, and <span class="math inline">\(k\)</span> is called the <strong>wave number</strong></p>
-<p><span class="math display">\[k = \omega \sqrt{\mu \epsilon}\]</span></p>
-<p>We can also define <span class="math inline">\(-\omega^2 \mu \epsilon = \gamma^2\)</span>, <span class="math inline">\(\gamma\)</span> is called the complex propagation constant.</p>
-<p><span class="math display">\[\gamma^2 = -k^2\]</span></p>
-<p>So we can write frequency-domain wave equation as</p>
-<p><span class="math display">\[\boxed{\nabla^2 \vec{E} + k^2 \vec{E} = 0}\]</span> <span class="math display">\[\boxed{\nabla^2 \vec{E} - \gamma^2 \vec{E} = 0}\]</span></p>
-</section>
-<section id="components-decouple-in-lhi-media" class="level2">
-<h2 class="anchored" data-anchor-id="components-decouple-in-lhi-media">Components Decouple in LHI Media</h2>
-<p>LHI stands for Linear, homogeneous, isotropic, <span class="math display">\[\nabla^2 \vec{E} + k^2 \vec{E} = 0\]</span></p>
-<p><span class="math display">\[\nabla^2 \left( E_x \hat{a}_x + E_y \hat{a}_y + E_z \hat{a}_z \right) + k^2 \left( E_x \hat{a}_x + E_y \hat{a}_y + E_z \hat{a}_z \right) = 0\]</span></p>
-<p><strong>Distribute</strong></p>
-<p><span class="math display">\[ \nabla^2 E_x \hat{a}_x + \nabla^2 E_y \hat{a}_y + \nabla^2 E_z \hat{a}_z +  k^2 E_x \hat{a}_x + k^2 E_y \hat{a}_y + k^2 E_z \hat{a}_z = 0\]</span></p>
-<p><span class="math display">\[ \left( \nabla^2 E_x \hat{a}_x  + k^2 E_x \hat{a}_x \right) + \left( \nabla^2 E_y \hat{a}_y + k^2 E_y \hat{a}_y \right) + \left( \nabla^2 E_z \hat{a}_z + k^2 E_z \hat{a}_z \right) = 0\]</span></p>
-<p>So each individual component has to equal to <span class="math inline">\(0\)</span>, so we can take our <em>vector equation</em> and turn it into <em>three scalar</em> equations</p>
-<p><span class="math display">\[\nabla^2 E_x \hat{a}_x  + k^2 E_x \hat{a}_x  = 0\]</span> <span class="math display">\[\nabla^2 E_y \hat{a}_y + k^2 E_y \hat{a}_y  = 0\]</span> <span class="math display">\[ \nabla^2 E_z \hat{a}_z + k^2 E_z \hat{a}_z = 0\]</span></p>
-<p>They have the same general solution… so we can just solve</p>
-<p><span class="math display">\[\nabla^2 E + k^2 E = 0\]</span></p>
-<p>and reuse the solution to all three scalar equations.</p>
-<p><strong>mathematical solution</strong></p>
-<p><span class="math display">\[\nabla^2 E + k^2 E = 0\]</span></p>
-<p><span class="math display">\[\implies E(\vec{r}) =  E_{0}^{+} e^{-j \vec{k} \cdot \vec{r}} + E_{0}^{-} e^{+j \vec{k} \cdot \vec{r}}\]</span></p>
-<ul>
-<li><span class="math inline">\(E_{0}^{+} e^{-j \vec{k} \cdot \vec{r}}\)</span> is the forward wave</li>
-<li><span class="math inline">\(E_{0}^{-} e^{+j \vec{k} \cdot \vec{r}}\)</span> is the backward wave</li>
-</ul>
-<p><span class="math display">\[\vec{E}(\vec{r}) = E_x(\vec{r}) \hat{a}_x + E_y(\vec{r}) \hat{a}_y + E_z(\vec{r}) \hat{a}_z\]</span></p>
-</section>
-<section id="general-expression-for-a-plane-wave" class="level2">
-<h2 class="anchored" data-anchor-id="general-expression-for-a-plane-wave">General Expression for a Plane wave</h2>
-<p><span class="math display">\[\vec{E}(\vec{r}) = \vec{P} e^{-j \vec{k} \cdot \vec{r}} \tag{frequency-domain}\]</span> <span class="math display">\[\vec{E}(\vec{r}, t) =  \vec{P} \cos(\omega t - \vec{k} \cdot \vec{r}) \tag{time-domain}\]</span></p>
-<ul>
-<li><span class="math inline">\(\vec{r} \equiv x \hat{a}_x + y \hat{a}_y + z \hat{a}_z\)</span></li>
-<li><span class="math inline">\(\vec{E} \equiv \text{total electric field intensity}\)</span></li>
-<li><span class="math inline">\(\vec{P} \equiv \text{polarization vector}\)</span></li>
-<li><span class="math inline">\(\vec{k} \equiv \text{wave vector}\)</span></li>
-<li><span class="math inline">\(\omega \equiv 2 \pi f \equiv \text{angular frequency}\)</span>s</li>
-<li><span class="math inline">\(t \equiv \text{time}\)</span></li>
-</ul>
-<p>So for the magnetic field, we can just use this result back into maxwell’s equations,</p>
-<p><span class="math display">\[\nabla \times \vec{E} = -j \omega \mu \vec{H} \tag{Faraday's Law}\]</span> <span class="math display">\[\nabla \times \left(  \vec{P} e^{-j \vec{k} \cdot \vec{r}} \right) = -j \omega \mu \vec{H}\]</span></p>
-<p><span class="math display">\[\boxed{\frac{1}{\omega \mu} \left(  \vec{k} \times \vec{P} \right) e^{-j \vec{k} \cdot \vec{r}} = \vec{H}}\]</span></p>
-<section id="solution-in-terms-of-gamma" class="level3">
-<h3 class="anchored" data-anchor-id="solution-in-terms-of-gamma">Solution in terms of <span class="math inline">\(\gamma\)</span></h3>
-<p><span class="math display">\[E(\vec{r}) = E_{0}^{+} e^{-\vec{\gamma} \cdot \vec{r}} + E_{0}^{-} e^{+\vec{\gamma} \cdot \vec{r}}\]</span></p>
-<p><span class="math display">\[E(\vec{r}) = \vec{P} e^{-\vec{\gamma} \cdot \vec{r}} \tag{frequency domain}\]</span></p>
-<p><span class="math display">\[\vec{H} = \frac{1}{j \omega \mu} ( \vec{\gamma} \times \vec{P}) e^{-\vec{\gamma} \cdot \vec{r}}\]</span></p>
-<p>The wave vector and propagation constant are related through: <span class="math display">\[\vec{\gamma} = j \vec{k}\]</span></p>
-</section>
+<p>A time-harmonic fuunction can be written as</p>
+<p><span class="math display">\[y(t) = A \cos(\omega t + \theta)\]</span></p>
+<p>The math becomes easier if we simplify it with</p>
+<p><span class="math display">\[e^{j \theta} = \cos(\theta) + j \sin(\theta) \tag{Euler's Formula}\]</span> <span class="math display">\[y(t) = Re[ A e^{j(\omega t + \theta)} ]= Re[ A e^{j\omega t} e^{j\theta} ]\]</span></p>
 </section>
 </section>
 

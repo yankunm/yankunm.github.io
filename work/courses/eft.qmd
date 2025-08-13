@@ -1,0 +1,16 @@
+# Electromagnetic Field Theory
+
+## Mathematical Preliminaries
+
+* Phasors
+* Phasor Arithmetic
+* Scalars & Vectors
+
+A time-harmonic fuunction can be written as
+
+$$y(t) = A \cos(\omega t + \theta)$$
+
+The math becomes easier if we simplify it with
+
+$$e^{j \theta} = \cos(\theta) + j \sin(\theta) \tag{Euler's Formula}$$
+$$y(t) = Re[ A e^{j(\omega t + \theta)} ]= Re[ A e^{j\omega t} e^{j\theta} ]$$

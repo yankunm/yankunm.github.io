@@ -175,7 +175,6 @@ $$E(\vec{r}) = \vec{P} e^{-\vec{\gamma} \cdot \vec{r}} \tag{frequency domain}$$
 $$\vec{H} = \frac{1}{j \omega \mu} ( \vec{\gamma} \times \vec{P}) e^{-\vec{\gamma} \cdot \vec{r}}$$
 
 The wave vector and propagation constant are related through:
-
 $$\vec{\gamma} = j \vec{k}$$
 
 
