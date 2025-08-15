@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>eft</title>
+<title>nanophotonics – AM</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,17 +23,50 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="eft_files/libs/clipboard/clipboard.min.js"></script>
-<script src="eft_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="eft_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="eft_files/libs/quarto-html/popper.min.js"></script>
-<script src="eft_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="eft_files/libs/quarto-html/anchor.min.js"></script>
-<link href="eft_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="eft_files/libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="eft_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="eft_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="eft_files/libs/bootstrap/bootstrap-81267100e462c21b3d6c0d5bf76a3417.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-348c25d3af87bb43b0b779980a92ba9b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -67,33 +100,94 @@ window.Quarto = {
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
-<main class="content" id="quarto-document-content">
-
-
-
-
-<section id="electromagnetic-field-theory" class="level1">
-<h1>Electromagnetic Field Theory</h1>
-<section id="mathematical-preliminaries" class="level2">
-<h2 class="anchored" data-anchor-id="mathematical-preliminaries">Mathematical Preliminaries</h2>
-<ul>
-<li>Phasors</li>
-<li>Phasor Arithmetic</li>
-<li>Scalars &amp; Vectors</li>
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">AM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
 </ul>
-<p>A time-harmonic fuunction can be written as</p>
-<p><span class="math display">\[y(t) = A \cos(\omega t + \theta)\]</span></p>
-<p>The math becomes easier if we simplify it with</p>
-<p><span class="math display">\[e^{j \theta} = \cos(\theta) + j \sin(\theta) \tag{Euler's Formula}\]</span> <span class="math display">\[y(t) = Re[ A e^{j(\omega t + \theta)} ]= Re[ A e^{j\omega t} e^{j\theta} ]\]</span></p>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="nanophotonics" class="level1 unnumbered">
+<h1 class="unnumbered">Nanophotonics</h1>
+<section id="metamaterials" class="level2">
+<h2 class="anchored" data-anchor-id="metamaterials">Metamaterials</h2>
+<p>Is it possible to design artificial materials that have electromagnetic roperties <strong>not found in nature</strong>?</p>
+<p>Yes. There are in general two types:</p>
+<ul>
+<li>Negative Index: <span class="math inline">\(\epsilon &lt; 0, \mu &lt; 0\)</span></li>
+<li>Hyperbolic: <span class="math inline">\(\epsilon_{||} \epsilon_{\perp} &lt; 0\)</span></li>
+</ul>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<p>Metamaterials are composed of carefully engineered subwavelength structures (meta-atoms)</p>
+<p><span class="math display">\[\text{Actual Atom } \lambda \approx 1 \times 10^{-4} \mu m \]</span> <span class="math display">\[\text{EM wave of interest } \lambda \approx 1  \mu m \]</span></p>
+<p><span class="math display">\[\implies \text{Room for engineering } \lambda \approx [0.01, 0.1] \mu m \]</span></p>
+</section>
+<section id="composite-media" class="level3">
+<h3 class="anchored" data-anchor-id="composite-media">Composite Media</h3>
+<p>When we have composite media, it is not merely a sum of permittivity. The effective dielectric constant of the mixture <span class="math inline">\(\epsilon_{eff}\)</span> depends on not only the <strong>volume fill fraction</strong> but also the detailed geometric structure of the materials. <a href="https://en.wikipedia.org/wiki/Effective_medium_approximations">Here’s more details on how to calculate effective permitivity of composite media.</a></p>
+<p>When we have a layered structure, the <span class="math inline">\(\vec{E}_{||}\)</span> sees a “series capacitor” connection. If we have layered structure of two materials with length <span class="math inline">\(d_a\)</span> and <span class="math inline">\(d_b\)</span>,</p>
+<p><span class="math display">\[\frac{1}{\epsilon_{||}} = \frac{1}{d_a + d_b} \left( \frac{d_a}{\epsilon_a} + \frac{d_b}{\epsilon_b} \right)\]</span></p>
+</section>
+</section>
+<section id="metasurfaces" class="level2">
+<h2 class="anchored" data-anchor-id="metasurfaces">Metasurfaces</h2>
+<p>First metamaterial got suggested, but since it must be 3D, it is very difficult to fabricate. In order to use a metamaterial, since they are made of metal, highly absorbing, light cannot penetrate through metamaterials.</p>
+<p>Bulk metamaterials is difficult, so why not just do a surface? so this is how metasurfaces came about.</p>
+<section id="lifeguard-problem" class="level3">
+<h3 class="anchored" data-anchor-id="lifeguard-problem">Lifeguard Problem</h3>
+<p>If a lifeguard want to rescue a drowning man, the lifeguard needs to find out the optimal route. Since swimming speed is much slower than the speed at which he cna run, he must optimize the path based on his speed. This leads to <strong>Snell’s Law</strong>: Light chooses the path that has minimal action.</p>
+<p>This is what happens in typical situation. Metasurface acts like a wall, very thin.</p>
+<p>Before:</p>
+<p><span class="math display">\[n_t \sin \theta_t - n_i sin \theta_i = 0\]</span></p>
+<p>Now:</p>
+<p>Accounting for the time the lifeguard moves through the wall</p>
+<p><span class="math display">\[n_t \sin \theta_t - n_i sin \theta_i = \frac{1}{k_0} \frac{d \Phi}{dx}\]</span></p>
+<p>The lifeguard wants to minimize the time to go through the wall. Making metasurface is designing the wall shape so we can control the propagation of light.</p>
+</section>
+<section id="huygens-construction-of-wavefront" class="level3">
+<h3 class="anchored" data-anchor-id="huygens-construction-of-wavefront">Huygens Construction of Wavefront</h3>
+<p>Huygen’s principle states that in order to describe the propagation of wave and each point of wavefront, you can imagine that each point of wavefront acts as the surce of wave, so you can have a diverging.</p>
+<p>Metaatoms have different response to the incident light, so some metaatoms crates the wavefront with a relatively smaller phase shift, and some create larger phase shift. Even though it’s thin and flat, you can deflect electromagnetic wave.</p>
+
+
+</section>
 </section>
 </section>
 
-</main>
-<!-- /main column -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

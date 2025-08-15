@@ -10,9 +10,9 @@ about:
     - icon: github # https://icons.getbootstrap.com/
       text: Github
       href: https://github.com/yankunm
-    - icon: filetype-pdf
-      text: CV
-      href: assets/cv.pdf
+    # - icon: filetype-pdf
+    #   text: CV
+    #   href: assets/cv.pdf
 ---
 
 ## About Me

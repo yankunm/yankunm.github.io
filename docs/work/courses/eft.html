@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Deep Learning with PyTorch – Alex Meng’s Notes</title>
+<title>eft – AM</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../textbooks/balanis.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-348c25d3af87bb43b0b779980a92ba9b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,22 +67,48 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Alex Meng’s Notes</span>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">AM</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -93,8 +118,8 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://yankunm.github.io/"> 
-<span class="menu-text">Back to Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -102,203 +127,33 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../courses/pytorch.html">MACHINE LEARNING</a></li><li class="breadcrumb-item"><a href="../courses/pytorch.html">Deep Learning with PyTorch</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">ELECTROMAGNETICS</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../textbooks/danFleisch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Maxwell’s Equations - Dan Fleisch</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../textbooks/balanis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Advanced Engineering Electromagnetics - C. Balanis</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">MACHINE LEARNING</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../courses/pytorch.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Deep Learning with PyTorch</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
-  <ul class="collapse">
-  <li><a href="#what-are-neural-networks" id="toc-what-are-neural-networks" class="nav-link" data-scroll-target="#what-are-neural-networks">What are “Neural Networks”?</a></li>
-  <li><a href="#learning-paradigms" id="toc-learning-paradigms" class="nav-link" data-scroll-target="#learning-paradigms">Learning Paradigms</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../courses/pytorch.html">MACHINE LEARNING</a></li><li class="breadcrumb-item"><a href="../courses/pytorch.html">Deep Learning with PyTorch</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Deep Learning with PyTorch</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>Instructor: Daniel Bourke</p>
-<p><a href="https://youtu.be/V_xro1bcAuA?si=QGvYQNP-fEinPys7">Youtube</a></p>
-<p><a href="https://docs.pytorch.org/docs/stable/index.html">PyTorch Docs</a></p>
-<p><a href="https://en.wikipedia.org/wiki/Deep_learning">Wikipedia: Deep Learning</a></p>
-<p>Here we master the basics of Deep Learning through the <strong>PyTorch Workflow</strong>:</p>
-<p><img src="pics/Pytorch_Workflow.png" class="img-fluid"></p>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>AI includes machine learning, which includes deep learning. All three aim to approximate the rules of a system from examples.</p>
-<p>Before using machine learning, ask: Can you write down all the rules to solve this problem? If yes, use a rule-based system—it’s simpler, faster, and more interpretable.</p>
-<p>But when rules are too complex or unclear, machine learning or deep learning helps.</p>
-<p>Deep Learning is good for:</p>
+<section id="electromagnetic-field-theory" class="level1">
+<h1>Electromagnetic Field Theory</h1>
+<section id="mathematical-preliminaries" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-preliminaries">Mathematical Preliminaries</h2>
 <ul>
-<li>Problems with long lists of rules</li>
-<li>Continually changing environments</li>
-<li>Discovering insights within large collections of data</li>
+<li>Phasors</li>
+<li>Phasor Arithmetic</li>
+<li>Scalars &amp; Vectors</li>
 </ul>
-<p>Deep Learning is not good for:</p>
-<ul>
-<li>When you need explainability</li>
-<li>When the traditional approach is a better option</li>
-<li>When errors are unacceptable</li>
-</ul>
-<p>Machine Learning is better than Deep Learning at structured Data, neural networks typically work best with unstructured data.</p>
-<section id="what-are-neural-networks" class="level3">
-<h3 class="anchored" data-anchor-id="what-are-neural-networks">What are “Neural Networks”?</h3>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-  A[Unstructured Data / Inputs] --&gt;B[Numbers]
-  B --&gt; C(Neural Network)
-  C --&gt; D[Weight Matrix]
-  D --&gt; E[Outputs]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<section id="anatomy-of-neural-networks" class="level4">
-<h4 class="anchored" data-anchor-id="anatomy-of-neural-networks">Anatomy of Neural Networks</h4>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    A(Input Layer) --&gt; B[Hidden Layers]
-    B --&gt; C(Output Layers)
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>Each layer is a combination of functions, linear or non-linear.</p>
-</section>
-</section>
-<section id="learning-paradigms" class="level3">
-<h3 class="anchored" data-anchor-id="learning-paradigms">Learning Paradigms</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 26%">
-<col style="width: 30%">
-<col style="width: 21%">
-<col style="width: 21%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Supervised</th>
-<th style="text-align: center;">Unsupervised &amp; Self-supervised</th>
-<th style="text-align: center;">Transfer</th>
-<th style="text-align: center;">Reinforcement</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">Lot of Data that are labeled</td>
-<td style="text-align: center;">Just Data</td>
-<td style="text-align: center;">Building on top of already learned model</td>
-<td style="text-align: center;">Action and Reward</td>
-</tr>
-</tbody>
-</table>
-<section id="what-are-deep-learning-used-for" class="level4">
-<h4 class="anchored" data-anchor-id="what-are-deep-learning-used-for">What are deep learning used for?</h4>
-<p>If you can encode something into numbers, you can build a deep learning model to find pattern in those numbers.</p>
-<p>Computer Vision, NLP, Recommendation, and literally anything complex.</p>
+<p>A time-harmonic fuunction can be written as</p>
+<p><span class="math display">\[y(t) = A \cos(\omega t + \theta)\]</span></p>
+<p>The math becomes easier if we simplify it with</p>
+<p><span class="math display">\[e^{j \theta} = \cos(\theta) + j \sin(\theta) \tag{Euler's Formula}\]</span> <span class="math display">\[y(t) = Re[ A e^{j(\omega t + \theta)} ]= Re[ A e^{j\omega t} e^{j\theta} ]\]</span></p>
 
 
-</section>
 </section>
 </section>
 
@@ -702,29 +557,7 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../textbooks/balanis.html" class="pagination-link" aria-label="Advanced Engineering Electromagnetics - C. Balanis">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Advanced Engineering Electromagnetics - C. Balanis</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-  </div>
-</nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
-<p>Copyright 2025, Alex Meng</p>
-</div>
-    <div class="nav-footer-right">
-      &nbsp;
-    </div>
-  </div>
-</footer>
 
 
 

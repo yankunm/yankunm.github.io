@@ -8,10 +8,10 @@ website:
     left:
       - text: Home
         href: index.qmd
-      - text: Blog
-        href: blog/index.qmd
-      - text: Alex Meng's Notes
-        href: notes_output/index.html
+      # - text: Blog
+      #   href: blog/index.qmd
+      # - text: Alex Meng's Notes
+      #   href: notes_output/index.html
 format:
   html:
     theme: united
