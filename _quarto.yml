@@ -1,20 +1,68 @@
 project:
+  title: "Alex Meng"
   type: website
+  render:
+    - "*.qmd"
+    - "!*.ipynb"
+    - "!*.md"
   output-dir: docs
+  post-render:
+    - scripts/decktape_pdfs.py
 
 website:
-  title: "AM"
-  navbar:
-    left:
-      - text: Home
-        href: index.qmd
-      # - text: Blog
-      #   href: blog/index.qmd
-      # - text: Alex Meng's Notes
-      #   href: notes_output/index.html
+  title: "Alex Meng"
+  page-navigation: true
+  sidebar:
+    contents:
+      - href: index.qmd
+        text: Home
+      - section: "Year 1"
+        contents:
+          - template.qmd
 format:
   html:
-    theme: united
-    toc: false  # disables right nav
+    theme: [serif, shared.scss, html-style.scss]
+    toc: true
+    shift-heading-level-by: 1
 
+  revealjs:
+    output-ext: "slides.html"
+    theme: [serif, shared.scss, revealjs-style.scss]
+    controls: true
+    controls-tutorial: true
+    # logo: duke-logo.png
+    transition: none
+    slide-number: c/t
+    preview-links: false
+    margin: 0.10
+    width: 1000
+    chalkboard:
+      boardmarker-width: 4
+      grid: false
+      background:
+        - "rgba(255,255,255,0.0)"
+        - "https://github.com/rajgoel/reveal.js-plugins/raw/master/chalkboard/img/blackboard.png"
+    history: false
+    code-annotations: none
+    include-before-body:
+      text: |
+        <script>
+          let selectedAnnoteEl;
+        </script>
+    filters:
+      - reveal-auto-agenda
+    auto-agenda:
+      heading: Lecture Outline
 
+subtitle: Duke University NANO Lab
+# author: Alex Meng
+strip-comments: true
+html-math-method: katex
+highlight-style: blue-pygments.theme
+syntax-definitions:
+  - python.xml
+pdf-engine: pdflatex
+execute:
+  echo: true
+  freeze: false
+  daemon: false

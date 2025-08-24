@@ -1,0 +1,18 @@
+---
+title: Artificial Intelligence
+---
+
+# Template
+
+## Slide 1
+
+Yes
+<!-- ## Expert systems -->
+
+## Slide 2
+
+- yes yes yes
+
+::: footer
+Source: Wikipedia page for [the Shakey Project](https://en.wikipedia.org/wiki/File:SRI_Shakey_with_callouts.jpg)
+:::

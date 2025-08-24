@@ -1,0 +1,113 @@
+/*-- scss:defaults --*/
+
+$body-bg: #ffffff;
+$link-color: #d94827;
+
+$presentation-font-size-root: 32px;
+$presentation-heading-font-weight: 400;
+
+$mainColor: #383D3D;
+$headingColor: #383D3D;
+
+/*-- scss:rules --*/
+
+#title-slide {
+    .subtitle {
+        margin-top: 1.5rem;
+        margin-bottom: 0;
+    }
+}
+
+.katex { font-size: 1.0em !important; }
+
+/* Add some space around the code chunks */
+.cell-code {
+    margin: 10px !important;
+}
+
+/* Make sure the code outputs aren't too big vertically */
+.cell-output {
+    max-height: 600px !important;
+    overflow-y: auto !important;
+}
+
+.reveal h1 {
+    text-align: center;
+}
+
+.reveal section img {
+    border: 0px;
+    padding: 10px;
+    /* box-shadow: 0 0 10px rgb(0 0 0 / 15%) */
+}
+
+/* In the R/Python tabsets, make the font for these options smaller. */
+.reveal .panel-tabset .panel-tabset-tabby li a {
+    font-size: 0.7em;
+}
+
+/* This is for executed blocks, like: ```{python} ... */
+.reveal pre code code {
+    max-height: 600px !important;  
+    // overflow-x: hidden !important;
+    // white-space: pre-wrap !important;
+}
+
+/* This is for unexecuted blocks, like: ```python ... */
+.reveal pre.sourceCode code {
+    max-height: 600px !important; 
+}
+
+.reveal div.sourceCode {
+    // Disable border
+    border: 0px !important;
+}
+
+.reveal .slide-background-content {
+    width: 90%;
+    background-size: contain;
+}
+
+.aligned-column {
+    vertical-align: middle !important;
+}
+
+// .reveal .slide-logo {
+//     max-height: 80px !important;
+//     right: 7px !important;
+// }
+
+// Add a yellow bar to the right of the slide.
+// .slide-background::after {
+//    content: "";
+//    position: absolute;
+//     top: 0;
+//     right: 0;
+//     width: 100px;
+//     height: 100%;
+//     background: #00009c;
+//     @media (max-width: 900px) {
+//         width: 0px;
+//     }
+// }
+
+// Put in the background yellow shape for the title slide
+// .slide-background.quarto-title-block::before {
+//     content: "";
+//     position: absolute;
+//     top: 0;
+//     bottom: 0;
+//     left: 0;
+//     right: 100px;
+//     z-index: -1; /* Place it behind the actual content */
+//     clip-path: polygon(10% 70%, 70% 5%, 95% 40%, 80% 80%, 30% 95%, 10% 70%);
+//     background: #00009c;
+//   }
+
+// In reveal-js you can have code that folds away to be hidden.
+// This will remove the button which lets you hide or reveal the code.
+// So if the code is hidden, it will stay hidden, and if it is shown, it will stay shown.
+// The html version will still have the button to hide or show the code.  
+.code-fold > summary {
+    display: none;
+}

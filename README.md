@@ -1,5 +1,3 @@
 # yankunm.github.io
 
-This is a Quarto website.
-
-To learn more about Quarto websites visit https://quarto.org/docs/websites.
+Website uses quarto; settings files adapted from the course "AI & Deep Learning for Actuaries" courses (coded ACTL3143 & ACTL5111) at UNSW. Go to [the main website](https://pat-laub.github.io/DeepLearningForActuaries/) to view the generated website and slides.
