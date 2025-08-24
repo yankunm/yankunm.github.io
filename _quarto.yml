@@ -19,7 +19,7 @@ website:
         text: Home
       - section: "Year 1"
         contents:
-          - template.qmd
+          - tidy3d.qmd
 format:
   html:
     page-layout: article
@@ -60,7 +60,7 @@ format-links:
   - format: revealjs
     text: Slides
 
-subtitle: Duke University NANO Lab
+subtitle: Yankun (Alex) Meng
 # author: Alex Meng
 strip-comments: true
 html-math-method: katex

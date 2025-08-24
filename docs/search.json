@@ -1,62 +1,72 @@
 [
   {
-    "objectID": "template.html",
-    "href": "template.html",
-    "title": "Artificial Intelligence",
+    "objectID": "tidy3d.html",
+    "href": "tidy3d.html",
+    "title": "Learning Tidy3D",
     "section": "",
-    "text": "Yes \n\n\n\n\nyes yes yes\n\n\nSource: Wikipedia page for the Shakey Project",
-    "crumbs": [
-      "Year 1",
-      "Artificial Intelligence"
-    ]
+    "text": "FDTD method allows you to compute the evolution of electromagnetic field in the time domain.\nGiven some device \\epsilon(\\vec{r}) and an incident field or current source \\vec{J}(\\vec{r}, t), internally, FDTD solves these maxwell’s equations:\n\\nabla \\times \\vec{E}(\\vec{r}, t) = -\\mu_0 \\frac{\\vec{H}(\\vec{r}, t)}{dt} \\tag{1}\n\\nabla \\times \\vec{H}(\\vec{r}, t) = \\epsilon(\\vec{r}) \\epsilon_0 \\frac{d\\vec{E}(\\vec{r}, t)}{dt} + \\vec{J}(\\vec{r}, t) \\tag{2}\n\n\n\nField Update\n\n\n\nThe diagram is from Simulation Documentation\n\n\n\n\nThese software packages should be imported everytime you start a tidy3D project:\nimport tidy3d as td # Main package\nimport tidy3d.web as web # Used to run the simulation\nimport matplotlib.pyplot as plt # Used for plotting results\nimport numpy as np # Used for numerical calculations\n\n\n\nBefore the simulation, we have to define some key parameters of the electromagnetic waves that we will use across the simulation:\nlambda_range = (1.1, 1.6)   # wavelength range (µm)\nfreqs = (td.C_0 / lambda_range[1], td.C_0 / lambda_range[0])  # frequency range\nfreq0 = np.mean(freqs)      # center frequency\nlda0 = td.C_0 / freq0       # center wavelength\nbandwidth = 0.38            # normalized bandwidth\nfreqw = bandwidth * (freqs[1] - freqs[0])  # bandwidth in Hz\nNote: All numbers in tidy3d are in microns (\\mu m)\n\n\n\nHere’s how to simulate something:\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # inputs\n)\nThe 7 required inputs are: 1. Computational Domain Size 2. Grid Specifications (Discretization size) 3. Structures 4. Sources 5. Monitors 6. Run time 7. Boundary Condition Specification\nWe will introduce these 7 parameters by simulating a huygen’s metasurface\n\n\n\nThe most basic way of running the simulation is using the web object we imported from tidy3d:\n# Running a simulation\nsim1_data = web.run(simulation1, task_name='any-unique-name', path='data/descriptive-name.hdf5')\nSimulation data is stored as an HDF5 file at the file path you specify.\n\n\n\nSize in x, y, and z directions.\np = 0.666 #nm -&gt; Periodicity\nLx, Ly, Lz = p, p, 2 * lda0 \nsim_size = [Lx, Ly, Lz]\n\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # A square computational domain\n    size = sim_size\n)\n\n\n\nSpecifications for the simulation grid along each of the three directions.\n# Define Grid size\nspec = td.GridSpec.auto(min_steps_per_wvl=40, wavelength=lda0)\n\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # A square computational domain\n    size = (x, y, z),\n    grid_spec=spec,\n    \n)\n\nTypically, the size of a unit cell is \\frac{\\lambda}{20}\n\n\ntd.GridSpec contains many functions to help define the grid, the most commonly used are:\ntd.GridSpec.uniform(dl=grid_size)\ntd.GridSpec.auto(min_steps_per_wvl=40, wavelength=lda0)\n\nuniform - Use the same Uniform 1D grid along each of the three directions.\n\ndl (float) – Grid size for uniform grid generation.\n\nauto - Use the same non-uniform grid along each of the three directions.\n\nmin_steps_per_wvl(ConstrainedFloatValue = 10.0) – Minimal number of steps per wavelength in each medium.\nwavelength (float) – Wavelength to use for the step size and for dispersive media epsilon.\n\n\n\n\n\ntd.Structure is the meat of the simulation. It defines a physical object that interacts with the electromagnetic fields. The structures field is a list of Structure objects that you create.\n# set up simulation\nsim = td.Simulation(\n    size=sim_size,\n    grid_spec=spec,\n    structures=[superstrate, substrate, cylinder],\n\n# set up simulation\ntd.Structure(\n   # inputs\n)\nA structure needs two inputs at least: - geometry (td.Box, td.Cylinder, td.Sphere, td.TriangleMesh (STL file), etc.) - medium - Mediums define the optical properties of the materials within the simulation. (e.g. td.Medium)\nAccording to the paper on huygen’s metasurface, I defined these four structures:\nt = 2  # thickness of the substrate # THIS SHOULD BE CHANGED TO INFINITE\nsubstrate = td.Structure(\n    geometry=td.Box(\n        center=(0,0,-t/2),\n        size=(td.inf,td.inf,t)\n    ),\n    medium=td.Medium(permittivity=1.45**2, name='oxide'),\n    name='substrate'\n)\nsuperstrate = td.Structure(\n    geometry=td.Box(\n        center=(0,0,t/2),\n        size=(td.inf,td.inf,t)\n    ),\n    medium=td.Medium(permittivity=1.4**2, name='glass'),\n    name='superstrate'\n)\npolymer = td.Structure(\n    geometry=td.Box(\n        center=(0,0,0),\n        size=(td.inf,td.inf,2*t)\n    ),\n    medium=td.Medium(permittivity=1.66**2, name='polymer'),\n    name='polymer'\n)\n# construct the silicon resonator\ncylinder = td.Structure(\n    geometry=td.Cylinder(center=[0, 0, h / 2], radius=r, length=h, axis=2), medium=td.Medium(permittivity=3.5**2, name='Si')\n)"
   },
   {
-    "objectID": "template.html#template",
-    "href": "template.html#template",
-    "title": "Artificial Intelligence",
+    "objectID": "tidy3d.html#introduction-to-tidy3d",
+    "href": "tidy3d.html#introduction-to-tidy3d",
+    "title": "Learning Tidy3D",
     "section": "",
-    "text": "Yes \n\n\n\n\nyes yes yes\n\n\nSource: Wikipedia page for the Shakey Project",
-    "crumbs": [
-      "Year 1",
-      "Artificial Intelligence"
-    ]
+    "text": "FDTD method allows you to compute the evolution of electromagnetic field in the time domain.\nGiven some device \\epsilon(\\vec{r}) and an incident field or current source \\vec{J}(\\vec{r}, t), internally, FDTD solves these maxwell’s equations:\n\\nabla \\times \\vec{E}(\\vec{r}, t) = -\\mu_0 \\frac{\\vec{H}(\\vec{r}, t)}{dt} \\tag{1}\n\\nabla \\times \\vec{H}(\\vec{r}, t) = \\epsilon(\\vec{r}) \\epsilon_0 \\frac{d\\vec{E}(\\vec{r}, t)}{dt} + \\vec{J}(\\vec{r}, t) \\tag{2}\n\n\n\nField Update\n\n\n\nThe diagram is from Simulation Documentation\n\n\n\n\nThese software packages should be imported everytime you start a tidy3D project:\nimport tidy3d as td # Main package\nimport tidy3d.web as web # Used to run the simulation\nimport matplotlib.pyplot as plt # Used for plotting results\nimport numpy as np # Used for numerical calculations\n\n\n\nBefore the simulation, we have to define some key parameters of the electromagnetic waves that we will use across the simulation:\nlambda_range = (1.1, 1.6)   # wavelength range (µm)\nfreqs = (td.C_0 / lambda_range[1], td.C_0 / lambda_range[0])  # frequency range\nfreq0 = np.mean(freqs)      # center frequency\nlda0 = td.C_0 / freq0       # center wavelength\nbandwidth = 0.38            # normalized bandwidth\nfreqw = bandwidth * (freqs[1] - freqs[0])  # bandwidth in Hz\nNote: All numbers in tidy3d are in microns (\\mu m)\n\n\n\nHere’s how to simulate something:\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # inputs\n)\nThe 7 required inputs are: 1. Computational Domain Size 2. Grid Specifications (Discretization size) 3. Structures 4. Sources 5. Monitors 6. Run time 7. Boundary Condition Specification\nWe will introduce these 7 parameters by simulating a huygen’s metasurface\n\n\n\nThe most basic way of running the simulation is using the web object we imported from tidy3d:\n# Running a simulation\nsim1_data = web.run(simulation1, task_name='any-unique-name', path='data/descriptive-name.hdf5')\nSimulation data is stored as an HDF5 file at the file path you specify.\n\n\n\nSize in x, y, and z directions.\np = 0.666 #nm -&gt; Periodicity\nLx, Ly, Lz = p, p, 2 * lda0 \nsim_size = [Lx, Ly, Lz]\n\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # A square computational domain\n    size = sim_size\n)\n\n\n\nSpecifications for the simulation grid along each of the three directions.\n# Define Grid size\nspec = td.GridSpec.auto(min_steps_per_wvl=40, wavelength=lda0)\n\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # A square computational domain\n    size = (x, y, z),\n    grid_spec=spec,\n    \n)\n\nTypically, the size of a unit cell is \\frac{\\lambda}{20}\n\n\ntd.GridSpec contains many functions to help define the grid, the most commonly used are:\ntd.GridSpec.uniform(dl=grid_size)\ntd.GridSpec.auto(min_steps_per_wvl=40, wavelength=lda0)\n\nuniform - Use the same Uniform 1D grid along each of the three directions.\n\ndl (float) – Grid size for uniform grid generation.\n\nauto - Use the same non-uniform grid along each of the three directions.\n\nmin_steps_per_wvl(ConstrainedFloatValue = 10.0) – Minimal number of steps per wavelength in each medium.\nwavelength (float) – Wavelength to use for the step size and for dispersive media epsilon.\n\n\n\n\n\ntd.Structure is the meat of the simulation. It defines a physical object that interacts with the electromagnetic fields. The structures field is a list of Structure objects that you create.\n# set up simulation\nsim = td.Simulation(\n    size=sim_size,\n    grid_spec=spec,\n    structures=[superstrate, substrate, cylinder],\n\n# set up simulation\ntd.Structure(\n   # inputs\n)\nA structure needs two inputs at least: - geometry (td.Box, td.Cylinder, td.Sphere, td.TriangleMesh (STL file), etc.) - medium - Mediums define the optical properties of the materials within the simulation. (e.g. td.Medium)\nAccording to the paper on huygen’s metasurface, I defined these four structures:\nt = 2  # thickness of the substrate # THIS SHOULD BE CHANGED TO INFINITE\nsubstrate = td.Structure(\n    geometry=td.Box(\n        center=(0,0,-t/2),\n        size=(td.inf,td.inf,t)\n    ),\n    medium=td.Medium(permittivity=1.45**2, name='oxide'),\n    name='substrate'\n)\nsuperstrate = td.Structure(\n    geometry=td.Box(\n        center=(0,0,t/2),\n        size=(td.inf,td.inf,t)\n    ),\n    medium=td.Medium(permittivity=1.4**2, name='glass'),\n    name='superstrate'\n)\npolymer = td.Structure(\n    geometry=td.Box(\n        center=(0,0,0),\n        size=(td.inf,td.inf,2*t)\n    ),\n    medium=td.Medium(permittivity=1.66**2, name='polymer'),\n    name='polymer'\n)\n# construct the silicon resonator\ncylinder = td.Structure(\n    geometry=td.Cylinder(center=[0, 0, h / 2], radius=r, length=h, axis=2), medium=td.Medium(permittivity=3.5**2, name='Si')\n)"
   },
   {
-    "objectID": "template.slides.html#slide-1",
-    "href": "template.slides.html#slide-1",
-    "title": "Artificial Intelligence",
-    "section": "Slide 1",
-    "text": "Slide 1\nYes"
+    "objectID": "tidy3d.slides.html#introduction",
+    "href": "tidy3d.slides.html#introduction",
+    "title": "Learning Tidy3D",
+    "section": "Introduction",
+    "text": "Introduction\nFDTD method allows you to compute the evolution of electromagnetic field in the time domain.\nGiven some device \\epsilon(\\vec{r}) and an incident field or current source \\vec{J}(\\vec{r}, t), internally, FDTD solves these maxwell’s equations:\n\\nabla \\times \\vec{E}(\\vec{r}, t) = -\\mu_0 \\frac{\\vec{H}(\\vec{r}, t)}{dt} \\tag{1}\n\\nabla \\times \\vec{H}(\\vec{r}, t) = \\epsilon(\\vec{r}) \\epsilon_0 \\frac{d\\vec{E}(\\vec{r}, t)}{dt} + \\vec{J}(\\vec{r}, t) \\tag{2}\n\nField Update\nThe diagram is from Simulation Documentation"
   },
   {
-    "objectID": "template.slides.html#slide-2",
-    "href": "template.slides.html#slide-2",
-    "title": "Artificial Intelligence",
-    "section": "Slide 2",
-    "text": "Slide 2\n\nyes yes yes\n\n\nSource: Wikipedia page for the Shakey Project"
+    "objectID": "tidy3d.slides.html#starting-tidy3d",
+    "href": "tidy3d.slides.html#starting-tidy3d",
+    "title": "Learning Tidy3D",
+    "section": "Starting Tidy3D",
+    "text": "Starting Tidy3D\nThese software packages should be imported everytime you start a tidy3D project:\nimport tidy3d as td # Main package\nimport tidy3d.web as web # Used to run the simulation\nimport matplotlib.pyplot as plt # Used for plotting results\nimport numpy as np # Used for numerical calculations"
   },
   {
-    "objectID": "index.slides.html#about-me",
-    "href": "index.slides.html#about-me",
-    "title": "Yankun (Alex) Meng",
-    "section": "About Me",
-    "text": "About Me\nI am an incoming PhD student in the Department of Electrical and Computer Engineering at Duke University, fortunate to be advised by Prof. Natalia M. Litchinitser.\nPreviously, I was an undergrad at Duke University Double majoring in Electrical and Computer Engineering and Computer Science."
+    "objectID": "tidy3d.slides.html#before-simulation",
+    "href": "tidy3d.slides.html#before-simulation",
+    "title": "Learning Tidy3D",
+    "section": "Before Simulation",
+    "text": "Before Simulation\nBefore the simulation, we have to define some key parameters of the electromagnetic waves that we will use across the simulation:\nlambda_range = (1.1, 1.6)   # wavelength range (µm)\nfreqs = (td.C_0 / lambda_range[1], td.C_0 / lambda_range[0])  # frequency range\nfreq0 = np.mean(freqs)      # center frequency\nlda0 = td.C_0 / freq0       # center wavelength\nbandwidth = 0.38            # normalized bandwidth\nfreqw = bandwidth * (freqs[1] - freqs[0])  # bandwidth in Hz\nNote: All numbers in tidy3d are in microns (\\mu m)"
   },
   {
-    "objectID": "index.slides.html#news",
-    "href": "index.slides.html#news",
-    "title": "Yankun (Alex) Meng",
-    "section": "News",
-    "text": "News\n[May 2025] Graduated from Duke Undergraduate, excited to be going into my PhD!"
+    "objectID": "tidy3d.slides.html#basic-workflow",
+    "href": "tidy3d.slides.html#basic-workflow",
+    "title": "Learning Tidy3D",
+    "section": "Basic Workflow",
+    "text": "Basic Workflow\nHere’s how to simulate something:\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # inputs\n)\nThe 7 required inputs are: 1. Computational Domain Size 2. Grid Specifications (Discretization size) 3. Structures 4. Sources 5. Monitors 6. Run time 7. Boundary Condition Specification\nWe will introduce these 7 parameters by simulating a huygen’s metasurface"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Yankun (Alex) Meng",
-    "section": "",
-    "text": "About Me\nI am an incoming PhD student in the Department of Electrical and Computer Engineering at Duke University, fortunate to be advised by Prof. Natalia M. Litchinitser.\nPreviously, I was an undergrad at Duke University Double majoring in Electrical and Computer Engineering and Computer Science.\n\n\nNews\n[May 2025] Graduated from Duke Undergraduate, excited to be going into my PhD!",
-    "crumbs": [
-      "Home"
-    ]
+    "objectID": "tidy3d.slides.html#running-a-simulation",
+    "href": "tidy3d.slides.html#running-a-simulation",
+    "title": "Learning Tidy3D",
+    "section": "Running a Simulation",
+    "text": "Running a Simulation\nThe most basic way of running the simulation is using the web object we imported from tidy3d:\n# Running a simulation\nsim1_data = web.run(simulation1, task_name='any-unique-name', path='data/descriptive-name.hdf5')\nSimulation data is stored as an HDF5 file at the file path you specify."
+  },
+  {
+    "objectID": "tidy3d.slides.html#computational-domain-size",
+    "href": "tidy3d.slides.html#computational-domain-size",
+    "title": "Learning Tidy3D",
+    "section": "1 Computational Domain Size",
+    "text": "1 Computational Domain Size\nSize in x, y, and z directions.\np = 0.666 #nm -&gt; Periodicity\nLx, Ly, Lz = p, p, 2 * lda0 \nsim_size = [Lx, Ly, Lz]\n\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # A square computational domain\n    size = sim_size\n)"
+  },
+  {
+    "objectID": "tidy3d.slides.html#grid-specifications",
+    "href": "tidy3d.slides.html#grid-specifications",
+    "title": "Learning Tidy3D",
+    "section": "2 Grid Specifications",
+    "text": "2 Grid Specifications\nSpecifications for the simulation grid along each of the three directions.\n# Define Grid size\nspec = td.GridSpec.auto(min_steps_per_wvl=40, wavelength=lda0)\n\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # A square computational domain\n    size = (x, y, z),\n    grid_spec=spec,\n    \n)\n\nTypically, the size of a unit cell is \\frac{\\lambda}{20}"
+  },
+  {
+    "objectID": "tidy3d.slides.html#structures",
+    "href": "tidy3d.slides.html#structures",
+    "title": "Learning Tidy3D",
+    "section": "3 Structures",
+    "text": "3 Structures\ntd.Structure is the meat of the simulation. It defines a physical object that interacts with the electromagnetic fields. The structures field is a list of Structure objects that you create.\n# set up simulation\nsim = td.Simulation(\n    size=sim_size,\n    grid_spec=spec,\n    structures=[superstrate, substrate, cylinder],"
   }
 ]
