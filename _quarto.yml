@@ -1,5 +1,5 @@
 project:
-  title: "Alex Meng"
+  title: "Yankun (Alex) Meng"
   type: website
   render:
     - "*.qmd"
@@ -10,9 +10,10 @@ project:
     - scripts/decktape_pdfs.py
 
 website:
-  title: "Alex Meng"
+  title: "Yankun (Alex) Meng"
   page-navigation: true
   sidebar:
+    style: "docked"
     contents:
       - href: index.qmd
         text: Home
@@ -21,6 +22,7 @@ website:
           - template.qmd
 format:
   html:
+    page-layout: article
     theme: [serif, shared.scss, html-style.scss]
     toc: true
     shift-heading-level-by: 1
@@ -53,6 +55,10 @@ format:
       - reveal-auto-agenda
     auto-agenda:
       heading: Lecture Outline
+format-links:
+  - html
+  - format: revealjs
+    text: Slides
 
 subtitle: Duke University NANO Lab
 # author: Alex Meng

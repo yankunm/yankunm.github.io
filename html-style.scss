@@ -34,3 +34,15 @@ img {
   max-height: 450px;
   max-width: 85%;
 }
+
+/* Center all main text content */
+.quarto-about-jolla,
+.quarto-about-jolla p,
+.quarto-about-jolla h1,
+.quarto-about-jolla h2,
+.quarto-about-jolla h3,
+.quarto-about-jolla h4,
+.quarto-about-jolla h5,
+.quarto-about-jolla h6 {
+  text-align: left;
+}
