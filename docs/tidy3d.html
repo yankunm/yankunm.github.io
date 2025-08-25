@@ -223,7 +223,7 @@ window.Quarto = {
   <li><a href="#starting-tidy3d" id="toc-starting-tidy3d" class="nav-link" data-scroll-target="#starting-tidy3d">Starting Tidy3D</a></li>
   <li><a href="#before-simulation" id="toc-before-simulation" class="nav-link" data-scroll-target="#before-simulation">Before Simulation</a></li>
   <li><a href="#basic-workflow" id="toc-basic-workflow" class="nav-link" data-scroll-target="#basic-workflow">Basic Workflow</a></li>
-  <li><a href="#running-a-simulation" id="toc-running-a-simulation" class="nav-link" data-scroll-target="#running-a-simulation">Running a Simulation</a></li>
+  <li><a href="#simulation-inputs" id="toc-simulation-inputs" class="nav-link" data-scroll-target="#simulation-inputs">Simulation Inputs</a></li>
   <li><a href="#computational-domain-size" id="toc-computational-domain-size" class="nav-link" data-scroll-target="#computational-domain-size">1 Computational Domain Size</a></li>
   <li><a href="#grid-specifications" id="toc-grid-specifications" class="nav-link" data-scroll-target="#grid-specifications">2 Grid Specifications</a></li>
   <li><a href="#structures" id="toc-structures" class="nav-link" data-scroll-target="#structures">3 Structures</a></li>
@@ -303,10 +303,19 @@ window.Quarto = {
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>simulation1 <span class="ot">=</span> <span class="fu">td.Simulation</span>(</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># inputs</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The 7 required inputs are:<br>
-</p>
+<p>The most basic way of running the simulation is using the <em>web</em> object we imported from tidy3d:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Running a simulation</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sim1_data <span class="ot">=</span> <span class="fu">web.run</span>(simulation1, <span class="at">task_name=</span><span class="st">'any-unique-name'</span>, <span class="at">path=</span><span class="st">'data/descriptive-name.hdf5'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Simulation data is stored as an <strong><a href="https://en.wikipedia.org/wiki/Hierarchical_Data_Format">HDF5 file</a></strong> at the <strong>file path</strong> you specify.</p>
+<div class="footer">
+<p>See <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Simulation.html">Simulation</a> Documentation for more information</p>
+</div>
+</section>
+<section id="simulation-inputs" class="level3">
+<h3 class="anchored" data-anchor-id="simulation-inputs">Simulation Inputs</h3>
+<p>The 7 required inputs are:</p>
 <div class="incremental">
-<ul class="incremental">
+<ol class="incremental" type="1">
 <li>Computational Domain Size</li>
 <li>Grid Specifications (Discretization size)</li>
 <li>Structures</li>
@@ -314,16 +323,12 @@ window.Quarto = {
 <li>Monitors</li>
 <li>Run time</li>
 <li>Boundary Condition Specification</li>
-</ul>
+</ol>
 </div>
 <p>We will introduce these 7 parameters by simulating a <a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adom.201400584">huygen’s metasurface</a></p>
-</section>
-<section id="running-a-simulation" class="level3">
-<h3 class="anchored" data-anchor-id="running-a-simulation">Running a Simulation</h3>
-<p>The most basic way of running the simulation is using the <em>web</em> object we imported from tidy3d:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Running a simulation</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sim1_data <span class="ot">=</span> <span class="fu">web.run</span>(simulation1, <span class="at">task_name=</span><span class="st">'any-unique-name'</span>, <span class="at">path=</span><span class="st">'data/descriptive-name.hdf5'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Simulation data is stored as an <strong><a href="https://en.wikipedia.org/wiki/Hierarchical_Data_Format">HDF5 file</a></strong> at the <strong>file path</strong> you specify.</p>
+<div class="footer">
+<p>See <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Simulation.html">Simulation</a> Documentation for more information</p>
+</div>
 </section>
 <section id="computational-domain-size" class="level3" data-auto-animate="true">
 <h3 data-auto-animate="true" class="anchored" data-anchor-id="computational-domain-size">1 Computational Domain Size</h3>
@@ -372,7 +377,7 @@ window.Quarto = {
 </section>
 <section id="structures" class="level3">
 <h3 class="anchored" data-anchor-id="structures">3 Structures</h3>
-<p><a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Structure.html">td.Structure</a> is the meat of the simulation. It defines a physical object that interacts with the electromagnetic fields. The <code>structures</code> field is a list of <code>Structure</code> objects that you create.</p>
+<p><a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Structure.html">td.Structure</a> is the meat of the simulation. It defines a physical object that interacts with the electromagnetic fields. The <code>structures</code> field is a tuple of <code>Structure</code> objects that you create.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set up simulation</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>sim <span class="ot">=</span> <span class="fu">td.Simulation</span>(</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">size=</span>sim_size,</span>
@@ -394,46 +399,65 @@ window.Quarto = {
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    ),</span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.45</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'oxide'</span>),</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">name=</span><span class="st">'substrate'</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>superstrate <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">geometry=</span><span class="fu">td.Box</span>(</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">center=</span>(<span class="dv">0</span>,<span class="dv">0</span>,t<span class="sc">/</span><span class="dv">2</span>),</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">size=</span>(td.inf,td.inf,t)</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.4</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'glass'</span>),</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">name=</span><span class="st">'superstrate'</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>polymer <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">geometry=</span><span class="fu">td.Box</span>(</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">center=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">size=</span>(td.inf,td.inf,<span class="dv">2</span><span class="sc">*</span>t)</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.66</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'polymer'</span>),</span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">name=</span><span class="st">'polymer'</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co"># construct the silicon resonator</span></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>cylinder <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">geometry=</span><span class="fu">td.Cylinder</span>(<span class="at">center=</span>[<span class="dv">0</span>, <span class="dv">0</span>, h <span class="sc">/</span> <span class="dv">2</span>], <span class="at">radius=</span>r, <span class="at">length=</span>h, <span class="at">axis=</span><span class="dv">2</span>), <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">3.5</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'Si'</span>)</span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>superstrate <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">geometry=</span><span class="fu">td.Box</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">center=</span>(<span class="dv">0</span>,<span class="dv">0</span>,t<span class="sc">/</span><span class="dv">2</span>),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">size=</span>(td.inf,td.inf,t)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.4</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'glass'</span>),</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">name=</span><span class="st">'superstrate'</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>polymer <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">geometry=</span><span class="fu">td.Box</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">center=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">size=</span>(td.inf,td.inf,<span class="dv">2</span><span class="sc">*</span>t)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.66</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'polymer'</span>),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">name=</span><span class="st">'polymer'</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># construct the silicon resonator</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>cylinder <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">geometry=</span><span class="fu">td.Cylinder</span>(<span class="at">center=</span>[<span class="dv">0</span>, <span class="dv">0</span>, h <span class="sc">/</span> <span class="dv">2</span>], <span class="at">radius=</span>r, <span class="at">length=</span>h, <span class="at">axis=</span><span class="dv">2</span>), <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">3.5</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'Si'</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="sources" class="level3">
 <h3 class="anchored" data-anchor-id="sources">4 Sources</h3>
-<p>A source specifies the input.</p>
+<p>Tuple of electric current sources injecting fields into the simulation. Common ones are:</p>
+<p><strong>Plane Wave</strong> - Uniform current distribution on an infinite extent plane. <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.PlaneWave.html#tidy3d.PlaneWave">(Doc)</a></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pulse <span class="ot">=</span> <span class="fu">GaussianPulse</span>(<span class="at">freq0=</span><span class="fl">200e12</span>, <span class="at">fwidth=</span><span class="fl">20e12</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>pw_source <span class="ot">=</span> <span class="fu">PlaneWave</span>(<span class="at">size=</span>(inf,<span class="dv">0</span>,inf), <span class="at">source_time=</span>pulse, <span class="at">pol_angle=</span><span class="fl">0.1</span>, <span class="at">direction=</span><span class="st">'+'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Point Dipole</strong> - Uniform current source with a zero size. <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.PointDipole.html#tidy3d.PointDipole">(Doc)</a></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pulse <span class="ot">=</span> <span class="fu">td.GaussianPulse</span>(<span class="at">freq0=</span><span class="fl">200e12</span>, <span class="at">fwidth=</span><span class="fl">20e12</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>pt_dipole <span class="ot">=</span> <span class="fu">td.PointDipole</span>(<span class="at">center=</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">source_time=</span>pulse, <span class="at">polarization=</span><span class="st">'Ex'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>See documentation for <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/sources.html">Other Sources</a></p>
+<hr>
+<p>In this case, I defined one plane wave source:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add a plane wave source</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plane_wave <span class="ot">=</span> <span class="fu">td.PlaneWave</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">source_time=</span><span class="fu">td.GaussianPulse</span>(<span class="at">freq0=</span>freq0, <span class="at">fwidth=</span><span class="fl">0.5</span> <span class="sc">*</span> freqw),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">size=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">center=</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.3</span> <span class="sc">*</span> lda0),</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">direction=</span><span class="st">"-"</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">pol_angle=</span><span class="dv">0</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="monitors" class="level3">
 <h3 class="anchored" data-anchor-id="monitors">5 Monitors</h3>
+<p>Tuple of monitors in the simulation. Note: monitor names are used to access data after simulation is run.</p>
+<p>See <a href="https://docs.flexcompute.com/projects/tidy3d/en/v2.7.8/api/monitors.html">Other monitors</a></p>
 </section>
 <section id="run-time" class="level3">
 <h3 class="anchored" data-anchor-id="run-time">6 Run time</h3>
+<p>Total electromagnetic evolution time in seconds.</p>
 </section>
 <section id="boundary-condition-specification" class="level3">
 <h3 class="anchored" data-anchor-id="boundary-condition-specification">7 Boundary Condition Specification</h3>
+<p>Specification of boundary conditions along each dimension. If None, PML boundary conditions are applied on all sides.</p>
 </section>
 <section id="bonus-symmetry" class="level3">
 <h3 class="anchored" data-anchor-id="bonus-symmetry">Bonus: Symmetry</h3>
+<p>Tuple of integers defining reflection symmetry across a plane bisecting the simulation domain normal to the x-, y-, and z-axis at the simulation center of each axis, respectively. Each element can be 0 (no symmetry), 1 (even, i.e.&nbsp;‘PMC’ symmetry) or -1 (odd, i.e.&nbsp;‘PEC’ symmetry). Note that the vectorial nature of the fields must be taken into account to correctly determine the symmetry value.</p>
 <p>Symmetry can be used to greatly reduce the computational cost –&gt;</p>
 
 
