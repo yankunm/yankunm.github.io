@@ -5,7 +5,7 @@ about:
     template: jolla
     image: assets/profile.jpg
     image-shape: round
-    image-width: 10emk
+    image-width: 7em
     links:
     - icon: github # https://icons.getbootstrap.com/
       text: Github
