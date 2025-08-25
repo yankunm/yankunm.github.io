@@ -5,7 +5,7 @@ about:
     template: jolla
     image: assets/profile.jpg
     image-shape: round
-    image-width: 10em
+    image-width: 10emk
     links:
     - icon: github # https://icons.getbootstrap.com/
       text: Github
@@ -27,7 +27,9 @@ Previously, I was an undergrad at Duke University Double majoring in Electrical 
 
 ## News
 
-**[May 2025]** Graduated from Duke Undergraduate, excited to be going into my PhD!
+**[August 2025]** PhD started!
+
+**[May 2025]** Graduated from Duke Undergraduate
 
 <!-- ## Publications -->
 
