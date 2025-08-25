@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<head>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
 
-<meta charset="utf-8" />
-<meta name="generator" content="quarto-1.7.33" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Learning Tidy3D – Yankun (Alex) Meng</title>
@@ -59,7 +57,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-<!-- htmldependencies:E3FAD763 -->
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-265cabd6e0e175a3251a073a6682f21b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d828465a4c6ebef03b2a8c2a899df9b4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -88,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script defer="" src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
@@ -103,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    });
 }}});
   </script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" />
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -134,22 +150,17 @@ window.Quarto = {
 
 </head>
 
-<body>
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn"
-      data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" 
-      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
-      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <h1 class="quarto-secondary-nav-title no-breadcrumbs"></h1>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" role="link"
-        aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
-        onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidy3d.html">Year 1</a></li><li class="breadcrumb-item"><a href="./tidy3d.html">Learning Tidy3D</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -163,9 +174,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="/">
-      Yankun (Alex) Meng
-      </a> 
+      <a href="./">Yankun (Alex) Meng</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -177,13 +186,13 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/index.html" class="sidebar-item-text sidebar-link">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1"  role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Year 1</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -192,7 +201,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/tidy3d.html" class="sidebar-item-text sidebar-link active">
+  <a href="./tidy3d.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Learning Tidy3D</span></a>
   </div>
 </li>
@@ -201,15 +210,36 @@ window.Quarto = {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" ></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <div id="quarto-toc-target"></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction-to-tidy3d" id="toc-introduction-to-tidy3d" class="nav-link active" data-scroll-target="#introduction-to-tidy3d">Introduction to Tidy3D</a>
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#starting-tidy3d" id="toc-starting-tidy3d" class="nav-link" data-scroll-target="#starting-tidy3d">Starting Tidy3D</a></li>
+  <li><a href="#before-simulation" id="toc-before-simulation" class="nav-link" data-scroll-target="#before-simulation">Before Simulation</a></li>
+  <li><a href="#basic-workflow" id="toc-basic-workflow" class="nav-link" data-scroll-target="#basic-workflow">Basic Workflow</a></li>
+  <li><a href="#simulation-inputs" id="toc-simulation-inputs" class="nav-link" data-scroll-target="#simulation-inputs">Simulation Inputs</a></li>
+  <li><a href="#computational-domain-size" id="toc-computational-domain-size" class="nav-link" data-scroll-target="#computational-domain-size">1 Computational Domain Size</a></li>
+  <li><a href="#grid-specifications" id="toc-grid-specifications" class="nav-link" data-scroll-target="#grid-specifications">2 Grid Specifications</a></li>
+  <li><a href="#structures" id="toc-structures" class="nav-link" data-scroll-target="#structures">3 Structures</a></li>
+  <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">4 Sources</a></li>
+  <li><a href="#monitors" id="toc-monitors" class="nav-link" data-scroll-target="#monitors">5 Monitors</a></li>
+  <li><a href="#run-time" id="toc-run-time" class="nav-link" data-scroll-target="#run-time">6 Run time</a></li>
+  <li><a href="#boundary-condition-specification" id="toc-boundary-condition-specification" class="nav-link" data-scroll-target="#boundary-condition-specification">7 Boundary Condition Specification</a></li>
+  <li><a href="#bonus-symmetry" id="toc-bonus-symmetry" class="nav-link" data-scroll-target="#bonus-symmetry">Bonus: Symmetry</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="tidy3d.slides.html"><i class="bi bi-file-slides"></i>Slides</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidy3d.html">Year 1</a></li><li class="breadcrumb-item"><a href="./tidy3d.html">Learning Tidy3D</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Learning Tidy3D</h1>
 <p class="subtitle lead">Yankun (Alex) Meng</p>
@@ -228,39 +258,18 @@ window.Quarto = {
 
 </header>
 
-<nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#introduction-to-tidy3d" id="toc-introduction-to-tidy3d">Introduction to Tidy3D</a>
-  <ul>
-  <li><a href="#introduction" id="toc-introduction">Introduction</a></li>
-  <li><a href="#starting-tidy3d" id="toc-starting-tidy3d">Starting Tidy3D</a></li>
-  <li><a href="#before-simulation" id="toc-before-simulation">Before Simulation</a></li>
-  <li><a href="#basic-workflow" id="toc-basic-workflow">Basic Workflow</a></li>
-  <li><a href="#simulation-inputs" id="toc-simulation-inputs">Simulation Inputs</a></li>
-  <li><a href="#computational-domain-size" id="toc-computational-domain-size">1 Computational Domain Size</a></li>
-  <li><a href="#grid-specifications" id="toc-grid-specifications">2 Grid Specifications</a></li>
-  <li><a href="#structures" id="toc-structures">3 Structures</a></li>
-  <li><a href="#sources" id="toc-sources">4 Sources</a></li>
-  <li><a href="#monitors" id="toc-monitors">5 Monitors</a></li>
-  <li><a href="#run-time" id="toc-run-time">6 Run time</a></li>
-  <li><a href="#boundary-condition-specification" id="toc-boundary-condition-specification">7 Boundary Condition Specification</a></li>
-  <li><a href="#bonus-symmetry" id="toc-bonus-symmetry">Bonus: Symmetry</a></li>
-  </ul></li>
-  </ul>
-</nav>
+
 <section id="introduction-to-tidy3d" class="level2">
-<h2>Introduction to Tidy3D</h2>
+<h2 class="anchored" data-anchor-id="introduction-to-tidy3d">Introduction to Tidy3D</h2>
 <section id="introduction" class="level3">
-<h3>Introduction</h3>
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
 <p>FDTD method allows you to compute the evolution of electromagnetic field in the <em>time domain</em>.</p>
 <p>Given some device <span class="math inline">\epsilon(\vec{r})</span> and an incident field or current source <span class="math inline">\vec{J}(\vec{r}, t)</span>, internally, FDTD solves these maxwell’s equations:</p>
 <p><span class="math display">\nabla \times \vec{E}(\vec{r}, t) = -\mu_0 \frac{\vec{H}(\vec{r}, t)}{dt} \tag{1}</span></p>
 <p><span class="math display">\nabla \times \vec{H}(\vec{r}, t) = \epsilon(\vec{r}) \epsilon_0 \frac{d\vec{E}(\vec{r}, t)}{dt} + \vec{J}(\vec{r}, t) \tag{2}</span></p>
 <div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img src="assets/field_update_fdtd.png" class="img-fluid" /></p>
+<figure class="figure">
+<p><img src="assets/field_update_fdtd.png" class="img-fluid figure-img"></p>
 <figcaption>Field Update</figcaption>
 </figure>
 </div>
@@ -269,41 +278,41 @@ window.Quarto = {
 </div>
 </section>
 <section id="starting-tidy3d" class="level3">
-<h3>Starting Tidy3D</h3>
+<h3 class="anchored" data-anchor-id="starting-tidy3d">Starting Tidy3D</h3>
 <p>These software packages should be imported everytime you start a tidy3D project:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>import tidy3d as td <span class="co"># Main package</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>import tidy3d as td <span class="co"># Main package</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>import tidy3d.web as web <span class="co"># Used to run the simulation</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>import matplotlib.pyplot as plt <span class="co"># Used for plotting results</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>import numpy as np <span class="co"># Used for numerical calculations</span></span></code></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>import numpy as np <span class="co"># Used for numerical calculations</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="before-simulation" class="level3">
-<h3>Before Simulation</h3>
+<h3 class="anchored" data-anchor-id="before-simulation">Before Simulation</h3>
 <p>Before the simulation, we have to define some key parameters of the electromagnetic waves that we will use across the simulation:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lambda_range <span class="ot">=</span> (<span class="fl">1.1</span>, <span class="fl">1.6</span>)   <span class="co"># wavelength range (µm)</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lambda_range <span class="ot">=</span> (<span class="fl">1.1</span>, <span class="fl">1.6</span>)   <span class="co"># wavelength range (µm)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>freqs <span class="ot">=</span> (td.C_0 <span class="sc">/</span> lambda_range[<span class="dv">1</span>], td.C_0 <span class="sc">/</span> lambda_range[<span class="dv">0</span>])  <span class="co"># frequency range</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>freq0 <span class="ot">=</span> <span class="fu">np.mean</span>(freqs)      <span class="co"># center frequency</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>lda0 <span class="ot">=</span> td.C_0 <span class="sc">/</span> freq0       <span class="co"># center wavelength</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>bandwidth <span class="ot">=</span> <span class="fl">0.38</span>            <span class="co"># normalized bandwidth</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>freqw <span class="ot">=</span> bandwidth <span class="sc">*</span> (freqs[<span class="dv">1</span>] <span class="sc">-</span> freqs[<span class="dv">0</span>])  <span class="co"># bandwidth in Hz</span></span></code></pre></div>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>freqw <span class="ot">=</span> bandwidth <span class="sc">*</span> (freqs[<span class="dv">1</span>] <span class="sc">-</span> freqs[<span class="dv">0</span>])  <span class="co"># bandwidth in Hz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Note:</strong> All numbers in tidy3d are in <strong>microns</strong> (<span class="math inline">\mu m</span>)</p>
 </section>
 <section id="basic-workflow" class="level3" data-auto-animate="true">
-<h3 data-auto-animate="true">Basic Workflow</h3>
+<h3 data-auto-animate="true" class="anchored" data-anchor-id="basic-workflow">Basic Workflow</h3>
 <p>Here’s how to simulate something:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining a simulation</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining a simulation</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>simulation1 <span class="ot">=</span> <span class="fu">td.Simulation</span>(</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># inputs</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The most basic way of running the simulation is using the <em>web</em> object we imported from tidy3d:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Running a simulation</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sim1_data <span class="ot">=</span> <span class="fu">web.run</span>(simulation1, <span class="at">task_name=</span><span class="st">&#39;any-unique-name&#39;</span>, <span class="at">path=</span><span class="st">&#39;data/descriptive-name.hdf5&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Running a simulation</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sim1_data <span class="ot">=</span> <span class="fu">web.run</span>(simulation1, <span class="at">task_name=</span><span class="st">'any-unique-name'</span>, <span class="at">path=</span><span class="st">'data/descriptive-name.hdf5'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Simulation data is stored as an <strong><a href="https://en.wikipedia.org/wiki/Hierarchical_Data_Format">HDF5 file</a></strong> at the <strong>file path</strong> you specify.</p>
 <div class="footer">
 <p>See <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Simulation.html">Simulation</a> Documentation for more information</p>
 </div>
 </section>
 <section id="simulation-inputs" class="level3">
-<h3>Simulation Inputs</h3>
+<h3 class="anchored" data-anchor-id="simulation-inputs">Simulation Inputs</h3>
 <p>The 7 required inputs are:</p>
 <div class="incremental">
 <ol class="incremental" type="1">
@@ -322,9 +331,9 @@ window.Quarto = {
 </div>
 </section>
 <section id="computational-domain-size" class="level3" data-auto-animate="true">
-<h3 data-auto-animate="true">1 Computational Domain Size</h3>
+<h3 data-auto-animate="true" class="anchored" data-anchor-id="computational-domain-size">1 Computational Domain Size</h3>
 <p>Size in x, y, and z directions.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.666</span> <span class="co">#nm -&gt; Periodicity</span></span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.666</span> <span class="co">#nm -&gt; Periodicity</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Lx, Ly, Lz <span class="ot">=</span> p, p, <span class="dv">2</span> <span class="sc">*</span> lda0 </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sim_size <span class="ot">=</span> [Lx, Ly, Lz]</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -332,12 +341,12 @@ window.Quarto = {
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>simulation1 <span class="ot">=</span> <span class="fu">td.Simulation</span>(</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A square computational domain</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> sim_size</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="grid-specifications" class="level3">
-<h3>2 Grid Specifications</h3>
+<h3 class="anchored" data-anchor-id="grid-specifications">2 Grid Specifications</h3>
 <p>Specifications for the simulation grid along each of the three directions.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define Grid size</span></span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define Grid size</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">=</span> <span class="fu">td.GridSpec.auto</span>(<span class="at">min_steps_per_wvl=</span><span class="dv">40</span>, <span class="at">wavelength=</span>lda0)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining a simulation</span></span>
@@ -346,14 +355,14 @@ window.Quarto = {
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> (x, y, z),</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid_spec=</span>spec,</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Typically, the size of a unit cell is <span class="math inline">\frac{\lambda}{20}</span></li>
 </ul>
-<hr />
+<hr>
 <p><a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.GridSpec.html">td.GridSpec</a> contains many functions to help define the grid, the most commonly used are:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">td.GridSpec.uniform</span>(<span class="at">dl=</span>grid_size)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">td.GridSpec.auto</span>(<span class="at">min_steps_per_wvl=</span><span class="dv">40</span>, <span class="at">wavelength=</span>lda0)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">td.GridSpec.uniform</span>(<span class="at">dl=</span>grid_size)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">td.GridSpec.auto</span>(<span class="at">min_steps_per_wvl=</span><span class="dv">40</span>, <span class="at">wavelength=</span>lda0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>uniform</strong> - Use the same Uniform 1D grid along each of the three directions.
 <ul>
@@ -367,100 +376,96 @@ window.Quarto = {
 </ul>
 </section>
 <section id="structures" class="level3">
-<h3>3 Structures</h3>
+<h3 class="anchored" data-anchor-id="structures">3 Structures</h3>
 <p><a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Structure.html">td.Structure</a> is the meat of the simulation. It defines a physical object that interacts with the electromagnetic fields. The <code>structures</code> field is a tuple of <code>Structure</code> objects that you create.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set up simulation</span></span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set up simulation</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>sim <span class="ot">=</span> <span class="fu">td.Simulation</span>(</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">size=</span>sim_size,</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid_spec=</span>spec,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">structures=</span>[superstrate, substrate, cylinder],</span></code></pre></div>
-<hr />
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set up simulation</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">structures=</span>[superstrate, substrate, cylinder],</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set up simulation</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">td.Structure</span>(</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>   <span class="co"># inputs</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p>A structure needs two inputs at least: - <strong>geometry</strong> (<a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Box.html#tidy3d.Box">td.Box</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Cylinder.html#tidy3d.Cylinder">td.Cylinder</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Sphere.html#tidy3d.Sphere">td.Sphere</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.TriangleMesh.html#tidy3d.TriangleMesh">td.TriangleMesh (STL file)</a>, etc.) - <strong>medium</strong> Mediums define the optical properties of the materials within the simulation. (e.g. <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Medium.html#tidy3d.Medium">td.Medium</a>)</p>
-<hr />
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A structure needs two inputs at least: - <strong>geometry</strong> (<a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Box.html#tidy3d.Box">td.Box</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Cylinder.html#tidy3d.Cylinder">td.Cylinder</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Sphere.html#tidy3d.Sphere">td.Sphere</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.TriangleMesh.html#tidy3d.TriangleMesh">td.TriangleMesh (STL file)</a>, etc.) - <strong>medium</strong> Mediums define the optical properties of the materials within the simulation. (e.g.&nbsp;<a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Medium.html#tidy3d.Medium">td.Medium</a>)</p>
+<hr>
 <p>According to the paper on <a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adom.201400584">huygen’s metasurface</a>, I defined these four structures:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">=</span> <span class="dv">2</span>  <span class="co"># thickness of the substrate # THIS SHOULD BE CHANGED TO INFINITE</span></span>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">=</span> <span class="dv">2</span>  <span class="co"># thickness of the substrate # THIS SHOULD BE CHANGED TO INFINITE</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>substrate <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">geometry=</span><span class="fu">td.Box</span>(</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">center=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="sc">-</span>t<span class="sc">/</span><span class="dv">2</span>),</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">size=</span>(td.inf,td.inf,t)</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.45</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">&#39;oxide&#39;</span>),</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">name=</span><span class="st">&#39;substrate&#39;</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>superstrate <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.45</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'oxide'</span>),</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">name=</span><span class="st">'substrate'</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>superstrate <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">geometry=</span><span class="fu">td.Box</span>(</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">center=</span>(<span class="dv">0</span>,<span class="dv">0</span>,t<span class="sc">/</span><span class="dv">2</span>),</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">size=</span>(td.inf,td.inf,t)</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.4</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">&#39;glass&#39;</span>),</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">name=</span><span class="st">&#39;superstrate&#39;</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>polymer <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.4</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'glass'</span>),</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">name=</span><span class="st">'superstrate'</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>polymer <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">geometry=</span><span class="fu">td.Box</span>(</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">center=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">size=</span>(td.inf,td.inf,<span class="dv">2</span><span class="sc">*</span>t)</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.66</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">&#39;polymer&#39;</span>),</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">name=</span><span class="st">&#39;polymer&#39;</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># construct the silicon resonator</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.66</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'polymer'</span>),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">name=</span><span class="st">'polymer'</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># construct the silicon resonator</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>cylinder <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">geometry=</span><span class="fu">td.Cylinder</span>(<span class="at">center=</span>[<span class="dv">0</span>, <span class="dv">0</span>, h <span class="sc">/</span> <span class="dv">2</span>], <span class="at">radius=</span>r, <span class="at">length=</span>h, <span class="at">axis=</span><span class="dv">2</span>), <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">3.5</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">&#39;Si&#39;</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">geometry=</span><span class="fu">td.Cylinder</span>(<span class="at">center=</span>[<span class="dv">0</span>, <span class="dv">0</span>, h <span class="sc">/</span> <span class="dv">2</span>], <span class="at">radius=</span>r, <span class="at">length=</span>h, <span class="at">axis=</span><span class="dv">2</span>), <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">3.5</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'Si'</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="sources" class="level3">
-<h3>4 Sources</h3>
+<h3 class="anchored" data-anchor-id="sources">4 Sources</h3>
 <p>Tuple of electric current sources injecting fields into the simulation. Common ones are:</p>
 <p><strong>Plane Wave</strong> - Uniform current distribution on an infinite extent plane. <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.PlaneWave.html#tidy3d.PlaneWave">(Doc)</a></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pulse <span class="ot">=</span> <span class="fu">GaussianPulse</span>(<span class="at">freq0=</span><span class="fl">200e12</span>, <span class="at">fwidth=</span><span class="fl">20e12</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>pw_source <span class="ot">=</span> <span class="fu">PlaneWave</span>(<span class="at">size=</span>(inf,<span class="dv">0</span>,inf), <span class="at">source_time=</span>pulse, <span class="at">pol_angle=</span><span class="fl">0.1</span>, <span class="at">direction=</span><span class="st">&#39;+&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pulse <span class="ot">=</span> <span class="fu">GaussianPulse</span>(<span class="at">freq0=</span><span class="fl">200e12</span>, <span class="at">fwidth=</span><span class="fl">20e12</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>pw_source <span class="ot">=</span> <span class="fu">PlaneWave</span>(<span class="at">size=</span>(inf,<span class="dv">0</span>,inf), <span class="at">source_time=</span>pulse, <span class="at">pol_angle=</span><span class="fl">0.1</span>, <span class="at">direction=</span><span class="st">'+'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Point Dipole</strong> - Uniform current source with a zero size. <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.PointDipole.html#tidy3d.PointDipole">(Doc)</a></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pulse <span class="ot">=</span> <span class="fu">td.GaussianPulse</span>(<span class="at">freq0=</span><span class="fl">200e12</span>, <span class="at">fwidth=</span><span class="fl">20e12</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>pt_dipole <span class="ot">=</span> <span class="fu">td.PointDipole</span>(<span class="at">center=</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">source_time=</span>pulse, <span class="at">polarization=</span><span class="st">&#39;Ex&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pulse <span class="ot">=</span> <span class="fu">td.GaussianPulse</span>(<span class="at">freq0=</span><span class="fl">200e12</span>, <span class="at">fwidth=</span><span class="fl">20e12</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>pt_dipole <span class="ot">=</span> <span class="fu">td.PointDipole</span>(<span class="at">center=</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">source_time=</span>pulse, <span class="at">polarization=</span><span class="st">'Ex'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>See documentation for <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/sources.html">Other Sources</a></p>
-<hr />
+<hr>
 <p>In this case, I defined one plane wave source:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add a plane wave source</span></span>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add a plane wave source</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plane_wave <span class="ot">=</span> <span class="fu">td.PlaneWave</span>(</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">source_time=</span><span class="fu">td.GaussianPulse</span>(<span class="at">freq0=</span>freq0, <span class="at">fwidth=</span><span class="fl">0.5</span> <span class="sc">*</span> freqw),</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">size=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">center=</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.3</span> <span class="sc">*</span> lda0),</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">direction=</span><span class="st">&quot;-&quot;</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">direction=</span><span class="st">"-"</span>,</span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">pol_angle=</span><span class="dv">0</span>,</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="monitors" class="level3">
-<h3>5 Monitors</h3>
+<h3 class="anchored" data-anchor-id="monitors">5 Monitors</h3>
 <p>Tuple of monitors in the simulation. Note: monitor names are used to access data after simulation is run.</p>
 <p>See <a href="https://docs.flexcompute.com/projects/tidy3d/en/v2.7.8/api/monitors.html">Other monitors</a></p>
 </section>
 <section id="run-time" class="level3">
-<h3>6 Run time</h3>
+<h3 class="anchored" data-anchor-id="run-time">6 Run time</h3>
 <p>Total electromagnetic evolution time in seconds.</p>
 </section>
 <section id="boundary-condition-specification" class="level3">
-<h3>7 Boundary Condition Specification</h3>
+<h3 class="anchored" data-anchor-id="boundary-condition-specification">7 Boundary Condition Specification</h3>
 <p>Specification of boundary conditions along each dimension. If None, PML boundary conditions are applied on all sides.</p>
 </section>
 <section id="bonus-symmetry" class="level3">
-<h3>Bonus: Symmetry</h3>
-<p>Tuple of integers defining reflection symmetry across a plane bisecting the simulation domain normal to the x-, y-, and z-axis at the simulation center of each axis, respectively. Each element can be 0 (no symmetry), 1 (even, i.e. ‘PMC’ symmetry) or -1 (odd, i.e. ‘PEC’ symmetry). Note that the vectorial nature of the fields must be taken into account to correctly determine the symmetry value.</p>
+<h3 class="anchored" data-anchor-id="bonus-symmetry">Bonus: Symmetry</h3>
+<p>Tuple of integers defining reflection symmetry across a plane bisecting the simulation domain normal to the x-, y-, and z-axis at the simulation center of each axis, respectively. Each element can be 0 (no symmetry), 1 (even, i.e.&nbsp;‘PMC’ symmetry) or -1 (odd, i.e.&nbsp;‘PEC’ symmetry). Note that the vectorial nature of the fields must be taken into account to correctly determine the symmetry value.</p>
 <p>Symmetry can be used to greatly reduce the computational cost –&gt;</p>
-<div id="quarto-navigation-envelope" class="hidden">
-<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyLXRpdGxl">Yankun (Alex) Meng</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXItdGl0bGU=">Yankun (Alex) Meng</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1wcmV2">Home</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9pbmRleC5odG1sSG9tZQ==">Home</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tMQ==">Year 1</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi90aWR5M2QuaHRtbExlYXJuaW5nLVRpZHkzRA==">Learning Tidy3D</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWJyZWFkY3J1bWJzLVllYXItMQ==">Year 1</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWJyZWFkY3J1bWJzLUxlYXJuaW5nLVRpZHkzRA==">Learning Tidy3D</span></p>
-</div>
-<div id="quarto-meta-markdown" class="hidden">
-<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW1ldGF0aXRsZQ==">Learning Tidy3D – Yankun (Alex) Meng</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkdGl0bGU=">Learning Tidy3D – Yankun (Alex) Meng</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZHRpdGxl">Learning Tidy3D – Yankun (Alex) Meng</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW1ldGFzaXRlbmFtZQ==">Yankun (Alex) Meng</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkZGVzYw==">Yankun (Alex) Meng</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZGRkZXNj">Yankun (Alex) Meng</span></p>
-</div>
+
+
 </section>
 </section>
 
 </main> <!-- /main -->
-<script id = "quarto-html-after-body" type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -861,7 +866,7 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a  href="/index.html" class="pagination-link" aria-label="Home">
+      <a href="./index.html" class="pagination-link" aria-label="Home">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Home</span>
       </a>          
   </div>
@@ -870,6 +875,7 @@ window.Quarto = {
 </nav>
 </div> <!-- /content -->
 
-</body>
 
-</html>
+
+
+</body></html>
