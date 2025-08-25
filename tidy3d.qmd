@@ -56,19 +56,6 @@ simulation1 = td.Simulation(
     # inputs
 )
 ```
-The 7 required inputs are:
-1. Computational Domain Size
-2. Grid Specifications (Discretization size)
-3. Structures
-4. Sources 
-5. Monitors
-6. Run time
-7. Boundary Condition Specification
-
-We will introduce these 7 parameters by simulating a [huygen's metasurface](https://advanced.onlinelibrary.wiley.com/doi/10.1002/adom.201400584)
-
-
-## Running a Simulation
 
 The most basic way of running the simulation is using the *web* object we imported from tidy3d:
 
@@ -77,6 +64,32 @@ The most basic way of running the simulation is using the *web* object we import
 sim1_data = web.run(simulation1, task_name='any-unique-name', path='data/descriptive-name.hdf5')
 ```
 Simulation data is stored as an **[HDF5 file](https://en.wikipedia.org/wiki/Hierarchical_Data_Format)** at the **file path** you specify.
+
+::: footer
+See [Simulation](https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Simulation.html) Documentation for more information
+:::
+
+## Simulation Inputs
+
+The 7 required inputs are:
+
+::: {.incremental}
+
+1. Computational Domain Size
+2. Grid Specifications (Discretization size)
+3. Structures
+4. Sources 
+5. Monitors
+6. Run time
+7. Boundary Condition Specification
+
+:::
+
+We will introduce these 7 parameters by simulating a [huygen's metasurface](https://advanced.onlinelibrary.wiley.com/doi/10.1002/adom.201400584)
+
+::: footer
+See [Simulation](https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Simulation.html) Documentation for more information
+:::
 
 ## 1 Computational Domain Size {auto-animate="true"}
 
@@ -93,7 +106,7 @@ simulation1 = td.Simulation(
     size = sim_size
 )
 ```
- 
+
 ## 2 Grid Specifications
 
 Specifications for the simulation grid along each of the three directions.
@@ -127,10 +140,10 @@ td.GridSpec.auto(min_steps_per_wvl=40, wavelength=lda0)
 - **auto** - Use the same non-uniform grid along each of the three directions.
   - **min_steps_per_wvl**(ConstrainedFloatValue = 10.0) – Minimal number of steps per wavelength in each medium.
   - **wavelength** (float) – Wavelength to use for the step size and for dispersive media epsilon.
- 	
+
 ## 3 Structures
 
-[td.Structure](https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Structure.html) is the meat of the simulation. It defines a physical object that interacts with the electromagnetic fields. The `structures` field is a list of `Structure` objects that you create.
+[td.Structure](https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Structure.html) is the meat of the simulation. It defines a physical object that interacts with the electromagnetic fields. The `structures` field is a tuple of `Structure` objects that you create.
 
 ```r
 # set up simulation
@@ -140,6 +153,7 @@ sim = td.Simulation(
     structures=[superstrate, substrate, cylinder],
 ```
 ---
+
 ```r
 # set up simulation
 td.Structure(
@@ -148,7 +162,9 @@ td.Structure(
 ```
 A structure needs two inputs at least:
 - **geometry** ([td.Box](https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Box.html#tidy3d.Box), [td.Cylinder](https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Cylinder.html#tidy3d.Cylinder), [td.Sphere](https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Sphere.html#tidy3d.Sphere), [td.TriangleMesh (STL file)](https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.TriangleMesh.html#tidy3d.TriangleMesh), etc.)
-- **medium** - Mediums define the optical properties of the materials within the simulation. (e.g. [td.Medium](https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Medium.html#tidy3d.Medium))
+- **medium** Mediums define the optical properties of the materials within the simulation. (e.g. [td.Medium](https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Medium.html#tidy3d.Medium))
+
+---
 
 According to the paper on [huygen's metasurface](https://advanced.onlinelibrary.wiley.com/doi/10.1002/adom.201400584), I defined these four structures:
 
@@ -163,6 +179,7 @@ substrate = td.Structure(
     name='substrate'
 )
 ```
+
 ```r
 superstrate = td.Structure(
     geometry=td.Box(
@@ -173,6 +190,7 @@ superstrate = td.Structure(
     name='superstrate'
 )
 ```
+
 ```r
 polymer = td.Structure(
     geometry=td.Box(
@@ -183,9 +201,65 @@ polymer = td.Structure(
     name='polymer'
 )
 ```
+
 ```r
 # construct the silicon resonator
 cylinder = td.Structure(
     geometry=td.Cylinder(center=[0, 0, h / 2], radius=r, length=h, axis=2), medium=td.Medium(permittivity=3.5**2, name='Si')
 )
 ```
+
+## 4 Sources
+
+Tuple of electric current sources injecting fields into the simulation. Common ones are:
+
+**Plane Wave** - Uniform current distribution on an infinite extent plane. [(Doc)](https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.PlaneWave.html#tidy3d.PlaneWave)
+
+```r
+pulse = GaussianPulse(freq0=200e12, fwidth=20e12)
+pw_source = PlaneWave(size=(inf,0,inf), source_time=pulse, pol_angle=0.1, direction='+')
+```
+
+**Point Dipole** - Uniform current source with a zero size. [(Doc)](https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.PointDipole.html#tidy3d.PointDipole)
+
+```r
+pulse = td.GaussianPulse(freq0=200e12, fwidth=20e12)
+pt_dipole = td.PointDipole(center=(1,2,3), source_time=pulse, polarization='Ex')
+```
+
+See documentation for [Other Sources](https://docs.flexcompute.com/projects/tidy3d/en/latest/api/sources.html)
+
+---
+
+In this case, I defined one plane wave source:
+
+```r
+# add a plane wave source
+plane_wave = td.PlaneWave(
+    source_time=td.GaussianPulse(freq0=freq0, fwidth=0.5 * freqw),
+    size=(td.inf, td.inf, 0),
+    center=(0, 0, 0.3 * lda0),
+    direction="-",
+    pol_angle=0,
+)
+```
+
+## 5 Monitors
+
+Tuple of monitors in the simulation. Note: monitor names are used to access data after simulation is run.
+
+See [Other monitors](https://docs.flexcompute.com/projects/tidy3d/en/v2.7.8/api/monitors.html)
+
+## 6 Run time
+
+Total electromagnetic evolution time in seconds. 
+
+## 7 Boundary Condition Specification
+
+Specification of boundary conditions along each dimension. If None, PML boundary conditions are applied on all sides.
+
+## Bonus: Symmetry
+
+Tuple of integers defining reflection symmetry across a plane bisecting the simulation domain normal to the x-, y-, and z-axis at the simulation center of each axis, respectively. Each element can be 0 (no symmetry), 1 (even, i.e. ‘PMC’ symmetry) or -1 (odd, i.e. ‘PEC’ symmetry). Note that the vectorial nature of the fields must be taken into account to correctly determine the symmetry value.
+
+Symmetry can be used to greatly reduce the computational cost -->

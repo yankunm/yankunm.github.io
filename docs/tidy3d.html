@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -158,9 +159,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Yankun (Alex) Meng
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidy3d.html">Year 1</a></li><li class="breadcrumb-item"><a href="./tidy3d.html">Learning Tidy3D</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -202,7 +201,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./template.html" class="sidebar-item-text sidebar-link">
+  <a href="./tidy3d.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Learning Tidy3D</span></a>
   </div>
 </li>
@@ -228,6 +227,11 @@ window.Quarto = {
   <li><a href="#computational-domain-size" id="toc-computational-domain-size" class="nav-link" data-scroll-target="#computational-domain-size">1 Computational Domain Size</a></li>
   <li><a href="#grid-specifications" id="toc-grid-specifications" class="nav-link" data-scroll-target="#grid-specifications">2 Grid Specifications</a></li>
   <li><a href="#structures" id="toc-structures" class="nav-link" data-scroll-target="#structures">3 Structures</a></li>
+  <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">4 Sources</a></li>
+  <li><a href="#monitors" id="toc-monitors" class="nav-link" data-scroll-target="#monitors">5 Monitors</a></li>
+  <li><a href="#run-time" id="toc-run-time" class="nav-link" data-scroll-target="#run-time">6 Run time</a></li>
+  <li><a href="#boundary-condition-specification" id="toc-boundary-condition-specification" class="nav-link" data-scroll-target="#boundary-condition-specification">7 Boundary Condition Specification</a></li>
+  <li><a href="#bonus-symmetry" id="toc-bonus-symmetry" class="nav-link" data-scroll-target="#bonus-symmetry">Bonus: Symmetry</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="tidy3d.slides.html"><i class="bi bi-file-slides"></i>Slides</a></li></ul></div></nav>
@@ -235,7 +239,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidy3d.html">Year 1</a></li><li class="breadcrumb-item"><a href="./tidy3d.html">Learning Tidy3D</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Learning Tidy3D</h1>
 <p class="subtitle lead">Yankun (Alex) Meng</p>
@@ -299,7 +303,19 @@ window.Quarto = {
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>simulation1 <span class="ot">=</span> <span class="fu">td.Simulation</span>(</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># inputs</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The 7 required inputs are: 1. Computational Domain Size 2. Grid Specifications (Discretization size) 3. Structures 4. Sources 5. Monitors 6. Run time 7. Boundary Condition Specification</p>
+<p>The 7 required inputs are:<br>
+</p>
+<div class="incremental">
+<ul class="incremental">
+<li>Computational Domain Size</li>
+<li>Grid Specifications (Discretization size)</li>
+<li>Structures</li>
+<li>Sources</li>
+<li>Monitors</li>
+<li>Run time</li>
+<li>Boundary Condition Specification</li>
+</ul>
+</div>
 <p>We will introduce these 7 parameters by simulating a <a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adom.201400584">huygen’s metasurface</a></p>
 </section>
 <section id="running-a-simulation" class="level3">
@@ -367,7 +383,8 @@ window.Quarto = {
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">td.Structure</span>(</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>   <span class="co"># inputs</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>A structure needs two inputs at least: - <strong>geometry</strong> (<a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Box.html#tidy3d.Box">td.Box</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Cylinder.html#tidy3d.Cylinder">td.Cylinder</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Sphere.html#tidy3d.Sphere">td.Sphere</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.TriangleMesh.html#tidy3d.TriangleMesh">td.TriangleMesh (STL file)</a>, etc.) - <strong>medium</strong> - Mediums define the optical properties of the materials within the simulation. (e.g.&nbsp;<a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Medium.html#tidy3d.Medium">td.Medium</a>)</p>
+<p>A structure needs two inputs at least: - <strong>geometry</strong> (<a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Box.html#tidy3d.Box">td.Box</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Cylinder.html#tidy3d.Cylinder">td.Cylinder</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Sphere.html#tidy3d.Sphere">td.Sphere</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.TriangleMesh.html#tidy3d.TriangleMesh">td.TriangleMesh (STL file)</a>, etc.) - <strong>medium</strong> Mediums define the optical properties of the materials within the simulation. (e.g.&nbsp;<a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Medium.html#tidy3d.Medium">td.Medium</a>)</p>
+<hr>
 <p>According to the paper on <a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adom.201400584">huygen’s metasurface</a>, I defined these four structures:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">=</span> <span class="dv">2</span>  <span class="co"># thickness of the substrate # THIS SHOULD BE CHANGED TO INFINITE</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>substrate <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
@@ -377,27 +394,47 @@ window.Quarto = {
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    ),</span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.45</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'oxide'</span>),</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">name=</span><span class="st">'substrate'</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>superstrate <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">geometry=</span><span class="fu">td.Box</span>(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">center=</span>(<span class="dv">0</span>,<span class="dv">0</span>,t<span class="sc">/</span><span class="dv">2</span>),</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">size=</span>(td.inf,td.inf,t)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.4</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'glass'</span>),</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">name=</span><span class="st">'superstrate'</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>polymer <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">geometry=</span><span class="fu">td.Box</span>(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">center=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">size=</span>(td.inf,td.inf,<span class="dv">2</span><span class="sc">*</span>t)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.66</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'polymer'</span>),</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">name=</span><span class="st">'polymer'</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># construct the silicon resonator</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>cylinder <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">geometry=</span><span class="fu">td.Cylinder</span>(<span class="at">center=</span>[<span class="dv">0</span>, <span class="dv">0</span>, h <span class="sc">/</span> <span class="dv">2</span>], <span class="at">radius=</span>r, <span class="at">length=</span>h, <span class="at">axis=</span><span class="dv">2</span>), <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">3.5</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'Si'</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>superstrate <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">geometry=</span><span class="fu">td.Box</span>(</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">center=</span>(<span class="dv">0</span>,<span class="dv">0</span>,t<span class="sc">/</span><span class="dv">2</span>),</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">size=</span>(td.inf,td.inf,t)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.4</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'glass'</span>),</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">name=</span><span class="st">'superstrate'</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>polymer <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">geometry=</span><span class="fu">td.Box</span>(</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">center=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">size=</span>(td.inf,td.inf,<span class="dv">2</span><span class="sc">*</span>t)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.66</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'polymer'</span>),</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">name=</span><span class="st">'polymer'</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co"># construct the silicon resonator</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>cylinder <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">geometry=</span><span class="fu">td.Cylinder</span>(<span class="at">center=</span>[<span class="dv">0</span>, <span class="dv">0</span>, h <span class="sc">/</span> <span class="dv">2</span>], <span class="at">radius=</span>r, <span class="at">length=</span>h, <span class="at">axis=</span><span class="dv">2</span>), <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">3.5</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'Si'</span>)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="sources" class="level3">
+<h3 class="anchored" data-anchor-id="sources">4 Sources</h3>
+<p>A source specifies the input.</p>
+</section>
+<section id="monitors" class="level3">
+<h3 class="anchored" data-anchor-id="monitors">5 Monitors</h3>
+</section>
+<section id="run-time" class="level3">
+<h3 class="anchored" data-anchor-id="run-time">6 Run time</h3>
+</section>
+<section id="boundary-condition-specification" class="level3">
+<h3 class="anchored" data-anchor-id="boundary-condition-specification">7 Boundary Condition Specification</h3>
+</section>
+<section id="bonus-symmetry" class="level3">
+<h3 class="anchored" data-anchor-id="bonus-symmetry">Bonus: Symmetry</h3>
+<p>Symmetry can be used to greatly reduce the computational cost –&gt;</p>
 
 
 </section>
@@ -803,6 +840,15 @@ window.Quarto = {
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Home">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Home</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

@@ -271,7 +271,17 @@
 <span id="cb3-2" class="hljs-ln-code"><a></a>simulation1 <span class="ot">=</span> <span class="fu">td.Simulation</span>(</span>
 <span id="cb3-3" class="hljs-ln-code"><a></a>    <span class="co"># inputs</span></span>
 <span id="cb3-4" class="hljs-ln-code"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The 7 required inputs are: 1. Computational Domain Size 2. Grid Specifications (Discretization size) 3. Structures 4. Sources 5. Monitors 6. Run time 7. Boundary Condition Specification</p>
+<p>The 7 required inputs are:<br>
+</p>
+<ul>
+<li class="fragment">Computational Domain Size</li>
+<li class="fragment">Grid Specifications (Discretization size)</li>
+<li class="fragment">Structures</li>
+<li class="fragment">Sources</li>
+<li class="fragment">Monitors</li>
+<li class="fragment">Run time</li>
+<li class="fragment">Boundary Condition Specification</li>
+</ul>
 <p>We will introduce these 7 parameters by simulating a <a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adom.201400584">huygen’s metasurface</a></p>
 </section>
 <section id="running-a-simulation" class="slide level2">
@@ -343,7 +353,10 @@
 <span id="cb9-2"><a></a><span class="fu">td.Structure</span>(</span>
 <span id="cb9-3"><a></a>   <span class="co"># inputs</span></span>
 <span id="cb9-4"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>A structure needs two inputs at least: - <strong>geometry</strong> (<a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Box.html#tidy3d.Box">td.Box</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Cylinder.html#tidy3d.Cylinder">td.Cylinder</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Sphere.html#tidy3d.Sphere">td.Sphere</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.TriangleMesh.html#tidy3d.TriangleMesh">td.TriangleMesh (STL file)</a>, etc.) - <strong>medium</strong> - Mediums define the optical properties of the materials within the simulation. (e.g.&nbsp;<a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Medium.html#tidy3d.Medium">td.Medium</a>)</p>
+<p>A structure needs two inputs at least: - <strong>geometry</strong> (<a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Box.html#tidy3d.Box">td.Box</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Cylinder.html#tidy3d.Cylinder">td.Cylinder</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Sphere.html#tidy3d.Sphere">td.Sphere</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.TriangleMesh.html#tidy3d.TriangleMesh">td.TriangleMesh (STL file)</a>, etc.) - <strong>medium</strong> Mediums define the optical properties of the materials within the simulation. (e.g.&nbsp;<a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Medium.html#tidy3d.Medium">td.Medium</a>)</p>
+</section>
+<section class="slide level2">
+
 <p>According to the paper on <a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adom.201400584">huygen’s metasurface</a>, I defined these four structures:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>t <span class="ot">=</span> <span class="dv">2</span>  <span class="co"># thickness of the substrate # THIS SHOULD BE CHANGED TO INFINITE</span></span>
 <span id="cb10-2"><a></a>substrate <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
@@ -353,27 +366,47 @@
 <span id="cb10-6"><a></a>    ),</span>
 <span id="cb10-7"><a></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.45</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'oxide'</span>),</span>
 <span id="cb10-8"><a></a>    <span class="at">name=</span><span class="st">'substrate'</span></span>
-<span id="cb10-9"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>superstrate <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
-<span id="cb11-2"><a></a>    <span class="at">geometry=</span><span class="fu">td.Box</span>(</span>
-<span id="cb11-3"><a></a>        <span class="at">center=</span>(<span class="dv">0</span>,<span class="dv">0</span>,t<span class="sc">/</span><span class="dv">2</span>),</span>
-<span id="cb11-4"><a></a>        <span class="at">size=</span>(td.inf,td.inf,t)</span>
-<span id="cb11-5"><a></a>    ),</span>
-<span id="cb11-6"><a></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.4</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'glass'</span>),</span>
-<span id="cb11-7"><a></a>    <span class="at">name=</span><span class="st">'superstrate'</span></span>
-<span id="cb11-8"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>polymer <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
-<span id="cb12-2"><a></a>    <span class="at">geometry=</span><span class="fu">td.Box</span>(</span>
-<span id="cb12-3"><a></a>        <span class="at">center=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb12-4"><a></a>        <span class="at">size=</span>(td.inf,td.inf,<span class="dv">2</span><span class="sc">*</span>t)</span>
-<span id="cb12-5"><a></a>    ),</span>
-<span id="cb12-6"><a></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.66</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'polymer'</span>),</span>
-<span id="cb12-7"><a></a>    <span class="at">name=</span><span class="st">'polymer'</span></span>
-<span id="cb12-8"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># construct the silicon resonator</span></span>
-<span id="cb13-2"><a></a>cylinder <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
-<span id="cb13-3"><a></a>    <span class="at">geometry=</span><span class="fu">td.Cylinder</span>(<span class="at">center=</span>[<span class="dv">0</span>, <span class="dv">0</span>, h <span class="sc">/</span> <span class="dv">2</span>], <span class="at">radius=</span>r, <span class="at">length=</span>h, <span class="at">axis=</span><span class="dv">2</span>), <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">3.5</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'Si'</span>)</span>
-<span id="cb13-4"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-9"><a></a>)</span>
+<span id="cb10-10"><a></a></span>
+<span id="cb10-11"><a></a>superstrate <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
+<span id="cb10-12"><a></a>    <span class="at">geometry=</span><span class="fu">td.Box</span>(</span>
+<span id="cb10-13"><a></a>        <span class="at">center=</span>(<span class="dv">0</span>,<span class="dv">0</span>,t<span class="sc">/</span><span class="dv">2</span>),</span>
+<span id="cb10-14"><a></a>        <span class="at">size=</span>(td.inf,td.inf,t)</span>
+<span id="cb10-15"><a></a>    ),</span>
+<span id="cb10-16"><a></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.4</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'glass'</span>),</span>
+<span id="cb10-17"><a></a>    <span class="at">name=</span><span class="st">'superstrate'</span></span>
+<span id="cb10-18"><a></a>)</span>
+<span id="cb10-19"><a></a></span>
+<span id="cb10-20"><a></a>polymer <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
+<span id="cb10-21"><a></a>    <span class="at">geometry=</span><span class="fu">td.Box</span>(</span>
+<span id="cb10-22"><a></a>        <span class="at">center=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb10-23"><a></a>        <span class="at">size=</span>(td.inf,td.inf,<span class="dv">2</span><span class="sc">*</span>t)</span>
+<span id="cb10-24"><a></a>    ),</span>
+<span id="cb10-25"><a></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.66</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'polymer'</span>),</span>
+<span id="cb10-26"><a></a>    <span class="at">name=</span><span class="st">'polymer'</span></span>
+<span id="cb10-27"><a></a>)</span>
+<span id="cb10-28"><a></a></span>
+<span id="cb10-29"><a></a><span class="co"># construct the silicon resonator</span></span>
+<span id="cb10-30"><a></a>cylinder <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
+<span id="cb10-31"><a></a>    <span class="at">geometry=</span><span class="fu">td.Cylinder</span>(<span class="at">center=</span>[<span class="dv">0</span>, <span class="dv">0</span>, h <span class="sc">/</span> <span class="dv">2</span>], <span class="at">radius=</span>r, <span class="at">length=</span>h, <span class="at">axis=</span><span class="dv">2</span>), <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">3.5</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'Si'</span>)</span>
+<span id="cb10-32"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="sources" class="slide level2">
+<h2>4 Sources</h2>
+<p>A source specifies the input.</p>
+</section>
+<section id="monitors" class="slide level2">
+<h2>5 Monitors</h2>
+</section>
+<section id="run-time" class="slide level2">
+<h2>6 Run time</h2>
+</section>
+<section id="boundary-condition-specification" class="slide level2">
+<h2>7 Boundary Condition Specification</h2>
+</section>
+<section id="bonus-symmetry" class="slide level2">
+<h2>Bonus: Symmetry</h2>
+<p>Symmetry can be used to greatly reduce the computational cost –&gt;</p>
 
 
 </section></section>
