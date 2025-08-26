@@ -113,6 +113,16 @@
     "text": "Bonus: Symmetry\nTuple of integers defining reflection symmetry across a plane bisecting the simulation domain normal to the x-, y-, and z-axis at the simulation center of each axis, respectively. Each element can be 0 (no symmetry), 1 (even, i.e. ‘PMC’ symmetry) or -1 (odd, i.e. ‘PEC’ symmetry). Note that the vectorial nature of the fields must be taken into account to correctly determine the symmetry value.\nSymmetry can be used to greatly reduce the computational cost –&gt;"
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Yankun (Alex) Meng",
+    "section": "",
+    "text": "About Me\nI am an incoming PhD student in the Department of Electrical and Computer Engineering at Duke University, fortunate to be advised by Prof. Natalia M. Litchinitser.\nPreviously, I was an undergrad at Duke University Double majoring in Electrical and Computer Engineering and Computer Science.\n\n\nNews\n[August 2025] PhD started!\n[May 2025] Graduated from Duke Undergraduate",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
     "objectID": "index.slides.html#about-me",
     "href": "index.slides.html#about-me",
     "title": "Yankun (Alex) Meng",
@@ -127,13 +137,71 @@
     "text": "News\n[August 2025] PhD started!\n[May 2025] Graduated from Duke Undergraduate"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Yankun (Alex) Meng",
+    "objectID": "optics.slides.html#introduction",
+    "href": "optics.slides.html#introduction",
+    "title": "Learning Optics",
+    "section": "Introduction",
+    "text": "Introduction\nPicturing light as rays is useful for predicting imaging properties.\nAs \\lambda \\rightarrow 0, Maxwell equation’s become the eikonal equation, which governs ray direction in a medium with a varying n(\\vec{r}).\nFermat’s principle is deduced from eikonal equation.\nSnell’s law is derived from fermat’s principle."
+  },
+  {
+    "objectID": "optics.slides.html#eikonal-equation",
+    "href": "optics.slides.html#eikonal-equation",
+    "title": "Learning Optics",
+    "section": "Eikonal Equation",
+    "text": "Eikonal Equation\n\\nabla^2 \\vec{E}(\\vec{r}, t) + \\frac{[n(\\vec{r})]^2 \\omega^2}{c^2} \\vec{E}(\\vec{r}, t) = 0 \\tag{wave equation in isotropic medium} \\vec{E}(\\vec{r}, t) = \\vec{E}_0 e^{i[k_{vac} R(\\vec{r}) - \\omega t]}, k_{vac} = \\frac{\\omega}{c} \\left( \\frac{rad}{m} \\right) \\tag{trial solution}\nWe plug trial solution in, perform laplacian, arrange terms, and make the approximation that \\frac{1}{k_{vac}} = \\frac{\\lambda_{vac}}{2 \\pi} \\rightarrow 0, we get\n[\\nabla R(\\vec{r}) \\cdot \\nabla R(\\vec{r}) - [n(\\vec{r})]^2] \\vec{E}_0(\\vec{r}) = 0 \\tag{Simplified wave equation}\n\\implies \\nabla R(\\vec{r}) \\cdot \\nabla R(\\vec{r}) = [n(\\vec{r})]^2\n\\implies \\boxed{ \\nabla R(\\vec{r}) = n(\\vec{r}) \\hat{s}(\\vec{r}) } \\tag{eikonal function}\nIf R(\\vec{r}) (length) is real, no absorption or amplification. R(\\vec{r}) = constant is one wavefront. \\nabla R(\\vec{r}) is the local direction of propagation. \\hat{s} is unit vector in direction of energy flow. Rays are collection vectors \\hat{s}."
+  },
+  {
+    "objectID": "optics.slides.html#fermats-principle",
+    "href": "optics.slides.html#fermats-principle",
+    "title": "Learning Optics",
+    "section": "Fermat’s Principle",
+    "text": "Fermat’s Principle\n\\nabla \\times [\\nabla R(\\vec{r})] = \\nabla \\times [n(\\vec{r}) \\hat{s}(\\vec{r})] = 0  \\tag{curl of eikonal function}\n\\int_{A} \\nabla \\times [n(\\vec{r}) \\hat{s}(\\vec{r})] = 0  \\tag{integrate over open surface A}\n\\oint_{C} n \\hat{s} \\cdot d\\vec{l} = 0 \\tag{By Stoke's Theorem}\n\\implies \\int_{A}^{B} n \\hat{s} \\cdot d\\vec{l} \\text{is independent of path}\nNotice that\n\\int_{A}^{B} n \\hat{s} \\cdot d\\vec{l} = \\min{\\int_{A}^{B} n d \\vec{l}}\nWe define Optical Path Length as\n\\boxed{OPL = \\frac{A}{B} n dl}\nAnd Fermat’s Theorem minimizes\n\\delta t = \\frac{OPL}{c} \\tag{travel time}"
+  },
+  {
+    "objectID": "optics.slides.html#paraxial-ray-theory",
+    "href": "optics.slides.html#paraxial-ray-theory",
+    "title": "Learning Optics",
+    "section": "Paraxial Ray Theory",
+    "text": "Paraxial Ray Theory\nPropagation of rays through optical systems can be approximated as paraxial, nearly parallel to the axis of these systems.\nParaxial ray theory predicts stability of laser cavities, to see if ray drift away from optical axis."
+  },
+  {
+    "objectID": "optics.slides.html#proof-of-snells-law",
+    "href": "optics.slides.html#proof-of-snells-law",
+    "title": "Learning Optics",
+    "section": "Proof of Snell’s Law",
+    "text": "Proof of Snell’s Law\n\nConstruction to prove Snell’s LawConstrained minimization problem: Minimize $n_1 d_1 _1 + $"
+  },
+  {
+    "objectID": "optics.html",
+    "href": "optics.html",
+    "title": "Learning Optics",
     "section": "",
-    "text": "About Me\nI am an incoming PhD student in the Department of Electrical and Computer Engineering at Duke University, fortunate to be advised by Prof. Natalia M. Litchinitser.\nPreviously, I was an undergrad at Duke University Double majoring in Electrical and Computer Engineering and Computer Science.\n\n\nNews\n[August 2025] PhD started!\n[May 2025] Graduated from Duke Undergraduate",
+    "text": "Picturing light as rays is useful for predicting imaging properties.\nAs \\lambda \\rightarrow 0, Maxwell equation’s become the eikonal equation, which governs ray direction in a medium with a varying n(\\vec{r}).\nFermat’s principle is deduced from eikonal equation.\nSnell’s law is derived from fermat’s principle.\n\n\n\n\\nabla^2 \\vec{E}(\\vec{r}, t) + \\frac{[n(\\vec{r})]^2 \\omega^2}{c^2} \\vec{E}(\\vec{r}, t) = 0 \\tag{wave equation in isotropic medium} \\vec{E}(\\vec{r}, t) = \\vec{E}_0 e^{i[k_{vac} R(\\vec{r}) - \\omega t]}, k_{vac} = \\frac{\\omega}{c} \\left( \\frac{rad}{m} \\right) \\tag{trial solution}\nWe plug trial solution in, perform laplacian, arrange terms, and make the approximation that \\frac{1}{k_{vac}} = \\frac{\\lambda_{vac}}{2 \\pi} \\rightarrow 0, we get\n[\\nabla R(\\vec{r}) \\cdot \\nabla R(\\vec{r}) - [n(\\vec{r})]^2] \\vec{E}_0(\\vec{r}) = 0 \\tag{Simplified wave equation}\n\\implies \\nabla R(\\vec{r}) \\cdot \\nabla R(\\vec{r}) = [n(\\vec{r})]^2\n\\implies \\boxed{ \\nabla R(\\vec{r}) = n(\\vec{r}) \\hat{s}(\\vec{r}) } \\tag{eikonal function}\nIf R(\\vec{r}) (length) is real, no absorption or amplification. R(\\vec{r}) = constant is one wavefront. \\nabla R(\\vec{r}) is the local direction of propagation. \\hat{s} is unit vector in direction of energy flow. Rays are collection vectors \\hat{s}.\n\n\n\n\\nabla \\times [\\nabla R(\\vec{r})] = \\nabla \\times [n(\\vec{r}) \\hat{s}(\\vec{r})] = 0  \\tag{curl of eikonal function}\n\\int_{A} \\nabla \\times [n(\\vec{r}) \\hat{s}(\\vec{r})] = 0  \\tag{integrate over open surface A}\n\\oint_{C} n \\hat{s} \\cdot d\\vec{l} = 0 \\tag{By Stoke's Theorem}\n\\implies \\int_{A}^{B} n \\hat{s} \\cdot d\\vec{l} \\text{is independent of path}\nNotice that\n\\int_{A}^{B} n \\hat{s} \\cdot d\\vec{l} = \\min{\\int_{A}^{B} n d \\vec{l}}\nWe define Optical Path Length as\n\\boxed{OPL = \\frac{A}{B} n dl}\nAnd Fermat’s Theorem minimizes\n\\delta t = \\frac{OPL}{c} \\tag{travel time}\n\n\n\nPropagation of rays through optical systems can be approximated as paraxial, nearly parallel to the axis of these systems.\nParaxial ray theory predicts stability of laser cavities, to see if ray drift away from optical axis.\n\n\n\n\n\n\nConstruction to prove Snell’s Law\n\n\nConstrained minimization problem: Minimize $n_1 d_1 _1 + $",
     "crumbs": [
-      "Home"
+      "Year 1",
+      "Learning Optics"
+    ]
+  },
+  {
+    "objectID": "optics.html#ray-optics",
+    "href": "optics.html#ray-optics",
+    "title": "Learning Optics",
+    "section": "",
+    "text": "Picturing light as rays is useful for predicting imaging properties.\nAs \\lambda \\rightarrow 0, Maxwell equation’s become the eikonal equation, which governs ray direction in a medium with a varying n(\\vec{r}).\nFermat’s principle is deduced from eikonal equation.\nSnell’s law is derived from fermat’s principle.\n\n\n\n\\nabla^2 \\vec{E}(\\vec{r}, t) + \\frac{[n(\\vec{r})]^2 \\omega^2}{c^2} \\vec{E}(\\vec{r}, t) = 0 \\tag{wave equation in isotropic medium} \\vec{E}(\\vec{r}, t) = \\vec{E}_0 e^{i[k_{vac} R(\\vec{r}) - \\omega t]}, k_{vac} = \\frac{\\omega}{c} \\left( \\frac{rad}{m} \\right) \\tag{trial solution}\nWe plug trial solution in, perform laplacian, arrange terms, and make the approximation that \\frac{1}{k_{vac}} = \\frac{\\lambda_{vac}}{2 \\pi} \\rightarrow 0, we get\n[\\nabla R(\\vec{r}) \\cdot \\nabla R(\\vec{r}) - [n(\\vec{r})]^2] \\vec{E}_0(\\vec{r}) = 0 \\tag{Simplified wave equation}\n\\implies \\nabla R(\\vec{r}) \\cdot \\nabla R(\\vec{r}) = [n(\\vec{r})]^2\n\\implies \\boxed{ \\nabla R(\\vec{r}) = n(\\vec{r}) \\hat{s}(\\vec{r}) } \\tag{eikonal function}\nIf R(\\vec{r}) (length) is real, no absorption or amplification. R(\\vec{r}) = constant is one wavefront. \\nabla R(\\vec{r}) is the local direction of propagation. \\hat{s} is unit vector in direction of energy flow. Rays are collection vectors \\hat{s}.\n\n\n\n\\nabla \\times [\\nabla R(\\vec{r})] = \\nabla \\times [n(\\vec{r}) \\hat{s}(\\vec{r})] = 0  \\tag{curl of eikonal function}\n\\int_{A} \\nabla \\times [n(\\vec{r}) \\hat{s}(\\vec{r})] = 0  \\tag{integrate over open surface A}\n\\oint_{C} n \\hat{s} \\cdot d\\vec{l} = 0 \\tag{By Stoke's Theorem}\n\\implies \\int_{A}^{B} n \\hat{s} \\cdot d\\vec{l} \\text{is independent of path}\nNotice that\n\\int_{A}^{B} n \\hat{s} \\cdot d\\vec{l} = \\min{\\int_{A}^{B} n d \\vec{l}}\nWe define Optical Path Length as\n\\boxed{OPL = \\frac{A}{B} n dl}\nAnd Fermat’s Theorem minimizes\n\\delta t = \\frac{OPL}{c} \\tag{travel time}\n\n\n\nPropagation of rays through optical systems can be approximated as paraxial, nearly parallel to the axis of these systems.\nParaxial ray theory predicts stability of laser cavities, to see if ray drift away from optical axis.\n\n\n\n\n\n\nConstruction to prove Snell’s Law\n\n\nConstrained minimization problem: Minimize $n_1 d_1 _1 + $",
+    "crumbs": [
+      "Year 1",
+      "Learning Optics"
+    ]
+  },
+  {
+    "objectID": "optics.html#citations",
+    "href": "optics.html#citations",
+    "title": "Learning Optics",
+    "section": "Citations",
+    "text": "Citations\n[1] Saleh, B. E. A., & Teich, M. C. (2019). Fundamentals of photonics (3rd ed.). Wiley. [2] Peatross, Justin, and Michael Ware. Physics of Light and Optics. 2015 ed., January 31, 2025 revision, Department of Physics, Brigham Young University. optics.byu.edu.",
+    "crumbs": [
+      "Year 1",
+      "Learning Optics"
     ]
   }
 ]

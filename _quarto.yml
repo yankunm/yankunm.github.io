@@ -19,6 +19,7 @@ website:
         text: Home
       - section: "Year 1"
         contents:
+          - optics.qmd
           - tidy3d.qmd
 format:
   html:

@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Yankun (Alex) Meng">
 
-<title>Yankun (Alex) Meng</title>
+<title>Learning Optics – Yankun (Alex) Meng</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,11 +31,13 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./optics.html" rel="next">
+<link href="./tidy3d.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-265cabd6e0e175a3251a073a6682f21b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
@@ -68,6 +71,49 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -80,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Home</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./optics.html">Year 1</a></li><li class="breadcrumb-item"><a href="./optics.html">Learning Optics</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -107,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
@@ -122,7 +168,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./optics.html" class="sidebar-item-text sidebar-link">
+  <a href="./optics.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Learning Optics</span></a>
   </div>
 </li>
@@ -142,49 +188,113 @@ ul.task-list li input[type="checkbox"] {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
+   
   <ul>
-  <li><a href="#about-me" id="toc-about-me" class="nav-link active" data-scroll-target="#about-me">About Me</a></li>
-  <li><a href="#news" id="toc-news" class="nav-link" data-scroll-target="#news">News</a></li>
+  <li><a href="#ray-optics" id="toc-ray-optics" class="nav-link active" data-scroll-target="#ray-optics">Ray Optics</a>
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#eikonal-equation" id="toc-eikonal-equation" class="nav-link" data-scroll-target="#eikonal-equation">Eikonal Equation</a></li>
+  <li><a href="#fermats-principle" id="toc-fermats-principle" class="nav-link" data-scroll-target="#fermats-principle">Fermat’s Principle</a></li>
+  <li><a href="#paraxial-ray-theory" id="toc-paraxial-ray-theory" class="nav-link" data-scroll-target="#paraxial-ray-theory">Paraxial Ray Theory</a></li>
+  <li><a href="#proof-of-snells-law" id="toc-proof-of-snells-law" class="nav-link" data-scroll-target="#proof-of-snells-law">Proof of Snell’s Law</a></li>
+  </ul></li>
+  <li><a href="#citations" id="toc-citations" class="nav-link" data-scroll-target="#citations">Citations</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.slides.html"><i class="bi bi-file-slides"></i>Slides</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="optics.slides.html"><i class="bi bi-file-slides"></i>Slides</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<div class="quarto-about-jolla">
-  <img src="assets/profile.jpg" class="about-image
-  round " style="height: 7em; width: 7em;">
- <header id="title-block-header" class="quarto-title-block default">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./optics.html">Year 1</a></li><li class="breadcrumb-item"><a href="./optics.html">Learning Optics</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Yankun (Alex) Meng</h1>
-<p class="subtitle lead">PhD student<br>Duke University<br> alex.meng (at) duke.edu</p>
+<h1 class="title">Learning Optics</h1>
+<p class="subtitle lead">Yankun (Alex) Meng</p>
 </div>
+
+
+
 <div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Yankun (Alex) Meng </p>
+          </div>
   </div>
-</header><main class="content" id="quarto-document-content">
+    
+  
+    
+  </div>
+  
 
-<section id="about-me" class="level3">
-<h3 data-anchor-id="about-me">About Me</h3>
-<p>I am an incoming PhD student in the Department of Electrical and Computer Engineering at Duke University, fortunate to be advised by Prof.&nbsp;Natalia M. Litchinitser.</p>
-<p>Previously, I was an undergrad at Duke University Double majoring in Electrical and Computer Engineering and Computer Science.</p>
+
+</header>
+
+
+<section id="ray-optics" class="level2">
+<h2 class="anchored" data-anchor-id="ray-optics">Ray Optics</h2>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<p>Picturing light as rays is useful for predicting imaging properties.</p>
+<p>As <span class="math inline">\lambda \rightarrow 0</span>, Maxwell equation’s become the <a href="https://en.wikipedia.org/wiki/Eikonal_equation">eikonal equation</a>, which governs ray direction in a medium with a varying <span class="math inline">n(\vec{r})</span>.</p>
+<p><a href="https://en.wikipedia.org/wiki/Fermat%27s_principle">Fermat’s principle</a> is deduced from eikonal equation.</p>
+<p><a href="https://en.wikipedia.org/wiki/Snell%27s_law">Snell’s law</a> is derived from fermat’s principle.</p>
 </section>
-<section id="news" class="level3">
-<h3 data-anchor-id="news">News</h3>
-<p><strong>[August 2025]</strong> PhD started!</p>
-<p><strong>[May 2025]</strong> Graduated from Duke Undergraduate</p>
+<section id="eikonal-equation" class="level3">
+<h3 class="anchored" data-anchor-id="eikonal-equation">Eikonal Equation</h3>
+<p><span class="math display">\nabla^2 \vec{E}(\vec{r}, t) + \frac{[n(\vec{r})]^2 \omega^2}{c^2} \vec{E}(\vec{r}, t) = 0 \tag{wave equation in isotropic medium}</span> <span class="math display">\vec{E}(\vec{r}, t) = \vec{E}_0 e^{i[k_{vac} R(\vec{r}) - \omega t]}, k_{vac} = \frac{\omega}{c} \left( \frac{rad}{m} \right) \tag{trial solution}</span></p>
+<p>We plug trial solution in, perform laplacian, arrange terms, and make the approximation that <span class="math inline">\frac{1}{k_{vac}} = \frac{\lambda_{vac}}{2 \pi} \rightarrow 0</span>, we get</p>
+<p><span class="math display">[\nabla R(\vec{r}) \cdot \nabla R(\vec{r}) - [n(\vec{r})]^2] \vec{E}_0(\vec{r}) = 0 \tag{Simplified wave equation}</span></p>
+<p><span class="math display">\implies \nabla R(\vec{r}) \cdot \nabla R(\vec{r}) = [n(\vec{r})]^2</span></p>
+<p><span class="math display">\implies \boxed{ \nabla R(\vec{r}) = n(\vec{r}) \hat{s}(\vec{r}) } \tag{eikonal function}</span></p>
+<p>If <span class="math inline">R(\vec{r})</span> (length) is real, no absorption or amplification. <span class="math inline">R(\vec{r}) = constant</span> is one wavefront. <span class="math inline">\nabla R(\vec{r})</span> is the local direction of propagation. <span class="math inline">\hat{s}</span> is unit vector in direction of energy flow. <strong>Rays</strong> are collection vectors <span class="math inline">\hat{s}</span>.</p>
+</section>
+<section id="fermats-principle" class="level3">
+<h3 class="anchored" data-anchor-id="fermats-principle">Fermat’s Principle</h3>
+<p><span class="math display">\nabla \times [\nabla R(\vec{r})] = \nabla \times [n(\vec{r}) \hat{s}(\vec{r})] = 0  \tag{curl of eikonal function}</span></p>
+<p><span class="math display">\int_{A} \nabla \times [n(\vec{r}) \hat{s}(\vec{r})] = 0  \tag{integrate over open surface A}</span></p>
+<p><span class="math display">\oint_{C} n \hat{s} \cdot d\vec{l} = 0 \tag{By Stoke's Theorem}</span></p>
+<p><span class="math display">\implies \int_{A}^{B} n \hat{s} \cdot d\vec{l} \text{is independent of path}</span></p>
+<p>Notice that</p>
+<p><span class="math display">\int_{A}^{B} n \hat{s} \cdot d\vec{l} = \min{\int_{A}^{B} n d \vec{l}}</span></p>
+<p>We define <strong>Optical Path Length</strong> as</p>
+<p><span class="math display">\boxed{OPL = \frac{A}{B} n dl}</span></p>
+<p>And <strong>Fermat’s Theorem</strong> minimizes</p>
+<p><span class="math display">\delta t = \frac{OPL}{c} \tag{travel time}</span></p>
+</section>
+<section id="paraxial-ray-theory" class="level3">
+<h3 class="anchored" data-anchor-id="paraxial-ray-theory">Paraxial Ray Theory</h3>
+<p>Propagation of rays through optical systems can be approximated as <em>paraxial</em>, nearly parallel to the axis of these systems.</p>
+<p><a href="https://en.wikipedia.org/wiki/Paraxial_approximation">Paraxial ray</a> theory predicts stability of laser cavities, to see if ray drift away from optical axis.</p>
+</section>
+<section id="proof-of-snells-law" class="level3">
+<h3 class="anchored" data-anchor-id="proof-of-snells-law">Proof of Snell’s Law</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/1-1-4.png" class="img-fluid figure-img"></p>
+<figcaption>Construction to prove Snell’s Law</figcaption>
+</figure>
+</div>
+<p>Constrained minimization problem: Minimize $n_1 d_1 _1 + $</p>
+</section>
+</section>
+<section id="citations" class="level2">
+<h2 class="anchored" data-anchor-id="citations">Citations</h2>
+<p>[1] Saleh, B. E. A., &amp; Teich, M. C. (2019). Fundamentals of photonics (3rd ed.). Wiley. [2] Peatross, Justin, and Michael Ware. Physics of Light and Optics. 2015 ed., January 31, 2025 revision, Department of Physics, Brigham Young University. optics.byu.edu.</p>
 
 
 </section>
-</main> 
-  <hr class="about-sep">
-   <div class="about-links">
-  <a href="https://github.com/yankunm" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">Github</span>
-  </a>
-</div>
-</div>
- <!-- /main -->
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
@@ -577,10 +687,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Home">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Home</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./optics.html" class="pagination-link" aria-label="Learning Optics">
-        <span class="nav-page-text">Learning Optics</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./tidy3d.html" class="pagination-link" aria-label="Learning Tidy3D">
+        <span class="nav-page-text">Learning Tidy3D</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

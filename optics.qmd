@@ -1,0 +1,79 @@
+---
+title: Learning Optics
+author: Yankun (Alex) Meng
+---
+
+# Ray Optics
+
+## Introduction
+
+Picturing light as rays is useful for predicting imaging properties. 
+
+As $\lambda \rightarrow 0$, Maxwell equation's become the [eikonal equation](https://en.wikipedia.org/wiki/Eikonal_equation), which governs ray direction in a medium with a varying $n(\vec{r})$.
+
+[Fermat's principle](https://en.wikipedia.org/wiki/Fermat%27s_principle) is deduced from eikonal equation.
+
+[Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law) is derived from fermat's principle.
+
+
+## Eikonal Equation
+
+$$\nabla^2 \vec{E}(\vec{r}, t) + \frac{[n(\vec{r})]^2 \omega^2}{c^2} \vec{E}(\vec{r}, t) = 0 \tag{wave equation in isotropic medium}$$
+$$\vec{E}(\vec{r}, t) = \vec{E}_0 e^{i[k_{vac} R(\vec{r}) - \omega t]}, k_{vac} = \frac{\omega}{c} \left( \frac{rad}{m} \right) \tag{trial solution}$$
+
+We plug trial solution in, perform laplacian, arrange terms, and make the approximation that $\frac{1}{k_{vac}} = \frac{\lambda_{vac}}{2 \pi} \rightarrow 0$, we get
+
+$$[\nabla R(\vec{r}) \cdot \nabla R(\vec{r}) - [n(\vec{r})]^2] \vec{E}_0(\vec{r}) = 0 \tag{Simplified wave equation}$$
+
+$$\implies \nabla R(\vec{r}) \cdot \nabla R(\vec{r}) = [n(\vec{r})]^2$$
+
+$$\implies \boxed{ \nabla R(\vec{r}) = n(\vec{r}) \hat{s}(\vec{r}) } \tag{eikonal function}$$
+
+If $R(\vec{r})$ (length) is real, no absorption or amplification. $R(\vec{r}) = constant$ is one wavefront. $\nabla R(\vec{r})$ is the local direction of propagation. $\hat{s}$ is unit vector in direction of energy flow. **Rays** are collection vectors $\hat{s}$.
+
+## Fermat's Principle
+
+$$\nabla \times [\nabla R(\vec{r})] = \nabla \times [n(\vec{r}) \hat{s}(\vec{r})] = 0  \tag{curl of eikonal function}$$
+
+$$\int_{A} \nabla \times [n(\vec{r}) \hat{s}(\vec{r})] = 0  \tag{integrate over open surface A}$$
+
+$$\oint_{C} n \hat{s} \cdot d\vec{l} = 0 \tag{By Stoke's Theorem}$$
+
+$$\implies \int_{A}^{B} n \hat{s} \cdot d\vec{l} \text{is independent of path}$$
+
+Notice that
+
+$$\int_{A}^{B} n \hat{s} \cdot d\vec{l} = \min{\int_{A}^{B} n d \vec{l}}$$
+
+We define **Optical Path Length** as
+
+$$\boxed{OPL = \frac{A}{B} n dl}$$
+
+And **Fermat's Theorem** minimizes
+
+$$\delta t = \frac{OPL}{c} \tag{travel time}$$
+
+
+
+
+
+
+
+
+## Paraxial Ray Theory
+
+Propagation of rays through optical systems can be approximated as *paraxial*, nearly parallel to the axis of these systems.
+
+[Paraxial ray](https://en.wikipedia.org/wiki/Paraxial_approximation) theory predicts stability of laser cavities, to see if ray drift away from optical axis.
+
+## Proof of Snell's Law
+
+![Construction to prove Snell's Law](assets/1-1-4.png)
+
+Constrained minimization problem: Minimize $n_1 d_1 \sec \theta_1 + $
+
+# Citations
+
+[1] Saleh, B. E. A., & Teich, M. C. (2019). Fundamentals of photonics (3rd ed.). Wiley.
+[2] Peatross, Justin, and Michael Ware. Physics of Light and Optics. 2015 ed., January 31, 2025 revision, Department of Physics, Brigham Young University. optics.byu.edu.
+
