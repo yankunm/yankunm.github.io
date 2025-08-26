@@ -19,9 +19,10 @@ website:
         text: Home
       - section: "Year 1"
         contents:
-          - optics.qmd
-          - tidy3d.qmd
-          - numpy.qmd
+          - year1/log.qmd
+          - year1/optics.qmd
+          - year1/tidy3d.qmd
+          - year1/numpy.qmd
 format:
   html:
     page-layout: article
