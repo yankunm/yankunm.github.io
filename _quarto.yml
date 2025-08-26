@@ -21,6 +21,7 @@ website:
         contents:
           - optics.qmd
           - tidy3d.qmd
+          - numpy.qmd
 format:
   html:
     page-layout: article

@@ -113,14 +113,111 @@
     "text": "Bonus: Symmetry\nTuple of integers defining reflection symmetry across a plane bisecting the simulation domain normal to the x-, y-, and z-axis at the simulation center of each axis, respectively. Each element can be 0 (no symmetry), 1 (even, i.e. ‘PMC’ symmetry) or -1 (odd, i.e. ‘PEC’ symmetry). Note that the vectorial nature of the fields must be taken into account to correctly determine the symmetry value.\nSymmetry can be used to greatly reduce the computational cost –&gt;"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Yankun (Alex) Meng",
+    "objectID": "numpy.html",
+    "href": "numpy.html",
+    "title": "Learn Numpy",
     "section": "",
-    "text": "About Me\nI am an incoming PhD student in the Department of Electrical and Computer Engineering at Duke University, fortunate to be advised by Prof. Natalia M. Litchinitser.\nPreviously, I was an undergrad at Duke University Double majoring in Electrical and Computer Engineering and Computer Science.\n\n\nNews\n[August 2025] PhD started!\n[May 2025] Graduated from Duke Undergraduate",
+    "text": "NumPy is a package for dealing with arrays that’s very fast and efficient.\nCreating array:\narr1 = np.array([3, 5, 7, 3]) # convert list to array\narr2 = np.zeros(10) # array with 10 zeroes\narr3 = np.ones(10) # array with 10 ones\narrR = np.random.random(10) # sample 10 numbers from uniform distribution\narrG = np.random.randn(10) # sample 10 numbers from normal distribution\n\n\n\nlinspace - values equally spaced apart given the number of values\narr = np.linspace(0, 10, 100) # from 0 to 10, 100 values\narrange - values equally spaced apart given the spacing\narr = np.arrange(0, 10, 0.02) # from 0 to 10, spacing of 0.02",
     "crumbs": [
-      "Home"
+      "Year 1",
+      "Learn Numpy"
     ]
+  },
+  {
+    "objectID": "numpy.html#introduction-and-basics",
+    "href": "numpy.html#introduction-and-basics",
+    "title": "Learn Numpy",
+    "section": "",
+    "text": "NumPy is a package for dealing with arrays that’s very fast and efficient.\nCreating array:\narr1 = np.array([3, 5, 7, 3]) # convert list to array\narr2 = np.zeros(10) # array with 10 zeroes\narr3 = np.ones(10) # array with 10 ones\narrR = np.random.random(10) # sample 10 numbers from uniform distribution\narrG = np.random.randn(10) # sample 10 numbers from normal distribution\n\n\n\nlinspace - values equally spaced apart given the number of values\narr = np.linspace(0, 10, 100) # from 0 to 10, 100 values\narrange - values equally spaced apart given the spacing\narr = np.arrange(0, 10, 0.02) # from 0 to 10, spacing of 0.02",
+    "crumbs": [
+      "Year 1",
+      "Learn Numpy"
+    ]
+  },
+  {
+    "objectID": "numpy.html#array-manipulation",
+    "href": "numpy.html#array-manipulation",
+    "title": "Learn Numpy",
+    "section": "Array Manipulation",
+    "text": "Array Manipulation\n\nCommon Array Operation\nElement-wise operation\narr + 2     # addition\narr - 5     # subtraction\n2*arr       # multiplication\n1/arr       # division\narr % 5     # Modulus\nLet’s try to do the same element-wise operation but using functions:\ndef f(x):\n    return x**2 * np.sin(x) / np.exp(-x)\n\nx = np.linspace(0, 10, 100)\ny = f(x) # Element-wise application of f\n\n\nCommon Plotting\nMost basic Plotting\nx = np.linspace(0, 1, 100)  # x-axis definition\ny = x**2                    # element-wise x^2\nplt.plot(x, x**2)           # plot(x, y)\nplt.show()                  # show the output\nHistogram\nplt.hist(arr) # plotting the array as histogram\n\n\nIndexing and Slicing\nNormal Indexing\narr = np.array([2, 4, 6, 8, 10])\narr[2]   # return 6\narr[2:]  # return 6, 8, 10 (including index 2)\narr[:-2] # return 2, 4, 6 (exluding index -2)\narr[1:2] # return 4\nBoolean Indexing\narr &gt; 5 # return a boolean array with true or false as elemenets\narr[arr&gt;5] # filtering --&gt;  return the elements that are true\nUsing Boolean Indexing to filter data\nnames = np.array(['Jim', 'Luke', 'Josh', 'Pete'])\nfirst_letter_j = np.vectorize(lambda s: s[0])(names) == 'J'\nprint(names[first_letter_j]) # gets the names that have first letter as J\nNow what is this doing?\n\n\nWhat is that doing?\nfirst_letter_j = np.vectorize(lambda s: s[0])(names) == 'J'\nLambda Function\nf = lambda s: s[0]\nThis is a function that says give me a string and I’ll give you the first character of the string. Note that String is not an array in python, but it supports the same indexing operations as arrays.\nWhat is np.vectorize?\nIt creates a for-loop, applies the function func to every element in the array arr, and return the result as an array.\nnp.vectorize(func)(arr) # this is an array",
+    "crumbs": [
+      "Year 1",
+      "Learn Numpy"
+    ]
+  },
+  {
+    "objectID": "numpy.html#calculus-statistical-functions",
+    "href": "numpy.html#calculus-statistical-functions",
+    "title": "Learn Numpy",
+    "section": "Calculus / Statistical Functions",
+    "text": "Calculus / Statistical Functions\n\nCommon Statistics Functions\narr = 2*np.random.randn(10000) + 10 # 2 times std dev with a shift of 10 to the right\\\nnp.mean(arr) # approx 10\nnp.std(arr) # approx 2\nnp.percentile(arr, 80) # 80% numbers less than this number\n\n\nIntegrals and Derivatives\nx = np.linspace(1, 10, 100)\ny = 1/x**2 + np.sin(x)\nplt.plot(x, y)\nDerivatives\ndydx = np.gradient(y, x)\nIntegrals\nnp.cumsum([1, 2, 3, 4]) # return [1,3,6,10]\ny_int = np.cumsum(y) * (x[1] - x[0]) # int y dx\n\n\nResources Used\n[1] NumPy Tutorial [2] 100 numpy practice problems",
+    "crumbs": [
+      "Year 1",
+      "Learn Numpy"
+    ]
+  },
+  {
+    "objectID": "numpy.slides.html#what-is-numpy",
+    "href": "numpy.slides.html#what-is-numpy",
+    "title": "Learn Numpy",
+    "section": "What is NumPy?",
+    "text": "What is NumPy?\nNumPy is a package for dealing with arrays that’s very fast and efficient.\nCreating array:\narr1 = np.array([3, 5, 7, 3]) # convert list to array\narr2 = np.zeros(10) # array with 10 zeroes\narr3 = np.ones(10) # array with 10 ones\narrR = np.random.random(10) # sample 10 numbers from uniform distribution\narrG = np.random.randn(10) # sample 10 numbers from normal distribution"
+  },
+  {
+    "objectID": "numpy.slides.html#two-most-common-functions",
+    "href": "numpy.slides.html#two-most-common-functions",
+    "title": "Learn Numpy",
+    "section": "Two most common functions",
+    "text": "Two most common functions\nlinspace - values equally spaced apart given the number of values\narr = np.linspace(0, 10, 100) # from 0 to 10, 100 values\narrange - values equally spaced apart given the spacing\narr = np.arrange(0, 10, 0.02) # from 0 to 10, spacing of 0.02"
+  },
+  {
+    "objectID": "numpy.slides.html#common-array-operation",
+    "href": "numpy.slides.html#common-array-operation",
+    "title": "Learn Numpy",
+    "section": "Common Array Operation",
+    "text": "Common Array Operation\nElement-wise operation\narr + 2     # addition\narr - 5     # subtraction\n2*arr       # multiplication\n1/arr       # division\narr % 5     # Modulus\nLet’s try to do the same element-wise operation but using functions:\ndef f(x):\n    return x**2 * np.sin(x) / np.exp(-x)\n\nx = np.linspace(0, 10, 100)\ny = f(x) # Element-wise application of f"
+  },
+  {
+    "objectID": "numpy.slides.html#common-plotting",
+    "href": "numpy.slides.html#common-plotting",
+    "title": "Learn Numpy",
+    "section": "Common Plotting",
+    "text": "Common Plotting\nMost basic Plotting\nx = np.linspace(0, 1, 100)  # x-axis definition\ny = x**2                    # element-wise x^2\nplt.plot(x, x**2)           # plot(x, y)\nplt.show()                  # show the output\nHistogram\nplt.hist(arr) # plotting the array as histogram"
+  },
+  {
+    "objectID": "numpy.slides.html#indexing-and-slicing",
+    "href": "numpy.slides.html#indexing-and-slicing",
+    "title": "Learn Numpy",
+    "section": "Indexing and Slicing",
+    "text": "Indexing and Slicing\nNormal Indexing\narr = np.array([2, 4, 6, 8, 10])\narr[2]   # return 6\narr[2:]  # return 6, 8, 10 (including index 2)\narr[:-2] # return 2, 4, 6 (exluding index -2)\narr[1:2] # return 4\nBoolean Indexing\narr &gt; 5 # return a boolean array with true or false as elemenets\narr[arr&gt;5] # filtering --&gt;  return the elements that are true\nUsing Boolean Indexing to filter data\nnames = np.array(['Jim', 'Luke', 'Josh', 'Pete'])\nfirst_letter_j = np.vectorize(lambda s: s[0])(names) == 'J'\nprint(names[first_letter_j]) # gets the names that have first letter as J\nNow what is this doing?"
+  },
+  {
+    "objectID": "numpy.slides.html#what-is-that-doing",
+    "href": "numpy.slides.html#what-is-that-doing",
+    "title": "Learn Numpy",
+    "section": "What is that doing?",
+    "text": "What is that doing?\nfirst_letter_j = np.vectorize(lambda s: s[0])(names) == 'J'\nLambda Function\nf = lambda s: s[0]\nThis is a function that says give me a string and I’ll give you the first character of the string. Note that String is not an array in python, but it supports the same indexing operations as arrays.\nWhat is np.vectorize?\nIt creates a for-loop, applies the function func to every element in the array arr, and return the result as an array.\nnp.vectorize(func)(arr) # this is an array"
+  },
+  {
+    "objectID": "numpy.slides.html#common-statistics-functions",
+    "href": "numpy.slides.html#common-statistics-functions",
+    "title": "Learn Numpy",
+    "section": "Common Statistics Functions",
+    "text": "Common Statistics Functions\narr = 2*np.random.randn(10000) + 10 # 2 times std dev with a shift of 10 to the right\\\nnp.mean(arr) # approx 10\nnp.std(arr) # approx 2\nnp.percentile(arr, 80) # 80% numbers less than this number"
+  },
+  {
+    "objectID": "numpy.slides.html#integrals-and-derivatives",
+    "href": "numpy.slides.html#integrals-and-derivatives",
+    "title": "Learn Numpy",
+    "section": "Integrals and Derivatives",
+    "text": "Integrals and Derivatives\nx = np.linspace(1, 10, 100)\ny = 1/x**2 + np.sin(x)\nplt.plot(x, y)\nDerivatives\ndydx = np.gradient(y, x)\nIntegrals\nnp.cumsum([1, 2, 3, 4]) # return [1,3,6,10]\ny_int = np.cumsum(y) * (x[1] - x[0]) # int y dx"
+  },
+  {
+    "objectID": "numpy.slides.html#resources-used",
+    "href": "numpy.slides.html#resources-used",
+    "title": "Learn Numpy",
+    "section": "Resources Used",
+    "text": "Resources Used\n[1] NumPy Tutorial [2] 100 numpy practice problems"
   },
   {
     "objectID": "index.slides.html#about-me",
@@ -135,6 +232,16 @@
     "title": "Yankun (Alex) Meng",
     "section": "News",
     "text": "News\n[August 2025] PhD started!\n[May 2025] Graduated from Duke Undergraduate"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Yankun (Alex) Meng",
+    "section": "",
+    "text": "About Me\nI am an incoming PhD student in the Department of Electrical and Computer Engineering at Duke University, fortunate to be advised by Prof. Natalia M. Litchinitser.\nPreviously, I was an undergrad at Duke University Double majoring in Electrical and Computer Engineering and Computer Science.\n\n\nNews\n[August 2025] PhD started!\n[May 2025] Graduated from Duke Undergraduate",
+    "crumbs": [
+      "Home"
+    ]
   },
   {
     "objectID": "optics.slides.html#introduction",

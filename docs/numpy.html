@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Yankun (Alex) Meng">
 
-<title>Learning Optics – Yankun (Alex) Meng</title>
+<title>Learn Numpy – Yankun (Alex) Meng</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,8 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./tidy3d.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./tidy3d.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -71,49 +104,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -126,7 +116,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./optics.html">Year 1</a></li><li class="breadcrumb-item"><a href="./optics.html">Learning Optics</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./optics.html">Year 1</a></li><li class="breadcrumb-item"><a href="./numpy.html">Learn Numpy</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -168,7 +158,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./optics.html" class="sidebar-item-text sidebar-link active">
+  <a href="./optics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Learning Optics</span></a>
   </div>
 </li>
@@ -180,7 +170,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./numpy.html" class="sidebar-item-text sidebar-link">
+  <a href="./numpy.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Learn Numpy</span></a>
   </div>
 </li>
@@ -196,24 +186,33 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#ray-optics" id="toc-ray-optics" class="nav-link active" data-scroll-target="#ray-optics">Ray Optics</a>
+  <li><a href="#introduction-and-basics" id="toc-introduction-and-basics" class="nav-link active" data-scroll-target="#introduction-and-basics">Introduction and Basics</a>
   <ul class="collapse">
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#eikonal-equation" id="toc-eikonal-equation" class="nav-link" data-scroll-target="#eikonal-equation">Eikonal Equation</a></li>
-  <li><a href="#fermats-principle" id="toc-fermats-principle" class="nav-link" data-scroll-target="#fermats-principle">Fermat’s Principle</a></li>
-  <li><a href="#paraxial-ray-theory" id="toc-paraxial-ray-theory" class="nav-link" data-scroll-target="#paraxial-ray-theory">Paraxial Ray Theory</a></li>
-  <li><a href="#proof-of-snells-law" id="toc-proof-of-snells-law" class="nav-link" data-scroll-target="#proof-of-snells-law">Proof of Snell’s Law</a></li>
+  <li><a href="#what-is-numpy" id="toc-what-is-numpy" class="nav-link" data-scroll-target="#what-is-numpy">What is NumPy?</a></li>
+  <li><a href="#two-most-common-functions" id="toc-two-most-common-functions" class="nav-link" data-scroll-target="#two-most-common-functions">Two most common functions</a></li>
   </ul></li>
-  <li><a href="#citations" id="toc-citations" class="nav-link" data-scroll-target="#citations">Citations</a></li>
+  <li><a href="#array-manipulation" id="toc-array-manipulation" class="nav-link" data-scroll-target="#array-manipulation">Array Manipulation</a>
+  <ul class="collapse">
+  <li><a href="#common-array-operation" id="toc-common-array-operation" class="nav-link" data-scroll-target="#common-array-operation">Common Array Operation</a></li>
+  <li><a href="#common-plotting" id="toc-common-plotting" class="nav-link" data-scroll-target="#common-plotting">Common Plotting</a></li>
+  <li><a href="#indexing-and-slicing" id="toc-indexing-and-slicing" class="nav-link" data-scroll-target="#indexing-and-slicing">Indexing and Slicing</a></li>
+  <li><a href="#what-is-that-doing" id="toc-what-is-that-doing" class="nav-link" data-scroll-target="#what-is-that-doing">What is that doing?</a></li>
+  </ul></li>
+  <li><a href="#calculus-statistical-functions" id="toc-calculus-statistical-functions" class="nav-link" data-scroll-target="#calculus-statistical-functions">Calculus / Statistical Functions</a>
+  <ul class="collapse">
+  <li><a href="#common-statistics-functions" id="toc-common-statistics-functions" class="nav-link" data-scroll-target="#common-statistics-functions">Common Statistics Functions</a></li>
+  <li><a href="#integrals-and-derivatives" id="toc-integrals-and-derivatives" class="nav-link" data-scroll-target="#integrals-and-derivatives">Integrals and Derivatives</a></li>
+  <li><a href="#resources-used" id="toc-resources-used" class="nav-link" data-scroll-target="#resources-used">Resources Used</a></li>
+  </ul></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="optics.slides.html"><i class="bi bi-file-slides"></i>Slides</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="numpy.slides.html"><i class="bi bi-file-slides"></i>Slides</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./optics.html">Year 1</a></li><li class="breadcrumb-item"><a href="./optics.html">Learning Optics</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./optics.html">Year 1</a></li><li class="breadcrumb-item"><a href="./numpy.html">Learn Numpy</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Learning Optics</h1>
+<h1 class="title">Learn Numpy</h1>
 <p class="subtitle lead">Yankun (Alex) Meng</p>
 </div>
 
@@ -221,12 +220,6 @@ window.Quarto = {
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Yankun (Alex) Meng </p>
-          </div>
-  </div>
     
   
     
@@ -237,58 +230,107 @@ window.Quarto = {
 </header>
 
 
-<section id="ray-optics" class="level2">
-<h2 class="anchored" data-anchor-id="ray-optics">Ray Optics</h2>
-<section id="introduction" class="level3">
-<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
-<p>Picturing light as rays is useful for predicting imaging properties.</p>
-<p>As <span class="math inline">\lambda \rightarrow 0</span>, Maxwell equation’s become the <a href="https://en.wikipedia.org/wiki/Eikonal_equation">eikonal equation</a>, which governs ray direction in a medium with a varying <span class="math inline">n(\vec{r})</span>.</p>
-<p><a href="https://en.wikipedia.org/wiki/Fermat%27s_principle">Fermat’s principle</a> is deduced from eikonal equation.</p>
-<p><a href="https://en.wikipedia.org/wiki/Snell%27s_law">Snell’s law</a> is derived from fermat’s principle.</p>
+<section id="introduction-and-basics" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-and-basics">Introduction and Basics</h2>
+<section id="what-is-numpy" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-numpy">What is NumPy?</h3>
+<p>NumPy is a package for dealing with arrays that’s very fast and efficient.</p>
+<p>Creating array:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>arr1 <span class="ot">=</span> <span class="fu">np.array</span>([<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">3</span>]) <span class="co"># convert list to array</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>arr2 <span class="ot">=</span> <span class="fu">np.zeros</span>(<span class="dv">10</span>) <span class="co"># array with 10 zeroes</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>arr3 <span class="ot">=</span> <span class="fu">np.ones</span>(<span class="dv">10</span>) <span class="co"># array with 10 ones</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>arrR <span class="ot">=</span> <span class="fu">np.random.random</span>(<span class="dv">10</span>) <span class="co"># sample 10 numbers from uniform distribution</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>arrG <span class="ot">=</span> <span class="fu">np.random.randn</span>(<span class="dv">10</span>) <span class="co"># sample 10 numbers from normal distribution</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="eikonal-equation" class="level3">
-<h3 class="anchored" data-anchor-id="eikonal-equation">Eikonal Equation</h3>
-<p><span class="math display">\nabla^2 \vec{E}(\vec{r}, t) + \frac{[n(\vec{r})]^2 \omega^2}{c^2} \vec{E}(\vec{r}, t) = 0 \tag{wave equation in isotropic medium}</span> <span class="math display">\vec{E}(\vec{r}, t) = \vec{E}_0 e^{i[k_{vac} R(\vec{r}) - \omega t]}, k_{vac} = \frac{\omega}{c} \left( \frac{rad}{m} \right) \tag{trial solution}</span></p>
-<p>We plug trial solution in, perform laplacian, arrange terms, and make the approximation that <span class="math inline">\frac{1}{k_{vac}} = \frac{\lambda_{vac}}{2 \pi} \rightarrow 0</span>, we get</p>
-<p><span class="math display">[\nabla R(\vec{r}) \cdot \nabla R(\vec{r}) - [n(\vec{r})]^2] \vec{E}_0(\vec{r}) = 0 \tag{Simplified wave equation}</span></p>
-<p><span class="math display">\implies \nabla R(\vec{r}) \cdot \nabla R(\vec{r}) = [n(\vec{r})]^2</span></p>
-<p><span class="math display">\implies \boxed{ \nabla R(\vec{r}) = n(\vec{r}) \hat{s}(\vec{r}) } \tag{eikonal function}</span></p>
-<p>If <span class="math inline">R(\vec{r})</span> (length) is real, no absorption or amplification. <span class="math inline">R(\vec{r}) = constant</span> is one wavefront. <span class="math inline">\nabla R(\vec{r})</span> is the local direction of propagation. <span class="math inline">\hat{s}</span> is unit vector in direction of energy flow. <strong>Rays</strong> are collection vectors <span class="math inline">\hat{s}</span>.</p>
-</section>
-<section id="fermats-principle" class="level3">
-<h3 class="anchored" data-anchor-id="fermats-principle">Fermat’s Principle</h3>
-<p><span class="math display">\nabla \times [\nabla R(\vec{r})] = \nabla \times [n(\vec{r}) \hat{s}(\vec{r})] = 0  \tag{curl of eikonal function}</span></p>
-<p><span class="math display">\int_{A} \nabla \times [n(\vec{r}) \hat{s}(\vec{r})] = 0  \tag{integrate over open surface A}</span></p>
-<p><span class="math display">\oint_{C} n \hat{s} \cdot d\vec{l} = 0 \tag{By Stoke's Theorem}</span></p>
-<p><span class="math display">\implies \int_{A}^{B} n \hat{s} \cdot d\vec{l} \text{is independent of path}</span></p>
-<p>Notice that</p>
-<p><span class="math display">\int_{A}^{B} n \hat{s} \cdot d\vec{l} = \min{\int_{A}^{B} n d \vec{l}}</span></p>
-<p>We define <strong>Optical Path Length</strong> as</p>
-<p><span class="math display">\boxed{OPL = \frac{A}{B} n dl}</span></p>
-<p>And <strong>Fermat’s Theorem</strong> minimizes</p>
-<p><span class="math display">\delta t = \frac{OPL}{c} \tag{travel time}</span></p>
-</section>
-<section id="paraxial-ray-theory" class="level3">
-<h3 class="anchored" data-anchor-id="paraxial-ray-theory">Paraxial Ray Theory</h3>
-<p>Propagation of rays through optical systems can be approximated as <em>paraxial</em>, nearly parallel to the axis of these systems.</p>
-<p><a href="https://en.wikipedia.org/wiki/Paraxial_approximation">Paraxial ray</a> theory predicts stability of laser cavities, to see if ray drift away from optical axis.</p>
-</section>
-<section id="proof-of-snells-law" class="level3">
-<h3 class="anchored" data-anchor-id="proof-of-snells-law">Proof of Snell’s Law</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="assets/1-1-4.png" class="img-fluid figure-img"></p>
-<figcaption>Construction to prove Snell’s Law</figcaption>
-</figure>
-</div>
-<p>Constrained minimization problem: Minimize $n_1 d_1 _1 + $</p>
+<section id="two-most-common-functions" class="level3">
+<h3 class="anchored" data-anchor-id="two-most-common-functions">Two most common functions</h3>
+<p><strong>linspace</strong> - values equally spaced apart given the number of values</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>arr <span class="ot">=</span> <span class="fu">np.linspace</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>) <span class="co"># from 0 to 10, 100 values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>arrange</strong> - values equally spaced apart given the spacing</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>arr <span class="ot">=</span> <span class="fu">np.arrange</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="fl">0.02</span>) <span class="co"># from 0 to 10, spacing of 0.02</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="citations" class="level2">
-<h2 class="anchored" data-anchor-id="citations">Citations</h2>
-<p>[1] Saleh, B. E. A., &amp; Teich, M. C. (2019). Fundamentals of photonics (3rd ed.). Wiley. [2] Peatross, Justin, and Michael Ware. Physics of Light and Optics. 2015 ed., January 31, 2025 revision, Department of Physics, Brigham Young University. optics.byu.edu.</p>
+<section id="array-manipulation" class="level2">
+<h2 class="anchored" data-anchor-id="array-manipulation">Array Manipulation</h2>
+<section id="common-array-operation" class="level3">
+<h3 class="anchored" data-anchor-id="common-array-operation">Common Array Operation</h3>
+<p><strong>Element-wise operation</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>arr <span class="sc">+</span> <span class="dv">2</span>     <span class="co"># addition</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>arr <span class="sc">-</span> <span class="dv">5</span>     <span class="co"># subtraction</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span>arr       <span class="co"># multiplication</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span>arr       <span class="co"># division</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>arr % <span class="dv">5</span>     <span class="co"># Modulus</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let’s try to do the same element-wise operation but using functions:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>def <span class="fu">f</span>(x)<span class="sc">:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    return x<span class="sc">**</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">np.sin</span>(x) <span class="sc">/</span> <span class="fu">np.exp</span>(<span class="sc">-</span>x)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">np.linspace</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">f</span>(x) <span class="co"># Element-wise application of f</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="common-plotting" class="level3">
+<h3 class="anchored" data-anchor-id="common-plotting">Common Plotting</h3>
+<p><strong>Most basic Plotting</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">np.linspace</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">100</span>)  <span class="co"># x-axis definition</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> x<span class="sc">**</span><span class="dv">2</span>                    <span class="co"># element-wise x^2</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plt.plot</span>(x, x<span class="sc">**</span><span class="dv">2</span>)           <span class="co"># plot(x, y)</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plt.show</span>()                  <span class="co"># show the output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Histogram</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plt.hist</span>(arr) <span class="co"># plotting the array as histogram</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="indexing-and-slicing" class="level3">
+<h3 class="anchored" data-anchor-id="indexing-and-slicing">Indexing and Slicing</h3>
+<p><strong>Normal Indexing</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>arr <span class="ot">=</span> <span class="fu">np.array</span>([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>])</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>arr[<span class="dv">2</span>]   <span class="co"># return 6</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>arr[<span class="dv">2</span><span class="sc">:</span>]  <span class="co"># return 6, 8, 10 (including index 2)</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>arr[<span class="sc">:-</span><span class="dv">2</span>] <span class="co"># return 2, 4, 6 (exluding index -2)</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>arr[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="co"># return 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Boolean Indexing</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>arr <span class="sc">&gt;</span> <span class="dv">5</span> <span class="co"># return a boolean array with true or false as elemenets</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>arr[arr<span class="sc">&gt;</span><span class="dv">5</span>] <span class="co"># filtering --&gt;  return the elements that are true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Using Boolean Indexing to filter data</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>names <span class="ot">=</span> <span class="fu">np.array</span>([<span class="st">'Jim'</span>, <span class="st">'Luke'</span>, <span class="st">'Josh'</span>, <span class="st">'Pete'</span>])</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>first_letter_j <span class="ot">=</span> <span class="fu">np.vectorize</span>(lambda s<span class="sc">:</span> s[<span class="dv">0</span>])(names) <span class="sc">==</span> <span class="st">'J'</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(names[first_letter_j]) <span class="co"># gets the names that have first letter as J</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now what is this doing?</p>
+</section>
+<section id="what-is-that-doing" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-that-doing">What is that doing?</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>first_letter_j <span class="ot">=</span> <span class="fu">np.vectorize</span>(lambda s<span class="sc">:</span> s[<span class="dv">0</span>])(names) <span class="sc">==</span> <span class="st">'J'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Lambda Function</strong></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">=</span> lambda s<span class="sc">:</span> s[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is a function that says give me a string and I’ll give you the first character of the string. Note that <code>String</code> is not an array in python, but it supports the same indexing operations as arrays.</p>
+<p><strong>What is np.vectorize?</strong></p>
+<p>It creates a for-loop, applies the function <code>func</code> to every element in the array <code>arr</code>, and return the result as an array.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">np.vectorize</span>(func)(arr) <span class="co"># this is an array</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="calculus-statistical-functions" class="level2">
+<h2 class="anchored" data-anchor-id="calculus-statistical-functions">Calculus / Statistical Functions</h2>
+<section id="common-statistics-functions" class="level3">
+<h3 class="anchored" data-anchor-id="common-statistics-functions">Common Statistics Functions</h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>arr <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">np.random.randn</span>(<span class="dv">10000</span>) <span class="sc">+</span> <span class="dv">10</span> <span class="co"># 2 times std dev with a shift of 10 to the right\</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">np.mean</span>(arr) <span class="co"># approx 10</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">np.std</span>(arr) <span class="co"># approx 2</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">np.percentile</span>(arr, <span class="dv">80</span>) <span class="co"># 80% numbers less than this number</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="integrals-and-derivatives" class="level3">
+<h3 class="anchored" data-anchor-id="integrals-and-derivatives">Integrals and Derivatives</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">np.linspace</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span>x<span class="sc">**</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">np.sin</span>(x)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plt.plot</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Derivatives</strong></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dydx <span class="ot">=</span> <span class="fu">np.gradient</span>(y, x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Integrals</strong></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">np.cumsum</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]) <span class="co"># return [1,3,6,10]</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>y_int <span class="ot">=</span> <span class="fu">np.cumsum</span>(y) <span class="sc">*</span> (x[<span class="dv">1</span>] <span class="sc">-</span> x[<span class="dv">0</span>]) <span class="co"># int y dx</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="resources-used" class="level3">
+<h3 class="anchored" data-anchor-id="resources-used">Resources Used</h3>
+<p>[1] <a href="https://youtu.be/DcfYgePyedM?si=xYR4kkV2VBnrbMPp">NumPy Tutorial</a> [2] <a href="https://github.com/rougier/numpy-100">100 numpy practice problems</a></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -693,14 +735,11 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Home">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Home</span>
+      <a href="./tidy3d.html" class="pagination-link" aria-label="Learning Tidy3D">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Learning Tidy3D</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./tidy3d.html" class="pagination-link" aria-label="Learning Tidy3D">
-        <span class="nav-page-text">Learning Tidy3D</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
