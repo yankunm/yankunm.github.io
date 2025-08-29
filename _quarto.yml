@@ -22,6 +22,9 @@ website:
           - optics.qmd
           - tidy3d.qmd
           - numpy.qmd
+      - section: "Simulations"
+        contents:
+          - huygens.ipynb
 format:
   html:
     page-layout: article
