@@ -17,10 +17,10 @@ website:
     contents:
       - href: index.qmd
         text: Home
-      - year1/log.qmd
+      - log.qmd
       - section: "Courses"
         contents:
-          - year1/optics.qmd
+          - courses/optics.qmd
       - section: "Simulation"
         contents:
           - simulation/tidy3d.qmd

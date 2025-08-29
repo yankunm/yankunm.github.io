@@ -155,9 +155,8 @@ np.cumsum([1, 2, 3, 4]) # return [1,3,6,10]
 y_int = np.cumsum(y) * (x[1] - x[0]) # int y dx
 ```
 
-
-
 ## Resources Used
 
-[1] [NumPy Tutorial](https://youtu.be/DcfYgePyedM?si=xYR4kkV2VBnrbMPp)
-[2] [100 numpy practice problems](https://github.com/rougier/numpy-100)
+- [1] [NumPy Tutorial](https://youtu.be/DcfYgePyedM?si=xYR4kkV2VBnrbMPp)
+
+- [2] [100 numpy practice problems](https://github.com/rougier/numpy-100)
