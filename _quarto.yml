@@ -3,7 +3,7 @@ project:
   type: website
   render:
     - "*.qmd"
-    - "!*.ipynb"
+    - "*.ipynb"
     - "!*.md"
   output-dir: docs
   post-render:
@@ -17,12 +17,16 @@ website:
     contents:
       - href: index.qmd
         text: Home
-      - section: "Year 1"
+      - year1/log.qmd
+      - section: "Courses"
         contents:
-          - year1/log.qmd
           - year1/optics.qmd
-          - year1/tidy3d.qmd
-          - year1/numpy.qmd
+      - section: "Simulation"
+        contents:
+          - simulation/tidy3d.qmd
+          - simulation/numpy.qmd
+          - simulation/huygens.ipynb
+      
 format:
   html:
     page-layout: article
@@ -58,6 +62,7 @@ format:
       - reveal-auto-agenda
     auto-agenda:
       heading: Lecture Outline
+    scrollable: true
 format-links:
   - html
   - format: revealjs

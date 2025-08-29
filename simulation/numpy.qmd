@@ -1,5 +1,5 @@
 ---
-title: Numpy
+title: Learning Numpy
 ---
 
 # Introduction and Basics

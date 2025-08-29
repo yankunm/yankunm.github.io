@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-html/tabby.min.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e5b0c67037ce46433ec0bdf907132db6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.31">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/tabby.min.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-85d4c2704c5e0b3943ffeda8d5508a77.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.33">
 
-  <title>Yankun (Alex) Meng – Numpy</title>
+  <title>Yankun (Alex) Meng – experiment</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -94,13 +94,13 @@
     code span.vs { color: #4070a0; } /* VerbatimString */
     code span.wa { color: #4090c0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-cb5f3eec1871cefe3dfa30b9ffb9ddbc.css">
-  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-cb5f3eec1871cefe3dfa30b9ffb9ddbc.css">
+  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -112,6 +112,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -188,6 +189,9 @@
       margin-right: 0; 
     }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+  
+  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 </head>
 <body class="quarto-light">
 <script>
@@ -196,167 +200,25 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Numpy</h1>
-  <p class="subtitle">Yankun (Alex) Meng</p>
 
-<div class="quarto-title-authors">
-</div>
+<section class="slide level2">
 
-</section>
-<section>
-<section id="introduction-and-basics" class="title-slide slide level1 agenda-slide center">
-<h1>Introduction and Basics</h1>
-<div class="agenda-heading">
-<p>Lecture Outline</p>
+<div id="35f51a5c" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> tidy3d <span class="im">as</span> td</span>
+<span id="cb1-2"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span>
+<span id="cb1-4"><a></a><span class="im">import</span> tidy3d.web <span class="im">as</span> web</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="agenda">
-<ul>
-<li><div class="agenda-active">
-<p>Introduction and Basics</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Array Manipulation</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Calculus / Statistical Functions</p>
-</div></li>
-</ul>
+<div id="14676625" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>web.test()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">18:03:04 EDT </span>Authentication configured successfully!                            
+</pre>
 </div>
-</section>
-<section id="what-is-numpy" class="slide level2">
-<h2>What is NumPy?</h2>
-<p>NumPy is a package for dealing with arrays that’s very fast and efficient.</p>
-<p>Creating array:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>arr1 <span class="ot">=</span> <span class="fu">np.array</span>([<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">3</span>]) <span class="co"># convert list to array</span></span>
-<span id="cb1-2"><a></a>arr2 <span class="ot">=</span> <span class="fu">np.zeros</span>(<span class="dv">10</span>) <span class="co"># array with 10 zeroes</span></span>
-<span id="cb1-3"><a></a>arr3 <span class="ot">=</span> <span class="fu">np.ones</span>(<span class="dv">10</span>) <span class="co"># array with 10 ones</span></span>
-<span id="cb1-4"><a></a>arrR <span class="ot">=</span> <span class="fu">np.random.random</span>(<span class="dv">10</span>) <span class="co"># sample 10 numbers from uniform distribution</span></span>
-<span id="cb1-5"><a></a>arrG <span class="ot">=</span> <span class="fu">np.random.randn</span>(<span class="dv">10</span>) <span class="co"># sample 10 numbers from normal distribution</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="two-most-common-functions" class="slide level2">
-<h2>Two most common functions</h2>
-<p><strong>linspace</strong> - values equally spaced apart given the number of values</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>arr <span class="ot">=</span> <span class="fu">np.linspace</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>) <span class="co"># from 0 to 10, 100 values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>arrange</strong> - values equally spaced apart given the spacing</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>arr <span class="ot">=</span> <span class="fu">np.arrange</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="fl">0.02</span>) <span class="co"># from 0 to 10, spacing of 0.02</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section></section>
-<section>
-<section id="array-manipulation" class="title-slide slide level1 agenda-slide center">
-<h1>Array Manipulation</h1>
-<div class="agenda-heading">
-<p>Lecture Outline</p>
 </div>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Introduction and Basics</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Array Manipulation</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Calculus / Statistical Functions</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="common-array-operation" class="slide level2">
-<h2>Common Array Operation</h2>
-<p><strong>Element-wise operation</strong></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>arr <span class="sc">+</span> <span class="dv">2</span>     <span class="co"># addition</span></span>
-<span id="cb4-2"><a></a>arr <span class="sc">-</span> <span class="dv">5</span>     <span class="co"># subtraction</span></span>
-<span id="cb4-3"><a></a><span class="dv">2</span><span class="sc">*</span>arr       <span class="co"># multiplication</span></span>
-<span id="cb4-4"><a></a><span class="dv">1</span><span class="sc">/</span>arr       <span class="co"># division</span></span>
-<span id="cb4-5"><a></a>arr % <span class="dv">5</span>     <span class="co"># Modulus</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Let’s try to do the same element-wise operation but using functions:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>def <span class="fu">f</span>(x)<span class="sc">:</span></span>
-<span id="cb5-2"><a></a>    return x<span class="sc">**</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">np.sin</span>(x) <span class="sc">/</span> <span class="fu">np.exp</span>(<span class="sc">-</span>x)</span>
-<span id="cb5-3"><a></a></span>
-<span id="cb5-4"><a></a>x <span class="ot">=</span> <span class="fu">np.linspace</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
-<span id="cb5-5"><a></a>y <span class="ot">=</span> <span class="fu">f</span>(x) <span class="co"># Element-wise application of f</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="common-plotting" class="slide level2">
-<h2>Common Plotting</h2>
-<p><strong>Most basic Plotting</strong></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>x <span class="ot">=</span> <span class="fu">np.linspace</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">100</span>)  <span class="co"># x-axis definition</span></span>
-<span id="cb6-2"><a></a>y <span class="ot">=</span> x<span class="sc">**</span><span class="dv">2</span>                    <span class="co"># element-wise x^2</span></span>
-<span id="cb6-3"><a></a><span class="fu">plt.plot</span>(x, x<span class="sc">**</span><span class="dv">2</span>)           <span class="co"># plot(x, y)</span></span>
-<span id="cb6-4"><a></a><span class="fu">plt.show</span>()                  <span class="co"># show the output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Histogram</strong></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">plt.hist</span>(arr) <span class="co"># plotting the array as histogram</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="indexing-and-slicing" class="slide level2">
-<h2>Indexing and Slicing</h2>
-<p><strong>Normal Indexing</strong></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>arr <span class="ot">=</span> <span class="fu">np.array</span>([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>])</span>
-<span id="cb8-2"><a></a>arr[<span class="dv">2</span>]   <span class="co"># return 6</span></span>
-<span id="cb8-3"><a></a>arr[<span class="dv">2</span><span class="sc">:</span>]  <span class="co"># return 6, 8, 10 (including index 2)</span></span>
-<span id="cb8-4"><a></a>arr[<span class="sc">:-</span><span class="dv">2</span>] <span class="co"># return 2, 4, 6 (exluding index -2)</span></span>
-<span id="cb8-5"><a></a>arr[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="co"># return 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Boolean Indexing</strong></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>arr <span class="sc">&gt;</span> <span class="dv">5</span> <span class="co"># return a boolean array with true or false as elemenets</span></span>
-<span id="cb9-2"><a></a>arr[arr<span class="sc">&gt;</span><span class="dv">5</span>] <span class="co"># filtering --&gt;  return the elements that are true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Using Boolean Indexing to filter data</strong></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>names <span class="ot">=</span> <span class="fu">np.array</span>([<span class="st">'Jim'</span>, <span class="st">'Luke'</span>, <span class="st">'Josh'</span>, <span class="st">'Pete'</span>])</span>
-<span id="cb10-2"><a></a>first_letter_j <span class="ot">=</span> <span class="fu">np.vectorize</span>(lambda s<span class="sc">:</span> s[<span class="dv">0</span>])(names) <span class="sc">==</span> <span class="st">'J'</span></span>
-<span id="cb10-3"><a></a><span class="fu">print</span>(names[first_letter_j]) <span class="co"># gets the names that have first letter as J</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Now what is this doing?</p>
-</section>
-<section id="what-is-that-doing" class="slide level2">
-<h2>What is that doing?</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>first_letter_j <span class="ot">=</span> <span class="fu">np.vectorize</span>(lambda s<span class="sc">:</span> s[<span class="dv">0</span>])(names) <span class="sc">==</span> <span class="st">'J'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Lambda Function</strong></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>f <span class="ot">=</span> lambda s<span class="sc">:</span> s[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This is a function that says give me a string and I’ll give you the first character of the string. Note that <code>String</code> is not an array in python, but it supports the same indexing operations as arrays.</p>
-<p><strong>What is np.vectorize?</strong></p>
-<p>It creates a for-loop, applies the function <code>func</code> to every element in the array <code>arr</code>, and return the result as an array.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">np.vectorize</span>(func)(arr) <span class="co"># this is an array</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section></section>
-<section>
-<section id="calculus-statistical-functions" class="title-slide slide level1 agenda-slide center">
-<h1>Calculus / Statistical Functions</h1>
-<div class="agenda-heading">
-<p>Lecture Outline</p>
-</div>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Introduction and Basics</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Array Manipulation</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Calculus / Statistical Functions</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="common-statistics-functions" class="slide level2">
-<h2>Common Statistics Functions</h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>arr <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">np.random.randn</span>(<span class="dv">10000</span>) <span class="sc">+</span> <span class="dv">10</span> <span class="co"># 2 times std dev with a shift of 10 to the right\</span></span>
-<span id="cb14-2"><a></a><span class="fu">np.mean</span>(arr) <span class="co"># approx 10</span></span>
-<span id="cb14-3"><a></a><span class="fu">np.std</span>(arr) <span class="co"># approx 2</span></span>
-<span id="cb14-4"><a></a><span class="fu">np.percentile</span>(arr, <span class="dv">80</span>) <span class="co"># 80% numbers less than this number</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="integrals-and-derivatives" class="slide level2">
-<h2>Integrals and Derivatives</h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>x <span class="ot">=</span> <span class="fu">np.linspace</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
-<span id="cb15-2"><a></a>y <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span>x<span class="sc">**</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">np.sin</span>(x)</span>
-<span id="cb15-3"><a></a><span class="fu">plt.plot</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Derivatives</strong></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>dydx <span class="ot">=</span> <span class="fu">np.gradient</span>(y, x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Integrals</strong></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">np.cumsum</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]) <span class="co"># return [1,3,6,10]</span></span>
-<span id="cb17-2"><a></a>y_int <span class="ot">=</span> <span class="fu">np.cumsum</span>(y) <span class="sc">*</span> (x[<span class="dv">1</span>] <span class="sc">-</span> x[<span class="dv">0</span>]) <span class="co"># int y dx</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="resources-used" class="slide level2">
-<h2>Resources Used</h2>
-<p>[1] <a href="https://youtu.be/DcfYgePyedM?si=xYR4kkV2VBnrbMPp">NumPy Tutorial</a> [2] <a href="https://github.com/rougier/numpy-100">100 numpy practice problems</a></p>
 
 
-</section></section>
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
@@ -365,19 +227,19 @@
 </div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <script src="site_libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
-  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>

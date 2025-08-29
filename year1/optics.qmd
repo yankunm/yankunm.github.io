@@ -1,6 +1,5 @@
 ---
-title: Optics
-author: Yankun (Alex) Meng
+title: Learning Optics
 ---
 
 # Ray Optics
