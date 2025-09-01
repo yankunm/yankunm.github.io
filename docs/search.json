@@ -149,7 +149,7 @@
     "href": "log.html",
     "title": "Work Log",
     "section": "",
-    "text": "8/28/2025 Thursday\n\n\nTidy3D Huygen’s metasurface simulation redo\nRead Fundamentals of Photonics Ch 1, 2, 6\nRead Boyd NLO Ch 1\n\n\n\n8/27/2025 Wednesday\n\n\nTidy3D Python Tutorial 1 and 2\nNonlinear Optics course\nAdvanced Optics course\n\n\n\n\nTidy3D Learning\nFDTD 101:\n\nIntroduction to FDTD Simulation\nUsing FDTD to compute transmission spectrum\nMode Injection\nModeling Dispersive materials in FDTD\nIntroduction to PML\nTimestep size and CFL conditions\nNumerical Dispersion in FDTD\nDielectric constant assignment on Yee Grids\nSubpixel Averaging\n\nTidy3D Python:\n\nBasics\nMediums\nStructures\nGrid Specifications\nBoundary Conditions and Symmetry\nSources\nData visualization and Postprocessing",
+    "text": "Week 2 [9/1/2025-9/7/2025]\nTidy3D:\n\nMesh Study (P/2, P/4, P/8, P/16, P/32, …) on huygens metasurface and plot the transmission\nUnderstand how to calculate phase (Example)\nLearn how to use material library and define circular polarization (Example)\nRegenerate Figure 2B (Ultra narrowband geometric-phase resonant metasurfaces)\n\nNonlinear Optics:\nClasses so far:\n\nNonlinear susceptibility; anharmonic oscillator\nProperties of the nonlinear susceptibility; K.-K. relations 1.5—1.7\nWave equation in NLO; Coupled-wave equations for SFG 2.1—2.2\n\nSelf-Study:\n\nIIT Lectures 1-20\nBYU notebooks (implement 1, 2, 3, 4)\n\nAdvanced Optics:\nClasses so far:\n\nRay Optics, Graded Index Optics, Matrix Optics\nWave Optics, Paraxial Waves\nDiffraction/Transmission/Reflection\nGaussian Beams, ABCD matrices, etalons, thin films, cavities\nGuided wave optics, optical fibers, waveguides\n\nSelf-Study:\n\nFOP by Saleh 1, 2, 3, 6, 9, 11\n\n\n\nWeek 1 [8/25/2025-8/31/2025]\n\nTidy3D Huygen’s metasurface simulation redo\nRead Fundamentals of Photonics Ch 1, 2, 6\nRead Boyd NLO Ch 1\nTidy3D Python Tutorial 1 and 2\n\n\n\nTidy3D Learning Outline\nFDTD 101:\n\nIntroduction to FDTD Simulation\nUsing FDTD to compute transmission spectrum\nMode Injection\nModeling Dispersive materials in FDTD\nIntroduction to PML\nTimestep size and CFL conditions\nNumerical Dispersion in FDTD\nDielectric constant assignment on Yee Grids\nSubpixel Averaging\n\nTidy3D Python:\n\nBasics\nMediums\nStructures\nGrid Specifications\nBoundary Conditions and Symmetry\nSources\nData visualization and Postprocessing",
     "crumbs": [
       "Work Log"
     ]
@@ -366,5 +366,47 @@
     "title": "Yankun (Alex) Meng",
     "section": "",
     "text": "import tidy3d as td\nimport numpy as np\nimport matplotlib.pyplot as plt \nimport tidy3d.web as web\n\n\nweb.test()\n\n18:03:04 EDT Authentication configured successfully!"
+  },
+  {
+    "objectID": "nlo.slides.html#basic-linear-optics",
+    "href": "nlo.slides.html#basic-linear-optics",
+    "title": "Yankun (Alex) Meng",
+    "section": "Basic Linear Optics",
+    "text": "Basic Linear Optics\nMaxwell’s Equation"
+  },
+  {
+    "objectID": "nlo.html",
+    "href": "nlo.html",
+    "title": "Nonlinear Optics",
+    "section": "",
+    "text": "Basic Linear Optics\n\nMaxwell’s Equation\n\n\n\nMaxwell’s Wave Equation\n\n\n\nPlane wave and solution of the wave equation\n\n\n\nMonochromatic and Non-monochromatic waves\n\n\n\nElectric displacement, electric polarization, and refractice index\n\n\n\nDirection of E, D, and k in an isotropic medium\n\n\n\nPoynting vector and energy flow\n\n\n\nIntensity of an EM wave\n\n\n\nAnisotropic media\n\n\n\nSusceptibility Tensor\n\n\n\nEM Wave Propagation in Anisotropic media\n\n\n\nOrdinary and Extra-ordinary ray\n\n\n\nIndex Ellipsoid\n\n\n\nLinear response and polarization\n\n\n\nDielectric Susceptibility\n\n\n\n\nNonlinear Optics\n\nIntroduction\n\n\n\nClassical Origin of nonlinearity\n\n\n\nMiller’s Rule\n\n\n\nOptical REctification\n\n\n\nLinear Electro-optic effect\n\n\n\nSum Difference Frequency Generation\n\n\n\nDimensions of higher order susceptibiltiies\n\n\n\nSHG"
+  },
+  {
+    "objectID": "nlo.html#nonlinear-optics",
+    "href": "nlo.html#nonlinear-optics",
+    "title": "Yankun (Alex) Meng",
+    "section": "",
+    "text": "A\n\n\n\n\nA"
+  },
+  {
+    "objectID": "log.slides.html#week-2-912025-972025",
+    "href": "log.slides.html#week-2-912025-972025",
+    "title": "Work Log",
+    "section": "Week 2 [9/1/2025-9/7/2025]",
+    "text": "Week 2 [9/1/2025-9/7/2025]\nTidy3D:\n\nMesh Study (P/2, P/4, P/8, P/16, P/32, …) on huygens metasurface and plot the transmission\nUnderstand how to calculate phase (Example)\nLearn how to use material library and define circular polarization (Example)\nRegenerate Figure 2B (Ultra narrowband geometric-phase resonant metasurfaces)\n\nNonlinear Optics:\nClasses so far:\n\nNonlinear susceptibility; anharmonic oscillator\nProperties of the nonlinear susceptibility; K.-K. relations 1.5—1.7\nWave equation in NLO; Coupled-wave equations for SFG 2.1—2.2\n\nSelf-Study:\n\nIIT Lectures 1-20\nBYU notebooks (implement 1, 2, 3, 4)\n\nAdvanced Optics:\nClasses so far:\n\nRay Optics, Graded Index Optics, Matrix Optics\nWave Optics, Paraxial Waves\nDiffraction/Transmission/Reflection\nGaussian Beams, ABCD matrices, etalons, thin films, cavities\nGuided wave optics, optical fibers, waveguides\n\nSelf-Study:\n\nFOP by Saleh 1, 2, 3, 6, 9, 11"
+  },
+  {
+    "objectID": "log.slides.html#week-1-8252025-8312025",
+    "href": "log.slides.html#week-1-8252025-8312025",
+    "title": "Work Log",
+    "section": "Week 1 [8/25/2025-8/31/2025]",
+    "text": "Week 1 [8/25/2025-8/31/2025]\n\nTidy3D Huygen’s metasurface simulation redo\nRead Fundamentals of Photonics Ch 1, 2, 6\nRead Boyd NLO Ch 1\nTidy3D Python Tutorial 1 and 2"
+  },
+  {
+    "objectID": "log.slides.html#tidy3d-learning-outline",
+    "href": "log.slides.html#tidy3d-learning-outline",
+    "title": "Work Log",
+    "section": "Tidy3D Learning Outline",
+    "text": "Tidy3D Learning Outline\nFDTD 101:\n\nIntroduction to FDTD Simulation\nUsing FDTD to compute transmission spectrum\nMode Injection\nModeling Dispersive materials in FDTD\nIntroduction to PML\nTimestep size and CFL conditions\nNumerical Dispersion in FDTD\nDielectric constant assignment on Yee Grids\nSubpixel Averaging\n\nTidy3D Python:\n\nBasics\nMediums\nStructures\nGrid Specifications\nBoundary Conditions and Symmetry\nSources\nData visualization and Postprocessing"
   }
 ]

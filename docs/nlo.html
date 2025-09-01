@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Work Log – Yankun (Alex) Meng</title>
+<title>Nonlinear Optics – Yankun (Alex) Meng</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./courses/optics.html" rel="next">
-<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -70,6 +68,49 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -82,7 +123,9 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./log.html">Work Log</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      Yankun (Alex) Meng
+      </li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -115,7 +158,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./log.html" class="sidebar-item-text sidebar-link active">
+  <a href="./log.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Work Log</span></a>
   </div>
 </li>
@@ -175,18 +218,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-2-912025-972025" id="toc-week-2-912025-972025" class="nav-link active" data-scroll-target="#week-2-912025-972025">Week 2 [9/1/2025-9/7/2025]</a></li>
-  <li><a href="#week-1-8252025-8312025" id="toc-week-1-8252025-8312025" class="nav-link" data-scroll-target="#week-1-8252025-8312025">Week 1 [8/25/2025-8/31/2025]</a></li>
-  <li><a href="#tidy3d-learning-outline" id="toc-tidy3d-learning-outline" class="nav-link" data-scroll-target="#tidy3d-learning-outline">Tidy3D Learning Outline</a></li>
+  <li><a href="#basic-linear-optics" id="toc-basic-linear-optics" class="nav-link active" data-scroll-target="#basic-linear-optics">Basic Linear Optics</a></li>
+  <li><a href="#nonlinear-optics" id="toc-nonlinear-optics" class="nav-link" data-scroll-target="#nonlinear-optics">Nonlinear Optics</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.slides.html"><i class="bi bi-file-slides"></i>Slides</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="nlo.slides.html"><i class="bi bi-file-slides"></i>Slides</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Work Log</h1>
+<h1 class="title">Nonlinear Optics</h1>
 <p class="subtitle lead">Yankun (Alex) Meng</p>
 </div>
 
@@ -204,76 +246,104 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="week-2-912025-972025" class="level3">
-<h3 class="anchored" data-anchor-id="week-2-912025-972025">Week 2 [9/1/2025-9/7/2025]</h3>
-<p><strong>Tidy3D:</strong></p>
-<ul>
-<li>Mesh Study (P/2, P/4, P/8, P/16, P/32, …) on <a href="https://yankunm.github.io/simulation/huygens.html">huygens metasurface</a> and plot the transmission</li>
-<li>Understand how to calculate phase (<a href="https://www.flexcompute.com/tidy3d/examples/notebooks/MidIRMetalens/">Example</a>)</li>
-<li>Learn how to use material library and define circular polarization (<a href="https://www.flexcompute.com/tidy3d/examples/notebooks/TunableChiralMetasurface/">Example</a>)</li>
-<li>Regenerate Figure 2B (<a href="https://duke.box.com/s/owa6sdzf80y0u7xjp1qxia62md6z514q">Ultra narrowband geometric-phase resonant metasurfaces</a>)</li>
-</ul>
-<p><strong>Nonlinear Optics:</strong></p>
-<p>Classes so far:</p>
-<ul>
-<li>Nonlinear susceptibility; anharmonic oscillator</li>
-<li>Properties of the nonlinear susceptibility; K.-K. relations 1.5—1.7</li>
-<li>Wave equation in NLO; Coupled-wave equations for SFG 2.1—2.2</li>
-</ul>
-<p>Self-Study:</p>
-<ul>
-<li>IIT Lectures 1-20</li>
-<li><a href="https://byucamacholab.github.io/nonlinear-optics/">BYU notebooks</a> (implement 1, 2, 3, 4)</li>
-</ul>
-<p><strong>Advanced Optics:</strong></p>
-<p>Classes so far:</p>
-<ul>
-<li>Ray Optics, Graded Index Optics, Matrix Optics</li>
-<li>Wave Optics, Paraxial Waves</li>
-<li>Diffraction/Transmission/Reflection</li>
-<li>Gaussian Beams, ABCD matrices, etalons, thin films, cavities</li>
-<li>Guided wave optics, optical fibers, waveguides</li>
-</ul>
-<p>Self-Study:</p>
-<ul>
-<li>FOP by Saleh 1, 2, 3, 6, 9, 11</li>
-</ul>
+<section id="basic-linear-optics" class="level3">
+<h3 class="anchored" data-anchor-id="basic-linear-optics">Basic Linear Optics</h3>
+<section id="maxwells-equation" class="level4">
+<h4 class="anchored" data-anchor-id="maxwells-equation">Maxwell’s Equation</h4>
+<hr>
 </section>
-<section id="week-1-8252025-8312025" class="level3">
-<h3 class="anchored" data-anchor-id="week-1-8252025-8312025">Week 1 [8/25/2025-8/31/2025]</h3>
-<ul>
-<li>Tidy3D Huygen’s metasurface simulation redo</li>
-<li>Read Fundamentals of Photonics Ch 1, 2, 6</li>
-<li>Read Boyd NLO Ch 1</li>
-<li>Tidy3D Python Tutorial 1 and 2</li>
-</ul>
+<section id="maxwells-wave-equation" class="level4">
+<h4 class="anchored" data-anchor-id="maxwells-wave-equation">Maxwell’s Wave Equation</h4>
+<hr>
 </section>
-<section id="tidy3d-learning-outline" class="level3">
-<h3 class="anchored" data-anchor-id="tidy3d-learning-outline">Tidy3D Learning Outline</h3>
-<p>FDTD 101:</p>
-<ol type="1">
-<li>Introduction to FDTD Simulation</li>
-<li>Using FDTD to compute transmission spectrum</li>
-<li>Mode Injection</li>
-<li>Modeling Dispersive materials in FDTD</li>
-<li>Introduction to PML</li>
-<li>Timestep size and CFL conditions</li>
-<li>Numerical Dispersion in FDTD</li>
-<li>Dielectric constant assignment on Yee Grids</li>
-<li>Subpixel Averaging</li>
-</ol>
-<p>Tidy3D Python:</p>
-<ol type="1">
-<li>Basics</li>
-<li>Mediums</li>
-<li>Structures</li>
-<li>Grid Specifications</li>
-<li>Boundary Conditions and Symmetry</li>
-<li>Sources</li>
-<li>Data visualization and Postprocessing</li>
-</ol>
+<section id="plane-wave-and-solution-of-the-wave-equation" class="level4">
+<h4 class="anchored" data-anchor-id="plane-wave-and-solution-of-the-wave-equation">Plane wave and solution of the wave equation</h4>
+<hr>
+</section>
+<section id="monochromatic-and-non-monochromatic-waves" class="level4">
+<h4 class="anchored" data-anchor-id="monochromatic-and-non-monochromatic-waves">Monochromatic and Non-monochromatic waves</h4>
+<hr>
+</section>
+<section id="electric-displacement-electric-polarization-and-refractice-index" class="level4">
+<h4 class="anchored" data-anchor-id="electric-displacement-electric-polarization-and-refractice-index">Electric displacement, electric polarization, and refractice index</h4>
+<hr>
+</section>
+<section id="direction-of-e-d-and-k-in-an-isotropic-medium" class="level4">
+<h4 class="anchored" data-anchor-id="direction-of-e-d-and-k-in-an-isotropic-medium">Direction of <span class="math inline">E</span>, <span class="math inline">D</span>, and <span class="math inline">k</span> in an isotropic medium</h4>
+<hr>
+</section>
+<section id="poynting-vector-and-energy-flow" class="level4">
+<h4 class="anchored" data-anchor-id="poynting-vector-and-energy-flow">Poynting vector and energy flow</h4>
+<hr>
+</section>
+<section id="intensity-of-an-em-wave" class="level4">
+<h4 class="anchored" data-anchor-id="intensity-of-an-em-wave">Intensity of an EM wave</h4>
+<hr>
+</section>
+<section id="anisotropic-media" class="level4">
+<h4 class="anchored" data-anchor-id="anisotropic-media">Anisotropic media</h4>
+<hr>
+</section>
+<section id="susceptibility-tensor" class="level4">
+<h4 class="anchored" data-anchor-id="susceptibility-tensor">Susceptibility Tensor</h4>
+<hr>
+</section>
+<section id="em-wave-propagation-in-anisotropic-media" class="level4">
+<h4 class="anchored" data-anchor-id="em-wave-propagation-in-anisotropic-media">EM Wave Propagation in Anisotropic media</h4>
+<hr>
+</section>
+<section id="ordinary-and-extra-ordinary-ray" class="level4">
+<h4 class="anchored" data-anchor-id="ordinary-and-extra-ordinary-ray">Ordinary and Extra-ordinary ray</h4>
+<hr>
+</section>
+<section id="index-ellipsoid" class="level4">
+<h4 class="anchored" data-anchor-id="index-ellipsoid">Index Ellipsoid</h4>
+<hr>
+</section>
+<section id="linear-response-and-polarization" class="level4">
+<h4 class="anchored" data-anchor-id="linear-response-and-polarization">Linear response and polarization</h4>
+<hr>
+</section>
+<section id="dielectric-susceptibility" class="level4">
+<h4 class="anchored" data-anchor-id="dielectric-susceptibility">Dielectric Susceptibility</h4>
+<hr>
+</section>
+</section>
+<section id="nonlinear-optics" class="level3">
+<h3 class="anchored" data-anchor-id="nonlinear-optics">Nonlinear Optics</h3>
+<section id="introduction" class="level4">
+<h4 class="anchored" data-anchor-id="introduction">Introduction</h4>
+<hr>
+</section>
+<section id="classical-origin-of-nonlinearity" class="level4">
+<h4 class="anchored" data-anchor-id="classical-origin-of-nonlinearity">Classical Origin of nonlinearity</h4>
+<hr>
+</section>
+<section id="millers-rule" class="level4">
+<h4 class="anchored" data-anchor-id="millers-rule">Miller’s Rule</h4>
+<hr>
+</section>
+<section id="optical-rectification" class="level4">
+<h4 class="anchored" data-anchor-id="optical-rectification">Optical REctification</h4>
+<hr>
+</section>
+<section id="linear-electro-optic-effect" class="level4">
+<h4 class="anchored" data-anchor-id="linear-electro-optic-effect">Linear Electro-optic effect</h4>
+<hr>
+</section>
+<section id="sum-difference-frequency-generation" class="level4">
+<h4 class="anchored" data-anchor-id="sum-difference-frequency-generation">Sum Difference Frequency Generation</h4>
+<hr>
+</section>
+<section id="dimensions-of-higher-order-susceptibiltiies" class="level4">
+<h4 class="anchored" data-anchor-id="dimensions-of-higher-order-susceptibiltiies">Dimensions of higher order susceptibiltiies</h4>
+<hr>
+</section>
+<section id="shg" class="level4">
+<h4 class="anchored" data-anchor-id="shg">SHG</h4>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -676,18 +746,6 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Home">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Home</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./courses/optics.html" class="pagination-link" aria-label="Learning Optics">
-        <span class="nav-page-text">Learning Optics</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

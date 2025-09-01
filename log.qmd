@@ -2,27 +2,51 @@
 title: Work Log
 ---
 
-8/28/2025 Thursday
+## Week 2 [9/1/2025-9/7/2025]
 
-:::{}
+**Tidy3D:**
+
+- Mesh Study (P/2, P/4, P/8, P/16, P/32, …) on [huygens metasurface](https://yankunm.github.io/simulation/huygens.html) and plot the transmission
+- Understand how to calculate phase ([Example](https://www.flexcompute.com/tidy3d/examples/notebooks/MidIRMetalens/))
+- Learn how to use material library and define circular polarization ([Example](https://www.flexcompute.com/tidy3d/examples/notebooks/TunableChiralMetasurface/))
+- Regenerate Figure 2B ([Ultra narrowband geometric-phase resonant metasurfaces](https://duke.box.com/s/owa6sdzf80y0u7xjp1qxia62md6z514q))
+
+**Nonlinear Optics:**
+
+Classes so far:
+
+  - Nonlinear susceptibility; anharmonic oscillator
+  - Properties of the nonlinear susceptibility; K.-K. relations 1.5—1.7
+  - Wave equation in NLO; Coupled-wave equations for SFG 2.1—2.2
+  
+Self-Study:
+
+  - IIT Lectures 1-20
+  - [BYU notebooks](https://byucamacholab.github.io/nonlinear-optics/) (implement 1, 2, 3, 4)
+
+**Advanced Optics:**
+
+Classes so far:
+
+  - Ray Optics, Graded Index Optics, Matrix Optics
+  - Wave Optics, Paraxial Waves
+  - Diffraction/Transmission/Reflection
+  - Gaussian Beams, ABCD matrices, etalons, thin films, cavities
+  - Guided wave optics, optical fibers, waveguides
+
+Self-Study:
+
+  - FOP by Saleh 1, 2, 3, 6, 9, 11
+
+## Week 1 [8/25/2025-8/31/2025]
+
 - Tidy3D Huygen's metasurface simulation redo
 - Read Fundamentals of Photonics Ch 1, 2, 6
 - Read Boyd NLO Ch 1 
-:::
-
----
-
-8/27/2025 Wednesday
-
-:::{}
 - Tidy3D Python Tutorial 1 and 2
-- Nonlinear Optics course
-- Advanced Optics course 
-:::
 
----
 
-## Tidy3D Learning
+## Tidy3D Learning Outline
 
 FDTD 101:
 

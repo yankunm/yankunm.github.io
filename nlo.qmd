@@ -1,0 +1,155 @@
+---
+title: Nonlinear Optics 
+toc: true
+toc-depth: 3
+---
+
+[Nonlinear Optics BYU](https://byucamacholab.github.io/nonlinear-optics/)
+[Nonlinear Optics IIT](https://youtube.com/playlist?list=PLbRMhDVUMngfBwyonVP8VIsabtnsV3GVv&si=Qh3SIPBtu7jx0KOf)
+
+
+## Basic Linear Optics
+
+### Maxwell's Equation
+
+---
+
+### Maxwell's Wave Equation
+
+---
+
+### Plane wave and solution of the wave equation
+
+---
+
+### Monochromatic and Non-monochromatic waves
+
+---
+
+### Electric displacement, electric polarization, and refractice index
+
+---
+
+### Direction of $E$, $D$, and $k$ in an isotropic medium
+
+---
+
+### Poynting vector and energy flow
+
+---
+
+### Intensity of an EM wave
+
+---
+
+### Anisotropic media
+
+---
+
+### Susceptibility Tensor
+
+---
+
+### EM Wave Propagation in Anisotropic media
+
+---
+
+### Ordinary and Extra-ordinary ray
+
+---
+
+### Index Ellipsoid
+
+---
+
+### Linear response and polarization
+
+---
+
+### Dielectric Susceptibility
+
+---
+
+## Nonlinear Optics
+
+### Introduction
+
+---
+
+### Classical Origin of nonlinearity
+
+---
+
+### Miller's Rule
+
+---
+
+### Dimensions of higher order susceptibiltiies
+
+--- 
+
+### Second Harmonic Generation (SHG)
+
+---
+
+### Optical REctification
+
+---
+
+### Linear Electro-optic effect
+
+---
+
+### Sum and Difference Frequency Generation
+
+---
+
+### Nonlinear Maxwell's Equation 
+
+---
+
+### Theory of SHG 
+
+---
+
+### Phase Matching
+
+---
+
+### Gain Bandwidth
+
+---
+
+### Manley-Rowe Relation
+
+---
+
+### Energy Conservation in SHG
+
+---
+
+### Different kinds of phase matching
+
+---
+
+### Birefringence phase-matching
+
+---
+
+### Type I Phase Matching
+
+---
+
+### Type II Phase Matching
+
+---
+
+### Symmetry in nonlinear susceptibility
+
+---
+
+### Kleinman's Symmetry
+
+---
+
+### Neumann's Principle

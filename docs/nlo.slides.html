@@ -10,7 +10,7 @@
 <link href="site_libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.33">
 
-  <title>Yankun (Alex) Meng – Work Log</title>
+  <title>Yankun (Alex) Meng – nlo</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -30,6 +30,22 @@
     }
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-cb5f3eec1871cefe3dfa30b9ffb9ddbc.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -132,85 +148,71 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Work Log</h1>
-  <p class="subtitle">Yankun (Alex) Meng</p>
 
-<div class="quarto-title-authors">
+<section>
+<section id="nonlinear-optics" class="title-slide slide level1 agenda-slide center">
+<h1>Nonlinear Optics</h1>
+<div class="agenda-heading">
+<p>Lecture Outline</p>
 </div>
+<div class="agenda">
+<ul>
+<li><div class="agenda-active">
+<p>Nonlinear Optics</p>
+</div></li>
+</ul>
+</div>
+</section>
+<section id="basic-linear-optics" class="slide level2">
+<h2>Basic Linear Optics</h2>
+<h3 id="maxwells-equation">Maxwell’s Equation</h3>
+</section>
+<section class="slide level2">
 
+<h3 id="maxwells-wave-equation">Maxwell’s Wave Equation</h3>
 </section>
-<section id="week-2-912025-972025" class="slide level2">
-<h2>Week 2 [9/1/2025-9/7/2025]</h2>
-<p><strong>Tidy3D:</strong></p>
-<ul>
-<li>Mesh Study (P/2, P/4, P/8, P/16, P/32, …) on <a href="https://yankunm.github.io/simulation/huygens.html">huygens metasurface</a> and plot the transmission</li>
-<li>Understand how to calculate phase (<a href="https://www.flexcompute.com/tidy3d/examples/notebooks/MidIRMetalens/">Example</a>)</li>
-<li>Learn how to use material library and define circular polarization (<a href="https://www.flexcompute.com/tidy3d/examples/notebooks/TunableChiralMetasurface/">Example</a>)</li>
-<li>Regenerate Figure 2B (<a href="https://duke.box.com/s/owa6sdzf80y0u7xjp1qxia62md6z514q">Ultra narrowband geometric-phase resonant metasurfaces</a>)</li>
-</ul>
-<p><strong>Nonlinear Optics:</strong></p>
-<p>Classes so far:</p>
-<ul>
-<li>Nonlinear susceptibility; anharmonic oscillator</li>
-<li>Properties of the nonlinear susceptibility; K.-K. relations 1.5—1.7</li>
-<li>Wave equation in NLO; Coupled-wave equations for SFG 2.1—2.2</li>
-</ul>
-<p>Self-Study:</p>
-<ul>
-<li>IIT Lectures 1-20</li>
-<li><a href="https://byucamacholab.github.io/nonlinear-optics/">BYU notebooks</a> (implement 1, 2, 3, 4)</li>
-</ul>
-<p><strong>Advanced Optics:</strong></p>
-<p>Classes so far:</p>
-<ul>
-<li>Ray Optics, Graded Index Optics, Matrix Optics</li>
-<li>Wave Optics, Paraxial Waves</li>
-<li>Diffraction/Transmission/Reflection</li>
-<li>Gaussian Beams, ABCD matrices, etalons, thin films, cavities</li>
-<li>Guided wave optics, optical fibers, waveguides</li>
-</ul>
-<p>Self-Study:</p>
-<ul>
-<li>FOP by Saleh 1, 2, 3, 6, 9, 11</li>
-</ul>
+<section class="slide level2">
+
+<h3 id="plane-wave-and-solution-of-the-wave-equation">Plane wave and solution of the wave equation</h3>
 </section>
-<section id="week-1-8252025-8312025" class="slide level2">
-<h2>Week 1 [8/25/2025-8/31/2025]</h2>
-<ul>
-<li>Tidy3D Huygen’s metasurface simulation redo</li>
-<li>Read Fundamentals of Photonics Ch 1, 2, 6</li>
-<li>Read Boyd NLO Ch 1</li>
-<li>Tidy3D Python Tutorial 1 and 2</li>
-</ul>
+<section class="slide level2">
+
+<h3 id="monochromatic-and-non-monochromatic-waves">Monochromatic and Non-monochromatic waves</h3>
 </section>
-<section id="tidy3d-learning-outline" class="slide level2 scrollable">
-<h2>Tidy3D Learning Outline</h2>
-<p>FDTD 101:</p>
-<ol type="1">
-<li>Introduction to FDTD Simulation</li>
-<li>Using FDTD to compute transmission spectrum</li>
-<li>Mode Injection</li>
-<li>Modeling Dispersive materials in FDTD</li>
-<li>Introduction to PML</li>
-<li>Timestep size and CFL conditions</li>
-<li>Numerical Dispersion in FDTD</li>
-<li>Dielectric constant assignment on Yee Grids</li>
-<li>Subpixel Averaging</li>
-</ol>
-<p>Tidy3D Python:</p>
-<ol type="1">
-<li>Basics</li>
-<li>Mediums</li>
-<li>Structures</li>
-<li>Grid Specifications</li>
-<li>Boundary Conditions and Symmetry</li>
-<li>Sources</li>
-<li>Data visualization and Postprocessing</li>
-</ol>
+<section class="slide level2">
+
+<h3 id="electric-displacement-electric-polarization-and-refractice-index">Electric displacement, electric polarization, and refractice index</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="direction-of-e-d-and-k-in-an-isotropic-medium">Direction of <span class="math inline">E</span>, <span class="math inline">D</span>, and <span class="math inline">k</span> in an isotropic medium</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="poynting-vector-and-energy-flow">Poynting vector and energy flow</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="intensity-of-an-em-wave">Intensity of an EM wave</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="anisotropic-media">Anisotropic media</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="susceptibility-tensor">Susceptibility Tensor</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="em-wave-propagation-in-anisotropic-media">EM Wave Propagation in Anisotropic media</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="section"></h3>
 
 
-</section>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
