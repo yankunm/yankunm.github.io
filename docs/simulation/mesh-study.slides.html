@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -10,7 +10,7 @@
 <link href="../site_libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.33">
 
-  <title>Yankun (Alex) Meng – Learning Tidy3D</title>
+  <title>Yankun (Alex) Meng – Mesh Study of Huygen’s Surface</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -95,22 +95,6 @@
     code span.wa { color: #4090c0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-cb5f3eec1871cefe3dfa30b9ffb9ddbc.css">
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -205,6 +189,10 @@
       margin-right: 0; 
     }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+  
+  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+  <script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
 </head>
 <body class="quarto-light">
 <script>
@@ -214,241 +202,242 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Learning Tidy3D</h1>
+  <h1 class="title">Mesh Study of Huygen’s Surface</h1>
   <p class="subtitle">Yankun (Alex) Meng</p>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section>
-<section id="introduction-to-tidy3d" class="title-slide slide level1 agenda-slide center">
-<h1>Introduction to Tidy3D</h1>
-<div class="agenda-heading">
-<p>Lecture Outline</p>
-</div>
-<div class="agenda">
-<ul>
-<li><div class="agenda-active">
-<p>Introduction to Tidy3D</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="introduction" class="slide level2">
-<h2>Introduction</h2>
-<p>FDTD method allows you to compute the evolution of electromagnetic field in the <em>time domain</em>.</p>
-<p>Given some device <span class="math inline">\epsilon(\vec{r})</span> and an incident field or current source <span class="math inline">\vec{J}(\vec{r}, t)</span>, internally, FDTD solves these maxwell’s equations:</p>
-<p><span class="math display">\nabla \times \vec{E}(\vec{r}, t) = -\mu_0 \frac{\vec{H}(\vec{r}, t)}{dt} \tag{1}</span></p>
-<p><span class="math display">\nabla \times \vec{H}(\vec{r}, t) = \epsilon(\vec{r}) \epsilon_0 \frac{d\vec{E}(\vec{r}, t)}{dt} + \vec{J}(\vec{r}, t) \tag{2}</span></p>
+<section class="slide level2">
 
-<img data-src="../assets/field_update_fdtd.png" class="r-stretch quarto-figure-center"><p class="caption">Field Update</p><div class="footer">
-<p>The diagram is from <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Simulation.html">Simulation Documentation</a></p>
+<div id="cf4dcd21" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a></a><span class="im">import</span> tidy3d <span class="im">as</span> td</span>
+<span id="cb1-4"><a></a><span class="im">import</span> tidy3d.web <span class="im">as</span> web</span>
+<span id="cb1-5"><a></a><span class="im">import</span> scienceplots</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="b92eef7e" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="co"># Set logging level to ERROR to reduce output verbosity</span></span>
+<span id="cb2-2"><a></a>td.config.logging_level <span class="op">=</span> <span class="st">"ERROR"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="starting-tidy3d" class="slide level2">
-<h2>Starting Tidy3D</h2>
-<p>These software packages should be imported everytime you start a tidy3D project:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>import tidy3d as td <span class="co"># Main package</span></span>
-<span id="cb1-2"><a></a>import tidy3d.web as web <span class="co"># Used to run the simulation</span></span>
-<span id="cb1-3"><a></a>import matplotlib.pyplot as plt <span class="co"># Used for plotting results</span></span>
-<span id="cb1-4"><a></a>import numpy as np <span class="co"># Used for numerical calculations</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="before-simulation" class="slide level2">
-<h2>Before Simulation</h2>
-<p>Before the simulation, we have to define some key parameters of the electromagnetic waves that we will use across the simulation:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>lambda_range <span class="ot">=</span> (<span class="fl">1.1</span>, <span class="fl">1.6</span>)   <span class="co"># wavelength range (µm)</span></span>
-<span id="cb2-2"><a></a>freqs <span class="ot">=</span> (td.C_0 <span class="sc">/</span> lambda_range[<span class="dv">1</span>], td.C_0 <span class="sc">/</span> lambda_range[<span class="dv">0</span>])  <span class="co"># frequency range</span></span>
-<span id="cb2-3"><a></a>freq0 <span class="ot">=</span> <span class="fu">np.mean</span>(freqs)      <span class="co"># center frequency</span></span>
-<span id="cb2-4"><a></a>lda0 <span class="ot">=</span> td.C_0 <span class="sc">/</span> freq0       <span class="co"># center wavelength</span></span>
-<span id="cb2-5"><a></a>bandwidth <span class="ot">=</span> <span class="fl">0.38</span>            <span class="co"># normalized bandwidth</span></span>
-<span id="cb2-6"><a></a>freqw <span class="ot">=</span> bandwidth <span class="sc">*</span> (freqs[<span class="dv">1</span>] <span class="sc">-</span> freqs[<span class="dv">0</span>])  <span class="co"># bandwidth in Hz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Note:</strong> All numbers in tidy3d are in <strong>microns</strong> (<span class="math inline">\mu m</span>)</p>
-</section>
-<section id="basic-workflow" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Basic Workflow</h2>
-<p>Here’s how to simulate something:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># Defining a simulation</span></span>
-<span id="cb3-2"><a></a>simulation1 <span class="ot">=</span> <span class="fu">td.Simulation</span>(</span>
-<span id="cb3-3"><a></a>    <span class="co"># inputs</span></span>
-<span id="cb3-4"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The most basic way of running the simulation is using the <em>web</em> object we imported from tidy3d:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co"># Running a simulation</span></span>
-<span id="cb4-2"><a></a>sim1_data <span class="ot">=</span> <span class="fu">web.run</span>(simulation1, <span class="at">task_name=</span><span class="st">'any-unique-name'</span>, <span class="at">path=</span><span class="st">'data/descriptive-name.hdf5'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Simulation data is stored as an <strong><a href="https://en.wikipedia.org/wiki/Hierarchical_Data_Format">HDF5 file</a></strong> at the <strong>file path</strong> you specify.</p>
-<div class="footer">
-<p>See <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Simulation.html">Simulation</a> Documentation for more information</p>
+<section id="initialization" class="slide level2">
+<h2>Initialization</h2>
+<div id="589357ab" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="co"># 0 Define a FreqRange object with desired wavelengths</span></span>
+<span id="cb3-2"><a></a>fr <span class="op">=</span> td.FreqRange.from_wvl_interval(wvl_min<span class="op">=</span><span class="fl">1.1</span>, wvl_max<span class="op">=</span><span class="fl">1.6</span>)</span>
+<span id="cb3-3"><a></a>N <span class="op">=</span> <span class="dv">301</span> <span class="co"># num_points</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="fcdf9a95" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="co"># 1 Computational domain size</span></span>
+<span id="cb4-2"><a></a>h <span class="op">=</span> <span class="fl">0.220</span>  <span class="co"># Height of cylinder</span></span>
+<span id="cb4-3"><a></a>spc <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb4-4"><a></a>Lz <span class="op">=</span> spc <span class="op">+</span> h <span class="op">+</span> h <span class="op">+</span> spc</span>
+<span id="cb4-5"><a></a></span>
+<span id="cb4-6"><a></a>Px <span class="op">=</span> Py <span class="op">=</span> P <span class="op">=</span> <span class="fl">0.666</span> <span class="co"># periodicity</span></span>
+<span id="cb4-7"><a></a>sim_size <span class="op">=</span> [Px, Py, Lz]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="561ac048" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="co"># 3 Structures</span></span>
+<span id="cb5-2"><a></a>r <span class="op">=</span> <span class="fl">0.242</span>  <span class="co"># radius of the cylinder</span></span>
+<span id="cb5-3"><a></a>n_Si <span class="op">=</span> <span class="fl">3.5</span></span>
+<span id="cb5-4"><a></a>Si <span class="op">=</span> td.Medium(permittivity<span class="op">=</span>n_Si<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'Si'</span>)</span>
+<span id="cb5-5"><a></a>cylinder <span class="op">=</span> td.Structure(</span>
+<span id="cb5-6"><a></a>    geometry<span class="op">=</span>td.Cylinder(center<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">0</span>, h <span class="op">/</span> <span class="dv">2</span>], radius<span class="op">=</span>r, length<span class="op">=</span>h, axis<span class="op">=</span><span class="dv">2</span>), medium<span class="op">=</span>Si</span>
+<span id="cb5-7"><a></a>)</span>
+<span id="cb5-8"><a></a></span>
+<span id="cb5-9"><a></a><span class="co"># Spin_on glass + substrate</span></span>
+<span id="cb5-10"><a></a>n_glass <span class="op">=</span> <span class="fl">1.4</span></span>
+<span id="cb5-11"><a></a>n_SiO2 <span class="op">=</span> <span class="fl">1.45</span></span>
+<span id="cb5-12"><a></a>glass <span class="op">=</span> td.Medium(permittivity<span class="op">=</span>n_glass<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'glass'</span>)</span>
+<span id="cb5-13"><a></a>SiO2 <span class="op">=</span> td.Medium(permittivity<span class="op">=</span>n_SiO2<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'oxide'</span>)</span>
+<span id="cb5-14"><a></a></span>
+<span id="cb5-15"><a></a>substrate <span class="op">=</span> td.Structure(</span>
+<span id="cb5-16"><a></a>    geometry<span class="op">=</span>td.Box(</span>
+<span id="cb5-17"><a></a>        center<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="op">-</span>Lz<span class="op">/</span><span class="dv">2</span>),</span>
+<span id="cb5-18"><a></a>        size<span class="op">=</span>(td.inf,td.inf,<span class="dv">2</span> <span class="op">*</span> (spc<span class="op">+</span>h))</span>
+<span id="cb5-19"><a></a>    ),</span>
+<span id="cb5-20"><a></a>    medium<span class="op">=</span>SiO2,</span>
+<span id="cb5-21"><a></a>    name<span class="op">=</span><span class="st">'substrate'</span></span>
+<span id="cb5-22"><a></a>)</span>
+<span id="cb5-23"><a></a></span>
+<span id="cb5-24"><a></a>glass <span class="op">=</span> td.Structure(</span>
+<span id="cb5-25"><a></a>    geometry<span class="op">=</span>td.Box(</span>
+<span id="cb5-26"><a></a>        center<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>,Lz<span class="op">/</span><span class="dv">2</span>),</span>
+<span id="cb5-27"><a></a>        size<span class="op">=</span>(td.inf,td.inf,<span class="dv">2</span> <span class="op">*</span> (spc<span class="op">+</span>h))</span>
+<span id="cb5-28"><a></a>    ),</span>
+<span id="cb5-29"><a></a>    medium<span class="op">=</span>glass,</span>
+<span id="cb5-30"><a></a>    name<span class="op">=</span><span class="st">'superstrate'</span></span>
+<span id="cb5-31"><a></a>)</span>
+<span id="cb5-32"><a></a></span>
+<span id="cb5-33"><a></a><span class="co"># Polymer</span></span>
+<span id="cb5-34"><a></a>n_polymer <span class="op">=</span> <span class="fl">1.66</span></span>
+<span id="cb5-35"><a></a>polymer <span class="op">=</span> td.Structure(</span>
+<span id="cb5-36"><a></a>    geometry<span class="op">=</span>td.Box(</span>
+<span id="cb5-37"><a></a>        center<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb5-38"><a></a>        size<span class="op">=</span>(td.inf,td.inf,td.inf)</span>
+<span id="cb5-39"><a></a>    ),</span>
+<span id="cb5-40"><a></a>    medium<span class="op">=</span>td.Medium(permittivity<span class="op">=</span>n_polymer<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'polymer'</span>),</span>
+<span id="cb5-41"><a></a>    name<span class="op">=</span><span class="st">'polymer'</span></span>
+<span id="cb5-42"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="a8b8ea8d" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="co"># 6 Run Time</span></span>
+<span id="cb6-2"><a></a>bandwidth <span class="op">=</span> fr.fmax <span class="op">-</span> fr.fmin</span>
+<span id="cb6-3"><a></a>run_time<span class="op">=</span> <span class="dv">50</span> <span class="op">/</span> bandwidth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="a70a52c9" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="co"># 7 Boundary Condition</span></span>
+<span id="cb7-2"><a></a>bc <span class="op">=</span> td.BoundarySpec(</span>
+<span id="cb7-3"><a></a>    x<span class="op">=</span>td.Boundary.periodic(), </span>
+<span id="cb7-4"><a></a>    y<span class="op">=</span>td.Boundary.periodic(), </span>
+<span id="cb7-5"><a></a>    z<span class="op">=</span>td.Boundary.pml()</span>
+<span id="cb7-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="simulation-inputs" class="slide level2 scrollable">
-<h2>Simulation Inputs</h2>
-<p>The 7 required inputs are:</p>
-<ol type="1">
-<li class="fragment">Computational Domain Size</li>
-<li class="fragment">Grid Specifications (Discretization size)</li>
-<li class="fragment">Structures</li>
-<li class="fragment">Sources</li>
-<li class="fragment">Monitors</li>
-<li class="fragment">Run time</li>
-<li class="fragment">Boundary Condition Specification</li>
-</ol>
-<p>We will introduce these 7 parameters by simulating a <a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adom.201400584">huygen’s metasurface</a></p>
-<div class="footer">
-<p>See <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Simulation.html">Simulation</a> Documentation for more information</p>
+<section id="mesh-study-loop-assignment" class="slide level2">
+<h2>Mesh Study Loop Assignment</h2>
+<div id="767b09d0" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>dls <span class="op">=</span> [P<span class="op">/</span><span class="dv">2</span>, P<span class="op">/</span><span class="dv">4</span>, P<span class="op">/</span><span class="dv">8</span>, P<span class="op">/</span><span class="dv">16</span>, P<span class="op">/</span><span class="dv">32</span>, P<span class="op">/</span><span class="dv">64</span>] <span class="co"># mesh study list</span></span>
+<span id="cb8-2"><a></a>sims <span class="op">=</span> {}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="c072cecf" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="cf">for</span> i, dl <span class="kw">in</span> <span class="bu">enumerate</span>(dls):</span>
+<span id="cb9-2"><a></a>    <span class="co"># 2 Grid Specifications</span></span>
+<span id="cb9-3"><a></a>    horizontal_grid <span class="op">=</span> td.UniformGrid(dl<span class="op">=</span>dl)</span>
+<span id="cb9-4"><a></a>    vertical_grid <span class="op">=</span> td.AutoGrid(min_steps_per_wvl<span class="op">=</span><span class="dv">32</span>)</span>
+<span id="cb9-5"><a></a>    grid_spec<span class="op">=</span>td.GridSpec(</span>
+<span id="cb9-6"><a></a>        grid_x<span class="op">=</span>horizontal_grid,</span>
+<span id="cb9-7"><a></a>        grid_y<span class="op">=</span>horizontal_grid,</span>
+<span id="cb9-8"><a></a>        grid_z<span class="op">=</span>vertical_grid,</span>
+<span id="cb9-9"><a></a>    )</span>
+<span id="cb9-10"><a></a></span>
+<span id="cb9-11"><a></a>    <span class="co"># 4 Sources</span></span>
+<span id="cb9-12"><a></a>    source <span class="op">=</span> td.PlaneWave(</span>
+<span id="cb9-13"><a></a>        source_time<span class="op">=</span>fr.to_gaussian_pulse(),</span>
+<span id="cb9-14"><a></a>        size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
+<span id="cb9-15"><a></a>        center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, Lz<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> spc <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> dl),</span>
+<span id="cb9-16"><a></a>        direction<span class="op">=</span><span class="st">"-"</span>,</span>
+<span id="cb9-17"><a></a>        pol_angle<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb9-18"><a></a>    )</span>
+<span id="cb9-19"><a></a></span>
+<span id="cb9-20"><a></a>    <span class="co"># 5 Monitor</span></span>
+<span id="cb9-21"><a></a>    monitor <span class="op">=</span> td.FluxMonitor(</span>
+<span id="cb9-22"><a></a>        center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span>Lz<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> spc <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>dl),</span>
+<span id="cb9-23"><a></a>        size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
+<span id="cb9-24"><a></a>        freqs<span class="op">=</span>fr.freqs(N),</span>
+<span id="cb9-25"><a></a>        name<span class="op">=</span><span class="st">"flux"</span></span>
+<span id="cb9-26"><a></a>    )</span>
+<span id="cb9-27"><a></a></span>
+<span id="cb9-28"><a></a>    sim_empty<span class="op">=</span>td.Simulation(</span>
+<span id="cb9-29"><a></a>        size<span class="op">=</span>sim_size,</span>
+<span id="cb9-30"><a></a>        grid_spec<span class="op">=</span>grid_spec,</span>
+<span id="cb9-31"><a></a>        structures<span class="op">=</span>[substrate, glass],</span>
+<span id="cb9-32"><a></a>        sources<span class="op">=</span>[source],</span>
+<span id="cb9-33"><a></a>        monitors<span class="op">=</span>[monitor],</span>
+<span id="cb9-34"><a></a>        run_time<span class="op">=</span>run_time,</span>
+<span id="cb9-35"><a></a>        boundary_spec<span class="op">=</span>bc</span>
+<span id="cb9-36"><a></a>    )</span>
+<span id="cb9-37"><a></a></span>
+<span id="cb9-38"><a></a>    sim_actual <span class="op">=</span> td.Simulation(</span>
+<span id="cb9-39"><a></a>        size<span class="op">=</span>sim_size,</span>
+<span id="cb9-40"><a></a>        grid_spec<span class="op">=</span>grid_spec,</span>
+<span id="cb9-41"><a></a>        structures<span class="op">=</span>[substrate, glass, cylinder],</span>
+<span id="cb9-42"><a></a>        sources<span class="op">=</span>[source],</span>
+<span id="cb9-43"><a></a>        monitors<span class="op">=</span>[monitor],</span>
+<span id="cb9-44"><a></a>        run_time<span class="op">=</span>run_time,</span>
+<span id="cb9-45"><a></a>        boundary_spec<span class="op">=</span>bc</span>
+<span id="cb9-46"><a></a>    )</span>
+<span id="cb9-47"><a></a></span>
+<span id="cb9-48"><a></a>    sims[<span class="ss">f"norm</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> sim_empty</span>
+<span id="cb9-49"><a></a>    sims[<span class="ss">f"actual</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> sim_actual  </span>
+<span id="cb9-50"><a></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="4d30f58e" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="co"># verify the sims dictionary</span></span>
+<span id="cb10-2"><a></a><span class="bu">print</span>(sims.keys())</span>
+<span id="cb10-3"><a></a>batch <span class="op">=</span> web.Batch(simulations<span class="op">=</span>sims, verbose<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['norm0', 'actual0', 'norm1', 'actual1', 'norm2', 'actual2', 'norm3', 'actual3', 'norm4', 'actual4', 'norm5', 'actual5'])</code></pre>
+</div>
+</div>
+<div id="0eccc8aa" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="co"># run the simulations</span></span>
+<span id="cb12-2"><a></a><span class="op">%</span>timeit</span>
+<span id="cb12-3"><a></a>batch_data <span class="op">=</span> batch.run(path_dir<span class="op">=</span><span class="st">"data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"307e34cd7f5845dcb01b323e86435424","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">17:55:51 EDT </span>Started working on Batch containing <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">12</span> tasks.                      
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">17:56:00 EDT </span>Maximum FlexCredit cost: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.300</span> for the whole batch.                
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">             </span>Use <span style="color: #008000; text-decoration-color: #008000">'Batch.real_cost()'</span> to get the billed FlexCredit cost after the
+<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">             </span>Batch has completed.                                               
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"d0f6ddb7edda4ef092a678cce268969c","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">17:56:07 EDT </span>Batch complete.                                                    
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"c545b6ef928d4514b30f223dc4b8cb8f","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div>
 </div>
 </section>
-<section id="computational-domain-size" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">1 Computational Domain Size</h2>
-<p>Size in x, y, and z directions.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb5-1" class="hljs-ln-code"><a></a>p <span class="ot">=</span> <span class="fl">0.666</span> <span class="co">#nm -&gt; Periodicity</span></span>
-<span id="cb5-2" class="hljs-ln-code"><a></a>Lx, Ly, Lz <span class="ot">=</span> p, p, <span class="dv">2</span> <span class="sc">*</span> lda0 </span>
-<span id="cb5-3" class="hljs-ln-code"><a></a>sim_size <span class="ot">=</span> [Lx, Ly, Lz]</span>
-<span id="cb5-4" class="hljs-ln-code"><a></a></span>
-<span id="cb5-5" class="hljs-ln-code"><a></a><span class="co"># Defining a simulation</span></span>
-<span id="cb5-6" class="hljs-ln-code"><a></a>simulation1 <span class="ot">=</span> <span class="fu">td.Simulation</span>(</span>
-<span id="cb5-7" class="hljs-ln-code"><a></a>    <span class="co"># A square computational domain</span></span>
-<span id="cb5-8" class="hljs-ln-code"><a></a>    <span class="at">size =</span> sim_size</span>
-<span id="cb5-9" class="hljs-ln-code"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="grid-specifications" class="slide level2">
-<h2>2 Grid Specifications</h2>
-<p>Specifications for the simulation grid along each of the three directions.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co"># Define Grid size</span></span>
-<span id="cb6-2"><a></a>spec <span class="ot">=</span> <span class="fu">td.GridSpec.auto</span>(<span class="at">min_steps_per_wvl=</span><span class="dv">40</span>, <span class="at">wavelength=</span>lda0)</span>
-<span id="cb6-3"><a></a></span>
-<span id="cb6-4"><a></a><span class="co"># Defining a simulation</span></span>
-<span id="cb6-5"><a></a>simulation1 <span class="ot">=</span> <span class="fu">td.Simulation</span>(</span>
-<span id="cb6-6"><a></a>    <span class="co"># A square computational domain</span></span>
-<span id="cb6-7"><a></a>    <span class="at">size =</span> (x, y, z),</span>
-<span id="cb6-8"><a></a>    <span class="at">grid_spec=</span>spec,</span>
-<span id="cb6-9"><a></a>    </span>
-<span id="cb6-10"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Typically, the size of a unit cell is <span class="math inline">\frac{\lambda}{20}</span></li>
-</ul>
-</section>
-<section class="slide level2">
+<section id="plotting" class="slide level2">
+<h2>Plotting</h2>
+<div id="cb8b2b95" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="co"># this uses scienceplots to make plots look better</span></span>
+<span id="cb13-2"><a></a>plt.style.use([<span class="st">'science'</span>, <span class="st">'notebook'</span>, <span class="st">'grid'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="e365c0c1" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a>x <span class="op">=</span> td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span></span>
+<span id="cb14-2"><a></a>Ts <span class="op">=</span> []</span>
+<span id="cb14-3"><a></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(dls)):</span>
+<span id="cb14-4"><a></a>    Ts.append(batch_data[<span class="ss">f"actual</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>][<span class="st">"flux"</span>].flux <span class="op">/</span> batch_data[<span class="ss">f"norm</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>][<span class="st">"flux"</span>].flux)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="b442b410" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb15-2"><a></a><span class="cf">for</span> i, T <span class="kw">in</span> <span class="bu">enumerate</span>(Ts):</span>
+<span id="cb15-3"><a></a>    plt.plot(x, T, <span class="st">"-"</span>,lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="ss">f"dl=</span><span class="sc">{</span>dls[i] <span class="op">*</span> <span class="dv">1000</span><span class="sc">:.1f}</span><span class="ss"> nm"</span>)</span>
+<span id="cb15-4"><a></a>plt.xlabel(<span class="vs">r"Wavelength [$nm$]"</span>)</span>
+<span id="cb15-5"><a></a>plt.ylabel(<span class="st">"Magnitude"</span>)</span>
+<span id="cb15-6"><a></a>plt.ylim(<span class="op">-</span><span class="fl">0.1</span>, <span class="fl">1.1</span>)</span>
+<span id="cb15-7"><a></a>plt.legend(fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb15-8"><a></a>plt.tick_params(axis<span class="op">=</span><span class="st">'both'</span>, labelsize<span class="op">=</span><span class="dv">10</span>) <span class="co"># change tick label size to 10</span></span>
+<span id="cb15-9"><a></a>plt.title(<span class="st">"Transmission Spectra with Different Mesh Sizes"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb15-10"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<p><a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.GridSpec.html">td.GridSpec</a> contains many functions to help define the grid, the most commonly used are:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">td.GridSpec.uniform</span>(<span class="at">dl=</span>grid_size)</span>
-<span id="cb7-2"><a></a><span class="fu">td.GridSpec.auto</span>(<span class="at">min_steps_per_wvl=</span><span class="dv">40</span>, <span class="at">wavelength=</span>lda0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li><strong>uniform</strong> - Use the same Uniform 1D grid along each of the three directions.
-<ul>
-<li><strong>dl</strong> (float) – Grid size for uniform grid generation.</li>
-</ul></li>
-<li><strong>auto</strong> - Use the same non-uniform grid along each of the three directions.
-<ul>
-<li><strong>min_steps_per_wvl</strong>(ConstrainedFloatValue = 10.0) – Minimal number of steps per wavelength in each medium.</li>
-<li><strong>wavelength</strong> (float) – Wavelength to use for the step size and for dispersive media epsilon.</li>
-</ul></li>
-</ul>
-</section>
-<section id="structures" class="slide level2">
-<h2>3 Structures</h2>
-<p><a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Structure.html">td.Structure</a> is the meat of the simulation. It defines a physical object that interacts with the electromagnetic fields. The <code>structures</code> field is a tuple of <code>Structure</code> objects that you create.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co"># set up simulation</span></span>
-<span id="cb8-2"><a></a>sim <span class="ot">=</span> <span class="fu">td.Simulation</span>(</span>
-<span id="cb8-3"><a></a>    <span class="at">size=</span>sim_size,</span>
-<span id="cb8-4"><a></a>    <span class="at">grid_spec=</span>spec,</span>
-<span id="cb8-5"><a></a>    <span class="at">structures=</span>[superstrate, substrate, cylinder],</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section class="slide level2">
-
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># set up simulation</span></span>
-<span id="cb9-2"><a></a><span class="fu">td.Structure</span>(</span>
-<span id="cb9-3"><a></a>   <span class="co"># inputs</span></span>
-<span id="cb9-4"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>A structure needs two inputs at least: - <strong>geometry</strong> (<a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Box.html#tidy3d.Box">td.Box</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Cylinder.html#tidy3d.Cylinder">td.Cylinder</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Sphere.html#tidy3d.Sphere">td.Sphere</a>, <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.TriangleMesh.html#tidy3d.TriangleMesh">td.TriangleMesh (STL file)</a>, etc.) - <strong>medium</strong> Mediums define the optical properties of the materials within the simulation. (e.g.&nbsp;<a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.Medium.html#tidy3d.Medium">td.Medium</a>)</p>
-</section>
-<section class="slide level2">
-
-<p>According to the paper on <a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adom.201400584">huygen’s metasurface</a>, I defined these four structures:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>t <span class="ot">=</span> <span class="dv">2</span>  <span class="co"># thickness of the substrate # THIS SHOULD BE CHANGED TO INFINITE</span></span>
-<span id="cb10-2"><a></a>substrate <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
-<span id="cb10-3"><a></a>    <span class="at">geometry=</span><span class="fu">td.Box</span>(</span>
-<span id="cb10-4"><a></a>        <span class="at">center=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="sc">-</span>t<span class="sc">/</span><span class="dv">2</span>),</span>
-<span id="cb10-5"><a></a>        <span class="at">size=</span>(td.inf,td.inf,t)</span>
-<span id="cb10-6"><a></a>    ),</span>
-<span id="cb10-7"><a></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.45</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'oxide'</span>),</span>
-<span id="cb10-8"><a></a>    <span class="at">name=</span><span class="st">'substrate'</span></span>
-<span id="cb10-9"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>superstrate <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
-<span id="cb11-2"><a></a>    <span class="at">geometry=</span><span class="fu">td.Box</span>(</span>
-<span id="cb11-3"><a></a>        <span class="at">center=</span>(<span class="dv">0</span>,<span class="dv">0</span>,t<span class="sc">/</span><span class="dv">2</span>),</span>
-<span id="cb11-4"><a></a>        <span class="at">size=</span>(td.inf,td.inf,t)</span>
-<span id="cb11-5"><a></a>    ),</span>
-<span id="cb11-6"><a></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.4</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'glass'</span>),</span>
-<span id="cb11-7"><a></a>    <span class="at">name=</span><span class="st">'superstrate'</span></span>
-<span id="cb11-8"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>polymer <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
-<span id="cb12-2"><a></a>    <span class="at">geometry=</span><span class="fu">td.Box</span>(</span>
-<span id="cb12-3"><a></a>        <span class="at">center=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb12-4"><a></a>        <span class="at">size=</span>(td.inf,td.inf,<span class="dv">2</span><span class="sc">*</span>t)</span>
-<span id="cb12-5"><a></a>    ),</span>
-<span id="cb12-6"><a></a>    <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">1.66</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'polymer'</span>),</span>
-<span id="cb12-7"><a></a>    <span class="at">name=</span><span class="st">'polymer'</span></span>
-<span id="cb12-8"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># construct the silicon resonator</span></span>
-<span id="cb13-2"><a></a>cylinder <span class="ot">=</span> <span class="fu">td.Structure</span>(</span>
-<span id="cb13-3"><a></a>    <span class="at">geometry=</span><span class="fu">td.Cylinder</span>(<span class="at">center=</span>[<span class="dv">0</span>, <span class="dv">0</span>, h <span class="sc">/</span> <span class="dv">2</span>], <span class="at">radius=</span>r, <span class="at">length=</span>h, <span class="at">axis=</span><span class="dv">2</span>), <span class="at">medium=</span><span class="fu">td.Medium</span>(<span class="at">permittivity=</span><span class="fl">3.5</span><span class="sc">**</span><span class="dv">2</span>, <span class="at">name=</span><span class="st">'Si'</span>)</span>
-<span id="cb13-4"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="sources" class="slide level2">
-<h2>4 Sources</h2>
-<p>Tuple of electric current sources injecting fields into the simulation. Common ones are:</p>
-<p><strong>Plane Wave</strong> - Uniform current distribution on an infinite extent plane. <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.PlaneWave.html#tidy3d.PlaneWave">(Doc)</a></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>pulse <span class="ot">=</span> <span class="fu">GaussianPulse</span>(<span class="at">freq0=</span><span class="fl">200e12</span>, <span class="at">fwidth=</span><span class="fl">20e12</span>)</span>
-<span id="cb14-2"><a></a>pw_source <span class="ot">=</span> <span class="fu">PlaneWave</span>(<span class="at">size=</span>(inf,<span class="dv">0</span>,inf), <span class="at">source_time=</span>pulse, <span class="at">pol_angle=</span><span class="fl">0.1</span>, <span class="at">direction=</span><span class="st">'+'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Point Dipole</strong> - Uniform current source with a zero size. <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/_autosummary/tidy3d.PointDipole.html#tidy3d.PointDipole">(Doc)</a></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>pulse <span class="ot">=</span> <span class="fu">td.GaussianPulse</span>(<span class="at">freq0=</span><span class="fl">200e12</span>, <span class="at">fwidth=</span><span class="fl">20e12</span>)</span>
-<span id="cb15-2"><a></a>pt_dipole <span class="ot">=</span> <span class="fu">td.PointDipole</span>(<span class="at">center=</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">source_time=</span>pulse, <span class="at">polarization=</span><span class="st">'Ex'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>See documentation for <a href="https://docs.flexcompute.com/projects/tidy3d/en/latest/api/sources.html">Other Sources</a></p>
-</section>
-<section class="slide level2">
-
-<p>In this case, I defined one plane wave source:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="co"># add a plane wave source</span></span>
-<span id="cb16-2"><a></a>plane_wave <span class="ot">=</span> <span class="fu">td.PlaneWave</span>(</span>
-<span id="cb16-3"><a></a>    <span class="at">source_time=</span><span class="fu">td.GaussianPulse</span>(<span class="at">freq0=</span>freq0, <span class="at">fwidth=</span><span class="fl">0.5</span> <span class="sc">*</span> freqw),</span>
-<span id="cb16-4"><a></a>    <span class="at">size=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
-<span id="cb16-5"><a></a>    <span class="at">center=</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.3</span> <span class="sc">*</span> lda0),</span>
-<span id="cb16-6"><a></a>    <span class="at">direction=</span><span class="st">"-"</span>,</span>
-<span id="cb16-7"><a></a>    <span class="at">pol_angle=</span><span class="dv">0</span>,</span>
-<span id="cb16-8"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="monitors" class="slide level2">
-<h2>5 Monitors</h2>
-<p>Tuple of monitors in the simulation. Note: monitor names are used to access data after simulation is run.</p>
-<p>See <a href="https://docs.flexcompute.com/projects/tidy3d/en/v2.7.8/api/monitors.html">Other monitors</a></p>
-</section>
-<section id="run-time" class="slide level2">
-<h2>6 Run time</h2>
-<p>Total electromagnetic evolution time in seconds.</p>
-</section>
-<section id="boundary-condition-specification" class="slide level2">
-<h2>7 Boundary Condition Specification</h2>
-<p>Specification of boundary conditions along each dimension. If None, PML boundary conditions are applied on all sides.</p>
-</section>
-<section id="bonus-symmetry" class="slide level2">
-<h2>Bonus: Symmetry</h2>
-<p>Tuple of integers defining reflection symmetry across a plane bisecting the simulation domain normal to the x-, y-, and z-axis at the simulation center of each axis, respectively. Each element can be 0 (no symmetry), 1 (even, i.e.&nbsp;‘PMC’ symmetry) or -1 (odd, i.e.&nbsp;‘PEC’ symmetry). Note that the vectorial nature of the fields must be taken into account to correctly determine the symmetry value.</p>
-<p>Symmetry can be used to greatly reduce the computational cost –&gt;</p>
-</section>
-<section class="slide level2">
+</div>
 
 
-<img data-src="../assets/Page1.jpg" class="r-stretch"></section>
-<section class="slide level2">
-
-
-<img data-src="../assets/Page2.jpg" class="r-stretch"></section>
-<section class="slide level2">
-
-
-
-
-<img data-src="../assets/Page3.jpg" class="r-stretch"></section></section>
+<img data-src="mesh-study_files/figure-revealjs/cell-15-output-1.png" class="r-stretch"></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

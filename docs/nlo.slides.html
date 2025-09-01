@@ -10,7 +10,7 @@
 <link href="site_libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.33">
 
-  <title>Yankun (Alex) Meng – nlo</title>
+  <title>Yankun (Alex) Meng – Nonlinear Optics</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -148,20 +148,168 @@
   <div class="reveal">
     <div class="slides">
 
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Nonlinear Optics</h1>
+  <p class="subtitle">Yankun (Alex) Meng</p>
 
-<section>
-<section id="nonlinear-optics" class="title-slide slide level1 agenda-slide center">
-<h1>Nonlinear Optics</h1>
-<div class="agenda-heading">
-<p>Lecture Outline</p>
+<div class="quarto-title-authors">
 </div>
-<div class="agenda">
+
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Table of contents</h2>
 <ul>
-<li><div class="agenda-active">
-<p>Nonlinear Optics</p>
-</div></li>
+
+<li><a href="#/basic-linear-optics" id="/toc-basic-linear-optics">Basic Linear Optics</a>
+<ul>
+<li><a href="#/maxwells-equation" id="/toc-maxwells-equation">Maxwell’s Equation</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/maxwells-wave-equation" id="/toc-maxwells-wave-equation">Maxwell’s Wave Equation</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/plane-wave-and-solution-of-the-wave-equation" id="/toc-plane-wave-and-solution-of-the-wave-equation">Plane wave and solution of the wave equation</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/monochromatic-and-non-monochromatic-waves" id="/toc-monochromatic-and-non-monochromatic-waves">Monochromatic and Non-monochromatic waves</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/electric-displacement-electric-polarization-and-refractice-index" id="/toc-electric-displacement-electric-polarization-and-refractice-index">Electric displacement, electric polarization, and refractice index</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/direction-of-e-d-and-k-in-an-isotropic-medium" id="/toc-direction-of-e-d-and-k-in-an-isotropic-medium">Direction of <span class="math inline">E</span>, <span class="math inline">D</span>, and <span class="math inline">k</span> in an isotropic medium</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/poynting-vector-and-energy-flow" id="/toc-poynting-vector-and-energy-flow">Poynting vector and energy flow</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/intensity-of-an-em-wave" id="/toc-intensity-of-an-em-wave">Intensity of an EM wave</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/anisotropic-media" id="/toc-anisotropic-media">Anisotropic media</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/susceptibility-tensor" id="/toc-susceptibility-tensor">Susceptibility Tensor</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/em-wave-propagation-in-anisotropic-media" id="/toc-em-wave-propagation-in-anisotropic-media">EM Wave Propagation in Anisotropic media</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/ordinary-and-extra-ordinary-ray" id="/toc-ordinary-and-extra-ordinary-ray">Ordinary and Extra-ordinary ray</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/index-ellipsoid" id="/toc-index-ellipsoid">Index Ellipsoid</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/linear-response-and-polarization" id="/toc-linear-response-and-polarization">Linear response and polarization</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/dielectric-susceptibility" id="/toc-dielectric-susceptibility">Dielectric Susceptibility</a></li>
+</ul></li>
+<li><a href="#/nonlinear-optics" id="/toc-nonlinear-optics">Nonlinear Optics</a>
+<ul>
+<li><a href="#/introduction" id="/toc-introduction">Introduction</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/classical-origin-of-nonlinearity" id="/toc-classical-origin-of-nonlinearity">Classical Origin of nonlinearity</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/millers-rule" id="/toc-millers-rule">Miller’s Rule</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/dimensions-of-higher-order-susceptibiltiies" id="/toc-dimensions-of-higher-order-susceptibiltiies">Dimensions of higher order susceptibiltiies</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/second-harmonic-generation-shg" id="/toc-second-harmonic-generation-shg">Second Harmonic Generation (SHG)</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/optical-rectification" id="/toc-optical-rectification">Optical REctification</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/linear-electro-optic-effect" id="/toc-linear-electro-optic-effect">Linear Electro-optic effect</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/sum-and-difference-frequency-generation" id="/toc-sum-and-difference-frequency-generation">Sum and Difference Frequency Generation</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/nonlinear-maxwells-equation" id="/toc-nonlinear-maxwells-equation">Nonlinear Maxwell’s Equation</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/theory-of-shg" id="/toc-theory-of-shg">Theory of SHG</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/phase-matching" id="/toc-phase-matching">Phase Matching</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/gain-bandwidth" id="/toc-gain-bandwidth">Gain Bandwidth</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/manley-rowe-relation" id="/toc-manley-rowe-relation">Manley-Rowe Relation</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/energy-conservation-in-shg" id="/toc-energy-conservation-in-shg">Energy Conservation in SHG</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/different-kinds-of-phase-matching" id="/toc-different-kinds-of-phase-matching">Different kinds of phase matching</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/birefringence-phase-matching" id="/toc-birefringence-phase-matching">Birefringence phase-matching</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/type-i-phase-matching" id="/toc-type-i-phase-matching">Type I Phase Matching</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/type-ii-phase-matching" id="/toc-type-ii-phase-matching">Type II Phase Matching</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/symmetry-in-nonlinear-susceptibility" id="/toc-symmetry-in-nonlinear-susceptibility">Symmetry in nonlinear susceptibility</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/kleinmans-symmetry" id="/toc-kleinmans-symmetry">Kleinman’s Symmetry</a></li>
+</ul></li>
+<li>
+<ul>
+<li><a href="#/neumanns-principle" id="/toc-neumanns-principle">Neumann’s Principle</a></li>
+</ul></li>
 </ul>
-</div>
+</nav>
+</section>
+<section class="slide level2">
+
+<p><a href="https://byucamacholab.github.io/nonlinear-optics/">Nonlinear Optics BYU</a> <a href="https://youtube.com/playlist?list=PLbRMhDVUMngfBwyonVP8VIsabtnsV3GVv&amp;si=Qh3SIPBtu7jx0KOf">Nonlinear Optics IIT</a></p>
 </section>
 <section id="basic-linear-optics" class="slide level2">
 <h2>Basic Linear Optics</h2>
@@ -209,10 +357,106 @@
 </section>
 <section class="slide level2">
 
-<h3 id="section"></h3>
+<h3 id="ordinary-and-extra-ordinary-ray">Ordinary and Extra-ordinary ray</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="index-ellipsoid">Index Ellipsoid</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="linear-response-and-polarization">Linear response and polarization</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="dielectric-susceptibility">Dielectric Susceptibility</h3>
+</section>
+<section id="nonlinear-optics" class="slide level2">
+<h2>Nonlinear Optics</h2>
+<h3 id="introduction">Introduction</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="classical-origin-of-nonlinearity">Classical Origin of nonlinearity</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="millers-rule">Miller’s Rule</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="dimensions-of-higher-order-susceptibiltiies">Dimensions of higher order susceptibiltiies</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="second-harmonic-generation-shg">Second Harmonic Generation (SHG)</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="optical-rectification">Optical REctification</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="linear-electro-optic-effect">Linear Electro-optic effect</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="sum-and-difference-frequency-generation">Sum and Difference Frequency Generation</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="nonlinear-maxwells-equation">Nonlinear Maxwell’s Equation</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="theory-of-shg">Theory of SHG</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="phase-matching">Phase Matching</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="gain-bandwidth">Gain Bandwidth</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="manley-rowe-relation">Manley-Rowe Relation</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="energy-conservation-in-shg">Energy Conservation in SHG</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="different-kinds-of-phase-matching">Different kinds of phase matching</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="birefringence-phase-matching">Birefringence phase-matching</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="type-i-phase-matching">Type I Phase Matching</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="type-ii-phase-matching">Type II Phase Matching</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="symmetry-in-nonlinear-susceptibility">Symmetry in nonlinear susceptibility</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="kleinmans-symmetry">Kleinman’s Symmetry</h3>
+</section>
+<section class="slide level2">
+
+<h3 id="neumanns-principle">Neumann’s Principle</h3>
 
 
-</section></section>
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
