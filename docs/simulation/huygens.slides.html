@@ -231,11 +231,11 @@
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-huygens-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 36.4%;justify-content: center;">
-<p><img data-src="../assets/huygens1.png" width="200"></p>
+<div class="quarto-layout-cell" style="flex-basis: 38.5%;justify-content: center;">
+<p><img data-src="../assets/huygens1.png" width="500"></p>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 63.6%;justify-content: center;">
-<p><img data-src="../assets/huygens2.png" width="350"></p>
+<div class="quarto-layout-cell" style="flex-basis: 61.5%;justify-content: center;">
+<p><img data-src="../assets/huygens2.png" width="800"></p>
 </div>
 </div>
 </div>
@@ -244,8 +244,11 @@ Figure&nbsp;1: Huygens Metasurface
 </figcaption>
 </figure>
 </div>
-<p><img data-src="../assets/figure5.png"></p>
-<p>In this notebook, the Huygens’ Metasurface figure 5(a) and 5(c) are reproduced, and mesh study is done for the transmittance. <a href="https://duke.box.com/s/03x3nr1clvwb9c99z7ii6kb7o8fq1uyv">Link to Paper</a></p>
+</section>
+<section class="slide level2">
+
+
+<img data-src="../assets/figure5.png" class="r-stretch"><p>In this notebook, the Huygens’ Metasurface figure 5(a) and 5(c) are reproduced, and mesh study is done for the transmittance. <a href="https://duke.box.com/s/03x3nr1clvwb9c99z7ii6kb7o8fq1uyv">Link to Paper</a></p>
 </section>
 <section id="simulation-overview" class="slide level2">
 <h2>Simulation Overview</h2>
@@ -260,7 +263,9 @@ Figure&nbsp;1: Huygens Metasurface
 <span id="cb1-8"><a></a><span class="co"># Set logging level to ERROR to reduce output verbosity</span></span>
 <span id="cb1-9"><a></a>td.config.logging_level <span class="op">=</span> <span class="st">"ERROR"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>For the transmittance and phase, two different background materials were used based in the paper, so two separate simulations were ran (with background medium as the only difference).</p>
+<ul>
+<li>For the transmittance and phase, two different background materials were used based in the paper, so two separate simulations were ran (with background medium as the only difference).</li>
+</ul>
 <p>Note: Several other technical variables need to be changed. In tidy3D simulation, transmittance should be measured with <code>td.FluxMonitor</code> and phase should be measured with <code>td.FieldMonitor</code>. The <code>run_time</code> also needs to increase since the background medium has a higher refractive index in the second simulation than the first, so waves will travel more slowly.</p>
 </section>
 <section class="slide level2">
@@ -371,6 +376,9 @@ Figure&nbsp;1: Huygens Metasurface
 <span id="cb6-22"><a></a>    name<span class="op">=</span><span class="st">'superstrate'</span></span>
 <span id="cb6-23"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section class="slide level2">
+
 <p><strong>Background Medium for Figure 5(c) (<span class="math inline">n=1.66</span>)</strong></p>
 <div id="ebc07a61" class="cell" data-execution_count="81">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="co"># Background medium for the second simulation</span></span>
@@ -446,73 +454,49 @@ Figure&nbsp;1: Huygens Metasurface
 <section id="helper-function-for-simulation" class="slide level2">
 <h2>Helper Function for simulation</h2>
 <p>Since we have to run simulation two times, it is convenient to abstract out what are the differences to the two simulations and make defining simulations easier. Always follow the <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY Principle</a>.</p>
-<div id="d97006cb" class="cell" data-execution_count="87">
+<div id="d97006cb" class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="kw">def</span> simulation_helper(background, monitors, run_time):</span>
-<span id="cb13-2"><a></a>    <span class="co">"""</span></span>
-<span id="cb13-3"><a></a><span class="co">    Create normalization and actual tidy3d simulations, visualize geometry, </span></span>
-<span id="cb13-4"><a></a><span class="co">    and return both as a dictionary.</span></span>
-<span id="cb13-5"><a></a></span>
-<span id="cb13-6"><a></a><span class="co">    Parameters</span></span>
-<span id="cb13-7"><a></a><span class="co">    ----------</span></span>
-<span id="cb13-8"><a></a><span class="co">    background : list of td.Structure</span></span>
-<span id="cb13-9"><a></a><span class="co">        Background structures (without the cylinder).</span></span>
-<span id="cb13-10"><a></a><span class="co">    monitors : list of td.Monitor</span></span>
-<span id="cb13-11"><a></a><span class="co">        Monitors for the normalization run.</span></span>
-<span id="cb13-12"><a></a><span class="co">    run_time : float</span></span>
-<span id="cb13-13"><a></a><span class="co">        Run time for the normalization simulation.</span></span>
-<span id="cb13-14"><a></a></span>
-<span id="cb13-15"><a></a><span class="co">    Returns</span></span>
-<span id="cb13-16"><a></a><span class="co">    -------</span></span>
-<span id="cb13-17"><a></a><span class="co">    dict</span></span>
-<span id="cb13-18"><a></a><span class="co">        {"norm": Simulation without cylinder,</span></span>
-<span id="cb13-19"><a></a><span class="co">         "actual": Simulation with cylinder}</span></span>
-<span id="cb13-20"><a></a></span>
-<span id="cb13-21"><a></a><span class="co">    Notes</span></span>
-<span id="cb13-22"><a></a><span class="co">    -----</span></span>
-<span id="cb13-23"><a></a><span class="co">    Saves cross-sectional plots of the actual simulation (x=0, y=0, z=0) </span></span>
-<span id="cb13-24"><a></a><span class="co">    with grid overlay for verification.</span></span>
-<span id="cb13-25"><a></a><span class="co">    """</span></span>
-<span id="cb13-26"><a></a>    sim_empty<span class="op">=</span>td.Simulation(</span>
-<span id="cb13-27"><a></a>        size<span class="op">=</span>sim_size,</span>
-<span id="cb13-28"><a></a>        grid_spec<span class="op">=</span>grid_spec,</span>
-<span id="cb13-29"><a></a>        structures<span class="op">=</span>background,</span>
-<span id="cb13-30"><a></a>        sources<span class="op">=</span>[source],</span>
-<span id="cb13-31"><a></a>        monitors<span class="op">=</span>monitors,</span>
-<span id="cb13-32"><a></a>        run_time<span class="op">=</span>run_time,</span>
-<span id="cb13-33"><a></a>        boundary_spec<span class="op">=</span>bc</span>
-<span id="cb13-34"><a></a>    )</span>
+<span id="cb13-2"><a></a>    sim_empty<span class="op">=</span>td.Simulation(</span>
+<span id="cb13-3"><a></a>        size<span class="op">=</span>sim_size,</span>
+<span id="cb13-4"><a></a>        grid_spec<span class="op">=</span>grid_spec,</span>
+<span id="cb13-5"><a></a>        structures<span class="op">=</span>background,</span>
+<span id="cb13-6"><a></a>        sources<span class="op">=</span>[source],</span>
+<span id="cb13-7"><a></a>        monitors<span class="op">=</span>monitors,</span>
+<span id="cb13-8"><a></a>        run_time<span class="op">=</span>run_time,</span>
+<span id="cb13-9"><a></a>        boundary_spec<span class="op">=</span>bc</span>
+<span id="cb13-10"><a></a>    )</span>
+<span id="cb13-11"><a></a></span>
+<span id="cb13-12"><a></a>    background.append(cylinder)</span>
+<span id="cb13-13"><a></a>    sim_actual <span class="op">=</span> td.Simulation(</span>
+<span id="cb13-14"><a></a>        size<span class="op">=</span>sim_size,</span>
+<span id="cb13-15"><a></a>        grid_spec<span class="op">=</span>grid_spec,</span>
+<span id="cb13-16"><a></a>        structures<span class="op">=</span>background,</span>
+<span id="cb13-17"><a></a>        sources<span class="op">=</span>[source],</span>
+<span id="cb13-18"><a></a>        monitors<span class="op">=</span>monitors,</span>
+<span id="cb13-19"><a></a>        run_time<span class="op">=</span>run_time,</span>
+<span id="cb13-20"><a></a>        boundary_spec<span class="op">=</span>bc</span>
+<span id="cb13-21"><a></a>    )</span>
+<span id="cb13-22"><a></a></span>
+<span id="cb13-23"><a></a>    <span class="co"># Always visualize simulation before running</span></span>
+<span id="cb13-24"><a></a>    fig, (ax1,ax2,ax3) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb13-25"><a></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb13-26"><a></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb13-27"><a></a>    sim_actual.plot(x<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax1)</span>
+<span id="cb13-28"><a></a>    sim_actual.plot_grid(x<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax1)</span>
+<span id="cb13-29"><a></a>    sim_actual.plot(y<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax2)</span>
+<span id="cb13-30"><a></a>    sim_actual.plot_grid(y<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax2)</span>
+<span id="cb13-31"><a></a>    sim_actual.plot(z<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax3)</span>
+<span id="cb13-32"><a></a>    sim_actual.plot_grid(z<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax3)</span>
+<span id="cb13-33"><a></a>    plt.savefig(<span class="ss">f'huygens_structure_</span><span class="sc">{</span>background[<span class="dv">0</span>]<span class="sc">.</span>name<span class="sc">}</span><span class="ss">.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb13-34"><a></a>    plt.show()</span>
 <span id="cb13-35"><a></a></span>
-<span id="cb13-36"><a></a>    background.append(cylinder)</span>
-<span id="cb13-37"><a></a>    sim_actual <span class="op">=</span> td.Simulation(</span>
-<span id="cb13-38"><a></a>        size<span class="op">=</span>sim_size,</span>
-<span id="cb13-39"><a></a>        grid_spec<span class="op">=</span>grid_spec,</span>
-<span id="cb13-40"><a></a>        structures<span class="op">=</span>background,</span>
-<span id="cb13-41"><a></a>        sources<span class="op">=</span>[source],</span>
-<span id="cb13-42"><a></a>        monitors<span class="op">=</span>monitors,</span>
-<span id="cb13-43"><a></a>        run_time<span class="op">=</span>run_time,</span>
-<span id="cb13-44"><a></a>        boundary_spec<span class="op">=</span>bc</span>
-<span id="cb13-45"><a></a>    )</span>
-<span id="cb13-46"><a></a></span>
-<span id="cb13-47"><a></a>    <span class="co"># Always visualize simulation before running</span></span>
-<span id="cb13-48"><a></a>    fig, (ax1,ax2,ax3) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb13-49"><a></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">7</span>)</span>
-<span id="cb13-50"><a></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">7</span>)</span>
-<span id="cb13-51"><a></a>    sim_actual.plot(x<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax1)</span>
-<span id="cb13-52"><a></a>    sim_actual.plot_grid(x<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax1)</span>
-<span id="cb13-53"><a></a>    sim_actual.plot(y<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax2)</span>
-<span id="cb13-54"><a></a>    sim_actual.plot_grid(y<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax2)</span>
-<span id="cb13-55"><a></a>    sim_actual.plot(z<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax3)</span>
-<span id="cb13-56"><a></a>    sim_actual.plot_grid(z<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax3)</span>
-<span id="cb13-57"><a></a>    plt.savefig(<span class="ss">f'huygens_structure_</span><span class="sc">{</span>background[<span class="dv">0</span>]<span class="sc">.</span>name<span class="sc">}</span><span class="ss">.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
-<span id="cb13-58"><a></a>    plt.show()</span>
-<span id="cb13-59"><a></a></span>
-<span id="cb13-60"><a></a>    sims <span class="op">=</span> {</span>
-<span id="cb13-61"><a></a>        <span class="st">"norm"</span>: sim_empty,</span>
-<span id="cb13-62"><a></a>        <span class="st">"actual"</span>: sim_actual,</span>
-<span id="cb13-63"><a></a>    }</span>
-<span id="cb13-64"><a></a></span>
-<span id="cb13-65"><a></a>    <span class="cf">return</span> sims</span>
-<span id="cb13-66"><a></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-36"><a></a>    sims <span class="op">=</span> {</span>
+<span id="cb13-37"><a></a>        <span class="st">"norm"</span>: sim_empty,</span>
+<span id="cb13-38"><a></a>        <span class="st">"actual"</span>: sim_actual,</span>
+<span id="cb13-39"><a></a>    }</span>
+<span id="cb13-40"><a></a></span>
+<span id="cb13-41"><a></a>    <span class="cf">return</span> sims</span>
+<span id="cb13-42"><a></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="transmittance-simulation" class="slide level2">
