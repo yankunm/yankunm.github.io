@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Transmission of Huygens’ Surface – Yankun (Alex) Meng</title>
+<title>Simulating Huygens’ Surfaces – Yankun (Alex) Meng</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../simulation/mesh-study.html" rel="next">
 <link href="../simulation/numpy.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -109,6 +108,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -121,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../simulation/tidy3d.html">Simulation</a></li><li class="breadcrumb-item"><a href="../simulation/huygens.html">Transmission of Huygens’ Surface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../simulation/tidy3d.html">Simulation</a></li><li class="breadcrumb-item"><a href="../simulation/huygens.html">Simulating Huygens’ Surfaces</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -199,13 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../simulation/huygens.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Transmission of Huygens’ Surface</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../simulation/mesh-study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mesh Study of Huygen’s Surface</span></a>
+ <span class="menu-text">Simulating Huygens’ Surfaces</span></a>
   </div>
 </li>
       </ul>
@@ -220,18 +256,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#preconditions" id="toc-preconditions" class="nav-link active" data-scroll-target="#preconditions">Preconditions</a></li>
-  <li><a href="#simulation" id="toc-simulation" class="nav-link" data-scroll-target="#simulation">Simulation</a></li>
-  <li><a href="#postprocess" id="toc-postprocess" class="nav-link" data-scroll-target="#postprocess">Postprocess</a></li>
+  <li><a href="#simulation-overview" id="toc-simulation-overview" class="nav-link active" data-scroll-target="#simulation-overview">Simulation Overview</a></li>
+  <li><a href="#initialization" id="toc-initialization" class="nav-link" data-scroll-target="#initialization">Initialization</a></li>
+  <li><a href="#frequency-range-specification" id="toc-frequency-range-specification" class="nav-link" data-scroll-target="#frequency-range-specification">0 Frequency Range Specification</a></li>
+  <li><a href="#computational-domain-size" id="toc-computational-domain-size" class="nav-link" data-scroll-target="#computational-domain-size">1 Computational Domain Size</a></li>
+  <li><a href="#grid-resolution" id="toc-grid-resolution" class="nav-link" data-scroll-target="#grid-resolution">2 Grid Resolution</a></li>
+  <li><a href="#structures-and-materials" id="toc-structures-and-materials" class="nav-link" data-scroll-target="#structures-and-materials">3 Structures and Materials</a></li>
+  <li><a href="#the-source" id="toc-the-source" class="nav-link" data-scroll-target="#the-source">4 The Source</a></li>
+  <li><a href="#monitors" id="toc-monitors" class="nav-link" data-scroll-target="#monitors">5 Monitors</a></li>
+  <li><a href="#run-time" id="toc-run-time" class="nav-link" data-scroll-target="#run-time">6 Run Time</a></li>
+  <li><a href="#boundary-conditions" id="toc-boundary-conditions" class="nav-link" data-scroll-target="#boundary-conditions">7 Boundary Conditions</a></li>
+  <li><a href="#helper-function-for-simulation" id="toc-helper-function-for-simulation" class="nav-link" data-scroll-target="#helper-function-for-simulation">Helper Function for simulation</a></li>
+  <li><a href="#transmittance-simulation" id="toc-transmittance-simulation" class="nav-link" data-scroll-target="#transmittance-simulation">Transmittance Simulation</a></li>
+  <li><a href="#transmittance-results" id="toc-transmittance-results" class="nav-link" data-scroll-target="#transmittance-results">Transmittance Results</a></li>
+  <li><a href="#phase-simulation" id="toc-phase-simulation" class="nav-link" data-scroll-target="#phase-simulation">Phase Simulation</a></li>
+  <li><a href="#phase-results" id="toc-phase-results" class="nav-link" data-scroll-target="#phase-results">Phase Results</a></li>
+  <li><a href="#final-plotting" id="toc-final-plotting" class="nav-link" data-scroll-target="#final-plotting">Final Plotting</a></li>
+  <li><a href="#mesh-study" id="toc-mesh-study" class="nav-link" data-scroll-target="#mesh-study">Mesh Study</a></li>
+  <li><a href="#mesh-study-results" id="toc-mesh-study-results" class="nav-link" data-scroll-target="#mesh-study-results">Mesh Study Results</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="huygens.slides.html"><i class="bi bi-file-slides"></i>Slides</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../simulation/tidy3d.html">Simulation</a></li><li class="breadcrumb-item"><a href="../simulation/huygens.html">Transmission of Huygens’ Surface</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../simulation/tidy3d.html">Simulation</a></li><li class="breadcrumb-item"><a href="../simulation/huygens.html">Simulating Huygens’ Surfaces</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Transmission of Huygens’ Surface</h1>
+<h1 class="title">Simulating Huygens’ Surfaces</h1>
 <p class="subtitle lead">Yankun (Alex) Meng</p>
 </div>
 
@@ -249,27 +300,97 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Important Questions to answer:</p>
-<ul>
-<li>Why do we need a normalizing run? (FDTD 101)</li>
-<li>Why is there a mismatch between <code>td.FreqRange.wvl0</code> and <code>td.C_0 / td.FreqRange.freq0</code></li>
-</ul>
-<p><a href="https://duke.box.com/s/03x3nr1clvwb9c99z7ii6kb7o8fq1uyv">Huygens’ Metasurface Paper Link</a></p>
-<div id="42d627f0-461a-4d10-87bf-edbc041c7a99" class="cell" data-execution_count="65">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tidy3d <span class="im">as</span> td</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tidy3d.web <span class="im">as</span> web</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-huygens" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-huygens-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 36.4%;justify-content: center;">
+<p><img src="../assets/huygens1.png" class="img-fluid figure-img" width="200"></p>
 </div>
-<section id="preconditions" class="level3">
-<h3 class="anchored" data-anchor-id="preconditions">Preconditions</h3>
-<div id="664c5d22-9f72-4511-b11d-9c004e10dcd6" class="cell" data-execution_count="66">
+<div class="quarto-layout-cell" style="flex-basis: 63.6%;justify-content: center;">
+<p><img src="../assets/huygens2.png" class="img-fluid figure-img" width="350"></p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-huygens-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Huygens Metasurface
+</figcaption>
+</figure>
+</div>
+<p><img src="../assets/figure5.png" class="img-fluid"></p>
+<p>In this notebook, the Huygens’ Metasurface figure 5(a) and 5(c) are reproduced, and mesh study is done for the transmittance. <a href="https://duke.box.com/s/03x3nr1clvwb9c99z7ii6kb7o8fq1uyv">Link to Paper</a></p>
+<section id="simulation-overview" class="level3">
+<h3 class="anchored" data-anchor-id="simulation-overview">Simulation Overview</h3>
+<div id="f0de51ac" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the necessary packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tidy3d <span class="im">as</span> td</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tidy3d.web <span class="im">as</span> web</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scienceplots</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Set logging level to ERROR to reduce output verbosity</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>td.config.logging_level <span class="op">=</span> <span class="st">"ERROR"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For the transmittance and phase, two different background materials were used based in the paper, so two separate simulations were ran (with background medium as the only difference).</p>
+<p>Note: Several other technical variables need to be changed. In tidy3D simulation, transmittance should be measured with <code>td.FluxMonitor</code> and phase should be measured with <code>td.FieldMonitor</code>. The <code>run_time</code> also needs to increase since the background medium has a higher refractive index in the second simulation than the first, so waves will travel more slowly.</p>
+<hr>
+<p><strong>Simulation 1</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/huygens_structure_substrate.png" class="img-fluid figure-img"></p>
+<figcaption>Top Layer n=1.4, Bottom Layer n=1.45</figcaption>
+</figure>
+</div>
+<hr>
+<p><strong>Simulation 2</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/huygens_structure_polymer.png" class="img-fluid figure-img"></p>
+<figcaption>Background medium n=1.66</figcaption>
+</figure>
+</div>
+<hr>
+<p><strong>Simulation Results</strong></p>
+<p><img src="../assets/huygens.png" class="img-fluid"></p>
+<hr>
+<p><strong>Mesh Study Results</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/mesh_convergence.png" class="img-fluid figure-img"></p>
+<figcaption>Convergence of Transmittance</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="initialization" class="level3">
+<h3 class="anchored" data-anchor-id="initialization">Initialization</h3>
+<p>Here we follow the seven steps of initialization I wrote down in the tutorial:</p>
+<ol start="0" type="1">
+<li>Frequency Range Specification</li>
+<li>Computational Domain Size</li>
+<li>Grid Specifications (Discretization size)</li>
+<li>Structures and Materials</li>
+<li>Sources</li>
+<li>Monitors</li>
+<li>Run time</li>
+<li>Boundary Condition Specification</li>
+</ol>
+</section>
+<section id="frequency-range-specification" class="level3">
+<h3 class="anchored" data-anchor-id="frequency-range-specification">0 Frequency Range Specification</h3>
+<div id="c55ce7b3" class="cell" data-execution_count="76">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 0 Define a FreqRange object with desired wavelengths</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fr <span class="op">=</span> td.FreqRange.from_wvl_interval(wvl_min<span class="op">=</span><span class="fl">1.1</span>, wvl_max<span class="op">=</span><span class="fl">1.6</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">301</span> <span class="co"># num_points</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">301</span> <span class="co"># num_points</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>freq0 <span class="op">=</span> fr.freq0</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>lda0 <span class="op">=</span> td.C_0 <span class="op">/</span> fr.freq0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="eec5b2b9-08e7-4b14-98ec-310483887215" class="cell" data-execution_count="67">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 Computational domain size</span></span>
+</section>
+<section id="computational-domain-size" class="level3">
+<h3 class="anchored" data-anchor-id="computational-domain-size">1 Computational Domain Size</h3>
+<div id="0bd080e8" class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 Computational Domain Size</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="fl">0.220</span>  <span class="co"># Height of cylinder</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>spc <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>Lz <span class="op">=</span> spc <span class="op">+</span> h <span class="op">+</span> h <span class="op">+</span> spc</span>
@@ -277,8 +398,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>Px <span class="op">=</span> Py <span class="op">=</span> P <span class="op">=</span> <span class="fl">0.666</span> <span class="co"># periodicity</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>sim_size <span class="op">=</span> [Px, Py, Lz]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="67752e95-2e10-4e73-af86-667cd5c10904" class="cell" data-execution_count="68">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 Grid Specifications</span></span>
+</section>
+<section id="grid-resolution" class="level3">
+<h3 class="anchored" data-anchor-id="grid-resolution">2 Grid Resolution</h3>
+<p>Grid resolution is uniform grid in the horizontal direction with a yee cell length of <span class="math inline">\frac{P}{32}</span> where <span class="math inline">P</span> is the periodicity. In the vertical direction, <code>AutoGrid</code> means it’s non-uniform and adjusted based on the wavelength of the particular medium. Here, <code>min_steps_per_wvl=32</code> means we are taking a minimum of 32 steps based on the wavelength, which will be shorter in the medium with a higher index of refraction.</p>
+<div id="3bcd86b5" class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 Grid Resolution</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dl <span class="op">=</span> P <span class="op">/</span> <span class="dv">32</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>horizontal_grid <span class="op">=</span> td.UniformGrid(dl<span class="op">=</span>dl)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>vertical_grid <span class="op">=</span> td.AutoGrid(min_steps_per_wvl<span class="op">=</span><span class="dv">32</span>)</span>
@@ -288,144 +413,221 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    grid_z<span class="op">=</span>vertical_grid,</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="c5d103a7-b9b1-4186-8990-87011d391a5f" class="cell" data-execution_count="69">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 Structures</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">0.242</span>  <span class="co"># radius of the cylinder</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>n_Si <span class="op">=</span> <span class="fl">3.5</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>Si <span class="op">=</span> td.Medium(permittivity<span class="op">=</span>n_Si<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'Si'</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>cylinder <span class="op">=</span> td.Structure(</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>td.Cylinder(center<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">0</span>, h <span class="op">/</span> <span class="dv">2</span>], radius<span class="op">=</span>r, length<span class="op">=</span>h, axis<span class="op">=</span><span class="dv">2</span>), medium<span class="op">=</span>Si</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Spin_on glass + substrate</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>n_glass <span class="op">=</span> <span class="fl">1.4</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>n_SiO2 <span class="op">=</span> <span class="fl">1.45</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>glass <span class="op">=</span> td.Medium(permittivity<span class="op">=</span>n_glass<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'glass'</span>)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>SiO2 <span class="op">=</span> td.Medium(permittivity<span class="op">=</span>n_SiO2<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'oxide'</span>)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>substrate <span class="op">=</span> td.Structure(</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>td.Box(</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        center<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="op">-</span>Lz<span class="op">/</span><span class="dv">2</span>),</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span>(td.inf,td.inf,<span class="dv">2</span> <span class="op">*</span> (spc<span class="op">+</span>h))</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    medium<span class="op">=</span>SiO2,</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'substrate'</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>glass <span class="op">=</span> td.Structure(</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>td.Box(</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        center<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>,Lz<span class="op">/</span><span class="dv">2</span>),</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span>(td.inf,td.inf,<span class="dv">2</span> <span class="op">*</span> (spc<span class="op">+</span>h))</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    medium<span class="op">=</span>glass,</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'superstrate'</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Polymer</span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>n_polymer <span class="op">=</span> <span class="fl">1.66</span></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>polymer <span class="op">=</span> td.Structure(</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>td.Box(</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>        center<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span>(td.inf,td.inf,td.inf)</span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    medium<span class="op">=</span>td.Medium(permittivity<span class="op">=</span>n_polymer<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'polymer'</span>),</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'polymer'</span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="structures-and-materials" class="level3">
+<h3 class="anchored" data-anchor-id="structures-and-materials">3 Structures and Materials</h3>
+<p><strong>Structures and Materials for the meta-atom</strong></p>
+<div id="c3486f7e" class="cell" data-execution_count="79">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">0.242</span>  <span class="co"># radius of the cylinder</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n_Si <span class="op">=</span> <span class="fl">3.5</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Si <span class="op">=</span> td.Medium(permittivity<span class="op">=</span>n_Si<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'Si'</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>cylinder <span class="op">=</span> td.Structure(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>td.Cylinder(center<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">0</span>, h <span class="op">/</span> <span class="dv">2</span>], radius<span class="op">=</span>r, length<span class="op">=</span>h, axis<span class="op">=</span><span class="dv">2</span>), medium<span class="op">=</span>Si</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="8d0aa775-01f2-4a3c-aba9-1848ee66462d" class="cell" data-execution_count="70">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 Sources</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>source <span class="op">=</span> td.PlaneWave(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    source_time<span class="op">=</span>fr.to_gaussian_pulse(),</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, Lz<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> spc <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> dl),</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    direction<span class="op">=</span><span class="st">"-"</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    pol_angle<span class="op">=</span><span class="dv">0</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Background Medium for Figure 5(a) (<span class="math inline">n_1=1.4, n_2=1.45</span>)</strong></p>
+<div id="2cd309a9" class="cell" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Background medium for the first simulation</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>n_glass <span class="op">=</span> <span class="fl">1.4</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>n_SiO2 <span class="op">=</span> <span class="fl">1.45</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>glass <span class="op">=</span> td.Medium(permittivity<span class="op">=</span>n_glass<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'glass'</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>SiO2 <span class="op">=</span> td.Medium(permittivity<span class="op">=</span>n_SiO2<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'oxide'</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>substrate <span class="op">=</span> td.Structure(</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>td.Box(</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        center<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="op">-</span>Lz<span class="op">/</span><span class="dv">2</span>),</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span>(td.inf,td.inf,<span class="dv">2</span> <span class="op">*</span> (spc<span class="op">+</span>h))</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    medium<span class="op">=</span>SiO2,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'substrate'</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>glass <span class="op">=</span> td.Structure(</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>td.Box(</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        center<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>,Lz<span class="op">/</span><span class="dv">2</span>),</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span>(td.inf,td.inf,<span class="dv">2</span> <span class="op">*</span> (spc<span class="op">+</span>h))</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    medium<span class="op">=</span>glass,</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'superstrate'</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f13e2436-7be2-45a4-ac5d-acb4ab7b540e" class="cell" data-execution_count="71">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 Monitor</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>monitor <span class="op">=</span> td.FluxMonitor(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span>Lz<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> spc <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>dl),</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    freqs<span class="op">=</span>fr.freqs(N),</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"flux"</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="7a950266-1636-4efa-a518-6ecec240e452" class="cell" data-execution_count="72">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 Run Time</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>bandwidth <span class="op">=</span> fr.fmax <span class="op">-</span> fr.fmin</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>run_time<span class="op">=</span> <span class="dv">50</span> <span class="op">/</span> bandwidth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="e33b056a-46e4-40a9-bd51-9b60df0361f9" class="cell" data-execution_count="73">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 7 Boundary Condition</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>bc <span class="op">=</span> td.BoundarySpec(</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>td.Boundary.periodic(), </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>td.Boundary.periodic(), </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    z<span class="op">=</span>td.Boundary.pml()</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Background Medium for Figure 5(c) (<span class="math inline">n=1.66</span>)</strong></p>
+<div id="ebc07a61" class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Background medium for the second simulation</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Polymer</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>n_polymer <span class="op">=</span> <span class="fl">1.66</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>polymer <span class="op">=</span> td.Structure(</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>td.Box(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        center<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span>(td.inf,td.inf,td.inf)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    medium<span class="op">=</span>td.Medium(permittivity<span class="op">=</span>n_polymer<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'polymer'</span>),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'polymer'</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="simulation" class="level3">
-<h3 class="anchored" data-anchor-id="simulation">Simulation</h3>
-<div id="e8ad2cc6-5476-42b8-8987-b680913503a6" class="cell" data-execution_count="74">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sim_empty<span class="op">=</span>td.Simulation(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>sim_size,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    grid_spec<span class="op">=</span>grid_spec,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    structures<span class="op">=</span>[substrate, glass],</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    sources<span class="op">=</span>[source],</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    monitors<span class="op">=</span>[monitor],</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    run_time<span class="op">=</span>run_time,</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    boundary_spec<span class="op">=</span>bc</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="the-source" class="level3">
+<h3 class="anchored" data-anchor-id="the-source">4 The Source</h3>
+<p>The source is a simple Plane wave that traverses in the -z axis, placed <span class="math inline">\frac{\lambda_0}{2}</span> distance above the metaatom in the computational domain. Polarization is along the x-axis, that’s what <code>pol_angle=0</code> means.</p>
+<div id="934b8345" class="cell" data-execution_count="82">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>source <span class="op">=</span> td.PlaneWave(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    source_time<span class="op">=</span>fr.to_gaussian_pulse(),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, Lz<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> spc <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> lda0),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    direction<span class="op">=</span><span class="st">"-"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    pol_angle<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="33a2b968-dd3d-4965-b2af-df4186f57fa7" class="cell" data-execution_count="75">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sim_actual <span class="op">=</span> td.Simulation(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>sim_size,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    grid_spec<span class="op">=</span>grid_spec,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    structures<span class="op">=</span>[substrate, glass, cylinder],</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    sources<span class="op">=</span>[source],</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    monitors<span class="op">=</span>[monitor],</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    run_time<span class="op">=</span>run_time,</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    boundary_spec<span class="op">=</span>bc</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="monitors" class="level3">
+<h3 class="anchored" data-anchor-id="monitors">5 Monitors</h3>
+<p><strong>Monitor for Transmittance</strong></p>
+<div id="4b83ad20" class="cell" data-execution_count="83">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>flux_monitor <span class="op">=</span> td.FluxMonitor(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span>Lz<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> spc <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> lda0),</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    freqs<span class="op">=</span>fr.freqs(N),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"flux_monitor"</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b9331150-6f03-414b-926c-00e79294abb9" class="cell" data-execution_count="76">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fig, (ax1,ax2,ax3) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>sim_actual.plot_eps(x<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax1)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>sim_actual.plot_eps(y<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax2)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>sim_actual.plot_eps(z<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Monitor for Phase</strong></p>
+<div id="40214227" class="cell" data-execution_count="84">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We use FieldMonitor instead of DiffractionMonitor because</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># DiffractionMonitor only gives you amplitudes of diffraction orders, </span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># losing phase detail if you care about continuous phase.</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>field_monitor <span class="op">=</span> td.FieldMonitor(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span>Lz<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> spc <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> lda0),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    fields<span class="op">=</span>[<span class="st">"Ex"</span>],</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    freqs<span class="op">=</span>fr.freqs(N),</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"field_monitor"</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="run-time" class="level3">
+<h3 class="anchored" data-anchor-id="run-time">6 Run Time</h3>
+<div id="c8f8153d" class="cell" data-execution_count="85">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>bandwidth <span class="op">=</span> fr.fmax <span class="op">-</span> fr.fmin</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>run_time_short <span class="op">=</span> <span class="dv">50</span> <span class="op">/</span> bandwidth <span class="co"># run_time for the transmittance simulation</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>run_time_long <span class="op">=</span> <span class="dv">200</span> <span class="op">/</span> bandwidth <span class="co"># run_time for the phase simulation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="boundary-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="boundary-conditions">7 Boundary Conditions</h3>
+<p>We apply PML in the +Z and -Z surfaces.</p>
+<div id="598fa6dd" class="cell" data-execution_count="86">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>bc <span class="op">=</span> td.BoundarySpec(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>td.Boundary.periodic(), </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>td.Boundary.periodic(), </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    z<span class="op">=</span>td.Boundary.pml()</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="helper-function-for-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="helper-function-for-simulation">Helper Function for simulation</h3>
+<p>Since we have to run simulation two times, it is convenient to abstract out what are the differences to the two simulations and make defining simulations easier. Always follow the <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY Principle</a>.</p>
+<div id="d97006cb" class="cell" data-execution_count="87">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulation_helper(background, monitors, run_time):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Create normalization and actual tidy3d simulations, visualize geometry, </span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">    and return both as a dictionary.</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">    background : list of td.Structure</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">        Background structures (without the cylinder).</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">    monitors : list of td.Monitor</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">        Monitors for the normalization run.</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">    run_time : float</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">        Run time for the normalization simulation.</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">    dict</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">        {"norm": Simulation without cylinder,</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co">         "actual": Simulation with cylinder}</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co">    Notes</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">    -----</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co">    Saves cross-sectional plots of the actual simulation (x=0, y=0, z=0) </span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co">    with grid overlay for verification.</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    sim_empty<span class="op">=</span>td.Simulation(</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span>sim_size,</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>        grid_spec<span class="op">=</span>grid_spec,</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>        structures<span class="op">=</span>background,</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>        sources<span class="op">=</span>[source],</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>        monitors<span class="op">=</span>monitors,</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>        run_time<span class="op">=</span>run_time,</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>        boundary_spec<span class="op">=</span>bc</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    background.append(cylinder)</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    sim_actual <span class="op">=</span> td.Simulation(</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span>sim_size,</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>        grid_spec<span class="op">=</span>grid_spec,</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>        structures<span class="op">=</span>background,</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>        sources<span class="op">=</span>[source],</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>        monitors<span class="op">=</span>monitors,</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>        run_time<span class="op">=</span>run_time,</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>        boundary_spec<span class="op">=</span>bc</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Always visualize simulation before running</span></span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>    fig, (ax1,ax2,ax3) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>    sim_actual.plot(x<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax1)</span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>    sim_actual.plot_grid(x<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax1)</span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>    sim_actual.plot(y<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax2)</span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>    sim_actual.plot_grid(y<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax2)</span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>    sim_actual.plot(z<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax3)</span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>    sim_actual.plot_grid(z<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax3)</span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>    plt.savefig(<span class="ss">f'huygens_structure_</span><span class="sc">{</span>background[<span class="dv">0</span>]<span class="sc">.</span>name<span class="sc">}</span><span class="ss">.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>    sims <span class="op">=</span> {</span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a>        <span class="st">"norm"</span>: sim_empty,</span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a>        <span class="st">"actual"</span>: sim_actual,</span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sims</span>
+<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="transmittance-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="transmittance-simulation">Transmittance Simulation</h3>
+<div id="2b21a899" class="cell" data-execution_count="88">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sims <span class="op">=</span> simulation_helper(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    background<span class="op">=</span>[substrate, glass],</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    monitors<span class="op">=</span>[flux_monitor],</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    run_time<span class="op">=</span>run_time_short</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="huygens_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="huygens_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="bd0c4efb-7bcf-4611-9829-6d383fe1ce4e" class="cell" data-execution_count="77">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sims <span class="op">=</span> {</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"norm"</span>: sim_empty,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"actual"</span>: sim_actual,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> web.Batch(simulations<span class="op">=</span>sims, verbose<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="e2c9b2bf-281c-4527-b5a7-de765d38b387" class="cell" data-execution_count="78">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>batch_data <span class="op">=</span> batch.run(path_dir<span class="op">=</span><span class="st">"data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="176e7401" class="cell" data-execution_count="89">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> web.Batch(simulations<span class="op">=</span>sims, verbose<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>batch_data <span class="op">=</span> batch.run(path_dir<span class="op">=</span><span class="st">"data/huygens5a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"dabab8408abe486d9a381efee8cf6966","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"c00b72234eae4fd3b638550693d53daa","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
 </div>
 <div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">00:11:07 UTC </span>Started working on Batch containing <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span> tasks.                       
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">02:20:56 EDT </span>Started working on Batch containing <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span> tasks.                       
 </pre>
 </div>
 <div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">             </span>Maximum FlexCredit cost: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.050</span> for the whole batch.                
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">02:20:57 EDT </span>Maximum FlexCredit cost: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.050</span> for the whole batch.                
 </pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -435,11 +637,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"ded61bdc3ec545f58601d9a4119bfba4","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"62f206bd41e7420f830f53f4357f892e","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">00:11:08 UTC </span>Batch complete.                                                    
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">02:20:58 EDT </span>Batch complete.                                                    
 </pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -447,7 +649,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"6ec1a0cdfa1244349097c9cc0c7c301f","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"43295ae89fdb4fb7bc06861afcade049","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
@@ -455,38 +657,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="postprocess" class="level3">
-<h3 class="anchored" data-anchor-id="postprocess">Postprocess</h3>
-<ul>
-<li>35 seconds to run both simulations</li>
-<li>results are stored inside <code>batch_data</code></li>
-</ul>
-<div id="dbb55f27-7f23-44eb-8187-a86180a6fd8e" class="cell" data-execution_count="79">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> batch_data[<span class="st">"actual"</span>][<span class="st">"flux"</span>].flux <span class="op">/</span> batch_data[<span class="st">"norm"</span>][<span class="st">"flux"</span>].flux</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="transmittance-results" class="level3">
+<h3 class="anchored" data-anchor-id="transmittance-results">Transmittance Results</h3>
+<div id="e9a64fa4" class="cell" data-execution_count="90">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this uses scienceplots to make plots look better</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.style.use([<span class="st">'science'</span>, <span class="st">'notebook'</span>, <span class="st">'grid'</span>])</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> batch_data[<span class="st">"actual"</span>][<span class="st">"flux_monitor"</span>].flux <span class="op">/</span> batch_data[<span class="st">"norm"</span>][<span class="st">"flux_monitor"</span>].flux</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="db2d8031-a9aa-4c3d-af70-08de2e482fab" class="cell" data-execution_count="80">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot transmission, compare to paper results, look similar</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">4.5</span>))</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plt.plot(fr.freqs(N), T, <span class="st">"r"</span>, label<span class="op">=</span><span class="st">"T"</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r"Frequency ($Hz$)"</span>)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Magnitude"</span>)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="huygens_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="914c653a-9d0c-4a18-aa8f-352b5e8fb70a" class="cell" data-execution_count="81">
+<div id="0e6ae87b" class="cell" data-execution_count="91">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot transmission, compare to paper results, look similar</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">4.5</span>))</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>plt.plot(td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span>, T, <span class="st">"r"</span>, label<span class="op">=</span><span class="st">"T"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>plt.plot(td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span>, np.abs(T)<span class="op">**</span><span class="dv">2</span>, <span class="st">"r"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"T"</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r"wavelength ($nm$)"</span>)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Magnitude"</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Transmittance"</span>)</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -494,6 +677,297 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div>
 <figure class="figure">
 <p><img src="huygens_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="phase-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="phase-simulation">Phase Simulation</h3>
+<div id="3394cba4" class="cell" data-execution_count="92">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sims <span class="op">=</span> simulation_helper(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    background<span class="op">=</span>[polymer],</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    monitors<span class="op">=</span>[field_monitor],</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    run_time<span class="op">=</span>run_time_long</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="huygens_files/figure-html/cell-19-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="709b4592" class="cell" data-execution_count="93">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> web.Batch(simulations<span class="op">=</span>sims, verbose<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>batch_data <span class="op">=</span> batch.run(path_dir<span class="op">=</span><span class="st">"data/huygens5c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"fe8f5747d89a46938898f68ba257a23d","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">02:21:11 EDT </span>Started working on Batch containing <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span> tasks.                       
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">02:21:13 EDT </span>Maximum FlexCredit cost: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.050</span> for the whole batch.                
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">             </span>Use <span style="color: #008000; text-decoration-color: #008000">'Batch.real_cost()'</span> to get the billed FlexCredit cost after the
+<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">             </span>Batch has completed.                                               
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"6079e62280cf42259638996cc9d9044c","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">02:21:14 EDT </span>Batch complete.                                                    
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"92a2981142f04336a5953d1d14eead13","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div>
+</div>
+</section>
+<section id="phase-results" class="level3">
+<h3 class="anchored" data-anchor-id="phase-results">Phase Results</h3>
+<div id="439f32fa" class="cell" data-execution_count="94">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data Extraction</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>Ex_actual <span class="op">=</span> batch_data[<span class="st">"actual"</span>][<span class="st">"field_monitor"</span>].Ex </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>Ex_norm <span class="op">=</span> batch_data[<span class="st">"norm"</span>][<span class="st">"field_monitor"</span>].Ex</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>Ex <span class="op">=</span> Ex_actual <span class="op">/</span> Ex_norm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="8ca39300" class="cell" data-execution_count="95">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Compute average over the xy-plane</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>Ex_avg <span class="op">=</span> np.mean(Ex[:, :, <span class="dv">0</span>, :], axis<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Compute phase</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>phase_avg <span class="op">=</span> np.angle(Ex_avg)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Unwrap phase to remove ±pi jumps</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>phase_avg_unwrapped <span class="op">=</span> np.unwrap(phase_avg)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Make relative to first point (optional)</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>phase_rel <span class="op">=</span> phase_avg_unwrapped <span class="op">-</span> phase_avg_unwrapped[<span class="dv">0</span>]</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>phase_actual <span class="op">=</span> np.unwrap(np.angle(np.mean(Ex_actual[:, :, <span class="dv">0</span>, :], axis<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">1</span>))))</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>phase_norm <span class="op">=</span> np.unwrap(np.angle(np.mean(Ex_norm[:, :, <span class="dv">0</span>, :], axis<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">1</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="af40b97a" class="cell" data-execution_count="96">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">4.5</span>))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>plt.plot(td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span>, phase_rel, <span class="st">"r"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"$\phi$"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>plt.plot(td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span>, phase_actual, <span class="st">"b"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"Actual $\phi$"</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>plt.plot(td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span>, phase_norm, <span class="st">"g"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"Norm $\phi$"</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r"wavelength ($nm$)"</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Phase"</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="huygens_files/figure-html/cell-23-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="final-plotting" class="level3">
+<h3 class="anchored" data-anchor-id="final-plotting">Final Plotting</h3>
+<div id="10adc21d" class="cell" data-execution_count="97">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># work on the first figure</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>]</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>ax.tick_params(axis<span class="op">=</span><span class="st">"both"</span>, labelsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>ax.plot(td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span>, np.abs(T)<span class="op">**</span><span class="dv">2</span>, <span class="st">"r"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"$|T|^2$"</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r"wavelength [$nm$]"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Transmittance"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Transmittance vs Wavelength from Simulation 1"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">1100</span>, <span class="dv">1600</span>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="fl">1.1</span>)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">"lower right"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co"># work on the second figure</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>]</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>ax.tick_params(axis<span class="op">=</span><span class="st">"both"</span>, labelsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>ax.plot(td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span>, phase_rel, <span class="st">"b"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"$\phi$"</span>)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r"wavelength [$nm$]"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Phase [rad]"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Phase Change vs Wavelength from Simulation 2"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">1100</span>, <span class="dv">1600</span>)</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, np.pi<span class="op">*</span><span class="dv">2</span>)</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>yticks <span class="op">=</span> [<span class="dv">0</span>, np.pi<span class="op">/</span><span class="dv">2</span>, np.pi, <span class="dv">3</span><span class="op">*</span>np.pi<span class="op">/</span><span class="dv">2</span>, <span class="dv">2</span><span class="op">*</span>np.pi]</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>ytick_labels <span class="op">=</span> [<span class="vs">r"$0$"</span>, <span class="vs">r"$\frac{\pi}</span><span class="sc">{2}</span><span class="vs">$"</span>, <span class="vs">r"$\pi$"</span>, </span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>                <span class="vs">r"$\frac{3\pi}</span><span class="sc">{2}</span><span class="vs">$"</span>, <span class="vs">r"$2\pi$"</span>]</span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>ax.set_yticks(yticks)</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>ax.set_yticklabels(ytick_labels)</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"huygens.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="huygens_files/figure-html/cell-24-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="mesh-study" class="level3">
+<h3 class="anchored" data-anchor-id="mesh-study">Mesh Study</h3>
+<p>Here, we set out to study the effect of different yee cell length on the transmittance.</p>
+<div id="ed46b041" class="cell" data-execution_count="98">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> [P<span class="op">/</span><span class="dv">2</span>, P<span class="op">/</span><span class="dv">4</span>, P<span class="op">/</span><span class="dv">8</span>, P<span class="op">/</span><span class="dv">16</span>, P<span class="op">/</span><span class="dv">32</span>, P<span class="op">/</span><span class="dv">64</span>, P<span class="op">/</span><span class="dv">128</span>] <span class="co"># mesh study list</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>sims <span class="op">=</span> {}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="04a145a7" class="cell" data-execution_count="99">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for each dl in dls</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, dl <span class="kw">in</span> <span class="bu">enumerate</span>(dls):</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2 Grid Specifications</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    horizontal_grid <span class="op">=</span> td.UniformGrid(dl<span class="op">=</span>dl)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    vertical_grid <span class="op">=</span> td.AutoGrid(min_steps_per_wvl<span class="op">=</span><span class="dv">32</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    grid_spec<span class="op">=</span>td.GridSpec(</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>        grid_x<span class="op">=</span>horizontal_grid,</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>        grid_y<span class="op">=</span>horizontal_grid,</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>        grid_z<span class="op">=</span>vertical_grid,</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4 Sources</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    source <span class="op">=</span> td.PlaneWave(</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>        source_time<span class="op">=</span>fr.to_gaussian_pulse(),</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>        center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, Lz<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> spc <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> dl),</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>        direction<span class="op">=</span><span class="st">"-"</span>,</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>        pol_angle<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 5 Monitor</span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>    monitor <span class="op">=</span> td.FluxMonitor(</span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>        center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span>Lz<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> spc <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>dl),</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>        freqs<span class="op">=</span>fr.freqs(N),</span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span><span class="st">"flux"</span></span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>    sim_empty<span class="op">=</span>td.Simulation(</span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span>sim_size,</span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>        grid_spec<span class="op">=</span>grid_spec,</span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>        structures<span class="op">=</span>[substrate, glass],</span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>        sources<span class="op">=</span>[source],</span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>        monitors<span class="op">=</span>[monitor],</span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>        run_time<span class="op">=</span>run_time_short,</span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a>        boundary_spec<span class="op">=</span>bc</span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a>    sim_actual <span class="op">=</span> td.Simulation(</span>
+<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span>sim_size,</span>
+<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a>        grid_spec<span class="op">=</span>grid_spec,</span>
+<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a>        structures<span class="op">=</span>[substrate, glass, cylinder],</span>
+<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a>        sources<span class="op">=</span>[source],</span>
+<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a>        monitors<span class="op">=</span>[monitor],</span>
+<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a>        run_time<span class="op">=</span>run_time_short,</span>
+<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a>        boundary_spec<span class="op">=</span>bc</span>
+<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a>    sims[<span class="ss">f"norm</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> sim_empty</span>
+<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a>    sims[<span class="ss">f"actual</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> sim_actual  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="784f7037" class="cell" data-execution_count="100">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># verify the sims dictionary</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sims.keys())</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> web.Batch(simulations<span class="op">=</span>sims, verbose<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['norm0', 'actual0', 'norm1', 'actual1', 'norm2', 'actual2', 'norm3', 'actual3', 'norm4', 'actual4', 'norm5', 'actual5', 'norm6', 'actual6'])</code></pre>
+</div>
+</div>
+<div id="34c1a381" class="cell" data-execution_count="101">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run the simulations</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>batch_data <span class="op">=</span> batch.run(path_dir<span class="op">=</span><span class="st">"data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"0aa442dd8b8b4db3aa5281282f231503","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">02:21:47 EDT </span>Started working on Batch containing <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">14</span> tasks.                      
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">02:21:59 EDT </span>Maximum FlexCredit cost: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.392</span> for the whole batch.                
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">             </span>Use <span style="color: #008000; text-decoration-color: #008000">'Batch.real_cost()'</span> to get the billed FlexCredit cost after the
+<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">             </span>Batch has completed.                                               
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"998b0ff80f6e4130a6f83e113840fd6f","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">02:22:21 EDT </span>Batch complete.                                                    
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"24f1ff0a7d6c4d279b4083f0aefa05fa","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div>
+</div>
+</section>
+<section id="mesh-study-results" class="level3">
+<h3 class="anchored" data-anchor-id="mesh-study-results">Mesh Study Results</h3>
+<div id="3c6cfc0f" class="cell" data-execution_count="104">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract results</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>Ts <span class="op">=</span> []</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(dls)):</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    Ts.append(batch_data[<span class="ss">f"actual</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>][<span class="st">"flux"</span>].flux <span class="op">/</span> batch_data[<span class="ss">f"norm</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>][<span class="st">"flux"</span>].flux)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="8b39087c" class="cell" data-execution_count="106">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot results</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, T <span class="kw">in</span> <span class="bu">enumerate</span>(Ts):</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    plt.plot(x, np.abs(T)<span class="op">**</span><span class="dv">2</span>, <span class="st">"-"</span>,lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="ss">f"dl=</span><span class="sc">{</span>dls[i] <span class="op">*</span> <span class="dv">1000</span><span class="sc">:.1f}</span><span class="ss"> nm"</span>)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r"Wavelength [$nm$]"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r"$|T|^2$"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">1100</span>, <span class="dv">1600</span>)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="fl">0.1</span>, <span class="fl">1.1</span>)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>plt.tick_params(axis<span class="op">=</span><span class="st">'both'</span>, labelsize<span class="op">=</span><span class="dv">10</span>) <span class="co"># change tick label size to 10</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Transmission Spectra with Different Mesh Sizes"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"mesh_convergence.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="huygens_files/figure-html/cell-30-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -909,9 +1383,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../simulation/mesh-study.html" class="pagination-link" aria-label="Mesh Study of Huygen's Surface">
-        <span class="nav-page-text">Mesh Study of Huygen’s Surface</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

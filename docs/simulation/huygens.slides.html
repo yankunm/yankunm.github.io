@@ -10,7 +10,7 @@
 <link href="../site_libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.33">
 
-  <title>Yankun (Alex) Meng – Transmission of Huygens’ Surface</title>
+  <title>Yankun (Alex) Meng – Simulating Huygens’ Surfaces</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -95,6 +95,22 @@
     code span.wa { color: #4090c0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-cb5f3eec1871cefe3dfa30b9ffb9ddbc.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -202,7 +218,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Transmission of Huygens’ Surface</h1>
+  <h1 class="title">Simulating Huygens’ Surfaces</h1>
   <p class="subtitle">Yankun (Alex) Meng</p>
 
 <div class="quarto-title-authors">
@@ -211,28 +227,90 @@
 </section>
 <section class="slide level2">
 
-<p>Important Questions to answer:</p>
-<ul>
-<li>Why do we need a normalizing run? (FDTD 101)</li>
-<li>Why is there a mismatch between <code>td.FreqRange.wvl0</code> and <code>td.C_0 / td.FreqRange.freq0</code></li>
-</ul>
-<p><a href="https://duke.box.com/s/03x3nr1clvwb9c99z7ii6kb7o8fq1uyv">Huygens’ Metasurface Paper Link</a></p>
-<div id="42d627f0-461a-4d10-87bf-edbc041c7a99" class="cell" data-execution_count="65">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-2"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a></a><span class="im">import</span> tidy3d <span class="im">as</span> td</span>
-<span id="cb1-4"><a></a><span class="im">import</span> tidy3d.web <span class="im">as</span> web</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-huygens" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-huygens-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 36.4%;justify-content: center;">
+<p><img data-src="../assets/huygens1.png" width="200"></p>
 </div>
+<div class="quarto-layout-cell" style="flex-basis: 63.6%;justify-content: center;">
+<p><img data-src="../assets/huygens2.png" width="350"></p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-huygens-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Huygens Metasurface
+</figcaption>
+</figure>
+</div>
+<p><img data-src="../assets/figure5.png"></p>
+<p>In this notebook, the Huygens’ Metasurface figure 5(a) and 5(c) are reproduced, and mesh study is done for the transmittance. <a href="https://duke.box.com/s/03x3nr1clvwb9c99z7ii6kb7o8fq1uyv">Link to Paper</a></p>
 </section>
-<section id="preconditions" class="slide level2">
-<h2>Preconditions</h2>
-<div id="664c5d22-9f72-4511-b11d-9c004e10dcd6" class="cell" data-execution_count="66">
+<section id="simulation-overview" class="slide level2">
+<h2>Simulation Overview</h2>
+<div id="f0de51ac" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="co"># Import the necessary packages</span></span>
+<span id="cb1-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a></a><span class="im">import</span> tidy3d <span class="im">as</span> td</span>
+<span id="cb1-5"><a></a><span class="im">import</span> tidy3d.web <span class="im">as</span> web</span>
+<span id="cb1-6"><a></a><span class="im">import</span> scienceplots</span>
+<span id="cb1-7"><a></a></span>
+<span id="cb1-8"><a></a><span class="co"># Set logging level to ERROR to reduce output verbosity</span></span>
+<span id="cb1-9"><a></a>td.config.logging_level <span class="op">=</span> <span class="st">"ERROR"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For the transmittance and phase, two different background materials were used based in the paper, so two separate simulations were ran (with background medium as the only difference).</p>
+<p>Note: Several other technical variables need to be changed. In tidy3D simulation, transmittance should be measured with <code>td.FluxMonitor</code> and phase should be measured with <code>td.FieldMonitor</code>. The <code>run_time</code> also needs to increase since the background medium has a higher refractive index in the second simulation than the first, so waves will travel more slowly.</p>
+</section>
+<section class="slide level2">
+
+<p><strong>Simulation 1</strong></p>
+
+<img data-src="../assets/huygens_structure_substrate.png" class="r-stretch quarto-figure-center"><p class="caption">Top Layer n=1.4, Bottom Layer n=1.45</p></section>
+<section class="slide level2">
+
+<p><strong>Simulation 2</strong></p>
+
+<img data-src="../assets/huygens_structure_polymer.png" class="r-stretch quarto-figure-center"><p class="caption">Background medium n=1.66</p></section>
+<section class="slide level2">
+
+<p><strong>Simulation Results</strong></p>
+
+<img data-src="../assets/huygens.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<p><strong>Mesh Study Results</strong></p>
+
+<img data-src="../assets/mesh_convergence.png" class="r-stretch quarto-figure-center"><p class="caption">Convergence of Transmittance</p></section>
+<section id="initialization" class="slide level2 scrollable">
+<h2>Initialization</h2>
+<p>Here we follow the seven steps of initialization I wrote down in the tutorial:</p>
+<ol start="0" type="1">
+<li>Frequency Range Specification</li>
+<li>Computational Domain Size</li>
+<li>Grid Specifications (Discretization size)</li>
+<li>Structures and Materials</li>
+<li>Sources</li>
+<li>Monitors</li>
+<li>Run time</li>
+<li>Boundary Condition Specification</li>
+</ol>
+</section>
+<section id="frequency-range-specification" class="slide level2">
+<h2>0 Frequency Range Specification</h2>
+<div id="c55ce7b3" class="cell" data-execution_count="76">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="co"># 0 Define a FreqRange object with desired wavelengths</span></span>
 <span id="cb2-2"><a></a>fr <span class="op">=</span> td.FreqRange.from_wvl_interval(wvl_min<span class="op">=</span><span class="fl">1.1</span>, wvl_max<span class="op">=</span><span class="fl">1.6</span>)</span>
-<span id="cb2-3"><a></a>N <span class="op">=</span> <span class="dv">301</span> <span class="co"># num_points</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a></a>N <span class="op">=</span> <span class="dv">301</span> <span class="co"># num_points</span></span>
+<span id="cb2-4"><a></a>freq0 <span class="op">=</span> fr.freq0</span>
+<span id="cb2-5"><a></a>lda0 <span class="op">=</span> td.C_0 <span class="op">/</span> fr.freq0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="eec5b2b9-08e7-4b14-98ec-310483887215" class="cell" data-execution_count="67">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="co"># 1 Computational domain size</span></span>
+</section>
+<section id="computational-domain-size" class="slide level2">
+<h2>1 Computational Domain Size</h2>
+<div id="0bd080e8" class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="co"># 1 Computational Domain Size</span></span>
 <span id="cb3-2"><a></a>h <span class="op">=</span> <span class="fl">0.220</span>  <span class="co"># Height of cylinder</span></span>
 <span id="cb3-3"><a></a>spc <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb3-4"><a></a>Lz <span class="op">=</span> spc <span class="op">+</span> h <span class="op">+</span> h <span class="op">+</span> spc</span>
@@ -240,8 +318,12 @@
 <span id="cb3-6"><a></a>Px <span class="op">=</span> Py <span class="op">=</span> P <span class="op">=</span> <span class="fl">0.666</span> <span class="co"># periodicity</span></span>
 <span id="cb3-7"><a></a>sim_size <span class="op">=</span> [Px, Py, Lz]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="67752e95-2e10-4e73-af86-667cd5c10904" class="cell" data-execution_count="68">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="co"># 2 Grid Specifications</span></span>
+</section>
+<section id="grid-resolution" class="slide level2">
+<h2>2 Grid Resolution</h2>
+<p>Grid resolution is uniform grid in the horizontal direction with a yee cell length of <span class="math inline">\frac{P}{32}</span> where <span class="math inline">P</span> is the periodicity. In the vertical direction, <code>AutoGrid</code> means it’s non-uniform and adjusted based on the wavelength of the particular medium. Here, <code>min_steps_per_wvl=32</code> means we are taking a minimum of 32 steps based on the wavelength, which will be shorter in the medium with a higher index of refraction.</p>
+<div id="3bcd86b5" class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="co"># 2 Grid Resolution</span></span>
 <span id="cb4-2"><a></a>dl <span class="op">=</span> P <span class="op">/</span> <span class="dv">32</span></span>
 <span id="cb4-3"><a></a>horizontal_grid <span class="op">=</span> td.UniformGrid(dl<span class="op">=</span>dl)</span>
 <span id="cb4-4"><a></a>vertical_grid <span class="op">=</span> td.AutoGrid(min_steps_per_wvl<span class="op">=</span><span class="dv">32</span>)</span>
@@ -251,138 +333,215 @@
 <span id="cb4-8"><a></a>    grid_z<span class="op">=</span>vertical_grid,</span>
 <span id="cb4-9"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="c5d103a7-b9b1-4186-8990-87011d391a5f" class="cell" data-execution_count="69">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="co"># 3 Structures</span></span>
-<span id="cb5-2"><a></a>r <span class="op">=</span> <span class="fl">0.242</span>  <span class="co"># radius of the cylinder</span></span>
-<span id="cb5-3"><a></a>n_Si <span class="op">=</span> <span class="fl">3.5</span></span>
-<span id="cb5-4"><a></a>Si <span class="op">=</span> td.Medium(permittivity<span class="op">=</span>n_Si<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'Si'</span>)</span>
-<span id="cb5-5"><a></a>cylinder <span class="op">=</span> td.Structure(</span>
-<span id="cb5-6"><a></a>    geometry<span class="op">=</span>td.Cylinder(center<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">0</span>, h <span class="op">/</span> <span class="dv">2</span>], radius<span class="op">=</span>r, length<span class="op">=</span>h, axis<span class="op">=</span><span class="dv">2</span>), medium<span class="op">=</span>Si</span>
-<span id="cb5-7"><a></a>)</span>
-<span id="cb5-8"><a></a></span>
-<span id="cb5-9"><a></a><span class="co"># Spin_on glass + substrate</span></span>
-<span id="cb5-10"><a></a>n_glass <span class="op">=</span> <span class="fl">1.4</span></span>
-<span id="cb5-11"><a></a>n_SiO2 <span class="op">=</span> <span class="fl">1.45</span></span>
-<span id="cb5-12"><a></a>glass <span class="op">=</span> td.Medium(permittivity<span class="op">=</span>n_glass<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'glass'</span>)</span>
-<span id="cb5-13"><a></a>SiO2 <span class="op">=</span> td.Medium(permittivity<span class="op">=</span>n_SiO2<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'oxide'</span>)</span>
-<span id="cb5-14"><a></a></span>
-<span id="cb5-15"><a></a>substrate <span class="op">=</span> td.Structure(</span>
-<span id="cb5-16"><a></a>    geometry<span class="op">=</span>td.Box(</span>
-<span id="cb5-17"><a></a>        center<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="op">-</span>Lz<span class="op">/</span><span class="dv">2</span>),</span>
-<span id="cb5-18"><a></a>        size<span class="op">=</span>(td.inf,td.inf,<span class="dv">2</span> <span class="op">*</span> (spc<span class="op">+</span>h))</span>
-<span id="cb5-19"><a></a>    ),</span>
-<span id="cb5-20"><a></a>    medium<span class="op">=</span>SiO2,</span>
-<span id="cb5-21"><a></a>    name<span class="op">=</span><span class="st">'substrate'</span></span>
-<span id="cb5-22"><a></a>)</span>
-<span id="cb5-23"><a></a></span>
-<span id="cb5-24"><a></a>glass <span class="op">=</span> td.Structure(</span>
-<span id="cb5-25"><a></a>    geometry<span class="op">=</span>td.Box(</span>
-<span id="cb5-26"><a></a>        center<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>,Lz<span class="op">/</span><span class="dv">2</span>),</span>
-<span id="cb5-27"><a></a>        size<span class="op">=</span>(td.inf,td.inf,<span class="dv">2</span> <span class="op">*</span> (spc<span class="op">+</span>h))</span>
-<span id="cb5-28"><a></a>    ),</span>
-<span id="cb5-29"><a></a>    medium<span class="op">=</span>glass,</span>
-<span id="cb5-30"><a></a>    name<span class="op">=</span><span class="st">'superstrate'</span></span>
-<span id="cb5-31"><a></a>)</span>
-<span id="cb5-32"><a></a></span>
-<span id="cb5-33"><a></a><span class="co"># Polymer</span></span>
-<span id="cb5-34"><a></a>n_polymer <span class="op">=</span> <span class="fl">1.66</span></span>
-<span id="cb5-35"><a></a>polymer <span class="op">=</span> td.Structure(</span>
-<span id="cb5-36"><a></a>    geometry<span class="op">=</span>td.Box(</span>
-<span id="cb5-37"><a></a>        center<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb5-38"><a></a>        size<span class="op">=</span>(td.inf,td.inf,td.inf)</span>
-<span id="cb5-39"><a></a>    ),</span>
-<span id="cb5-40"><a></a>    medium<span class="op">=</span>td.Medium(permittivity<span class="op">=</span>n_polymer<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'polymer'</span>),</span>
-<span id="cb5-41"><a></a>    name<span class="op">=</span><span class="st">'polymer'</span></span>
-<span id="cb5-42"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="structures-and-materials" class="slide level2">
+<h2>3 Structures and Materials</h2>
+<p><strong>Structures and Materials for the meta-atom</strong></p>
+<div id="c3486f7e" class="cell" data-execution_count="79">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>r <span class="op">=</span> <span class="fl">0.242</span>  <span class="co"># radius of the cylinder</span></span>
+<span id="cb5-2"><a></a>n_Si <span class="op">=</span> <span class="fl">3.5</span></span>
+<span id="cb5-3"><a></a>Si <span class="op">=</span> td.Medium(permittivity<span class="op">=</span>n_Si<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'Si'</span>)</span>
+<span id="cb5-4"><a></a>cylinder <span class="op">=</span> td.Structure(</span>
+<span id="cb5-5"><a></a>    geometry<span class="op">=</span>td.Cylinder(center<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">0</span>, h <span class="op">/</span> <span class="dv">2</span>], radius<span class="op">=</span>r, length<span class="op">=</span>h, axis<span class="op">=</span><span class="dv">2</span>), medium<span class="op">=</span>Si</span>
+<span id="cb5-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="8d0aa775-01f2-4a3c-aba9-1848ee66462d" class="cell" data-execution_count="70">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="co"># 4 Sources</span></span>
-<span id="cb6-2"><a></a>source <span class="op">=</span> td.PlaneWave(</span>
-<span id="cb6-3"><a></a>    source_time<span class="op">=</span>fr.to_gaussian_pulse(),</span>
-<span id="cb6-4"><a></a>    size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
-<span id="cb6-5"><a></a>    center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, Lz<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> spc <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> dl),</span>
-<span id="cb6-6"><a></a>    direction<span class="op">=</span><span class="st">"-"</span>,</span>
-<span id="cb6-7"><a></a>    pol_angle<span class="op">=</span><span class="dv">0</span></span>
-<span id="cb6-8"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Background Medium for Figure 5(a) (<span class="math inline">n_1=1.4, n_2=1.45</span>)</strong></p>
+<div id="2cd309a9" class="cell" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="co"># Background medium for the first simulation</span></span>
+<span id="cb6-2"><a></a>n_glass <span class="op">=</span> <span class="fl">1.4</span></span>
+<span id="cb6-3"><a></a>n_SiO2 <span class="op">=</span> <span class="fl">1.45</span></span>
+<span id="cb6-4"><a></a>glass <span class="op">=</span> td.Medium(permittivity<span class="op">=</span>n_glass<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'glass'</span>)</span>
+<span id="cb6-5"><a></a>SiO2 <span class="op">=</span> td.Medium(permittivity<span class="op">=</span>n_SiO2<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'oxide'</span>)</span>
+<span id="cb6-6"><a></a></span>
+<span id="cb6-7"><a></a>substrate <span class="op">=</span> td.Structure(</span>
+<span id="cb6-8"><a></a>    geometry<span class="op">=</span>td.Box(</span>
+<span id="cb6-9"><a></a>        center<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="op">-</span>Lz<span class="op">/</span><span class="dv">2</span>),</span>
+<span id="cb6-10"><a></a>        size<span class="op">=</span>(td.inf,td.inf,<span class="dv">2</span> <span class="op">*</span> (spc<span class="op">+</span>h))</span>
+<span id="cb6-11"><a></a>    ),</span>
+<span id="cb6-12"><a></a>    medium<span class="op">=</span>SiO2,</span>
+<span id="cb6-13"><a></a>    name<span class="op">=</span><span class="st">'substrate'</span></span>
+<span id="cb6-14"><a></a>)</span>
+<span id="cb6-15"><a></a></span>
+<span id="cb6-16"><a></a>glass <span class="op">=</span> td.Structure(</span>
+<span id="cb6-17"><a></a>    geometry<span class="op">=</span>td.Box(</span>
+<span id="cb6-18"><a></a>        center<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>,Lz<span class="op">/</span><span class="dv">2</span>),</span>
+<span id="cb6-19"><a></a>        size<span class="op">=</span>(td.inf,td.inf,<span class="dv">2</span> <span class="op">*</span> (spc<span class="op">+</span>h))</span>
+<span id="cb6-20"><a></a>    ),</span>
+<span id="cb6-21"><a></a>    medium<span class="op">=</span>glass,</span>
+<span id="cb6-22"><a></a>    name<span class="op">=</span><span class="st">'superstrate'</span></span>
+<span id="cb6-23"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f13e2436-7be2-45a4-ac5d-acb4ab7b540e" class="cell" data-execution_count="71">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="co"># 5 Monitor</span></span>
-<span id="cb7-2"><a></a>monitor <span class="op">=</span> td.FluxMonitor(</span>
-<span id="cb7-3"><a></a>    center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span>Lz<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> spc <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>dl),</span>
-<span id="cb7-4"><a></a>    size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
-<span id="cb7-5"><a></a>    freqs<span class="op">=</span>fr.freqs(N),</span>
-<span id="cb7-6"><a></a>    name<span class="op">=</span><span class="st">"flux"</span></span>
-<span id="cb7-7"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="7a950266-1636-4efa-a518-6ecec240e452" class="cell" data-execution_count="72">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="co"># 6 Run Time</span></span>
-<span id="cb8-2"><a></a>bandwidth <span class="op">=</span> fr.fmax <span class="op">-</span> fr.fmin</span>
-<span id="cb8-3"><a></a>run_time<span class="op">=</span> <span class="dv">50</span> <span class="op">/</span> bandwidth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="e33b056a-46e4-40a9-bd51-9b60df0361f9" class="cell" data-execution_count="73">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="co"># 7 Boundary Condition</span></span>
-<span id="cb9-2"><a></a>bc <span class="op">=</span> td.BoundarySpec(</span>
-<span id="cb9-3"><a></a>    x<span class="op">=</span>td.Boundary.periodic(), </span>
-<span id="cb9-4"><a></a>    y<span class="op">=</span>td.Boundary.periodic(), </span>
-<span id="cb9-5"><a></a>    z<span class="op">=</span>td.Boundary.pml()</span>
-<span id="cb9-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Background Medium for Figure 5(c) (<span class="math inline">n=1.66</span>)</strong></p>
+<div id="ebc07a61" class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="co"># Background medium for the second simulation</span></span>
+<span id="cb7-2"><a></a><span class="co"># Polymer</span></span>
+<span id="cb7-3"><a></a>n_polymer <span class="op">=</span> <span class="fl">1.66</span></span>
+<span id="cb7-4"><a></a>polymer <span class="op">=</span> td.Structure(</span>
+<span id="cb7-5"><a></a>    geometry<span class="op">=</span>td.Box(</span>
+<span id="cb7-6"><a></a>        center<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb7-7"><a></a>        size<span class="op">=</span>(td.inf,td.inf,td.inf)</span>
+<span id="cb7-8"><a></a>    ),</span>
+<span id="cb7-9"><a></a>    medium<span class="op">=</span>td.Medium(permittivity<span class="op">=</span>n_polymer<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'polymer'</span>),</span>
+<span id="cb7-10"><a></a>    name<span class="op">=</span><span class="st">'polymer'</span></span>
+<span id="cb7-11"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="simulation" class="slide level2">
-<h2>Simulation</h2>
-<div id="e8ad2cc6-5476-42b8-8987-b680913503a6" class="cell" data-execution_count="74">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a>sim_empty<span class="op">=</span>td.Simulation(</span>
-<span id="cb10-2"><a></a>    size<span class="op">=</span>sim_size,</span>
-<span id="cb10-3"><a></a>    grid_spec<span class="op">=</span>grid_spec,</span>
-<span id="cb10-4"><a></a>    structures<span class="op">=</span>[substrate, glass],</span>
-<span id="cb10-5"><a></a>    sources<span class="op">=</span>[source],</span>
-<span id="cb10-6"><a></a>    monitors<span class="op">=</span>[monitor],</span>
-<span id="cb10-7"><a></a>    run_time<span class="op">=</span>run_time,</span>
-<span id="cb10-8"><a></a>    boundary_spec<span class="op">=</span>bc</span>
-<span id="cb10-9"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="the-source" class="slide level2">
+<h2>4 The Source</h2>
+<p>The source is a simple Plane wave that traverses in the -z axis, placed <span class="math inline">\frac{\lambda_0}{2}</span> distance above the metaatom in the computational domain. Polarization is along the x-axis, that’s what <code>pol_angle=0</code> means.</p>
+<div id="934b8345" class="cell" data-execution_count="82">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>source <span class="op">=</span> td.PlaneWave(</span>
+<span id="cb8-2"><a></a>    source_time<span class="op">=</span>fr.to_gaussian_pulse(),</span>
+<span id="cb8-3"><a></a>    size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
+<span id="cb8-4"><a></a>    center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, Lz<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> spc <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> lda0),</span>
+<span id="cb8-5"><a></a>    direction<span class="op">=</span><span class="st">"-"</span>,</span>
+<span id="cb8-6"><a></a>    pol_angle<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb8-7"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="33a2b968-dd3d-4965-b2af-df4186f57fa7" class="cell" data-execution_count="75">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a>sim_actual <span class="op">=</span> td.Simulation(</span>
-<span id="cb11-2"><a></a>    size<span class="op">=</span>sim_size,</span>
-<span id="cb11-3"><a></a>    grid_spec<span class="op">=</span>grid_spec,</span>
-<span id="cb11-4"><a></a>    structures<span class="op">=</span>[substrate, glass, cylinder],</span>
-<span id="cb11-5"><a></a>    sources<span class="op">=</span>[source],</span>
-<span id="cb11-6"><a></a>    monitors<span class="op">=</span>[monitor],</span>
-<span id="cb11-7"><a></a>    run_time<span class="op">=</span>run_time,</span>
-<span id="cb11-8"><a></a>    boundary_spec<span class="op">=</span>bc</span>
-<span id="cb11-9"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="monitors" class="slide level2">
+<h2>5 Monitors</h2>
+<p><strong>Monitor for Transmittance</strong></p>
+<div id="4b83ad20" class="cell" data-execution_count="83">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a>flux_monitor <span class="op">=</span> td.FluxMonitor(</span>
+<span id="cb9-2"><a></a>    center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span>Lz<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> spc <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> lda0),</span>
+<span id="cb9-3"><a></a>    size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
+<span id="cb9-4"><a></a>    freqs<span class="op">=</span>fr.freqs(N),</span>
+<span id="cb9-5"><a></a>    name<span class="op">=</span><span class="st">"flux_monitor"</span></span>
+<span id="cb9-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b9331150-6f03-414b-926c-00e79294abb9" class="cell" data-execution_count="76">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a>fig, (ax1,ax2,ax3) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb12-2"><a></a>sim_actual.plot_eps(x<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax1)</span>
-<span id="cb12-3"><a></a>sim_actual.plot_eps(y<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax2)</span>
-<span id="cb12-4"><a></a>sim_actual.plot_eps(z<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Monitor for Phase</strong></p>
+<div id="40214227" class="cell" data-execution_count="84">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="co"># We use FieldMonitor instead of DiffractionMonitor because</span></span>
+<span id="cb10-2"><a></a><span class="co"># DiffractionMonitor only gives you amplitudes of diffraction orders, </span></span>
+<span id="cb10-3"><a></a><span class="co"># losing phase detail if you care about continuous phase.</span></span>
+<span id="cb10-4"><a></a>field_monitor <span class="op">=</span> td.FieldMonitor(</span>
+<span id="cb10-5"><a></a>    center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span>Lz<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> spc <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> lda0),</span>
+<span id="cb10-6"><a></a>    size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
+<span id="cb10-7"><a></a>    fields<span class="op">=</span>[<span class="st">"Ex"</span>],</span>
+<span id="cb10-8"><a></a>    freqs<span class="op">=</span>fr.freqs(N),</span>
+<span id="cb10-9"><a></a>    name<span class="op">=</span><span class="st">"field_monitor"</span></span>
+<span id="cb10-10"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="run-time" class="slide level2">
+<h2>6 Run Time</h2>
+<div id="c8f8153d" class="cell" data-execution_count="85">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a>bandwidth <span class="op">=</span> fr.fmax <span class="op">-</span> fr.fmin</span>
+<span id="cb11-2"><a></a>run_time_short <span class="op">=</span> <span class="dv">50</span> <span class="op">/</span> bandwidth <span class="co"># run_time for the transmittance simulation</span></span>
+<span id="cb11-3"><a></a>run_time_long <span class="op">=</span> <span class="dv">200</span> <span class="op">/</span> bandwidth <span class="co"># run_time for the phase simulation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="boundary-conditions" class="slide level2">
+<h2>7 Boundary Conditions</h2>
+<p>We apply PML in the +Z and -Z surfaces.</p>
+<div id="598fa6dd" class="cell" data-execution_count="86">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a>bc <span class="op">=</span> td.BoundarySpec(</span>
+<span id="cb12-2"><a></a>    x<span class="op">=</span>td.Boundary.periodic(), </span>
+<span id="cb12-3"><a></a>    y<span class="op">=</span>td.Boundary.periodic(), </span>
+<span id="cb12-4"><a></a>    z<span class="op">=</span>td.Boundary.pml()</span>
+<span id="cb12-5"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="helper-function-for-simulation" class="slide level2">
+<h2>Helper Function for simulation</h2>
+<p>Since we have to run simulation two times, it is convenient to abstract out what are the differences to the two simulations and make defining simulations easier. Always follow the <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY Principle</a>.</p>
+<div id="d97006cb" class="cell" data-execution_count="87">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="kw">def</span> simulation_helper(background, monitors, run_time):</span>
+<span id="cb13-2"><a></a>    <span class="co">"""</span></span>
+<span id="cb13-3"><a></a><span class="co">    Create normalization and actual tidy3d simulations, visualize geometry, </span></span>
+<span id="cb13-4"><a></a><span class="co">    and return both as a dictionary.</span></span>
+<span id="cb13-5"><a></a></span>
+<span id="cb13-6"><a></a><span class="co">    Parameters</span></span>
+<span id="cb13-7"><a></a><span class="co">    ----------</span></span>
+<span id="cb13-8"><a></a><span class="co">    background : list of td.Structure</span></span>
+<span id="cb13-9"><a></a><span class="co">        Background structures (without the cylinder).</span></span>
+<span id="cb13-10"><a></a><span class="co">    monitors : list of td.Monitor</span></span>
+<span id="cb13-11"><a></a><span class="co">        Monitors for the normalization run.</span></span>
+<span id="cb13-12"><a></a><span class="co">    run_time : float</span></span>
+<span id="cb13-13"><a></a><span class="co">        Run time for the normalization simulation.</span></span>
+<span id="cb13-14"><a></a></span>
+<span id="cb13-15"><a></a><span class="co">    Returns</span></span>
+<span id="cb13-16"><a></a><span class="co">    -------</span></span>
+<span id="cb13-17"><a></a><span class="co">    dict</span></span>
+<span id="cb13-18"><a></a><span class="co">        {"norm": Simulation without cylinder,</span></span>
+<span id="cb13-19"><a></a><span class="co">         "actual": Simulation with cylinder}</span></span>
+<span id="cb13-20"><a></a></span>
+<span id="cb13-21"><a></a><span class="co">    Notes</span></span>
+<span id="cb13-22"><a></a><span class="co">    -----</span></span>
+<span id="cb13-23"><a></a><span class="co">    Saves cross-sectional plots of the actual simulation (x=0, y=0, z=0) </span></span>
+<span id="cb13-24"><a></a><span class="co">    with grid overlay for verification.</span></span>
+<span id="cb13-25"><a></a><span class="co">    """</span></span>
+<span id="cb13-26"><a></a>    sim_empty<span class="op">=</span>td.Simulation(</span>
+<span id="cb13-27"><a></a>        size<span class="op">=</span>sim_size,</span>
+<span id="cb13-28"><a></a>        grid_spec<span class="op">=</span>grid_spec,</span>
+<span id="cb13-29"><a></a>        structures<span class="op">=</span>background,</span>
+<span id="cb13-30"><a></a>        sources<span class="op">=</span>[source],</span>
+<span id="cb13-31"><a></a>        monitors<span class="op">=</span>monitors,</span>
+<span id="cb13-32"><a></a>        run_time<span class="op">=</span>run_time,</span>
+<span id="cb13-33"><a></a>        boundary_spec<span class="op">=</span>bc</span>
+<span id="cb13-34"><a></a>    )</span>
+<span id="cb13-35"><a></a></span>
+<span id="cb13-36"><a></a>    background.append(cylinder)</span>
+<span id="cb13-37"><a></a>    sim_actual <span class="op">=</span> td.Simulation(</span>
+<span id="cb13-38"><a></a>        size<span class="op">=</span>sim_size,</span>
+<span id="cb13-39"><a></a>        grid_spec<span class="op">=</span>grid_spec,</span>
+<span id="cb13-40"><a></a>        structures<span class="op">=</span>background,</span>
+<span id="cb13-41"><a></a>        sources<span class="op">=</span>[source],</span>
+<span id="cb13-42"><a></a>        monitors<span class="op">=</span>monitors,</span>
+<span id="cb13-43"><a></a>        run_time<span class="op">=</span>run_time,</span>
+<span id="cb13-44"><a></a>        boundary_spec<span class="op">=</span>bc</span>
+<span id="cb13-45"><a></a>    )</span>
+<span id="cb13-46"><a></a></span>
+<span id="cb13-47"><a></a>    <span class="co"># Always visualize simulation before running</span></span>
+<span id="cb13-48"><a></a>    fig, (ax1,ax2,ax3) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb13-49"><a></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb13-50"><a></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb13-51"><a></a>    sim_actual.plot(x<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax1)</span>
+<span id="cb13-52"><a></a>    sim_actual.plot_grid(x<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax1)</span>
+<span id="cb13-53"><a></a>    sim_actual.plot(y<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax2)</span>
+<span id="cb13-54"><a></a>    sim_actual.plot_grid(y<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax2)</span>
+<span id="cb13-55"><a></a>    sim_actual.plot(z<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax3)</span>
+<span id="cb13-56"><a></a>    sim_actual.plot_grid(z<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax3)</span>
+<span id="cb13-57"><a></a>    plt.savefig(<span class="ss">f'huygens_structure_</span><span class="sc">{</span>background[<span class="dv">0</span>]<span class="sc">.</span>name<span class="sc">}</span><span class="ss">.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb13-58"><a></a>    plt.show()</span>
+<span id="cb13-59"><a></a></span>
+<span id="cb13-60"><a></a>    sims <span class="op">=</span> {</span>
+<span id="cb13-61"><a></a>        <span class="st">"norm"</span>: sim_empty,</span>
+<span id="cb13-62"><a></a>        <span class="st">"actual"</span>: sim_actual,</span>
+<span id="cb13-63"><a></a>    }</span>
+<span id="cb13-64"><a></a></span>
+<span id="cb13-65"><a></a>    <span class="cf">return</span> sims</span>
+<span id="cb13-66"><a></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="transmittance-simulation" class="slide level2">
+<h2>Transmittance Simulation</h2>
+<div id="2b21a899" class="cell" data-execution_count="88">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a>sims <span class="op">=</span> simulation_helper(</span>
+<span id="cb14-2"><a></a>    background<span class="op">=</span>[substrate, glass],</span>
+<span id="cb14-3"><a></a>    monitors<span class="op">=</span>[flux_monitor],</span>
+<span id="cb14-4"><a></a>    run_time<span class="op">=</span>run_time_short</span>
+<span id="cb14-5"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="huygens_files/figure-revealjs/cell-13-output-1.png" class="r-stretch"><div id="bd0c4efb-7bcf-4611-9829-6d383fe1ce4e" class="cell" data-execution_count="77">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a>sims <span class="op">=</span> {</span>
-<span id="cb13-2"><a></a>    <span class="st">"norm"</span>: sim_empty,</span>
-<span id="cb13-3"><a></a>    <span class="st">"actual"</span>: sim_actual,</span>
-<span id="cb13-4"><a></a>}</span>
-<span id="cb13-5"><a></a></span>
-<span id="cb13-6"><a></a>batch <span class="op">=</span> web.Batch(simulations<span class="op">=</span>sims, verbose<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="e2c9b2bf-281c-4527-b5a7-de765d38b387" class="cell" data-execution_count="78">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a>batch_data <span class="op">=</span> batch.run(path_dir<span class="op">=</span><span class="st">"data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<img data-src="huygens_files/figure-revealjs/cell-15-output-1.png" class="r-stretch"><div id="176e7401" class="cell" data-execution_count="89">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a>batch <span class="op">=</span> web.Batch(simulations<span class="op">=</span>sims, verbose<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb15-2"><a></a>batch_data <span class="op">=</span> batch.run(path_dir<span class="op">=</span><span class="st">"data/huygens5a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"dabab8408abe486d9a381efee8cf6966","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"c00b72234eae4fd3b638550693d53daa","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
 </div>
 <div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">00:11:07 UTC </span>Started working on Batch containing <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span> tasks.                       
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">02:20:56 EDT </span>Started working on Batch containing <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span> tasks.                       
 </pre>
 </div>
 <div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">             </span>Maximum FlexCredit cost: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.050</span> for the whole batch.                
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">02:20:57 EDT </span>Maximum FlexCredit cost: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.050</span> for the whole batch.                
 </pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -392,11 +551,11 @@
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"ded61bdc3ec545f58601d9a4119bfba4","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"62f206bd41e7420f830f53f4357f892e","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">00:11:08 UTC </span>Batch complete.                                                    
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">02:20:58 EDT </span>Batch complete.                                                    
 </pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -404,7 +563,7 @@
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"6ec1a0cdfa1244349097c9cc0c7c301f","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"43295ae89fdb4fb7bc06861afcade049","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
@@ -412,52 +571,294 @@
 </div>
 </div>
 </section>
-<section id="postprocess" class="slide level2">
-<h2>Postprocess</h2>
-<ul>
-<li>35 seconds to run both simulations</li>
-<li>results are stored inside <code>batch_data</code></li>
-</ul>
-<div id="dbb55f27-7f23-44eb-8187-a86180a6fd8e" class="cell" data-execution_count="79">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a>T <span class="op">=</span> batch_data[<span class="st">"actual"</span>][<span class="st">"flux"</span>].flux <span class="op">/</span> batch_data[<span class="st">"norm"</span>][<span class="st">"flux"</span>].flux</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="transmittance-results" class="slide level2">
+<h2>Transmittance Results</h2>
+<div id="e9a64fa4" class="cell" data-execution_count="90">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a><span class="co"># this uses scienceplots to make plots look better</span></span>
+<span id="cb16-2"><a></a>plt.style.use([<span class="st">'science'</span>, <span class="st">'notebook'</span>, <span class="st">'grid'</span>])</span>
+<span id="cb16-3"><a></a>T <span class="op">=</span> batch_data[<span class="st">"actual"</span>][<span class="st">"flux_monitor"</span>].flux <span class="op">/</span> batch_data[<span class="st">"norm"</span>][<span class="st">"flux_monitor"</span>].flux</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="db2d8031-a9aa-4c3d-af70-08de2e482fab" class="cell" data-execution_count="80">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a><span class="co"># plot transmission, compare to paper results, look similar</span></span>
-<span id="cb16-2"><a></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">4.5</span>))</span>
-<span id="cb16-3"><a></a>plt.plot(fr.freqs(N), T, <span class="st">"r"</span>, label<span class="op">=</span><span class="st">"T"</span>)</span>
-<span id="cb16-4"><a></a>plt.xlabel(<span class="vs">r"Frequency ($Hz$)"</span>)</span>
-<span id="cb16-5"><a></a>plt.ylabel(<span class="st">"Magnitude"</span>)</span>
-<span id="cb16-6"><a></a>plt.ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb16-7"><a></a>plt.legend()</span>
-<span id="cb16-8"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="huygens_files/figure-revealjs/cell-17-output-1.png"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="914c653a-9d0c-4a18-aa8f-352b5e8fb70a" class="cell" data-execution_count="81">
+<div id="0e6ae87b" class="cell" data-execution_count="91">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a><span class="co"># plot transmission, compare to paper results, look similar</span></span>
 <span id="cb17-2"><a></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">4.5</span>))</span>
-<span id="cb17-3"><a></a>plt.plot(td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span>, T, <span class="st">"r"</span>, label<span class="op">=</span><span class="st">"T"</span>)</span>
+<span id="cb17-3"><a></a>plt.plot(td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span>, np.abs(T)<span class="op">**</span><span class="dv">2</span>, <span class="st">"r"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"T"</span>)</span>
 <span id="cb17-4"><a></a>plt.xlabel(<span class="vs">r"wavelength ($nm$)"</span>)</span>
-<span id="cb17-5"><a></a>plt.ylabel(<span class="st">"Magnitude"</span>)</span>
+<span id="cb17-5"><a></a>plt.ylabel(<span class="st">"Transmittance"</span>)</span>
 <span id="cb17-6"><a></a>plt.ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
 <span id="cb17-7"><a></a>plt.legend()</span>
 <span id="cb17-8"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="huygens_files/figure-revealjs/cell-18-output-1.png" class="r-stretch"></section>
+<section id="phase-simulation" class="slide level2">
+<h2>Phase Simulation</h2>
+<div id="3394cba4" class="cell" data-execution_count="92">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a>sims <span class="op">=</span> simulation_helper(</span>
+<span id="cb18-2"><a></a>    background<span class="op">=</span>[polymer],</span>
+<span id="cb18-3"><a></a>    monitors<span class="op">=</span>[field_monitor],</span>
+<span id="cb18-4"><a></a>    run_time<span class="op">=</span>run_time_long</span>
+<span id="cb18-5"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="huygens_files/figure-revealjs/cell-19-output-1.png" class="r-stretch"><div id="709b4592" class="cell" data-execution_count="93">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a>batch <span class="op">=</span> web.Batch(simulations<span class="op">=</span>sims, verbose<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-2"><a></a>batch_data <span class="op">=</span> batch.run(path_dir<span class="op">=</span><span class="st">"data/huygens5c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="huygens_files/figure-revealjs/cell-18-output-1.png"></p>
-</figure>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"fe8f5747d89a46938898f68ba257a23d","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">02:21:11 EDT </span>Started working on Batch containing <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span> tasks.                       
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">02:21:13 EDT </span>Maximum FlexCredit cost: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.050</span> for the whole batch.                
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">             </span>Use <span style="color: #008000; text-decoration-color: #008000">'Batch.real_cost()'</span> to get the billed FlexCredit cost after the
+<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">             </span>Batch has completed.                                               
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"6079e62280cf42259638996cc9d9044c","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">02:21:14 EDT </span>Batch complete.                                                    
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"92a2981142f04336a5953d1d14eead13","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
 </div>
 </div>
-</div>
-
-
 </section>
+<section id="phase-results" class="slide level2">
+<h2>Phase Results</h2>
+<div id="439f32fa" class="cell" data-execution_count="94">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a><span class="co"># Data Extraction</span></span>
+<span id="cb20-2"><a></a>Ex_actual <span class="op">=</span> batch_data[<span class="st">"actual"</span>][<span class="st">"field_monitor"</span>].Ex </span>
+<span id="cb20-3"><a></a>Ex_norm <span class="op">=</span> batch_data[<span class="st">"norm"</span>][<span class="st">"field_monitor"</span>].Ex</span>
+<span id="cb20-4"><a></a>Ex <span class="op">=</span> Ex_actual <span class="op">/</span> Ex_norm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="8ca39300" class="cell" data-execution_count="95">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a></a><span class="co"># 1. Compute average over the xy-plane</span></span>
+<span id="cb21-2"><a></a>Ex_avg <span class="op">=</span> np.mean(Ex[:, :, <span class="dv">0</span>, :], axis<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb21-3"><a></a></span>
+<span id="cb21-4"><a></a><span class="co"># 2. Compute phase</span></span>
+<span id="cb21-5"><a></a>phase_avg <span class="op">=</span> np.angle(Ex_avg)</span>
+<span id="cb21-6"><a></a></span>
+<span id="cb21-7"><a></a><span class="co"># 3. Unwrap phase to remove ±pi jumps</span></span>
+<span id="cb21-8"><a></a>phase_avg_unwrapped <span class="op">=</span> np.unwrap(phase_avg)</span>
+<span id="cb21-9"><a></a></span>
+<span id="cb21-10"><a></a><span class="co"># 4. Make relative to first point (optional)</span></span>
+<span id="cb21-11"><a></a>phase_rel <span class="op">=</span> phase_avg_unwrapped <span class="op">-</span> phase_avg_unwrapped[<span class="dv">0</span>]</span>
+<span id="cb21-12"><a></a></span>
+<span id="cb21-13"><a></a>phase_actual <span class="op">=</span> np.unwrap(np.angle(np.mean(Ex_actual[:, :, <span class="dv">0</span>, :], axis<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">1</span>))))</span>
+<span id="cb21-14"><a></a>phase_norm <span class="op">=</span> np.unwrap(np.angle(np.mean(Ex_norm[:, :, <span class="dv">0</span>, :], axis<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">1</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="af40b97a" class="cell" data-execution_count="96">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">4.5</span>))</span>
+<span id="cb22-2"><a></a>plt.plot(td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span>, phase_rel, <span class="st">"r"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"$\phi$"</span>)</span>
+<span id="cb22-3"><a></a>plt.plot(td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span>, phase_actual, <span class="st">"b"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"Actual $\phi$"</span>)</span>
+<span id="cb22-4"><a></a>plt.plot(td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span>, phase_norm, <span class="st">"g"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"Norm $\phi$"</span>)</span>
+<span id="cb22-5"><a></a>plt.xlabel(<span class="vs">r"wavelength ($nm$)"</span>)</span>
+<span id="cb22-6"><a></a>plt.ylabel(<span class="st">"Phase"</span>)</span>
+<span id="cb22-7"><a></a>plt.legend()</span>
+<span id="cb22-8"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="huygens_files/figure-revealjs/cell-23-output-1.png" class="r-stretch"></section>
+<section id="final-plotting" class="slide level2">
+<h2>Final Plotting</h2>
+<div id="10adc21d" class="cell" data-execution_count="97">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<span id="cb23-2"><a></a></span>
+<span id="cb23-3"><a></a><span class="co"># work on the first figure</span></span>
+<span id="cb23-4"><a></a>ax <span class="op">=</span> axes[<span class="dv">0</span>]</span>
+<span id="cb23-5"><a></a>ax.tick_params(axis<span class="op">=</span><span class="st">"both"</span>, labelsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb23-6"><a></a>ax.plot(td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span>, np.abs(T)<span class="op">**</span><span class="dv">2</span>, <span class="st">"r"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"$|T|^2$"</span>)</span>
+<span id="cb23-7"><a></a>ax.set_xlabel(<span class="vs">r"wavelength [$nm$]"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb23-8"><a></a>ax.set_ylabel(<span class="st">"Transmittance"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb23-9"><a></a>ax.set_title(<span class="st">"Transmittance vs Wavelength from Simulation 1"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb23-10"><a></a>ax.set_xlim(<span class="dv">1100</span>, <span class="dv">1600</span>)</span>
+<span id="cb23-11"><a></a>ax.set_ylim(<span class="dv">0</span>, <span class="fl">1.1</span>)</span>
+<span id="cb23-12"><a></a>ax.legend(loc<span class="op">=</span><span class="st">"lower right"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb23-13"><a></a></span>
+<span id="cb23-14"><a></a><span class="co"># work on the second figure</span></span>
+<span id="cb23-15"><a></a>ax <span class="op">=</span> axes[<span class="dv">1</span>]</span>
+<span id="cb23-16"><a></a>ax.tick_params(axis<span class="op">=</span><span class="st">"both"</span>, labelsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb23-17"><a></a>ax.plot(td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span>, phase_rel, <span class="st">"b"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"$\phi$"</span>)</span>
+<span id="cb23-18"><a></a>ax.set_xlabel(<span class="vs">r"wavelength [$nm$]"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb23-19"><a></a>ax.set_ylabel(<span class="st">"Phase [rad]"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb23-20"><a></a>ax.set_title(<span class="st">"Phase Change vs Wavelength from Simulation 2"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb23-21"><a></a>ax.set_xlim(<span class="dv">1100</span>, <span class="dv">1600</span>)</span>
+<span id="cb23-22"><a></a>ax.set_ylim(<span class="dv">0</span>, np.pi<span class="op">*</span><span class="dv">2</span>)</span>
+<span id="cb23-23"><a></a>yticks <span class="op">=</span> [<span class="dv">0</span>, np.pi<span class="op">/</span><span class="dv">2</span>, np.pi, <span class="dv">3</span><span class="op">*</span>np.pi<span class="op">/</span><span class="dv">2</span>, <span class="dv">2</span><span class="op">*</span>np.pi]</span>
+<span id="cb23-24"><a></a>ytick_labels <span class="op">=</span> [<span class="vs">r"$0$"</span>, <span class="vs">r"$\frac{\pi}</span><span class="sc">{2}</span><span class="vs">$"</span>, <span class="vs">r"$\pi$"</span>, </span>
+<span id="cb23-25"><a></a>                <span class="vs">r"$\frac{3\pi}</span><span class="sc">{2}</span><span class="vs">$"</span>, <span class="vs">r"$2\pi$"</span>]</span>
+<span id="cb23-26"><a></a>ax.set_yticks(yticks)</span>
+<span id="cb23-27"><a></a>ax.set_yticklabels(ytick_labels)</span>
+<span id="cb23-28"><a></a>ax.legend()</span>
+<span id="cb23-29"><a></a></span>
+<span id="cb23-30"><a></a>plt.savefig(<span class="st">"huygens.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="huygens_files/figure-revealjs/cell-24-output-1.png" class="r-stretch"></section>
+<section id="mesh-study" class="slide level2">
+<h2>Mesh Study</h2>
+<p>Here, we set out to study the effect of different yee cell length on the transmittance.</p>
+<div id="ed46b041" class="cell" data-execution_count="98">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a></a>dls <span class="op">=</span> [P<span class="op">/</span><span class="dv">2</span>, P<span class="op">/</span><span class="dv">4</span>, P<span class="op">/</span><span class="dv">8</span>, P<span class="op">/</span><span class="dv">16</span>, P<span class="op">/</span><span class="dv">32</span>, P<span class="op">/</span><span class="dv">64</span>, P<span class="op">/</span><span class="dv">128</span>] <span class="co"># mesh study list</span></span>
+<span id="cb24-2"><a></a>sims <span class="op">=</span> {}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="04a145a7" class="cell" data-execution_count="99">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a></a><span class="co"># for each dl in dls</span></span>
+<span id="cb25-2"><a></a><span class="cf">for</span> i, dl <span class="kw">in</span> <span class="bu">enumerate</span>(dls):</span>
+<span id="cb25-3"><a></a>    <span class="co"># 2 Grid Specifications</span></span>
+<span id="cb25-4"><a></a>    horizontal_grid <span class="op">=</span> td.UniformGrid(dl<span class="op">=</span>dl)</span>
+<span id="cb25-5"><a></a>    vertical_grid <span class="op">=</span> td.AutoGrid(min_steps_per_wvl<span class="op">=</span><span class="dv">32</span>)</span>
+<span id="cb25-6"><a></a>    grid_spec<span class="op">=</span>td.GridSpec(</span>
+<span id="cb25-7"><a></a>        grid_x<span class="op">=</span>horizontal_grid,</span>
+<span id="cb25-8"><a></a>        grid_y<span class="op">=</span>horizontal_grid,</span>
+<span id="cb25-9"><a></a>        grid_z<span class="op">=</span>vertical_grid,</span>
+<span id="cb25-10"><a></a>    )</span>
+<span id="cb25-11"><a></a></span>
+<span id="cb25-12"><a></a>    <span class="co"># 4 Sources</span></span>
+<span id="cb25-13"><a></a>    source <span class="op">=</span> td.PlaneWave(</span>
+<span id="cb25-14"><a></a>        source_time<span class="op">=</span>fr.to_gaussian_pulse(),</span>
+<span id="cb25-15"><a></a>        size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
+<span id="cb25-16"><a></a>        center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, Lz<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> spc <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> dl),</span>
+<span id="cb25-17"><a></a>        direction<span class="op">=</span><span class="st">"-"</span>,</span>
+<span id="cb25-18"><a></a>        pol_angle<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb25-19"><a></a>    )</span>
+<span id="cb25-20"><a></a></span>
+<span id="cb25-21"><a></a>    <span class="co"># 5 Monitor</span></span>
+<span id="cb25-22"><a></a>    monitor <span class="op">=</span> td.FluxMonitor(</span>
+<span id="cb25-23"><a></a>        center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span>Lz<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> spc <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>dl),</span>
+<span id="cb25-24"><a></a>        size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
+<span id="cb25-25"><a></a>        freqs<span class="op">=</span>fr.freqs(N),</span>
+<span id="cb25-26"><a></a>        name<span class="op">=</span><span class="st">"flux"</span></span>
+<span id="cb25-27"><a></a>    )</span>
+<span id="cb25-28"><a></a></span>
+<span id="cb25-29"><a></a>    sim_empty<span class="op">=</span>td.Simulation(</span>
+<span id="cb25-30"><a></a>        size<span class="op">=</span>sim_size,</span>
+<span id="cb25-31"><a></a>        grid_spec<span class="op">=</span>grid_spec,</span>
+<span id="cb25-32"><a></a>        structures<span class="op">=</span>[substrate, glass],</span>
+<span id="cb25-33"><a></a>        sources<span class="op">=</span>[source],</span>
+<span id="cb25-34"><a></a>        monitors<span class="op">=</span>[monitor],</span>
+<span id="cb25-35"><a></a>        run_time<span class="op">=</span>run_time_short,</span>
+<span id="cb25-36"><a></a>        boundary_spec<span class="op">=</span>bc</span>
+<span id="cb25-37"><a></a>    )</span>
+<span id="cb25-38"><a></a></span>
+<span id="cb25-39"><a></a>    sim_actual <span class="op">=</span> td.Simulation(</span>
+<span id="cb25-40"><a></a>        size<span class="op">=</span>sim_size,</span>
+<span id="cb25-41"><a></a>        grid_spec<span class="op">=</span>grid_spec,</span>
+<span id="cb25-42"><a></a>        structures<span class="op">=</span>[substrate, glass, cylinder],</span>
+<span id="cb25-43"><a></a>        sources<span class="op">=</span>[source],</span>
+<span id="cb25-44"><a></a>        monitors<span class="op">=</span>[monitor],</span>
+<span id="cb25-45"><a></a>        run_time<span class="op">=</span>run_time_short,</span>
+<span id="cb25-46"><a></a>        boundary_spec<span class="op">=</span>bc</span>
+<span id="cb25-47"><a></a>    )</span>
+<span id="cb25-48"><a></a></span>
+<span id="cb25-49"><a></a>    sims[<span class="ss">f"norm</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> sim_empty</span>
+<span id="cb25-50"><a></a>    sims[<span class="ss">f"actual</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> sim_actual  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="784f7037" class="cell" data-execution_count="100">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a></a><span class="co"># verify the sims dictionary</span></span>
+<span id="cb26-2"><a></a><span class="bu">print</span>(sims.keys())</span>
+<span id="cb26-3"><a></a>batch <span class="op">=</span> web.Batch(simulations<span class="op">=</span>sims, verbose<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['norm0', 'actual0', 'norm1', 'actual1', 'norm2', 'actual2', 'norm3', 'actual3', 'norm4', 'actual4', 'norm5', 'actual5', 'norm6', 'actual6'])</code></pre>
+</div>
+</div>
+<div id="34c1a381" class="cell" data-execution_count="101">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a></a><span class="co"># run the simulations</span></span>
+<span id="cb28-2"><a></a>batch_data <span class="op">=</span> batch.run(path_dir<span class="op">=</span><span class="st">"data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"0aa442dd8b8b4db3aa5281282f231503","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">02:21:47 EDT </span>Started working on Batch containing <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">14</span> tasks.                      
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">02:21:59 EDT </span>Maximum FlexCredit cost: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.392</span> for the whole batch.                
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">             </span>Use <span style="color: #008000; text-decoration-color: #008000">'Batch.real_cost()'</span> to get the billed FlexCredit cost after the
+<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">             </span>Batch has completed.                                               
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"998b0ff80f6e4130a6f83e113840fd6f","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">02:22:21 EDT </span>Batch complete.                                                    
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"24f1ff0a7d6c4d279b4083f0aefa05fa","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div>
+</div>
+</section>
+<section id="mesh-study-results" class="slide level2">
+<h2>Mesh Study Results</h2>
+<div id="3c6cfc0f" class="cell" data-execution_count="104">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a></a><span class="co"># Extract results</span></span>
+<span id="cb29-2"><a></a>x <span class="op">=</span> td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span></span>
+<span id="cb29-3"><a></a>Ts <span class="op">=</span> []</span>
+<span id="cb29-4"><a></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(dls)):</span>
+<span id="cb29-5"><a></a>    Ts.append(batch_data[<span class="ss">f"actual</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>][<span class="st">"flux"</span>].flux <span class="op">/</span> batch_data[<span class="ss">f"norm</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>][<span class="st">"flux"</span>].flux)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="8b39087c" class="cell" data-execution_count="106">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a></a><span class="co"># Plot results</span></span>
+<span id="cb30-2"><a></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb30-3"><a></a><span class="cf">for</span> i, T <span class="kw">in</span> <span class="bu">enumerate</span>(Ts):</span>
+<span id="cb30-4"><a></a>    plt.plot(x, np.abs(T)<span class="op">**</span><span class="dv">2</span>, <span class="st">"-"</span>,lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="ss">f"dl=</span><span class="sc">{</span>dls[i] <span class="op">*</span> <span class="dv">1000</span><span class="sc">:.1f}</span><span class="ss"> nm"</span>)</span>
+<span id="cb30-5"><a></a>plt.xlabel(<span class="vs">r"Wavelength [$nm$]"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb30-6"><a></a>plt.ylabel(<span class="vs">r"$|T|^2$"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb30-7"><a></a>plt.xlim(<span class="dv">1100</span>, <span class="dv">1600</span>)</span>
+<span id="cb30-8"><a></a>plt.ylim(<span class="op">-</span><span class="fl">0.1</span>, <span class="fl">1.1</span>)</span>
+<span id="cb30-9"><a></a>plt.legend(fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb30-10"><a></a>plt.tick_params(axis<span class="op">=</span><span class="st">'both'</span>, labelsize<span class="op">=</span><span class="dv">10</span>) <span class="co"># change tick label size to 10</span></span>
+<span id="cb30-11"><a></a>plt.title(<span class="st">"Transmission Spectra with Different Mesh Sizes"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb30-12"><a></a>plt.savefig(<span class="st">"mesh_convergence.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb30-13"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+
+
+<img data-src="huygens_files/figure-revealjs/cell-30-output-1.png" class="r-stretch"></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

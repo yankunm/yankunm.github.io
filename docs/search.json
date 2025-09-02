@@ -1,293 +1,162 @@
 [
   {
-    "objectID": "simulation/mesh-study.html",
-    "href": "simulation/mesh-study.html",
-    "title": "Mesh Study of Huygen’s Surface",
+    "objectID": "simulation/huygens.html",
+    "href": "simulation/huygens.html",
+    "title": "Simulating Huygens’ Surfaces",
     "section": "",
-    "text": "Mesh-Study Results\n\n\n\nInitialization\n\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport tidy3d as td\nimport tidy3d.web as web\nimport scienceplots\n\n\n# Set logging level to ERROR to reduce output verbosity\ntd.config.logging_level = \"ERROR\"\n\n\n# 0 Define a FreqRange object with desired wavelengths\nfr = td.FreqRange.from_wvl_interval(wvl_min=1.1, wvl_max=1.6)\nN = 301 # num_points\n\n\n# 1 Computational domain size\nh = 0.220  # Height of cylinder\nspc = 2\nLz = spc + h + h + spc\n\nPx = Py = P = 0.666 # periodicity\nsim_size = [Px, Py, Lz]\n\n\n# 3 Structures\nr = 0.242  # radius of the cylinder\nn_Si = 3.5\nSi = td.Medium(permittivity=n_Si**2, name='Si')\ncylinder = td.Structure(\n    geometry=td.Cylinder(center=[0, 0, h / 2], radius=r, length=h, axis=2), medium=Si\n)\n\n# Spin_on glass + substrate\nn_glass = 1.4\nn_SiO2 = 1.45\nglass = td.Medium(permittivity=n_glass**2, name='glass')\nSiO2 = td.Medium(permittivity=n_SiO2**2, name='oxide')\n\nsubstrate = td.Structure(\n    geometry=td.Box(\n        center=(0,0,-Lz/2),\n        size=(td.inf,td.inf,2 * (spc+h))\n    ),\n    medium=SiO2,\n    name='substrate'\n)\n\nglass = td.Structure(\n    geometry=td.Box(\n        center=(0,0,Lz/2),\n        size=(td.inf,td.inf,2 * (spc+h))\n    ),\n    medium=glass,\n    name='superstrate'\n)\n\n# Polymer\nn_polymer = 1.66\npolymer = td.Structure(\n    geometry=td.Box(\n        center=(0,0,0),\n        size=(td.inf,td.inf,td.inf)\n    ),\n    medium=td.Medium(permittivity=n_polymer**2, name='polymer'),\n    name='polymer'\n)\n\n\n# 6 Run Time\nbandwidth = fr.fmax - fr.fmin\nrun_time= 50 / bandwidth\n\n\n# 7 Boundary Condition\nbc = td.BoundarySpec(\n    x=td.Boundary.periodic(), \n    y=td.Boundary.periodic(), \n    z=td.Boundary.pml()\n)\n\n\n\nMesh Study Loop Assignment\n\ndls = [P/2, P/4, P/8, P/16, P/32, P/64] # mesh study list\nsims = {}\n\n\nfor i, dl in enumerate(dls):\n    # 2 Grid Specifications\n    horizontal_grid = td.UniformGrid(dl=dl)\n    vertical_grid = td.AutoGrid(min_steps_per_wvl=32)\n    grid_spec=td.GridSpec(\n        grid_x=horizontal_grid,\n        grid_y=horizontal_grid,\n        grid_z=vertical_grid,\n    )\n\n    # 4 Sources\n    source = td.PlaneWave(\n        source_time=fr.to_gaussian_pulse(),\n        size=(td.inf, td.inf, 0),\n        center=(0, 0, Lz/2 - spc + 2 * dl),\n        direction=\"-\",\n        pol_angle=0\n    )\n\n    # 5 Monitor\n    monitor = td.FluxMonitor(\n        center=(0, 0, -Lz/2 + spc - 2*dl),\n        size=(td.inf, td.inf, 0),\n        freqs=fr.freqs(N),\n        name=\"flux\"\n    )\n\n    sim_empty=td.Simulation(\n        size=sim_size,\n        grid_spec=grid_spec,\n        structures=[substrate, glass],\n        sources=[source],\n        monitors=[monitor],\n        run_time=run_time,\n        boundary_spec=bc\n    )\n\n    sim_actual = td.Simulation(\n        size=sim_size,\n        grid_spec=grid_spec,\n        structures=[substrate, glass, cylinder],\n        sources=[source],\n        monitors=[monitor],\n        run_time=run_time,\n        boundary_spec=bc\n    )\n\n    sims[f\"norm{i}\"] = sim_empty\n    sims[f\"actual{i}\"] = sim_actual  \n    \n\n\n# verify the sims dictionary\nprint(sims.keys())\nbatch = web.Batch(simulations=sims, verbose=True)\n\ndict_keys(['norm0', 'actual0', 'norm1', 'actual1', 'norm2', 'actual2', 'norm3', 'actual3', 'norm4', 'actual4', 'norm5', 'actual5'])\n\n\n\n# run the simulations\n%timeit\nbatch_data = batch.run(path_dir=\"data\")\n\n\n\n\n\n\n\n17:55:51 EDT Started working on Batch containing 12 tasks.                      \n\n\n\n17:56:00 EDT Maximum FlexCredit cost: 0.300 for the whole batch.                \n\n\n\n             Use 'Batch.real_cost()' to get the billed FlexCredit cost after the\n             Batch has completed.                                               \n\n\n\n\n\n\n17:56:07 EDT Batch complete.                                                    \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlotting\n\n# this uses scienceplots to make plots look better\nplt.style.use(['science', 'notebook', 'grid'])\n\n\nx = td.C_0 / fr.freqs(N) * 1000\nTs = []\nfor i in range(len(dls)):\n    Ts.append(batch_data[f\"actual{i}\"][\"flux\"].flux / batch_data[f\"norm{i}\"][\"flux\"].flux)\n\n\nplt.figure(figsize=(12, 5))\nfor i, T in enumerate(Ts):\n    plt.plot(x, T, \"-\",lw=1, label=f\"dl={dls[i] * 1000:.1f} nm\")\nplt.xlabel(r\"Wavelength [$nm$]\")\nplt.ylabel(\"Magnitude\")\nplt.ylim(-0.1, 1.1)\nplt.legend(fontsize=12)\nplt.tick_params(axis='both', labelsize=10) # change tick label size to 10\nplt.title(\"Transmission Spectra with Different Mesh Sizes\", fontsize=14)\nplt.show()",
+    "text": "Figure 1: Huygens Metasurface\n\n\n\n\nIn this notebook, the Huygens’ Metasurface figure 5(a) and 5(c) are reproduced, and mesh study is done for the transmittance. Link to Paper\n\nSimulation Overview\n\n# Import the necessary packages\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport tidy3d as td\nimport tidy3d.web as web\nimport scienceplots\n\n# Set logging level to ERROR to reduce output verbosity\ntd.config.logging_level = \"ERROR\"\n\nFor the transmittance and phase, two different background materials were used based in the paper, so two separate simulations were ran (with background medium as the only difference).\nNote: Several other technical variables need to be changed. In tidy3D simulation, transmittance should be measured with td.FluxMonitor and phase should be measured with td.FieldMonitor. The run_time also needs to increase since the background medium has a higher refractive index in the second simulation than the first, so waves will travel more slowly.\n\nSimulation 1\n\n\n\nTop Layer n=1.4, Bottom Layer n=1.45\n\n\n\nSimulation 2\n\n\n\nBackground medium n=1.66\n\n\n\nSimulation Results\n\n\nMesh Study Results\n\n\n\nConvergence of Transmittance\n\n\n\n\n\nInitialization\nHere we follow the seven steps of initialization I wrote down in the tutorial:\n\nFrequency Range Specification\nComputational Domain Size\nGrid Specifications (Discretization size)\nStructures and Materials\nSources\nMonitors\nRun time\nBoundary Condition Specification\n\n\n\n0 Frequency Range Specification\n\n# 0 Define a FreqRange object with desired wavelengths\nfr = td.FreqRange.from_wvl_interval(wvl_min=1.1, wvl_max=1.6)\nN = 301 # num_points\nfreq0 = fr.freq0\nlda0 = td.C_0 / fr.freq0\n\n\n\n1 Computational Domain Size\n\n# 1 Computational Domain Size\nh = 0.220  # Height of cylinder\nspc = 2\nLz = spc + h + h + spc\n\nPx = Py = P = 0.666 # periodicity\nsim_size = [Px, Py, Lz]\n\n\n\n2 Grid Resolution\nGrid resolution is uniform grid in the horizontal direction with a yee cell length of \\frac{P}{32} where P is the periodicity. In the vertical direction, AutoGrid means it’s non-uniform and adjusted based on the wavelength of the particular medium. Here, min_steps_per_wvl=32 means we are taking a minimum of 32 steps based on the wavelength, which will be shorter in the medium with a higher index of refraction.\n\n# 2 Grid Resolution\ndl = P / 32\nhorizontal_grid = td.UniformGrid(dl=dl)\nvertical_grid = td.AutoGrid(min_steps_per_wvl=32)\ngrid_spec=td.GridSpec(\n    grid_x=horizontal_grid,\n    grid_y=horizontal_grid,\n    grid_z=vertical_grid,\n)\n\n\n\n3 Structures and Materials\nStructures and Materials for the meta-atom\n\nr = 0.242  # radius of the cylinder\nn_Si = 3.5\nSi = td.Medium(permittivity=n_Si**2, name='Si')\ncylinder = td.Structure(\n    geometry=td.Cylinder(center=[0, 0, h / 2], radius=r, length=h, axis=2), medium=Si\n)\n\nBackground Medium for Figure 5(a) (n_1=1.4, n_2=1.45)\n\n# Background medium for the first simulation\nn_glass = 1.4\nn_SiO2 = 1.45\nglass = td.Medium(permittivity=n_glass**2, name='glass')\nSiO2 = td.Medium(permittivity=n_SiO2**2, name='oxide')\n\nsubstrate = td.Structure(\n    geometry=td.Box(\n        center=(0,0,-Lz/2),\n        size=(td.inf,td.inf,2 * (spc+h))\n    ),\n    medium=SiO2,\n    name='substrate'\n)\n\nglass = td.Structure(\n    geometry=td.Box(\n        center=(0,0,Lz/2),\n        size=(td.inf,td.inf,2 * (spc+h))\n    ),\n    medium=glass,\n    name='superstrate'\n)\n\nBackground Medium for Figure 5(c) (n=1.66)\n\n# Background medium for the second simulation\n# Polymer\nn_polymer = 1.66\npolymer = td.Structure(\n    geometry=td.Box(\n        center=(0,0,0),\n        size=(td.inf,td.inf,td.inf)\n    ),\n    medium=td.Medium(permittivity=n_polymer**2, name='polymer'),\n    name='polymer'\n)\n\n\n\n4 The Source\nThe source is a simple Plane wave that traverses in the -z axis, placed \\frac{\\lambda_0}{2} distance above the metaatom in the computational domain. Polarization is along the x-axis, that’s what pol_angle=0 means.\n\nsource = td.PlaneWave(\n    source_time=fr.to_gaussian_pulse(),\n    size=(td.inf, td.inf, 0),\n    center=(0, 0, Lz/2 - spc + 0.5 * lda0),\n    direction=\"-\",\n    pol_angle=0\n)\n\n\n\n5 Monitors\nMonitor for Transmittance\n\nflux_monitor = td.FluxMonitor(\n    center=(0, 0, -Lz/2 + spc - 0.5 * lda0),\n    size=(td.inf, td.inf, 0),\n    freqs=fr.freqs(N),\n    name=\"flux_monitor\"\n)\n\nMonitor for Phase\n\n# We use FieldMonitor instead of DiffractionMonitor because\n# DiffractionMonitor only gives you amplitudes of diffraction orders, \n# losing phase detail if you care about continuous phase.\nfield_monitor = td.FieldMonitor(\n    center=(0, 0, -Lz/2 + spc - 0.5 * lda0),\n    size=(td.inf, td.inf, 0),\n    fields=[\"Ex\"],\n    freqs=fr.freqs(N),\n    name=\"field_monitor\"\n)\n\n\n\n6 Run Time\n\nbandwidth = fr.fmax - fr.fmin\nrun_time_short = 50 / bandwidth # run_time for the transmittance simulation\nrun_time_long = 200 / bandwidth # run_time for the phase simulation\n\n\n\n7 Boundary Conditions\nWe apply PML in the +Z and -Z surfaces.\n\nbc = td.BoundarySpec(\n    x=td.Boundary.periodic(), \n    y=td.Boundary.periodic(), \n    z=td.Boundary.pml()\n)\n\n\n\nHelper Function for simulation\nSince we have to run simulation two times, it is convenient to abstract out what are the differences to the two simulations and make defining simulations easier. Always follow the DRY Principle.\n\ndef simulation_helper(background, monitors, run_time):\n    \"\"\"\n    Create normalization and actual tidy3d simulations, visualize geometry, \n    and return both as a dictionary.\n\n    Parameters\n    ----------\n    background : list of td.Structure\n        Background structures (without the cylinder).\n    monitors : list of td.Monitor\n        Monitors for the normalization run.\n    run_time : float\n        Run time for the normalization simulation.\n\n    Returns\n    -------\n    dict\n        {\"norm\": Simulation without cylinder,\n         \"actual\": Simulation with cylinder}\n\n    Notes\n    -----\n    Saves cross-sectional plots of the actual simulation (x=0, y=0, z=0) \n    with grid overlay for verification.\n    \"\"\"\n    sim_empty=td.Simulation(\n        size=sim_size,\n        grid_spec=grid_spec,\n        structures=background,\n        sources=[source],\n        monitors=monitors,\n        run_time=run_time,\n        boundary_spec=bc\n    )\n\n    background.append(cylinder)\n    sim_actual = td.Simulation(\n        size=sim_size,\n        grid_spec=grid_spec,\n        structures=background,\n        sources=[source],\n        monitors=monitors,\n        run_time=run_time,\n        boundary_spec=bc\n    )\n\n    # Always visualize simulation before running\n    fig, (ax1,ax2,ax3) = plt.subplots(1, 3, figsize=(12, 6))\n    ax1.tick_params(axis='x', labelsize=7)\n    ax2.tick_params(axis='x', labelsize=7)\n    sim_actual.plot(x=0, ax=ax1)\n    sim_actual.plot_grid(x=0, ax=ax1)\n    sim_actual.plot(y=0, ax=ax2)\n    sim_actual.plot_grid(y=0, ax=ax2)\n    sim_actual.plot(z=0, ax=ax3)\n    sim_actual.plot_grid(z=0, ax=ax3)\n    plt.savefig(f'huygens_structure_{background[0].name}.png', dpi=300)\n    plt.show()\n\n    sims = {\n        \"norm\": sim_empty,\n        \"actual\": sim_actual,\n    }\n\n    return sims\n\n\n\n\nTransmittance Simulation\n\nsims = simulation_helper(\n    background=[substrate, glass],\n    monitors=[flux_monitor],\n    run_time=run_time_short\n)\n\n\n\n\n\n\n\n\n\nbatch = web.Batch(simulations=sims, verbose=True)\nbatch_data = batch.run(path_dir=\"data/huygens5a\")\n\n\n\n\n\n\n\n02:20:56 EDT Started working on Batch containing 2 tasks.                       \n\n\n\n02:20:57 EDT Maximum FlexCredit cost: 0.050 for the whole batch.                \n\n\n\n             Use 'Batch.real_cost()' to get the billed FlexCredit cost after the\n             Batch has completed.                                               \n\n\n\n\n\n\n02:20:58 EDT Batch complete.                                                    \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTransmittance Results\n\n# this uses scienceplots to make plots look better\nplt.style.use(['science', 'notebook', 'grid'])\nT = batch_data[\"actual\"][\"flux_monitor\"].flux / batch_data[\"norm\"][\"flux_monitor\"].flux\n\n\n# plot transmission, compare to paper results, look similar\nfig, ax = plt.subplots(1, 1, figsize=(6, 4.5))\nplt.plot(td.C_0 / fr.freqs(N) * 1000, np.abs(T)**2, \"r\", lw=1, label=\"T\")\nplt.xlabel(r\"wavelength ($nm$)\")\nplt.ylabel(\"Transmittance\")\nplt.ylim(0, 1)\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\n\n\nPhase Simulation\n\nsims = simulation_helper(\n    background=[polymer],\n    monitors=[field_monitor],\n    run_time=run_time_long\n)\n\n\n\n\n\n\n\n\n\nbatch = web.Batch(simulations=sims, verbose=True)\nbatch_data = batch.run(path_dir=\"data/huygens5c\")\n\n\n\n\n\n\n\n02:21:11 EDT Started working on Batch containing 2 tasks.                       \n\n\n\n02:21:13 EDT Maximum FlexCredit cost: 0.050 for the whole batch.                \n\n\n\n             Use 'Batch.real_cost()' to get the billed FlexCredit cost after the\n             Batch has completed.                                               \n\n\n\n\n\n\n02:21:14 EDT Batch complete.                                                    \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPhase Results\n\n# Data Extraction\nEx_actual = batch_data[\"actual\"][\"field_monitor\"].Ex \nEx_norm = batch_data[\"norm\"][\"field_monitor\"].Ex\nEx = Ex_actual / Ex_norm\n\n\n# 1. Compute average over the xy-plane\nEx_avg = np.mean(Ex[:, :, 0, :], axis=(0,1))\n\n# 2. Compute phase\nphase_avg = np.angle(Ex_avg)\n\n# 3. Unwrap phase to remove ±pi jumps\nphase_avg_unwrapped = np.unwrap(phase_avg)\n\n# 4. Make relative to first point (optional)\nphase_rel = phase_avg_unwrapped - phase_avg_unwrapped[0]\n\nphase_actual = np.unwrap(np.angle(np.mean(Ex_actual[:, :, 0, :], axis=(0,1))))\nphase_norm = np.unwrap(np.angle(np.mean(Ex_norm[:, :, 0, :], axis=(0,1))))\n\n\nfig, ax = plt.subplots(1, 1, figsize=(6, 4.5))\nplt.plot(td.C_0 / fr.freqs(N) * 1000, phase_rel, \"r\", lw=1, label=\"$\\phi$\")\nplt.plot(td.C_0 / fr.freqs(N) * 1000, phase_actual, \"b\", lw=1, label=\"Actual $\\phi$\")\nplt.plot(td.C_0 / fr.freqs(N) * 1000, phase_norm, \"g\", lw=1, label=\"Norm $\\phi$\")\nplt.xlabel(r\"wavelength ($nm$)\")\nplt.ylabel(\"Phase\")\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\n\n\nFinal Plotting\n\nfig, axes = plt.subplots(1, 2, figsize=(12, 4))\n\n# work on the first figure\nax = axes[0]\nax.tick_params(axis=\"both\", labelsize=10)\nax.plot(td.C_0 / fr.freqs(N) * 1000, np.abs(T)**2, \"r\", lw=1, label=\"$|T|^2$\")\nax.set_xlabel(r\"wavelength [$nm$]\", fontsize=12)\nax.set_ylabel(\"Transmittance\", fontsize=12)\nax.set_title(\"Transmittance vs Wavelength from Simulation 1\", fontsize=12)\nax.set_xlim(1100, 1600)\nax.set_ylim(0, 1.1)\nax.legend(loc=\"lower right\", fontsize=12)\n\n# work on the second figure\nax = axes[1]\nax.tick_params(axis=\"both\", labelsize=10)\nax.plot(td.C_0 / fr.freqs(N) * 1000, phase_rel, \"b\", lw=1, label=\"$\\phi$\")\nax.set_xlabel(r\"wavelength [$nm$]\", fontsize=12)\nax.set_ylabel(\"Phase [rad]\", fontsize=12)\nax.set_title(\"Phase Change vs Wavelength from Simulation 2\", fontsize=12)\nax.set_xlim(1100, 1600)\nax.set_ylim(0, np.pi*2)\nyticks = [0, np.pi/2, np.pi, 3*np.pi/2, 2*np.pi]\nytick_labels = [r\"$0$\", r\"$\\frac{\\pi}{2}$\", r\"$\\pi$\", \n                r\"$\\frac{3\\pi}{2}$\", r\"$2\\pi$\"]\nax.set_yticks(yticks)\nax.set_yticklabels(ytick_labels)\nax.legend()\n\nplt.savefig(\"huygens.png\", dpi=300)\n\n\n\n\n\n\n\n\n\n\nMesh Study\nHere, we set out to study the effect of different yee cell length on the transmittance.\n\ndls = [P/2, P/4, P/8, P/16, P/32, P/64, P/128] # mesh study list\nsims = {}\n\n\n# for each dl in dls\nfor i, dl in enumerate(dls):\n    # 2 Grid Specifications\n    horizontal_grid = td.UniformGrid(dl=dl)\n    vertical_grid = td.AutoGrid(min_steps_per_wvl=32)\n    grid_spec=td.GridSpec(\n        grid_x=horizontal_grid,\n        grid_y=horizontal_grid,\n        grid_z=vertical_grid,\n    )\n\n    # 4 Sources\n    source = td.PlaneWave(\n        source_time=fr.to_gaussian_pulse(),\n        size=(td.inf, td.inf, 0),\n        center=(0, 0, Lz/2 - spc + 2 * dl),\n        direction=\"-\",\n        pol_angle=0\n    )\n\n    # 5 Monitor\n    monitor = td.FluxMonitor(\n        center=(0, 0, -Lz/2 + spc - 2*dl),\n        size=(td.inf, td.inf, 0),\n        freqs=fr.freqs(N),\n        name=\"flux\"\n    )\n\n    sim_empty=td.Simulation(\n        size=sim_size,\n        grid_spec=grid_spec,\n        structures=[substrate, glass],\n        sources=[source],\n        monitors=[monitor],\n        run_time=run_time_short,\n        boundary_spec=bc\n    )\n\n    sim_actual = td.Simulation(\n        size=sim_size,\n        grid_spec=grid_spec,\n        structures=[substrate, glass, cylinder],\n        sources=[source],\n        monitors=[monitor],\n        run_time=run_time_short,\n        boundary_spec=bc\n    )\n\n    sims[f\"norm{i}\"] = sim_empty\n    sims[f\"actual{i}\"] = sim_actual  \n\n\n# verify the sims dictionary\nprint(sims.keys())\nbatch = web.Batch(simulations=sims, verbose=True)\n\ndict_keys(['norm0', 'actual0', 'norm1', 'actual1', 'norm2', 'actual2', 'norm3', 'actual3', 'norm4', 'actual4', 'norm5', 'actual5', 'norm6', 'actual6'])\n\n\n\n# run the simulations\nbatch_data = batch.run(path_dir=\"data\")\n\n\n\n\n\n\n\n02:21:47 EDT Started working on Batch containing 14 tasks.                      \n\n\n\n02:21:59 EDT Maximum FlexCredit cost: 0.392 for the whole batch.                \n\n\n\n             Use 'Batch.real_cost()' to get the billed FlexCredit cost after the\n             Batch has completed.                                               \n\n\n\n\n\n\n02:22:21 EDT Batch complete.                                                    \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMesh Study Results\n\n# Extract results\nx = td.C_0 / fr.freqs(N) * 1000\nTs = []\nfor i in range(len(dls)):\n    Ts.append(batch_data[f\"actual{i}\"][\"flux\"].flux / batch_data[f\"norm{i}\"][\"flux\"].flux)\n\n\n# Plot results\nplt.figure(figsize=(10, 5))\nfor i, T in enumerate(Ts):\n    plt.plot(x, np.abs(T)**2, \"-\",lw=1, label=f\"dl={dls[i] * 1000:.1f} nm\")\nplt.xlabel(r\"Wavelength [$nm$]\", fontsize=12)\nplt.ylabel(r\"$|T|^2$\", fontsize=12)\nplt.xlim(1100, 1600)\nplt.ylim(-0.1, 1.1)\nplt.legend(fontsize=12)\nplt.tick_params(axis='both', labelsize=10) # change tick label size to 10\nplt.title(\"Transmission Spectra with Different Mesh Sizes\", fontsize=14)\nplt.savefig(\"mesh_convergence.png\", dpi=300)\nplt.show()",
     "crumbs": [
       "Simulation",
-      "Mesh Study of Huygen's Surface"
+      "Simulating Huygens’ Surfaces"
     ]
   },
   {
-    "objectID": "simulation/mesh-study.slides.html#initialization",
-    "href": "simulation/mesh-study.slides.html#initialization",
-    "title": "Mesh Study of Huygen’s Surface",
+    "objectID": "simulation/huygens.slides.html#simulation-overview",
+    "href": "simulation/huygens.slides.html#simulation-overview",
+    "title": "Simulating Huygens’ Surfaces",
+    "section": "Simulation Overview",
+    "text": "Simulation Overview\n\n# Import the necessary packages\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport tidy3d as td\nimport tidy3d.web as web\nimport scienceplots\n\n# Set logging level to ERROR to reduce output verbosity\ntd.config.logging_level = \"ERROR\"\n\nFor the transmittance and phase, two different background materials were used based in the paper, so two separate simulations were ran (with background medium as the only difference).\nNote: Several other technical variables need to be changed. In tidy3D simulation, transmittance should be measured with td.FluxMonitor and phase should be measured with td.FieldMonitor. The run_time also needs to increase since the background medium has a higher refractive index in the second simulation than the first, so waves will travel more slowly."
+  },
+  {
+    "objectID": "simulation/huygens.slides.html#initialization",
+    "href": "simulation/huygens.slides.html#initialization",
+    "title": "Simulating Huygens’ Surfaces",
     "section": "Initialization",
-    "text": "Initialization\n\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport tidy3d as td\nimport tidy3d.web as web\nimport scienceplots\n\n\n# Set logging level to ERROR to reduce output verbosity\ntd.config.logging_level = \"ERROR\"\n\n\n# 0 Define a FreqRange object with desired wavelengths\nfr = td.FreqRange.from_wvl_interval(wvl_min=1.1, wvl_max=1.6)\nN = 301 # num_points\n\n\n# 1 Computational domain size\nh = 0.220  # Height of cylinder\nspc = 2\nLz = spc + h + h + spc\n\nPx = Py = P = 0.666 # periodicity\nsim_size = [Px, Py, Lz]\n\n\n# 3 Structures\nr = 0.242  # radius of the cylinder\nn_Si = 3.5\nSi = td.Medium(permittivity=n_Si**2, name='Si')\ncylinder = td.Structure(\n    geometry=td.Cylinder(center=[0, 0, h / 2], radius=r, length=h, axis=2), medium=Si\n)\n\n# Spin_on glass + substrate\nn_glass = 1.4\nn_SiO2 = 1.45\nglass = td.Medium(permittivity=n_glass**2, name='glass')\nSiO2 = td.Medium(permittivity=n_SiO2**2, name='oxide')\n\nsubstrate = td.Structure(\n    geometry=td.Box(\n        center=(0,0,-Lz/2),\n        size=(td.inf,td.inf,2 * (spc+h))\n    ),\n    medium=SiO2,\n    name='substrate'\n)\n\nglass = td.Structure(\n    geometry=td.Box(\n        center=(0,0,Lz/2),\n        size=(td.inf,td.inf,2 * (spc+h))\n    ),\n    medium=glass,\n    name='superstrate'\n)\n\n# Polymer\nn_polymer = 1.66\npolymer = td.Structure(\n    geometry=td.Box(\n        center=(0,0,0),\n        size=(td.inf,td.inf,td.inf)\n    ),\n    medium=td.Medium(permittivity=n_polymer**2, name='polymer'),\n    name='polymer'\n)\n\n\n# 6 Run Time\nbandwidth = fr.fmax - fr.fmin\nrun_time= 50 / bandwidth\n\n\n# 7 Boundary Condition\nbc = td.BoundarySpec(\n    x=td.Boundary.periodic(), \n    y=td.Boundary.periodic(), \n    z=td.Boundary.pml()\n)"
+    "text": "Initialization\nHere we follow the seven steps of initialization I wrote down in the tutorial:\n\nFrequency Range Specification\nComputational Domain Size\nGrid Specifications (Discretization size)\nStructures and Materials\nSources\nMonitors\nRun time\nBoundary Condition Specification"
   },
   {
-    "objectID": "simulation/mesh-study.slides.html#mesh-study-loop-assignment",
-    "href": "simulation/mesh-study.slides.html#mesh-study-loop-assignment",
-    "title": "Mesh Study of Huygen’s Surface",
-    "section": "Mesh Study Loop Assignment",
-    "text": "Mesh Study Loop Assignment\n\ndls = [P/2, P/4, P/8, P/16, P/32, P/64] # mesh study list\nsims = {}\n\n\nfor i, dl in enumerate(dls):\n    # 2 Grid Specifications\n    horizontal_grid = td.UniformGrid(dl=dl)\n    vertical_grid = td.AutoGrid(min_steps_per_wvl=32)\n    grid_spec=td.GridSpec(\n        grid_x=horizontal_grid,\n        grid_y=horizontal_grid,\n        grid_z=vertical_grid,\n    )\n\n    # 4 Sources\n    source = td.PlaneWave(\n        source_time=fr.to_gaussian_pulse(),\n        size=(td.inf, td.inf, 0),\n        center=(0, 0, Lz/2 - spc + 2 * dl),\n        direction=\"-\",\n        pol_angle=0\n    )\n\n    # 5 Monitor\n    monitor = td.FluxMonitor(\n        center=(0, 0, -Lz/2 + spc - 2*dl),\n        size=(td.inf, td.inf, 0),\n        freqs=fr.freqs(N),\n        name=\"flux\"\n    )\n\n    sim_empty=td.Simulation(\n        size=sim_size,\n        grid_spec=grid_spec,\n        structures=[substrate, glass],\n        sources=[source],\n        monitors=[monitor],\n        run_time=run_time,\n        boundary_spec=bc\n    )\n\n    sim_actual = td.Simulation(\n        size=sim_size,\n        grid_spec=grid_spec,\n        structures=[substrate, glass, cylinder],\n        sources=[source],\n        monitors=[monitor],\n        run_time=run_time,\n        boundary_spec=bc\n    )\n\n    sims[f\"norm{i}\"] = sim_empty\n    sims[f\"actual{i}\"] = sim_actual  \n    \n\n\n# verify the sims dictionary\nprint(sims.keys())\nbatch = web.Batch(simulations=sims, verbose=True)\n\ndict_keys(['norm0', 'actual0', 'norm1', 'actual1', 'norm2', 'actual2', 'norm3', 'actual3', 'norm4', 'actual4', 'norm5', 'actual5'])\n\n\n\n# run the simulations\n%timeit\nbatch_data = batch.run(path_dir=\"data\")\n\n\n\n\n\n\n\n17:55:51 EDT Started working on Batch containing 12 tasks.                      \n\n\n\n17:56:00 EDT Maximum FlexCredit cost: 0.300 for the whole batch.                \n\n\n\n             Use 'Batch.real_cost()' to get the billed FlexCredit cost after the\n             Batch has completed.                                               \n\n\n\n\n\n\n17:56:07 EDT Batch complete."
+    "objectID": "simulation/huygens.slides.html#frequency-range-specification",
+    "href": "simulation/huygens.slides.html#frequency-range-specification",
+    "title": "Simulating Huygens’ Surfaces",
+    "section": "0 Frequency Range Specification",
+    "text": "0 Frequency Range Specification\n\n# 0 Define a FreqRange object with desired wavelengths\nfr = td.FreqRange.from_wvl_interval(wvl_min=1.1, wvl_max=1.6)\nN = 301 # num_points\nfreq0 = fr.freq0\nlda0 = td.C_0 / fr.freq0"
   },
   {
-    "objectID": "simulation/mesh-study.slides.html#plotting",
-    "href": "simulation/mesh-study.slides.html#plotting",
-    "title": "Mesh Study of Huygen’s Surface",
-    "section": "Plotting",
-    "text": "Plotting\n\n# this uses scienceplots to make plots look better\nplt.style.use(['science', 'notebook', 'grid'])\n\n\nx = td.C_0 / fr.freqs(N) * 1000\nTs = []\nfor i in range(len(dls)):\n    Ts.append(batch_data[f\"actual{i}\"][\"flux\"].flux / batch_data[f\"norm{i}\"][\"flux\"].flux)\n\n\nplt.figure(figsize=(12, 5))\nfor i, T in enumerate(Ts):\n    plt.plot(x, T, \"-\",lw=1, label=f\"dl={dls[i] * 1000:.1f} nm\")\nplt.xlabel(r\"Wavelength [$nm$]\")\nplt.ylabel(\"Magnitude\")\nplt.ylim(-0.1, 1.1)\nplt.legend(fontsize=12)\nplt.tick_params(axis='both', labelsize=10) # change tick label size to 10\nplt.title(\"Transmission Spectra with Different Mesh Sizes\", fontsize=14)\nplt.show()"
+    "objectID": "simulation/huygens.slides.html#computational-domain-size",
+    "href": "simulation/huygens.slides.html#computational-domain-size",
+    "title": "Simulating Huygens’ Surfaces",
+    "section": "1 Computational Domain Size",
+    "text": "1 Computational Domain Size\n\n# 1 Computational Domain Size\nh = 0.220  # Height of cylinder\nspc = 2\nLz = spc + h + h + spc\n\nPx = Py = P = 0.666 # periodicity\nsim_size = [Px, Py, Lz]"
   },
   {
-    "objectID": "experiment.html",
-    "href": "experiment.html",
-    "title": "Yankun (Alex) Meng",
+    "objectID": "simulation/huygens.slides.html#grid-resolution",
+    "href": "simulation/huygens.slides.html#grid-resolution",
+    "title": "Simulating Huygens’ Surfaces",
+    "section": "2 Grid Resolution",
+    "text": "2 Grid Resolution\nGrid resolution is uniform grid in the horizontal direction with a yee cell length of \\frac{P}{32} where P is the periodicity. In the vertical direction, AutoGrid means it’s non-uniform and adjusted based on the wavelength of the particular medium. Here, min_steps_per_wvl=32 means we are taking a minimum of 32 steps based on the wavelength, which will be shorter in the medium with a higher index of refraction.\n\n# 2 Grid Resolution\ndl = P / 32\nhorizontal_grid = td.UniformGrid(dl=dl)\nvertical_grid = td.AutoGrid(min_steps_per_wvl=32)\ngrid_spec=td.GridSpec(\n    grid_x=horizontal_grid,\n    grid_y=horizontal_grid,\n    grid_z=vertical_grid,\n)"
+  },
+  {
+    "objectID": "simulation/huygens.slides.html#structures-and-materials",
+    "href": "simulation/huygens.slides.html#structures-and-materials",
+    "title": "Simulating Huygens’ Surfaces",
+    "section": "3 Structures and Materials",
+    "text": "3 Structures and Materials\nStructures and Materials for the meta-atom\n\nr = 0.242  # radius of the cylinder\nn_Si = 3.5\nSi = td.Medium(permittivity=n_Si**2, name='Si')\ncylinder = td.Structure(\n    geometry=td.Cylinder(center=[0, 0, h / 2], radius=r, length=h, axis=2), medium=Si\n)\n\nBackground Medium for Figure 5(a) (n_1=1.4, n_2=1.45)\n\n# Background medium for the first simulation\nn_glass = 1.4\nn_SiO2 = 1.45\nglass = td.Medium(permittivity=n_glass**2, name='glass')\nSiO2 = td.Medium(permittivity=n_SiO2**2, name='oxide')\n\nsubstrate = td.Structure(\n    geometry=td.Box(\n        center=(0,0,-Lz/2),\n        size=(td.inf,td.inf,2 * (spc+h))\n    ),\n    medium=SiO2,\n    name='substrate'\n)\n\nglass = td.Structure(\n    geometry=td.Box(\n        center=(0,0,Lz/2),\n        size=(td.inf,td.inf,2 * (spc+h))\n    ),\n    medium=glass,\n    name='superstrate'\n)\n\nBackground Medium for Figure 5(c) (n=1.66)\n\n# Background medium for the second simulation\n# Polymer\nn_polymer = 1.66\npolymer = td.Structure(\n    geometry=td.Box(\n        center=(0,0,0),\n        size=(td.inf,td.inf,td.inf)\n    ),\n    medium=td.Medium(permittivity=n_polymer**2, name='polymer'),\n    name='polymer'\n)"
+  },
+  {
+    "objectID": "simulation/huygens.slides.html#the-source",
+    "href": "simulation/huygens.slides.html#the-source",
+    "title": "Simulating Huygens’ Surfaces",
+    "section": "4 The Source",
+    "text": "4 The Source\nThe source is a simple Plane wave that traverses in the -z axis, placed \\frac{\\lambda_0}{2} distance above the metaatom in the computational domain. Polarization is along the x-axis, that’s what pol_angle=0 means.\n\nsource = td.PlaneWave(\n    source_time=fr.to_gaussian_pulse(),\n    size=(td.inf, td.inf, 0),\n    center=(0, 0, Lz/2 - spc + 0.5 * lda0),\n    direction=\"-\",\n    pol_angle=0\n)"
+  },
+  {
+    "objectID": "simulation/huygens.slides.html#monitors",
+    "href": "simulation/huygens.slides.html#monitors",
+    "title": "Simulating Huygens’ Surfaces",
+    "section": "5 Monitors",
+    "text": "5 Monitors\nMonitor for Transmittance\n\nflux_monitor = td.FluxMonitor(\n    center=(0, 0, -Lz/2 + spc - 0.5 * lda0),\n    size=(td.inf, td.inf, 0),\n    freqs=fr.freqs(N),\n    name=\"flux_monitor\"\n)\n\nMonitor for Phase\n\n# We use FieldMonitor instead of DiffractionMonitor because\n# DiffractionMonitor only gives you amplitudes of diffraction orders, \n# losing phase detail if you care about continuous phase.\nfield_monitor = td.FieldMonitor(\n    center=(0, 0, -Lz/2 + spc - 0.5 * lda0),\n    size=(td.inf, td.inf, 0),\n    fields=[\"Ex\"],\n    freqs=fr.freqs(N),\n    name=\"field_monitor\"\n)"
+  },
+  {
+    "objectID": "simulation/huygens.slides.html#run-time",
+    "href": "simulation/huygens.slides.html#run-time",
+    "title": "Simulating Huygens’ Surfaces",
+    "section": "6 Run Time",
+    "text": "6 Run Time\n\nbandwidth = fr.fmax - fr.fmin\nrun_time_short = 50 / bandwidth # run_time for the transmittance simulation\nrun_time_long = 200 / bandwidth # run_time for the phase simulation"
+  },
+  {
+    "objectID": "simulation/huygens.slides.html#boundary-conditions",
+    "href": "simulation/huygens.slides.html#boundary-conditions",
+    "title": "Simulating Huygens’ Surfaces",
+    "section": "7 Boundary Conditions",
+    "text": "7 Boundary Conditions\nWe apply PML in the +Z and -Z surfaces.\n\nbc = td.BoundarySpec(\n    x=td.Boundary.periodic(), \n    y=td.Boundary.periodic(), \n    z=td.Boundary.pml()\n)"
+  },
+  {
+    "objectID": "simulation/huygens.slides.html#helper-function-for-simulation",
+    "href": "simulation/huygens.slides.html#helper-function-for-simulation",
+    "title": "Simulating Huygens’ Surfaces",
+    "section": "Helper Function for simulation",
+    "text": "Helper Function for simulation\nSince we have to run simulation two times, it is convenient to abstract out what are the differences to the two simulations and make defining simulations easier. Always follow the DRY Principle.\n\ndef simulation_helper(background, monitors, run_time):\n    \"\"\"\n    Create normalization and actual tidy3d simulations, visualize geometry, \n    and return both as a dictionary.\n\n    Parameters\n    ----------\n    background : list of td.Structure\n        Background structures (without the cylinder).\n    monitors : list of td.Monitor\n        Monitors for the normalization run.\n    run_time : float\n        Run time for the normalization simulation.\n\n    Returns\n    -------\n    dict\n        {\"norm\": Simulation without cylinder,\n         \"actual\": Simulation with cylinder}\n\n    Notes\n    -----\n    Saves cross-sectional plots of the actual simulation (x=0, y=0, z=0) \n    with grid overlay for verification.\n    \"\"\"\n    sim_empty=td.Simulation(\n        size=sim_size,\n        grid_spec=grid_spec,\n        structures=background,\n        sources=[source],\n        monitors=monitors,\n        run_time=run_time,\n        boundary_spec=bc\n    )\n\n    background.append(cylinder)\n    sim_actual = td.Simulation(\n        size=sim_size,\n        grid_spec=grid_spec,\n        structures=background,\n        sources=[source],\n        monitors=monitors,\n        run_time=run_time,\n        boundary_spec=bc\n    )\n\n    # Always visualize simulation before running\n    fig, (ax1,ax2,ax3) = plt.subplots(1, 3, figsize=(12, 6))\n    ax1.tick_params(axis='x', labelsize=7)\n    ax2.tick_params(axis='x', labelsize=7)\n    sim_actual.plot(x=0, ax=ax1)\n    sim_actual.plot_grid(x=0, ax=ax1)\n    sim_actual.plot(y=0, ax=ax2)\n    sim_actual.plot_grid(y=0, ax=ax2)\n    sim_actual.plot(z=0, ax=ax3)\n    sim_actual.plot_grid(z=0, ax=ax3)\n    plt.savefig(f'huygens_structure_{background[0].name}.png', dpi=300)\n    plt.show()\n\n    sims = {\n        \"norm\": sim_empty,\n        \"actual\": sim_actual,\n    }\n\n    return sims"
+  },
+  {
+    "objectID": "simulation/huygens.slides.html#transmittance-simulation",
+    "href": "simulation/huygens.slides.html#transmittance-simulation",
+    "title": "Simulating Huygens’ Surfaces",
+    "section": "Transmittance Simulation",
+    "text": "Transmittance Simulation\n\nsims = simulation_helper(\n    background=[substrate, glass],\n    monitors=[flux_monitor],\n    run_time=run_time_short\n)\n\n\n\nbatch = web.Batch(simulations=sims, verbose=True)\nbatch_data = batch.run(path_dir=\"data/huygens5a\")\n\n\n\n\n\n\n\n02:20:56 EDT Started working on Batch containing 2 tasks.                       \n\n\n\n02:20:57 EDT Maximum FlexCredit cost: 0.050 for the whole batch.                \n\n\n\n             Use 'Batch.real_cost()' to get the billed FlexCredit cost after the\n             Batch has completed.                                               \n\n\n\n\n\n\n02:20:58 EDT Batch complete."
+  },
+  {
+    "objectID": "simulation/huygens.slides.html#transmittance-results",
+    "href": "simulation/huygens.slides.html#transmittance-results",
+    "title": "Simulating Huygens’ Surfaces",
+    "section": "Transmittance Results",
+    "text": "Transmittance Results\n\n# this uses scienceplots to make plots look better\nplt.style.use(['science', 'notebook', 'grid'])\nT = batch_data[\"actual\"][\"flux_monitor\"].flux / batch_data[\"norm\"][\"flux_monitor\"].flux\n\n\n# plot transmission, compare to paper results, look similar\nfig, ax = plt.subplots(1, 1, figsize=(6, 4.5))\nplt.plot(td.C_0 / fr.freqs(N) * 1000, np.abs(T)**2, \"r\", lw=1, label=\"T\")\nplt.xlabel(r\"wavelength ($nm$)\")\nplt.ylabel(\"Transmittance\")\nplt.ylim(0, 1)\nplt.legend()\nplt.show()"
+  },
+  {
+    "objectID": "simulation/huygens.slides.html#phase-simulation",
+    "href": "simulation/huygens.slides.html#phase-simulation",
+    "title": "Simulating Huygens’ Surfaces",
+    "section": "Phase Simulation",
+    "text": "Phase Simulation\n\nsims = simulation_helper(\n    background=[polymer],\n    monitors=[field_monitor],\n    run_time=run_time_long\n)\n\n\n\nbatch = web.Batch(simulations=sims, verbose=True)\nbatch_data = batch.run(path_dir=\"data/huygens5c\")\n\n\n\n\n\n\n\n02:21:11 EDT Started working on Batch containing 2 tasks.                       \n\n\n\n02:21:13 EDT Maximum FlexCredit cost: 0.050 for the whole batch.                \n\n\n\n             Use 'Batch.real_cost()' to get the billed FlexCredit cost after the\n             Batch has completed.                                               \n\n\n\n\n\n\n02:21:14 EDT Batch complete."
+  },
+  {
+    "objectID": "simulation/huygens.slides.html#phase-results",
+    "href": "simulation/huygens.slides.html#phase-results",
+    "title": "Simulating Huygens’ Surfaces",
+    "section": "Phase Results",
+    "text": "Phase Results\n\n# Data Extraction\nEx_actual = batch_data[\"actual\"][\"field_monitor\"].Ex \nEx_norm = batch_data[\"norm\"][\"field_monitor\"].Ex\nEx = Ex_actual / Ex_norm\n\n\n# 1. Compute average over the xy-plane\nEx_avg = np.mean(Ex[:, :, 0, :], axis=(0,1))\n\n# 2. Compute phase\nphase_avg = np.angle(Ex_avg)\n\n# 3. Unwrap phase to remove ±pi jumps\nphase_avg_unwrapped = np.unwrap(phase_avg)\n\n# 4. Make relative to first point (optional)\nphase_rel = phase_avg_unwrapped - phase_avg_unwrapped[0]\n\nphase_actual = np.unwrap(np.angle(np.mean(Ex_actual[:, :, 0, :], axis=(0,1))))\nphase_norm = np.unwrap(np.angle(np.mean(Ex_norm[:, :, 0, :], axis=(0,1))))\n\n\nfig, ax = plt.subplots(1, 1, figsize=(6, 4.5))\nplt.plot(td.C_0 / fr.freqs(N) * 1000, phase_rel, \"r\", lw=1, label=\"$\\phi$\")\nplt.plot(td.C_0 / fr.freqs(N) * 1000, phase_actual, \"b\", lw=1, label=\"Actual $\\phi$\")\nplt.plot(td.C_0 / fr.freqs(N) * 1000, phase_norm, \"g\", lw=1, label=\"Norm $\\phi$\")\nplt.xlabel(r\"wavelength ($nm$)\")\nplt.ylabel(\"Phase\")\nplt.legend()\nplt.show()"
+  },
+  {
+    "objectID": "simulation/huygens.slides.html#final-plotting",
+    "href": "simulation/huygens.slides.html#final-plotting",
+    "title": "Simulating Huygens’ Surfaces",
+    "section": "Final Plotting",
+    "text": "Final Plotting\n\nfig, axes = plt.subplots(1, 2, figsize=(12, 4))\n\n# work on the first figure\nax = axes[0]\nax.tick_params(axis=\"both\", labelsize=10)\nax.plot(td.C_0 / fr.freqs(N) * 1000, np.abs(T)**2, \"r\", lw=1, label=\"$|T|^2$\")\nax.set_xlabel(r\"wavelength [$nm$]\", fontsize=12)\nax.set_ylabel(\"Transmittance\", fontsize=12)\nax.set_title(\"Transmittance vs Wavelength from Simulation 1\", fontsize=12)\nax.set_xlim(1100, 1600)\nax.set_ylim(0, 1.1)\nax.legend(loc=\"lower right\", fontsize=12)\n\n# work on the second figure\nax = axes[1]\nax.tick_params(axis=\"both\", labelsize=10)\nax.plot(td.C_0 / fr.freqs(N) * 1000, phase_rel, \"b\", lw=1, label=\"$\\phi$\")\nax.set_xlabel(r\"wavelength [$nm$]\", fontsize=12)\nax.set_ylabel(\"Phase [rad]\", fontsize=12)\nax.set_title(\"Phase Change vs Wavelength from Simulation 2\", fontsize=12)\nax.set_xlim(1100, 1600)\nax.set_ylim(0, np.pi*2)\nyticks = [0, np.pi/2, np.pi, 3*np.pi/2, 2*np.pi]\nytick_labels = [r\"$0$\", r\"$\\frac{\\pi}{2}$\", r\"$\\pi$\", \n                r\"$\\frac{3\\pi}{2}$\", r\"$2\\pi$\"]\nax.set_yticks(yticks)\nax.set_yticklabels(ytick_labels)\nax.legend()\n\nplt.savefig(\"huygens.png\", dpi=300)"
+  },
+  {
+    "objectID": "simulation/huygens.slides.html#mesh-study",
+    "href": "simulation/huygens.slides.html#mesh-study",
+    "title": "Simulating Huygens’ Surfaces",
+    "section": "Mesh Study",
+    "text": "Mesh Study\nHere, we set out to study the effect of different yee cell length on the transmittance.\n\ndls = [P/2, P/4, P/8, P/16, P/32, P/64, P/128] # mesh study list\nsims = {}\n\n\n# for each dl in dls\nfor i, dl in enumerate(dls):\n    # 2 Grid Specifications\n    horizontal_grid = td.UniformGrid(dl=dl)\n    vertical_grid = td.AutoGrid(min_steps_per_wvl=32)\n    grid_spec=td.GridSpec(\n        grid_x=horizontal_grid,\n        grid_y=horizontal_grid,\n        grid_z=vertical_grid,\n    )\n\n    # 4 Sources\n    source = td.PlaneWave(\n        source_time=fr.to_gaussian_pulse(),\n        size=(td.inf, td.inf, 0),\n        center=(0, 0, Lz/2 - spc + 2 * dl),\n        direction=\"-\",\n        pol_angle=0\n    )\n\n    # 5 Monitor\n    monitor = td.FluxMonitor(\n        center=(0, 0, -Lz/2 + spc - 2*dl),\n        size=(td.inf, td.inf, 0),\n        freqs=fr.freqs(N),\n        name=\"flux\"\n    )\n\n    sim_empty=td.Simulation(\n        size=sim_size,\n        grid_spec=grid_spec,\n        structures=[substrate, glass],\n        sources=[source],\n        monitors=[monitor],\n        run_time=run_time_short,\n        boundary_spec=bc\n    )\n\n    sim_actual = td.Simulation(\n        size=sim_size,\n        grid_spec=grid_spec,\n        structures=[substrate, glass, cylinder],\n        sources=[source],\n        monitors=[monitor],\n        run_time=run_time_short,\n        boundary_spec=bc\n    )\n\n    sims[f\"norm{i}\"] = sim_empty\n    sims[f\"actual{i}\"] = sim_actual  \n\n\n# verify the sims dictionary\nprint(sims.keys())\nbatch = web.Batch(simulations=sims, verbose=True)\n\ndict_keys(['norm0', 'actual0', 'norm1', 'actual1', 'norm2', 'actual2', 'norm3', 'actual3', 'norm4', 'actual4', 'norm5', 'actual5', 'norm6', 'actual6'])\n\n\n\n# run the simulations\nbatch_data = batch.run(path_dir=\"data\")\n\n\n\n\n\n\n\n02:21:47 EDT Started working on Batch containing 14 tasks.                      \n\n\n\n02:21:59 EDT Maximum FlexCredit cost: 0.392 for the whole batch.                \n\n\n\n             Use 'Batch.real_cost()' to get the billed FlexCredit cost after the\n             Batch has completed.                                               \n\n\n\n\n\n\n02:22:21 EDT Batch complete."
+  },
+  {
+    "objectID": "simulation/huygens.slides.html#mesh-study-results",
+    "href": "simulation/huygens.slides.html#mesh-study-results",
+    "title": "Simulating Huygens’ Surfaces",
+    "section": "Mesh Study Results",
+    "text": "Mesh Study Results\n\n# Extract results\nx = td.C_0 / fr.freqs(N) * 1000\nTs = []\nfor i in range(len(dls)):\n    Ts.append(batch_data[f\"actual{i}\"][\"flux\"].flux / batch_data[f\"norm{i}\"][\"flux\"].flux)\n\n\n# Plot results\nplt.figure(figsize=(10, 5))\nfor i, T in enumerate(Ts):\n    plt.plot(x, np.abs(T)**2, \"-\",lw=1, label=f\"dl={dls[i] * 1000:.1f} nm\")\nplt.xlabel(r\"Wavelength [$nm$]\", fontsize=12)\nplt.ylabel(r\"$|T|^2$\", fontsize=12)\nplt.xlim(1100, 1600)\nplt.ylim(-0.1, 1.1)\nplt.legend(fontsize=12)\nplt.tick_params(axis='both', labelsize=10) # change tick label size to 10\nplt.title(\"Transmission Spectra with Different Mesh Sizes\", fontsize=14)\nplt.savefig(\"mesh_convergence.png\", dpi=300)\nplt.show()"
+  },
+  {
+    "objectID": "simulation/tidy3d.html",
+    "href": "simulation/tidy3d.html",
+    "title": "Learning Tidy3D",
     "section": "",
-    "text": "import tidy3d as td\nimport numpy as np\nimport matplotlib.pyplot as plt \nimport tidy3d.web as web\n\n\nweb.test()\n\n18:03:04 EDT Authentication configured successfully!"
-  },
-  {
-    "objectID": "simulation/numpy.html",
-    "href": "simulation/numpy.html",
-    "title": "Learning Numpy",
-    "section": "",
-    "text": "NumPy is a package for dealing with arrays that’s very fast and efficient.\nCreating array:\narr1 = np.array([3, 5, 7, 3]) # convert list to array\narr2 = np.zeros(10) # array with 10 zeroes\narr3 = np.ones(10) # array with 10 ones\narrR = np.random.random(10) # sample 10 numbers from uniform distribution\narrG = np.random.randn(10) # sample 10 numbers from normal distribution\n\n\n\nlinspace - values equally spaced apart given the number of values\narr = np.linspace(0, 10, 100) # from 0 to 10, 100 values\narrange - values equally spaced apart given the spacing\narr = np.arrange(0, 10, 0.02) # from 0 to 10, spacing of 0.02",
+    "text": "FDTD method allows you to compute the evolution of electromagnetic field in the time domain.\nGiven some device \\epsilon(\\vec{r}) and an incident field or current source \\vec{J}(\\vec{r}, t), internally, FDTD solves these maxwell’s equations:\n\\nabla \\times \\vec{E}(\\vec{r}, t) = -\\mu_0 \\frac{\\vec{H}(\\vec{r}, t)}{dt} \\tag{1}\n\\nabla \\times \\vec{H}(\\vec{r}, t) = \\epsilon(\\vec{r}) \\epsilon_0 \\frac{d\\vec{E}(\\vec{r}, t)}{dt} + \\vec{J}(\\vec{r}, t) \\tag{2}\n\n\n\nField Update\n\n\n\nThe diagram is from Simulation Documentation\n\n\n\n\nThese software packages should be imported everytime you start a tidy3D project:\nimport tidy3d as td # Main package\nimport tidy3d.web as web # Used to run the simulation\nimport matplotlib.pyplot as plt # Used for plotting results\nimport numpy as np # Used for numerical calculations\n\n\n\nBefore the simulation, we have to define some key parameters of the electromagnetic waves that we will use across the simulation:\nlambda_range = (1.1, 1.6)   # wavelength range (µm)\nfreqs = (td.C_0 / lambda_range[1], td.C_0 / lambda_range[0])  # frequency range\nfreq0 = np.mean(freqs)      # center frequency\nlda0 = td.C_0 / freq0       # center wavelength\nbandwidth = 0.38            # normalized bandwidth\nfreqw = bandwidth * (freqs[1] - freqs[0])  # bandwidth in Hz\nNote: All numbers in tidy3d are in microns (\\mu m)\n\n\n\nHere’s how to simulate something:\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # inputs\n)\nThe most basic way of running the simulation is using the web object we imported from tidy3d:\n# Running a simulation\nsim1_data = web.run(simulation1, task_name='any-unique-name', path='data/descriptive-name.hdf5')\nSimulation data is stored as an HDF5 file at the file path you specify.\n\nSee Simulation Documentation for more information\n\n\n\n\nThe 7 required inputs are:\n\n\nComputational Domain Size\nGrid Specifications (Discretization size)\nStructures\nSources\nMonitors\nRun time\nBoundary Condition Specification\n\n\nWe will introduce these 7 parameters by simulating a huygen’s metasurface\n\nSee Simulation Documentation for more information\n\n\n\n\nSize in x, y, and z directions.\np = 0.666 #nm -&gt; Periodicity\nLx, Ly, Lz = p, p, 2 * lda0 \nsim_size = [Lx, Ly, Lz]\n\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # A square computational domain\n    size = sim_size\n)\n\n\n\nSpecifications for the simulation grid along each of the three directions.\n# Define Grid size\nspec = td.GridSpec.auto(min_steps_per_wvl=40, wavelength=lda0)\n\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # A square computational domain\n    size = (x, y, z),\n    grid_spec=spec,\n    \n)\n\nTypically, the size of a unit cell is \\frac{\\lambda}{20}\n\n\ntd.GridSpec contains many functions to help define the grid, the most commonly used are:\ntd.GridSpec.uniform(dl=grid_size)\ntd.GridSpec.auto(min_steps_per_wvl=40, wavelength=lda0)\n\nuniform - Use the same Uniform 1D grid along each of the three directions.\n\ndl (float) – Grid size for uniform grid generation.\n\nauto - Use the same non-uniform grid along each of the three directions.\n\nmin_steps_per_wvl(ConstrainedFloatValue = 10.0) – Minimal number of steps per wavelength in each medium.\nwavelength (float) – Wavelength to use for the step size and for dispersive media epsilon.\n\n\n\n\n\ntd.Structure is the meat of the simulation. It defines a physical object that interacts with the electromagnetic fields. The structures field is a tuple of Structure objects that you create.\n# set up simulation\nsim = td.Simulation(\n    size=sim_size,\n    grid_spec=spec,\n    structures=[superstrate, substrate, cylinder],\n\n# set up simulation\ntd.Structure(\n   # inputs\n)\nA structure needs two inputs at least: - geometry (td.Box, td.Cylinder, td.Sphere, td.TriangleMesh (STL file), etc.) - medium Mediums define the optical properties of the materials within the simulation. (e.g. td.Medium)\n\nAccording to the paper on huygen’s metasurface, I defined these four structures:\nt = 2  # thickness of the substrate # THIS SHOULD BE CHANGED TO INFINITE\nsubstrate = td.Structure(\n    geometry=td.Box(\n        center=(0,0,-t/2),\n        size=(td.inf,td.inf,t)\n    ),\n    medium=td.Medium(permittivity=1.45**2, name='oxide'),\n    name='substrate'\n)\nsuperstrate = td.Structure(\n    geometry=td.Box(\n        center=(0,0,t/2),\n        size=(td.inf,td.inf,t)\n    ),\n    medium=td.Medium(permittivity=1.4**2, name='glass'),\n    name='superstrate'\n)\npolymer = td.Structure(\n    geometry=td.Box(\n        center=(0,0,0),\n        size=(td.inf,td.inf,2*t)\n    ),\n    medium=td.Medium(permittivity=1.66**2, name='polymer'),\n    name='polymer'\n)\n# construct the silicon resonator\ncylinder = td.Structure(\n    geometry=td.Cylinder(center=[0, 0, h / 2], radius=r, length=h, axis=2), medium=td.Medium(permittivity=3.5**2, name='Si')\n)\n\n\n\nTuple of electric current sources injecting fields into the simulation. Common ones are:\nPlane Wave - Uniform current distribution on an infinite extent plane. (Doc)\npulse = GaussianPulse(freq0=200e12, fwidth=20e12)\npw_source = PlaneWave(size=(inf,0,inf), source_time=pulse, pol_angle=0.1, direction='+')\nPoint Dipole - Uniform current source with a zero size. (Doc)\npulse = td.GaussianPulse(freq0=200e12, fwidth=20e12)\npt_dipole = td.PointDipole(center=(1,2,3), source_time=pulse, polarization='Ex')\nSee documentation for Other Sources\n\nIn this case, I defined one plane wave source:\n# add a plane wave source\nplane_wave = td.PlaneWave(\n    source_time=td.GaussianPulse(freq0=freq0, fwidth=0.5 * freqw),\n    size=(td.inf, td.inf, 0),\n    center=(0, 0, 0.3 * lda0),\n    direction=\"-\",\n    pol_angle=0,\n)\n\n\n\nTuple of monitors in the simulation. Note: monitor names are used to access data after simulation is run.\nSee Other monitors\n\n\n\nTotal electromagnetic evolution time in seconds.\n\n\n\nSpecification of boundary conditions along each dimension. If None, PML boundary conditions are applied on all sides.\n\n\n\nTuple of integers defining reflection symmetry across a plane bisecting the simulation domain normal to the x-, y-, and z-axis at the simulation center of each axis, respectively. Each element can be 0 (no symmetry), 1 (even, i.e. ‘PMC’ symmetry) or -1 (odd, i.e. ‘PEC’ symmetry). Note that the vectorial nature of the fields must be taken into account to correctly determine the symmetry value.\nSymmetry can be used to greatly reduce the computational cost –&gt;",
     "crumbs": [
       "Simulation",
-      "Learning Numpy"
+      "Learning Tidy3D"
     ]
   },
   {
-    "objectID": "simulation/numpy.html#introduction-and-basics",
-    "href": "simulation/numpy.html#introduction-and-basics",
-    "title": "Learning Numpy",
+    "objectID": "simulation/tidy3d.html#introduction-to-tidy3d",
+    "href": "simulation/tidy3d.html#introduction-to-tidy3d",
+    "title": "Learning Tidy3D",
     "section": "",
-    "text": "NumPy is a package for dealing with arrays that’s very fast and efficient.\nCreating array:\narr1 = np.array([3, 5, 7, 3]) # convert list to array\narr2 = np.zeros(10) # array with 10 zeroes\narr3 = np.ones(10) # array with 10 ones\narrR = np.random.random(10) # sample 10 numbers from uniform distribution\narrG = np.random.randn(10) # sample 10 numbers from normal distribution\n\n\n\nlinspace - values equally spaced apart given the number of values\narr = np.linspace(0, 10, 100) # from 0 to 10, 100 values\narrange - values equally spaced apart given the spacing\narr = np.arrange(0, 10, 0.02) # from 0 to 10, spacing of 0.02",
+    "text": "FDTD method allows you to compute the evolution of electromagnetic field in the time domain.\nGiven some device \\epsilon(\\vec{r}) and an incident field or current source \\vec{J}(\\vec{r}, t), internally, FDTD solves these maxwell’s equations:\n\\nabla \\times \\vec{E}(\\vec{r}, t) = -\\mu_0 \\frac{\\vec{H}(\\vec{r}, t)}{dt} \\tag{1}\n\\nabla \\times \\vec{H}(\\vec{r}, t) = \\epsilon(\\vec{r}) \\epsilon_0 \\frac{d\\vec{E}(\\vec{r}, t)}{dt} + \\vec{J}(\\vec{r}, t) \\tag{2}\n\n\n\nField Update\n\n\n\nThe diagram is from Simulation Documentation\n\n\n\n\nThese software packages should be imported everytime you start a tidy3D project:\nimport tidy3d as td # Main package\nimport tidy3d.web as web # Used to run the simulation\nimport matplotlib.pyplot as plt # Used for plotting results\nimport numpy as np # Used for numerical calculations\n\n\n\nBefore the simulation, we have to define some key parameters of the electromagnetic waves that we will use across the simulation:\nlambda_range = (1.1, 1.6)   # wavelength range (µm)\nfreqs = (td.C_0 / lambda_range[1], td.C_0 / lambda_range[0])  # frequency range\nfreq0 = np.mean(freqs)      # center frequency\nlda0 = td.C_0 / freq0       # center wavelength\nbandwidth = 0.38            # normalized bandwidth\nfreqw = bandwidth * (freqs[1] - freqs[0])  # bandwidth in Hz\nNote: All numbers in tidy3d are in microns (\\mu m)\n\n\n\nHere’s how to simulate something:\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # inputs\n)\nThe most basic way of running the simulation is using the web object we imported from tidy3d:\n# Running a simulation\nsim1_data = web.run(simulation1, task_name='any-unique-name', path='data/descriptive-name.hdf5')\nSimulation data is stored as an HDF5 file at the file path you specify.\n\nSee Simulation Documentation for more information\n\n\n\n\nThe 7 required inputs are:\n\n\nComputational Domain Size\nGrid Specifications (Discretization size)\nStructures\nSources\nMonitors\nRun time\nBoundary Condition Specification\n\n\nWe will introduce these 7 parameters by simulating a huygen’s metasurface\n\nSee Simulation Documentation for more information\n\n\n\n\nSize in x, y, and z directions.\np = 0.666 #nm -&gt; Periodicity\nLx, Ly, Lz = p, p, 2 * lda0 \nsim_size = [Lx, Ly, Lz]\n\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # A square computational domain\n    size = sim_size\n)\n\n\n\nSpecifications for the simulation grid along each of the three directions.\n# Define Grid size\nspec = td.GridSpec.auto(min_steps_per_wvl=40, wavelength=lda0)\n\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # A square computational domain\n    size = (x, y, z),\n    grid_spec=spec,\n    \n)\n\nTypically, the size of a unit cell is \\frac{\\lambda}{20}\n\n\ntd.GridSpec contains many functions to help define the grid, the most commonly used are:\ntd.GridSpec.uniform(dl=grid_size)\ntd.GridSpec.auto(min_steps_per_wvl=40, wavelength=lda0)\n\nuniform - Use the same Uniform 1D grid along each of the three directions.\n\ndl (float) – Grid size for uniform grid generation.\n\nauto - Use the same non-uniform grid along each of the three directions.\n\nmin_steps_per_wvl(ConstrainedFloatValue = 10.0) – Minimal number of steps per wavelength in each medium.\nwavelength (float) – Wavelength to use for the step size and for dispersive media epsilon.\n\n\n\n\n\ntd.Structure is the meat of the simulation. It defines a physical object that interacts with the electromagnetic fields. The structures field is a tuple of Structure objects that you create.\n# set up simulation\nsim = td.Simulation(\n    size=sim_size,\n    grid_spec=spec,\n    structures=[superstrate, substrate, cylinder],\n\n# set up simulation\ntd.Structure(\n   # inputs\n)\nA structure needs two inputs at least: - geometry (td.Box, td.Cylinder, td.Sphere, td.TriangleMesh (STL file), etc.) - medium Mediums define the optical properties of the materials within the simulation. (e.g. td.Medium)\n\nAccording to the paper on huygen’s metasurface, I defined these four structures:\nt = 2  # thickness of the substrate # THIS SHOULD BE CHANGED TO INFINITE\nsubstrate = td.Structure(\n    geometry=td.Box(\n        center=(0,0,-t/2),\n        size=(td.inf,td.inf,t)\n    ),\n    medium=td.Medium(permittivity=1.45**2, name='oxide'),\n    name='substrate'\n)\nsuperstrate = td.Structure(\n    geometry=td.Box(\n        center=(0,0,t/2),\n        size=(td.inf,td.inf,t)\n    ),\n    medium=td.Medium(permittivity=1.4**2, name='glass'),\n    name='superstrate'\n)\npolymer = td.Structure(\n    geometry=td.Box(\n        center=(0,0,0),\n        size=(td.inf,td.inf,2*t)\n    ),\n    medium=td.Medium(permittivity=1.66**2, name='polymer'),\n    name='polymer'\n)\n# construct the silicon resonator\ncylinder = td.Structure(\n    geometry=td.Cylinder(center=[0, 0, h / 2], radius=r, length=h, axis=2), medium=td.Medium(permittivity=3.5**2, name='Si')\n)\n\n\n\nTuple of electric current sources injecting fields into the simulation. Common ones are:\nPlane Wave - Uniform current distribution on an infinite extent plane. (Doc)\npulse = GaussianPulse(freq0=200e12, fwidth=20e12)\npw_source = PlaneWave(size=(inf,0,inf), source_time=pulse, pol_angle=0.1, direction='+')\nPoint Dipole - Uniform current source with a zero size. (Doc)\npulse = td.GaussianPulse(freq0=200e12, fwidth=20e12)\npt_dipole = td.PointDipole(center=(1,2,3), source_time=pulse, polarization='Ex')\nSee documentation for Other Sources\n\nIn this case, I defined one plane wave source:\n# add a plane wave source\nplane_wave = td.PlaneWave(\n    source_time=td.GaussianPulse(freq0=freq0, fwidth=0.5 * freqw),\n    size=(td.inf, td.inf, 0),\n    center=(0, 0, 0.3 * lda0),\n    direction=\"-\",\n    pol_angle=0,\n)\n\n\n\nTuple of monitors in the simulation. Note: monitor names are used to access data after simulation is run.\nSee Other monitors\n\n\n\nTotal electromagnetic evolution time in seconds.\n\n\n\nSpecification of boundary conditions along each dimension. If None, PML boundary conditions are applied on all sides.\n\n\n\nTuple of integers defining reflection symmetry across a plane bisecting the simulation domain normal to the x-, y-, and z-axis at the simulation center of each axis, respectively. Each element can be 0 (no symmetry), 1 (even, i.e. ‘PMC’ symmetry) or -1 (odd, i.e. ‘PEC’ symmetry). Note that the vectorial nature of the fields must be taken into account to correctly determine the symmetry value.\nSymmetry can be used to greatly reduce the computational cost –&gt;",
     "crumbs": [
       "Simulation",
-      "Learning Numpy"
+      "Learning Tidy3D"
     ]
-  },
-  {
-    "objectID": "simulation/numpy.html#array-manipulation",
-    "href": "simulation/numpy.html#array-manipulation",
-    "title": "Learning Numpy",
-    "section": "Array Manipulation",
-    "text": "Array Manipulation\n\nCommon Array Operation\nElement-wise operation\narr + 2     # addition\narr - 5     # subtraction\n2*arr       # multiplication\n1/arr       # division\narr % 5     # Modulus\nLet’s try to do the same element-wise operation but using functions:\ndef f(x):\n    return x**2 * np.sin(x) / np.exp(-x)\n\nx = np.linspace(0, 10, 100)\ny = f(x) # Element-wise application of f\n\n\nCommon Plotting\nMost basic Plotting\nx = np.linspace(0, 1, 100)  # x-axis definition\ny = x**2                    # element-wise x^2\nplt.plot(x, x**2)           # plot(x, y)\nplt.show()                  # show the output\nHistogram\nplt.hist(arr) # plotting the array as histogram\n\n\nIndexing and Slicing\nNormal Indexing\narr = np.array([2, 4, 6, 8, 10])\narr[2]   # return 6\narr[2:]  # return 6, 8, 10 (including index 2)\narr[:-2] # return 2, 4, 6 (exluding index -2)\narr[1:2] # return 4\nBoolean Indexing\narr &gt; 5 # return a boolean array with true or false as elemenets\narr[arr&gt;5] # filtering --&gt;  return the elements that are true\nUsing Boolean Indexing to filter data\nnames = np.array(['Jim', 'Luke', 'Josh', 'Pete'])\nfirst_letter_j = np.vectorize(lambda s: s[0])(names) == 'J'\nprint(names[first_letter_j]) # gets the names that have first letter as J\nNow what is this doing?\n\n\nWhat is that doing?\nfirst_letter_j = np.vectorize(lambda s: s[0])(names) == 'J'\nLambda Function\nf = lambda s: s[0]\nThis is a function that says give me a string and I’ll give you the first character of the string. Note that String is not an array in python, but it supports the same indexing operations as arrays.\nWhat is np.vectorize?\nIt creates a for-loop, applies the function func to every element in the array arr, and return the result as an array.\nnp.vectorize(func)(arr) # this is an array",
-    "crumbs": [
-      "Simulation",
-      "Learning Numpy"
-    ]
-  },
-  {
-    "objectID": "simulation/numpy.html#calculus-statistical-functions",
-    "href": "simulation/numpy.html#calculus-statistical-functions",
-    "title": "Learning Numpy",
-    "section": "Calculus / Statistical Functions",
-    "text": "Calculus / Statistical Functions\n\nCommon Statistics Functions\narr = 2*np.random.randn(10000) + 10 # 2 times std dev with a shift of 10 to the right\\\nnp.mean(arr) # approx 10\nnp.std(arr) # approx 2\nnp.percentile(arr, 80) # 80% numbers less than this number\n\n\nIntegrals and Derivatives\nx = np.linspace(1, 10, 100)\ny = 1/x**2 + np.sin(x)\nplt.plot(x, y)\nDerivatives\ndydx = np.gradient(y, x)\nIntegrals\nnp.cumsum([1, 2, 3, 4]) # return [1,3,6,10]\ny_int = np.cumsum(y) * (x[1] - x[0]) # int y dx\n\n\nResources Used\n\n[1] NumPy Tutorial\n[2] 100 numpy practice problems",
-    "crumbs": [
-      "Simulation",
-      "Learning Numpy"
-    ]
-  },
-  {
-    "objectID": "simulation/numpy.slides.html#what-is-numpy",
-    "href": "simulation/numpy.slides.html#what-is-numpy",
-    "title": "Learning Numpy",
-    "section": "What is NumPy?",
-    "text": "What is NumPy?\nNumPy is a package for dealing with arrays that’s very fast and efficient.\nCreating array:\narr1 = np.array([3, 5, 7, 3]) # convert list to array\narr2 = np.zeros(10) # array with 10 zeroes\narr3 = np.ones(10) # array with 10 ones\narrR = np.random.random(10) # sample 10 numbers from uniform distribution\narrG = np.random.randn(10) # sample 10 numbers from normal distribution"
-  },
-  {
-    "objectID": "simulation/numpy.slides.html#two-most-common-functions",
-    "href": "simulation/numpy.slides.html#two-most-common-functions",
-    "title": "Learning Numpy",
-    "section": "Two most common functions",
-    "text": "Two most common functions\nlinspace - values equally spaced apart given the number of values\narr = np.linspace(0, 10, 100) # from 0 to 10, 100 values\narrange - values equally spaced apart given the spacing\narr = np.arrange(0, 10, 0.02) # from 0 to 10, spacing of 0.02"
-  },
-  {
-    "objectID": "simulation/numpy.slides.html#common-array-operation",
-    "href": "simulation/numpy.slides.html#common-array-operation",
-    "title": "Learning Numpy",
-    "section": "Common Array Operation",
-    "text": "Common Array Operation\nElement-wise operation\narr + 2     # addition\narr - 5     # subtraction\n2*arr       # multiplication\n1/arr       # division\narr % 5     # Modulus\nLet’s try to do the same element-wise operation but using functions:\ndef f(x):\n    return x**2 * np.sin(x) / np.exp(-x)\n\nx = np.linspace(0, 10, 100)\ny = f(x) # Element-wise application of f"
-  },
-  {
-    "objectID": "simulation/numpy.slides.html#common-plotting",
-    "href": "simulation/numpy.slides.html#common-plotting",
-    "title": "Learning Numpy",
-    "section": "Common Plotting",
-    "text": "Common Plotting\nMost basic Plotting\nx = np.linspace(0, 1, 100)  # x-axis definition\ny = x**2                    # element-wise x^2\nplt.plot(x, x**2)           # plot(x, y)\nplt.show()                  # show the output\nHistogram\nplt.hist(arr) # plotting the array as histogram"
-  },
-  {
-    "objectID": "simulation/numpy.slides.html#indexing-and-slicing",
-    "href": "simulation/numpy.slides.html#indexing-and-slicing",
-    "title": "Learning Numpy",
-    "section": "Indexing and Slicing",
-    "text": "Indexing and Slicing\nNormal Indexing\narr = np.array([2, 4, 6, 8, 10])\narr[2]   # return 6\narr[2:]  # return 6, 8, 10 (including index 2)\narr[:-2] # return 2, 4, 6 (exluding index -2)\narr[1:2] # return 4\nBoolean Indexing\narr &gt; 5 # return a boolean array with true or false as elemenets\narr[arr&gt;5] # filtering --&gt;  return the elements that are true\nUsing Boolean Indexing to filter data\nnames = np.array(['Jim', 'Luke', 'Josh', 'Pete'])\nfirst_letter_j = np.vectorize(lambda s: s[0])(names) == 'J'\nprint(names[first_letter_j]) # gets the names that have first letter as J\nNow what is this doing?"
-  },
-  {
-    "objectID": "simulation/numpy.slides.html#what-is-that-doing",
-    "href": "simulation/numpy.slides.html#what-is-that-doing",
-    "title": "Learning Numpy",
-    "section": "What is that doing?",
-    "text": "What is that doing?\nfirst_letter_j = np.vectorize(lambda s: s[0])(names) == 'J'\nLambda Function\nf = lambda s: s[0]\nThis is a function that says give me a string and I’ll give you the first character of the string. Note that String is not an array in python, but it supports the same indexing operations as arrays.\nWhat is np.vectorize?\nIt creates a for-loop, applies the function func to every element in the array arr, and return the result as an array.\nnp.vectorize(func)(arr) # this is an array"
-  },
-  {
-    "objectID": "simulation/numpy.slides.html#common-statistics-functions",
-    "href": "simulation/numpy.slides.html#common-statistics-functions",
-    "title": "Learning Numpy",
-    "section": "Common Statistics Functions",
-    "text": "Common Statistics Functions\narr = 2*np.random.randn(10000) + 10 # 2 times std dev with a shift of 10 to the right\\\nnp.mean(arr) # approx 10\nnp.std(arr) # approx 2\nnp.percentile(arr, 80) # 80% numbers less than this number"
-  },
-  {
-    "objectID": "simulation/numpy.slides.html#integrals-and-derivatives",
-    "href": "simulation/numpy.slides.html#integrals-and-derivatives",
-    "title": "Learning Numpy",
-    "section": "Integrals and Derivatives",
-    "text": "Integrals and Derivatives\nx = np.linspace(1, 10, 100)\ny = 1/x**2 + np.sin(x)\nplt.plot(x, y)\nDerivatives\ndydx = np.gradient(y, x)\nIntegrals\nnp.cumsum([1, 2, 3, 4]) # return [1,3,6,10]\ny_int = np.cumsum(y) * (x[1] - x[0]) # int y dx"
-  },
-  {
-    "objectID": "simulation/numpy.slides.html#resources-used",
-    "href": "simulation/numpy.slides.html#resources-used",
-    "title": "Learning Numpy",
-    "section": "Resources Used",
-    "text": "Resources Used\n\n[1] NumPy Tutorial\n[2] 100 numpy practice problems"
-  },
-  {
-    "objectID": "log.html",
-    "href": "log.html",
-    "title": "Work Log",
-    "section": "",
-    "text": "Week 2 [9/1/2025-9/7/2025]\nTidy3D:\n\nMesh Study (P/2, P/4, P/8, P/16, P/32, …) on huygens metasurface and plot the transmission\nUnderstand how to calculate phase (Example)\nLearn how to use material library and define circular polarization (Example)\nRegenerate Figure 2B (Ultra narrowband geometric-phase resonant metasurfaces)\n\nNonlinear Optics:\nClasses so far:\n\nNonlinear susceptibility; anharmonic oscillator\nProperties of the nonlinear susceptibility; K.-K. relations 1.5—1.7\nWave equation in NLO; Coupled-wave equations for SFG 2.1—2.2\n\nSelf-Study:\n\nIIT Lectures 1-20\nBYU notebooks (implement 1, 2, 3, 4)\n\nAdvanced Optics:\nClasses so far:\n\nRay Optics, Graded Index Optics, Matrix Optics\nWave Optics, Paraxial Waves\nDiffraction/Transmission/Reflection\nGaussian Beams, ABCD matrices, etalons, thin films, cavities\nGuided wave optics, optical fibers, waveguides\n\nSelf-Study:\n\nFOP by Saleh 1, 2, 3, 6, 9, 11\n\n\n\nWeek 1 [8/25/2025-8/31/2025]\n\nTidy3D Huygen’s metasurface simulation redo\nRead Fundamentals of Photonics Ch 1, 2, 6\nRead Boyd NLO Ch 1\nTidy3D Python Tutorial 1 and 2\n\n\n\nTidy3D Learning Outline\nFDTD 101:\n\nIntroduction to FDTD Simulation\nUsing FDTD to compute transmission spectrum\nMode Injection\nModeling Dispersive materials in FDTD\nIntroduction to PML\nTimestep size and CFL conditions\nNumerical Dispersion in FDTD\nDielectric constant assignment on Yee Grids\nSubpixel Averaging\n\nTidy3D Python:\n\nBasics\nMediums\nStructures\nGrid Specifications\nBoundary Conditions and Symmetry\nSources\nData visualization and Postprocessing",
-    "crumbs": [
-      "Work Log"
-    ]
-  },
-  {
-    "objectID": "log.slides.html#week-2-912025-972025",
-    "href": "log.slides.html#week-2-912025-972025",
-    "title": "Work Log",
-    "section": "Week 2 [9/1/2025-9/7/2025]",
-    "text": "Week 2 [9/1/2025-9/7/2025]\nTidy3D:\n\nMesh Study (P/2, P/4, P/8, P/16, P/32, …) on huygens metasurface and plot the transmission\nUnderstand how to calculate phase (Example)\nLearn how to use material library and define circular polarization (Example)\nRegenerate Figure 2B (Ultra narrowband geometric-phase resonant metasurfaces)\n\nNonlinear Optics:\nClasses so far:\n\nNonlinear susceptibility; anharmonic oscillator\nProperties of the nonlinear susceptibility; K.-K. relations 1.5—1.7\nWave equation in NLO; Coupled-wave equations for SFG 2.1—2.2\n\nSelf-Study:\n\nIIT Lectures 1-20\nBYU notebooks (implement 1, 2, 3, 4)\n\nAdvanced Optics:\nClasses so far:\n\nRay Optics, Graded Index Optics, Matrix Optics\nWave Optics, Paraxial Waves\nDiffraction/Transmission/Reflection\nGaussian Beams, ABCD matrices, etalons, thin films, cavities\nGuided wave optics, optical fibers, waveguides\n\nSelf-Study:\n\nFOP by Saleh 1, 2, 3, 6, 9, 11"
-  },
-  {
-    "objectID": "log.slides.html#week-1-8252025-8312025",
-    "href": "log.slides.html#week-1-8252025-8312025",
-    "title": "Work Log",
-    "section": "Week 1 [8/25/2025-8/31/2025]",
-    "text": "Week 1 [8/25/2025-8/31/2025]\n\nTidy3D Huygen’s metasurface simulation redo\nRead Fundamentals of Photonics Ch 1, 2, 6\nRead Boyd NLO Ch 1\nTidy3D Python Tutorial 1 and 2"
-  },
-  {
-    "objectID": "log.slides.html#tidy3d-learning-outline",
-    "href": "log.slides.html#tidy3d-learning-outline",
-    "title": "Work Log",
-    "section": "Tidy3D Learning Outline",
-    "text": "Tidy3D Learning Outline\nFDTD 101:\n\nIntroduction to FDTD Simulation\nUsing FDTD to compute transmission spectrum\nMode Injection\nModeling Dispersive materials in FDTD\nIntroduction to PML\nTimestep size and CFL conditions\nNumerical Dispersion in FDTD\nDielectric constant assignment on Yee Grids\nSubpixel Averaging\n\nTidy3D Python:\n\nBasics\nMediums\nStructures\nGrid Specifications\nBoundary Conditions and Symmetry\nSources\nData visualization and Postprocessing"
-  },
-  {
-    "objectID": "courses/optics.html",
-    "href": "courses/optics.html",
-    "title": "Learning Optics",
-    "section": "",
-    "text": "Picturing light as rays is useful for predicting imaging properties.\nAs \\lambda \\rightarrow 0, Maxwell equation’s become the eikonal equation, which governs ray direction in a medium with a varying n(\\vec{r}).\nFermat’s principle is deduced from eikonal equation.\nSnell’s law is derived from fermat’s principle.\n\n\n\nWave equation in isotropic medium:\n\\nabla^2 \\vec{E}(\\vec{r}, t) + \\frac{[n(\\vec{r})]^2 \\omega^2}{c^2} \\vec{E}(\\vec{r}, t) = 0\nTrial solution:\n\\vec{E}(\\vec{r}, t) = \\vec{E}_0 e^{i[k_{vac} R(\\vec{r}) - \\omega t]}, k_{vac} = \\frac{\\omega}{c} \\left( \\frac{rad}{m} \\right)\nWe plug trial solution in, perform laplacian, arrange terms, and make the approximation that \\frac{1}{k_{vac}} = \\frac{\\lambda_{vac}}{2 \\pi} \\rightarrow 0, we get the simplified wave equation\n[\\nabla R(\\vec{r}) \\cdot \\nabla R(\\vec{r}) - [n(\\vec{r})]^2] \\vec{E}_0(\\vec{r}) = 0\n\\implies \\nabla R(\\vec{r}) \\cdot \\nabla R(\\vec{r}) = [n(\\vec{r})]^2\n\\implies \\boxed{ \\nabla R(\\vec{r}) = n(\\vec{r}) \\hat{s}(\\vec{r}) }\nIf R(\\vec{r}) (length) is real, no absorption or amplification. R(\\vec{r}) = constant is one wavefront. \\nabla R(\\vec{r}) is the local direction of propagation. \\hat{s} is unit vector in direction of energy flow. Rays are collection vectors \\hat{s}.\n\n\n\nCurl of eikonal function is\n\\nabla \\times [\\nabla R(\\vec{r})] = \\nabla \\times [n(\\vec{r}) \\hat{s}(\\vec{r})] = 0 \nIntegrating over open surface A, we get\n\\int_{A} \\nabla \\times [n(\\vec{r}) \\hat{s}(\\vec{r})] = 0  \\tag{}\nApply Stoke’s Theorem, we have\n\\oint_{C} n \\hat{s} \\cdot d\\vec{l} = 0\n\\implies \\int_{A}^{B} n \\hat{s} \\cdot d\\vec{l}\nNotice that\n\\int_{A}^{B} n \\hat{s} \\cdot d\\vec{l} = \\min{\\int_{A}^{B} n d \\vec{l}}\nWe define Optical Path Length as\n\\boxed{OPL = \\int_{A}^{B} n dl}\nAnd Fermat’s Theorem minimizes travel time,\n\\delta t = \\frac{OPL}{c}\n\n\n\nPropagation of rays through optical systems can be approximated as paraxial, nearly parallel to the axis of these systems.\nParaxial ray theory predicts stability of laser cavities, to see if ray drift away from optical axis.\n\n\n\n\n\n\nConstruction to prove Snell’s Law\n\n\nConstrained minimization problem: Minimize $n_1 d_1 _1 + $",
-    "crumbs": [
-      "Courses",
-      "Learning Optics"
-    ]
-  },
-  {
-    "objectID": "courses/optics.html#ray-optics",
-    "href": "courses/optics.html#ray-optics",
-    "title": "Learning Optics",
-    "section": "",
-    "text": "Picturing light as rays is useful for predicting imaging properties.\nAs \\lambda \\rightarrow 0, Maxwell equation’s become the eikonal equation, which governs ray direction in a medium with a varying n(\\vec{r}).\nFermat’s principle is deduced from eikonal equation.\nSnell’s law is derived from fermat’s principle.\n\n\n\nWave equation in isotropic medium:\n\\nabla^2 \\vec{E}(\\vec{r}, t) + \\frac{[n(\\vec{r})]^2 \\omega^2}{c^2} \\vec{E}(\\vec{r}, t) = 0\nTrial solution:\n\\vec{E}(\\vec{r}, t) = \\vec{E}_0 e^{i[k_{vac} R(\\vec{r}) - \\omega t]}, k_{vac} = \\frac{\\omega}{c} \\left( \\frac{rad}{m} \\right)\nWe plug trial solution in, perform laplacian, arrange terms, and make the approximation that \\frac{1}{k_{vac}} = \\frac{\\lambda_{vac}}{2 \\pi} \\rightarrow 0, we get the simplified wave equation\n[\\nabla R(\\vec{r}) \\cdot \\nabla R(\\vec{r}) - [n(\\vec{r})]^2] \\vec{E}_0(\\vec{r}) = 0\n\\implies \\nabla R(\\vec{r}) \\cdot \\nabla R(\\vec{r}) = [n(\\vec{r})]^2\n\\implies \\boxed{ \\nabla R(\\vec{r}) = n(\\vec{r}) \\hat{s}(\\vec{r}) }\nIf R(\\vec{r}) (length) is real, no absorption or amplification. R(\\vec{r}) = constant is one wavefront. \\nabla R(\\vec{r}) is the local direction of propagation. \\hat{s} is unit vector in direction of energy flow. Rays are collection vectors \\hat{s}.\n\n\n\nCurl of eikonal function is\n\\nabla \\times [\\nabla R(\\vec{r})] = \\nabla \\times [n(\\vec{r}) \\hat{s}(\\vec{r})] = 0 \nIntegrating over open surface A, we get\n\\int_{A} \\nabla \\times [n(\\vec{r}) \\hat{s}(\\vec{r})] = 0  \\tag{}\nApply Stoke’s Theorem, we have\n\\oint_{C} n \\hat{s} \\cdot d\\vec{l} = 0\n\\implies \\int_{A}^{B} n \\hat{s} \\cdot d\\vec{l}\nNotice that\n\\int_{A}^{B} n \\hat{s} \\cdot d\\vec{l} = \\min{\\int_{A}^{B} n d \\vec{l}}\nWe define Optical Path Length as\n\\boxed{OPL = \\int_{A}^{B} n dl}\nAnd Fermat’s Theorem minimizes travel time,\n\\delta t = \\frac{OPL}{c}\n\n\n\nPropagation of rays through optical systems can be approximated as paraxial, nearly parallel to the axis of these systems.\nParaxial ray theory predicts stability of laser cavities, to see if ray drift away from optical axis.\n\n\n\n\n\n\nConstruction to prove Snell’s Law\n\n\nConstrained minimization problem: Minimize $n_1 d_1 _1 + $",
-    "crumbs": [
-      "Courses",
-      "Learning Optics"
-    ]
-  },
-  {
-    "objectID": "courses/optics.html#citations",
-    "href": "courses/optics.html#citations",
-    "title": "Learning Optics",
-    "section": "Citations",
-    "text": "Citations\n[1] Saleh, B. E. A., & Teich, M. C. (2019). Fundamentals of photonics (3rd ed.). Wiley. [2] Peatross, Justin, and Michael Ware. Physics of Light and Optics. 2015 ed., January 31, 2025 revision, Department of Physics, Brigham Young University. optics.byu.edu.",
-    "crumbs": [
-      "Courses",
-      "Learning Optics"
-    ]
-  },
-  {
-    "objectID": "courses/optics.slides.html#introduction",
-    "href": "courses/optics.slides.html#introduction",
-    "title": "Learning Optics",
-    "section": "Introduction",
-    "text": "Introduction\nPicturing light as rays is useful for predicting imaging properties.\nAs \\lambda \\rightarrow 0, Maxwell equation’s become the eikonal equation, which governs ray direction in a medium with a varying n(\\vec{r}).\nFermat’s principle is deduced from eikonal equation.\nSnell’s law is derived from fermat’s principle."
-  },
-  {
-    "objectID": "courses/optics.slides.html#the-eikonal-equation",
-    "href": "courses/optics.slides.html#the-eikonal-equation",
-    "title": "Learning Optics",
-    "section": "The Eikonal Equation",
-    "text": "The Eikonal Equation\nWave equation in isotropic medium:\n\\nabla^2 \\vec{E}(\\vec{r}, t) + \\frac{[n(\\vec{r})]^2 \\omega^2}{c^2} \\vec{E}(\\vec{r}, t) = 0\nTrial solution:\n\\vec{E}(\\vec{r}, t) = \\vec{E}_0 e^{i[k_{vac} R(\\vec{r}) - \\omega t]}, k_{vac} = \\frac{\\omega}{c} \\left( \\frac{rad}{m} \\right)\nWe plug trial solution in, perform laplacian, arrange terms, and make the approximation that \\frac{1}{k_{vac}} = \\frac{\\lambda_{vac}}{2 \\pi} \\rightarrow 0, we get the simplified wave equation\n[\\nabla R(\\vec{r}) \\cdot \\nabla R(\\vec{r}) - [n(\\vec{r})]^2] \\vec{E}_0(\\vec{r}) = 0\n\\implies \\nabla R(\\vec{r}) \\cdot \\nabla R(\\vec{r}) = [n(\\vec{r})]^2\n\\implies \\boxed{ \\nabla R(\\vec{r}) = n(\\vec{r}) \\hat{s}(\\vec{r}) }\nIf R(\\vec{r}) (length) is real, no absorption or amplification. R(\\vec{r}) = constant is one wavefront. \\nabla R(\\vec{r}) is the local direction of propagation. \\hat{s} is unit vector in direction of energy flow. Rays are collection vectors \\hat{s}."
-  },
-  {
-    "objectID": "courses/optics.slides.html#fermats-principle",
-    "href": "courses/optics.slides.html#fermats-principle",
-    "title": "Learning Optics",
-    "section": "Fermat’s Principle",
-    "text": "Fermat’s Principle\nCurl of eikonal function is\n\\nabla \\times [\\nabla R(\\vec{r})] = \\nabla \\times [n(\\vec{r}) \\hat{s}(\\vec{r})] = 0 \nIntegrating over open surface A, we get\n\\int_{A} \\nabla \\times [n(\\vec{r}) \\hat{s}(\\vec{r})] = 0  \\tag{}\nApply Stoke’s Theorem, we have\n\\oint_{C} n \\hat{s} \\cdot d\\vec{l} = 0\n\\implies \\int_{A}^{B} n \\hat{s} \\cdot d\\vec{l}\nNotice that\n\\int_{A}^{B} n \\hat{s} \\cdot d\\vec{l} = \\min{\\int_{A}^{B} n d \\vec{l}}\nWe define Optical Path Length as\n\\boxed{OPL = \\int_{A}^{B} n dl}\nAnd Fermat’s Theorem minimizes travel time,\n\\delta t = \\frac{OPL}{c}"
-  },
-  {
-    "objectID": "courses/optics.slides.html#paraxial-ray-theory",
-    "href": "courses/optics.slides.html#paraxial-ray-theory",
-    "title": "Learning Optics",
-    "section": "Paraxial Ray Theory",
-    "text": "Paraxial Ray Theory\nPropagation of rays through optical systems can be approximated as paraxial, nearly parallel to the axis of these systems.\nParaxial ray theory predicts stability of laser cavities, to see if ray drift away from optical axis."
-  },
-  {
-    "objectID": "courses/optics.slides.html#proof-of-snells-law",
-    "href": "courses/optics.slides.html#proof-of-snells-law",
-    "title": "Learning Optics",
-    "section": "Proof of Snell’s Law",
-    "text": "Proof of Snell’s Law\n\nConstruction to prove Snell’s LawConstrained minimization problem: Minimize $n_1 d_1 _1 + $"
-  },
-  {
-    "objectID": "index.slides.html#about-me",
-    "href": "index.slides.html#about-me",
-    "title": "Yankun (Alex) Meng",
-    "section": "About Me",
-    "text": "About Me\nI am a first-year PhD student in the Department of Electrical and Computer Engineering at Duke University, fortunate to be advised by Prof. Natalia M. Litchinitser.\nPreviously, I was an undergrad at Duke University Double majoring in Electrical and Computer Engineering and Computer Science."
-  },
-  {
-    "objectID": "index.slides.html#news",
-    "href": "index.slides.html#news",
-    "title": "Yankun (Alex) Meng",
-    "section": "News",
-    "text": "News\n[August 2025] PhD started!\n[May 2025] Graduated from Duke Undergraduate"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Yankun (Alex) Meng",
-    "section": "",
-    "text": "About Me\nI am a first-year PhD student in the Department of Electrical and Computer Engineering at Duke University, fortunate to be advised by Prof. Natalia M. Litchinitser.\nPreviously, I was an undergrad at Duke University Double majoring in Electrical and Computer Engineering and Computer Science.\n\n\nNews\n[August 2025] PhD started!\n[May 2025] Graduated from Duke Undergraduate",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "nlo.slides.html#basic-linear-optics",
-    "href": "nlo.slides.html#basic-linear-optics",
-    "title": "Nonlinear Optics",
-    "section": "Basic Linear Optics",
-    "text": "Basic Linear Optics\nMaxwell’s Equation"
-  },
-  {
-    "objectID": "nlo.slides.html#nonlinear-optics",
-    "href": "nlo.slides.html#nonlinear-optics",
-    "title": "Nonlinear Optics",
-    "section": "Nonlinear Optics",
-    "text": "Nonlinear Optics\nIntroduction"
-  },
-  {
-    "objectID": "nlo.html",
-    "href": "nlo.html",
-    "title": "Nonlinear Optics",
-    "section": "",
-    "text": "Nonlinear Optics BYU Nonlinear Optics IIT\n\nBasic Linear Optics\n\nMaxwell’s Equation\n\n\n\nMaxwell’s Wave Equation\n\n\n\nPlane wave and solution of the wave equation\n\n\n\nMonochromatic and Non-monochromatic waves\n\n\n\nElectric displacement, electric polarization, and refractice index\n\n\n\nDirection of E, D, and k in an isotropic medium\n\n\n\nPoynting vector and energy flow\n\n\n\nIntensity of an EM wave\n\n\n\nAnisotropic media\n\n\n\nSusceptibility Tensor\n\n\n\nEM Wave Propagation in Anisotropic media\n\n\n\nOrdinary and Extra-ordinary ray\n\n\n\nIndex Ellipsoid\n\n\n\nLinear response and polarization\n\n\n\nDielectric Susceptibility\n\n\n\n\nNonlinear Optics\n\nIntroduction\n\n\n\nClassical Origin of nonlinearity\n\n\n\nMiller’s Rule\n\n\n\nDimensions of higher order susceptibiltiies\n\n\n\nSecond Harmonic Generation (SHG)\n\n\n\nOptical REctification\n\n\n\nLinear Electro-optic effect\n\n\n\nSum and Difference Frequency Generation\n\n\n\nNonlinear Maxwell’s Equation\n\n\n\nTheory of SHG\n\n\n\nPhase Matching\n\n\n\nGain Bandwidth\n\n\n\nManley-Rowe Relation\n\n\n\nEnergy Conservation in SHG\n\n\n\nDifferent kinds of phase matching\n\n\n\nBirefringence phase-matching\n\n\n\nType I Phase Matching\n\n\n\nType II Phase Matching\n\n\n\nSymmetry in nonlinear susceptibility\n\n\n\nKleinman’s Symmetry\n\n\n\nNeumann’s Principle"
   },
   {
     "objectID": "simulation/tidy3d.slides.html#introduction",
@@ -381,57 +250,261 @@
     "text": "Bonus: Symmetry\nTuple of integers defining reflection symmetry across a plane bisecting the simulation domain normal to the x-, y-, and z-axis at the simulation center of each axis, respectively. Each element can be 0 (no symmetry), 1 (even, i.e. ‘PMC’ symmetry) or -1 (odd, i.e. ‘PEC’ symmetry). Note that the vectorial nature of the fields must be taken into account to correctly determine the symmetry value.\nSymmetry can be used to greatly reduce the computational cost –&gt;"
   },
   {
-    "objectID": "simulation/tidy3d.html",
-    "href": "simulation/tidy3d.html",
-    "title": "Learning Tidy3D",
+    "objectID": "nlo.html",
+    "href": "nlo.html",
+    "title": "Nonlinear Optics",
     "section": "",
-    "text": "FDTD method allows you to compute the evolution of electromagnetic field in the time domain.\nGiven some device \\epsilon(\\vec{r}) and an incident field or current source \\vec{J}(\\vec{r}, t), internally, FDTD solves these maxwell’s equations:\n\\nabla \\times \\vec{E}(\\vec{r}, t) = -\\mu_0 \\frac{\\vec{H}(\\vec{r}, t)}{dt} \\tag{1}\n\\nabla \\times \\vec{H}(\\vec{r}, t) = \\epsilon(\\vec{r}) \\epsilon_0 \\frac{d\\vec{E}(\\vec{r}, t)}{dt} + \\vec{J}(\\vec{r}, t) \\tag{2}\n\n\n\nField Update\n\n\n\nThe diagram is from Simulation Documentation\n\n\n\n\nThese software packages should be imported everytime you start a tidy3D project:\nimport tidy3d as td # Main package\nimport tidy3d.web as web # Used to run the simulation\nimport matplotlib.pyplot as plt # Used for plotting results\nimport numpy as np # Used for numerical calculations\n\n\n\nBefore the simulation, we have to define some key parameters of the electromagnetic waves that we will use across the simulation:\nlambda_range = (1.1, 1.6)   # wavelength range (µm)\nfreqs = (td.C_0 / lambda_range[1], td.C_0 / lambda_range[0])  # frequency range\nfreq0 = np.mean(freqs)      # center frequency\nlda0 = td.C_0 / freq0       # center wavelength\nbandwidth = 0.38            # normalized bandwidth\nfreqw = bandwidth * (freqs[1] - freqs[0])  # bandwidth in Hz\nNote: All numbers in tidy3d are in microns (\\mu m)\n\n\n\nHere’s how to simulate something:\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # inputs\n)\nThe most basic way of running the simulation is using the web object we imported from tidy3d:\n# Running a simulation\nsim1_data = web.run(simulation1, task_name='any-unique-name', path='data/descriptive-name.hdf5')\nSimulation data is stored as an HDF5 file at the file path you specify.\n\nSee Simulation Documentation for more information\n\n\n\n\nThe 7 required inputs are:\n\n\nComputational Domain Size\nGrid Specifications (Discretization size)\nStructures\nSources\nMonitors\nRun time\nBoundary Condition Specification\n\n\nWe will introduce these 7 parameters by simulating a huygen’s metasurface\n\nSee Simulation Documentation for more information\n\n\n\n\nSize in x, y, and z directions.\np = 0.666 #nm -&gt; Periodicity\nLx, Ly, Lz = p, p, 2 * lda0 \nsim_size = [Lx, Ly, Lz]\n\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # A square computational domain\n    size = sim_size\n)\n\n\n\nSpecifications for the simulation grid along each of the three directions.\n# Define Grid size\nspec = td.GridSpec.auto(min_steps_per_wvl=40, wavelength=lda0)\n\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # A square computational domain\n    size = (x, y, z),\n    grid_spec=spec,\n    \n)\n\nTypically, the size of a unit cell is \\frac{\\lambda}{20}\n\n\ntd.GridSpec contains many functions to help define the grid, the most commonly used are:\ntd.GridSpec.uniform(dl=grid_size)\ntd.GridSpec.auto(min_steps_per_wvl=40, wavelength=lda0)\n\nuniform - Use the same Uniform 1D grid along each of the three directions.\n\ndl (float) – Grid size for uniform grid generation.\n\nauto - Use the same non-uniform grid along each of the three directions.\n\nmin_steps_per_wvl(ConstrainedFloatValue = 10.0) – Minimal number of steps per wavelength in each medium.\nwavelength (float) – Wavelength to use for the step size and for dispersive media epsilon.\n\n\n\n\n\ntd.Structure is the meat of the simulation. It defines a physical object that interacts with the electromagnetic fields. The structures field is a tuple of Structure objects that you create.\n# set up simulation\nsim = td.Simulation(\n    size=sim_size,\n    grid_spec=spec,\n    structures=[superstrate, substrate, cylinder],\n\n# set up simulation\ntd.Structure(\n   # inputs\n)\nA structure needs two inputs at least: - geometry (td.Box, td.Cylinder, td.Sphere, td.TriangleMesh (STL file), etc.) - medium Mediums define the optical properties of the materials within the simulation. (e.g. td.Medium)\n\nAccording to the paper on huygen’s metasurface, I defined these four structures:\nt = 2  # thickness of the substrate # THIS SHOULD BE CHANGED TO INFINITE\nsubstrate = td.Structure(\n    geometry=td.Box(\n        center=(0,0,-t/2),\n        size=(td.inf,td.inf,t)\n    ),\n    medium=td.Medium(permittivity=1.45**2, name='oxide'),\n    name='substrate'\n)\nsuperstrate = td.Structure(\n    geometry=td.Box(\n        center=(0,0,t/2),\n        size=(td.inf,td.inf,t)\n    ),\n    medium=td.Medium(permittivity=1.4**2, name='glass'),\n    name='superstrate'\n)\npolymer = td.Structure(\n    geometry=td.Box(\n        center=(0,0,0),\n        size=(td.inf,td.inf,2*t)\n    ),\n    medium=td.Medium(permittivity=1.66**2, name='polymer'),\n    name='polymer'\n)\n# construct the silicon resonator\ncylinder = td.Structure(\n    geometry=td.Cylinder(center=[0, 0, h / 2], radius=r, length=h, axis=2), medium=td.Medium(permittivity=3.5**2, name='Si')\n)\n\n\n\nTuple of electric current sources injecting fields into the simulation. Common ones are:\nPlane Wave - Uniform current distribution on an infinite extent plane. (Doc)\npulse = GaussianPulse(freq0=200e12, fwidth=20e12)\npw_source = PlaneWave(size=(inf,0,inf), source_time=pulse, pol_angle=0.1, direction='+')\nPoint Dipole - Uniform current source with a zero size. (Doc)\npulse = td.GaussianPulse(freq0=200e12, fwidth=20e12)\npt_dipole = td.PointDipole(center=(1,2,3), source_time=pulse, polarization='Ex')\nSee documentation for Other Sources\n\nIn this case, I defined one plane wave source:\n# add a plane wave source\nplane_wave = td.PlaneWave(\n    source_time=td.GaussianPulse(freq0=freq0, fwidth=0.5 * freqw),\n    size=(td.inf, td.inf, 0),\n    center=(0, 0, 0.3 * lda0),\n    direction=\"-\",\n    pol_angle=0,\n)\n\n\n\nTuple of monitors in the simulation. Note: monitor names are used to access data after simulation is run.\nSee Other monitors\n\n\n\nTotal electromagnetic evolution time in seconds.\n\n\n\nSpecification of boundary conditions along each dimension. If None, PML boundary conditions are applied on all sides.\n\n\n\nTuple of integers defining reflection symmetry across a plane bisecting the simulation domain normal to the x-, y-, and z-axis at the simulation center of each axis, respectively. Each element can be 0 (no symmetry), 1 (even, i.e. ‘PMC’ symmetry) or -1 (odd, i.e. ‘PEC’ symmetry). Note that the vectorial nature of the fields must be taken into account to correctly determine the symmetry value.\nSymmetry can be used to greatly reduce the computational cost –&gt;",
+    "text": "Nonlinear Optics BYU Nonlinear Optics IIT\n\nBasic Linear Optics\n\nMaxwell’s Equation\n\n\n\nMaxwell’s Wave Equation\n\n\n\nPlane wave and solution of the wave equation\n\n\n\nMonochromatic and Non-monochromatic waves\n\n\n\nElectric displacement, electric polarization, and refractice index\n\n\n\nDirection of E, D, and k in an isotropic medium\n\n\n\nPoynting vector and energy flow\n\n\n\nIntensity of an EM wave\n\n\n\nAnisotropic media\n\n\n\nSusceptibility Tensor\n\n\n\nEM Wave Propagation in Anisotropic media\n\n\n\nOrdinary and Extra-ordinary ray\n\n\n\nIndex Ellipsoid\n\n\n\nLinear response and polarization\n\n\n\nDielectric Susceptibility\n\n\n\n\nNonlinear Optics\n\nIntroduction\n\n\n\nClassical Origin of nonlinearity\n\n\n\nMiller’s Rule\n\n\n\nDimensions of higher order susceptibiltiies\n\n\n\nSecond Harmonic Generation (SHG)\n\n\n\nOptical REctification\n\n\n\nLinear Electro-optic effect\n\n\n\nSum and Difference Frequency Generation\n\n\n\nNonlinear Maxwell’s Equation\n\n\n\nTheory of SHG\n\n\n\nPhase Matching\n\n\n\nGain Bandwidth\n\n\n\nManley-Rowe Relation\n\n\n\nEnergy Conservation in SHG\n\n\n\nDifferent kinds of phase matching\n\n\n\nBirefringence phase-matching\n\n\n\nType I Phase Matching\n\n\n\nType II Phase Matching\n\n\n\nSymmetry in nonlinear susceptibility\n\n\n\nKleinman’s Symmetry\n\n\n\nNeumann’s Principle"
+  },
+  {
+    "objectID": "nlo.slides.html#basic-linear-optics",
+    "href": "nlo.slides.html#basic-linear-optics",
+    "title": "Nonlinear Optics",
+    "section": "Basic Linear Optics",
+    "text": "Basic Linear Optics\nMaxwell’s Equation"
+  },
+  {
+    "objectID": "nlo.slides.html#nonlinear-optics",
+    "href": "nlo.slides.html#nonlinear-optics",
+    "title": "Nonlinear Optics",
+    "section": "Nonlinear Optics",
+    "text": "Nonlinear Optics\nIntroduction"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Yankun (Alex) Meng",
+    "section": "",
+    "text": "About Me\nI am a first-year PhD student in the Department of Electrical and Computer Engineering at Duke University, fortunate to be advised by Prof. Natalia M. Litchinitser.\nPreviously, I was an undergrad at Duke University Double majoring in Electrical and Computer Engineering and Computer Science.\n\n\nNews\n[August 2025] PhD started!\n[May 2025] Graduated from Duke Undergraduate",
     "crumbs": [
-      "Simulation",
-      "Learning Tidy3D"
+      "Home"
     ]
   },
   {
-    "objectID": "simulation/tidy3d.html#introduction-to-tidy3d",
-    "href": "simulation/tidy3d.html#introduction-to-tidy3d",
-    "title": "Learning Tidy3D",
+    "objectID": "index.slides.html#about-me",
+    "href": "index.slides.html#about-me",
+    "title": "Yankun (Alex) Meng",
+    "section": "About Me",
+    "text": "About Me\nI am a first-year PhD student in the Department of Electrical and Computer Engineering at Duke University, fortunate to be advised by Prof. Natalia M. Litchinitser.\nPreviously, I was an undergrad at Duke University Double majoring in Electrical and Computer Engineering and Computer Science."
+  },
+  {
+    "objectID": "index.slides.html#news",
+    "href": "index.slides.html#news",
+    "title": "Yankun (Alex) Meng",
+    "section": "News",
+    "text": "News\n[August 2025] PhD started!\n[May 2025] Graduated from Duke Undergraduate"
+  },
+  {
+    "objectID": "courses/optics.slides.html#introduction",
+    "href": "courses/optics.slides.html#introduction",
+    "title": "Learning Optics",
+    "section": "Introduction",
+    "text": "Introduction\nPicturing light as rays is useful for predicting imaging properties.\nAs \\lambda \\rightarrow 0, Maxwell equation’s become the eikonal equation, which governs ray direction in a medium with a varying n(\\vec{r}).\nFermat’s principle is deduced from eikonal equation.\nSnell’s law is derived from fermat’s principle."
+  },
+  {
+    "objectID": "courses/optics.slides.html#the-eikonal-equation",
+    "href": "courses/optics.slides.html#the-eikonal-equation",
+    "title": "Learning Optics",
+    "section": "The Eikonal Equation",
+    "text": "The Eikonal Equation\nWave equation in isotropic medium:\n\\nabla^2 \\vec{E}(\\vec{r}, t) + \\frac{[n(\\vec{r})]^2 \\omega^2}{c^2} \\vec{E}(\\vec{r}, t) = 0\nTrial solution:\n\\vec{E}(\\vec{r}, t) = \\vec{E}_0 e^{i[k_{vac} R(\\vec{r}) - \\omega t]}, k_{vac} = \\frac{\\omega}{c} \\left( \\frac{rad}{m} \\right)\nWe plug trial solution in, perform laplacian, arrange terms, and make the approximation that \\frac{1}{k_{vac}} = \\frac{\\lambda_{vac}}{2 \\pi} \\rightarrow 0, we get the simplified wave equation\n[\\nabla R(\\vec{r}) \\cdot \\nabla R(\\vec{r}) - [n(\\vec{r})]^2] \\vec{E}_0(\\vec{r}) = 0\n\\implies \\nabla R(\\vec{r}) \\cdot \\nabla R(\\vec{r}) = [n(\\vec{r})]^2\n\\implies \\boxed{ \\nabla R(\\vec{r}) = n(\\vec{r}) \\hat{s}(\\vec{r}) }\nIf R(\\vec{r}) (length) is real, no absorption or amplification. R(\\vec{r}) = constant is one wavefront. \\nabla R(\\vec{r}) is the local direction of propagation. \\hat{s} is unit vector in direction of energy flow. Rays are collection vectors \\hat{s}."
+  },
+  {
+    "objectID": "courses/optics.slides.html#fermats-principle",
+    "href": "courses/optics.slides.html#fermats-principle",
+    "title": "Learning Optics",
+    "section": "Fermat’s Principle",
+    "text": "Fermat’s Principle\nCurl of eikonal function is\n\\nabla \\times [\\nabla R(\\vec{r})] = \\nabla \\times [n(\\vec{r}) \\hat{s}(\\vec{r})] = 0 \nIntegrating over open surface A, we get\n\\int_{A} \\nabla \\times [n(\\vec{r}) \\hat{s}(\\vec{r})] = 0  \\tag{}\nApply Stoke’s Theorem, we have\n\\oint_{C} n \\hat{s} \\cdot d\\vec{l} = 0\n\\implies \\int_{A}^{B} n \\hat{s} \\cdot d\\vec{l}\nNotice that\n\\int_{A}^{B} n \\hat{s} \\cdot d\\vec{l} = \\min{\\int_{A}^{B} n d \\vec{l}}\nWe define Optical Path Length as\n\\boxed{OPL = \\int_{A}^{B} n dl}\nAnd Fermat’s Theorem minimizes travel time,\n\\delta t = \\frac{OPL}{c}"
+  },
+  {
+    "objectID": "courses/optics.slides.html#paraxial-ray-theory",
+    "href": "courses/optics.slides.html#paraxial-ray-theory",
+    "title": "Learning Optics",
+    "section": "Paraxial Ray Theory",
+    "text": "Paraxial Ray Theory\nPropagation of rays through optical systems can be approximated as paraxial, nearly parallel to the axis of these systems.\nParaxial ray theory predicts stability of laser cavities, to see if ray drift away from optical axis."
+  },
+  {
+    "objectID": "courses/optics.slides.html#proof-of-snells-law",
+    "href": "courses/optics.slides.html#proof-of-snells-law",
+    "title": "Learning Optics",
+    "section": "Proof of Snell’s Law",
+    "text": "Proof of Snell’s Law\n\nConstruction to prove Snell’s LawConstrained minimization problem: Minimize $n_1 d_1 _1 + $"
+  },
+  {
+    "objectID": "courses/optics.html",
+    "href": "courses/optics.html",
+    "title": "Learning Optics",
     "section": "",
-    "text": "FDTD method allows you to compute the evolution of electromagnetic field in the time domain.\nGiven some device \\epsilon(\\vec{r}) and an incident field or current source \\vec{J}(\\vec{r}, t), internally, FDTD solves these maxwell’s equations:\n\\nabla \\times \\vec{E}(\\vec{r}, t) = -\\mu_0 \\frac{\\vec{H}(\\vec{r}, t)}{dt} \\tag{1}\n\\nabla \\times \\vec{H}(\\vec{r}, t) = \\epsilon(\\vec{r}) \\epsilon_0 \\frac{d\\vec{E}(\\vec{r}, t)}{dt} + \\vec{J}(\\vec{r}, t) \\tag{2}\n\n\n\nField Update\n\n\n\nThe diagram is from Simulation Documentation\n\n\n\n\nThese software packages should be imported everytime you start a tidy3D project:\nimport tidy3d as td # Main package\nimport tidy3d.web as web # Used to run the simulation\nimport matplotlib.pyplot as plt # Used for plotting results\nimport numpy as np # Used for numerical calculations\n\n\n\nBefore the simulation, we have to define some key parameters of the electromagnetic waves that we will use across the simulation:\nlambda_range = (1.1, 1.6)   # wavelength range (µm)\nfreqs = (td.C_0 / lambda_range[1], td.C_0 / lambda_range[0])  # frequency range\nfreq0 = np.mean(freqs)      # center frequency\nlda0 = td.C_0 / freq0       # center wavelength\nbandwidth = 0.38            # normalized bandwidth\nfreqw = bandwidth * (freqs[1] - freqs[0])  # bandwidth in Hz\nNote: All numbers in tidy3d are in microns (\\mu m)\n\n\n\nHere’s how to simulate something:\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # inputs\n)\nThe most basic way of running the simulation is using the web object we imported from tidy3d:\n# Running a simulation\nsim1_data = web.run(simulation1, task_name='any-unique-name', path='data/descriptive-name.hdf5')\nSimulation data is stored as an HDF5 file at the file path you specify.\n\nSee Simulation Documentation for more information\n\n\n\n\nThe 7 required inputs are:\n\n\nComputational Domain Size\nGrid Specifications (Discretization size)\nStructures\nSources\nMonitors\nRun time\nBoundary Condition Specification\n\n\nWe will introduce these 7 parameters by simulating a huygen’s metasurface\n\nSee Simulation Documentation for more information\n\n\n\n\nSize in x, y, and z directions.\np = 0.666 #nm -&gt; Periodicity\nLx, Ly, Lz = p, p, 2 * lda0 \nsim_size = [Lx, Ly, Lz]\n\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # A square computational domain\n    size = sim_size\n)\n\n\n\nSpecifications for the simulation grid along each of the three directions.\n# Define Grid size\nspec = td.GridSpec.auto(min_steps_per_wvl=40, wavelength=lda0)\n\n# Defining a simulation\nsimulation1 = td.Simulation(\n    # A square computational domain\n    size = (x, y, z),\n    grid_spec=spec,\n    \n)\n\nTypically, the size of a unit cell is \\frac{\\lambda}{20}\n\n\ntd.GridSpec contains many functions to help define the grid, the most commonly used are:\ntd.GridSpec.uniform(dl=grid_size)\ntd.GridSpec.auto(min_steps_per_wvl=40, wavelength=lda0)\n\nuniform - Use the same Uniform 1D grid along each of the three directions.\n\ndl (float) – Grid size for uniform grid generation.\n\nauto - Use the same non-uniform grid along each of the three directions.\n\nmin_steps_per_wvl(ConstrainedFloatValue = 10.0) – Minimal number of steps per wavelength in each medium.\nwavelength (float) – Wavelength to use for the step size and for dispersive media epsilon.\n\n\n\n\n\ntd.Structure is the meat of the simulation. It defines a physical object that interacts with the electromagnetic fields. The structures field is a tuple of Structure objects that you create.\n# set up simulation\nsim = td.Simulation(\n    size=sim_size,\n    grid_spec=spec,\n    structures=[superstrate, substrate, cylinder],\n\n# set up simulation\ntd.Structure(\n   # inputs\n)\nA structure needs two inputs at least: - geometry (td.Box, td.Cylinder, td.Sphere, td.TriangleMesh (STL file), etc.) - medium Mediums define the optical properties of the materials within the simulation. (e.g. td.Medium)\n\nAccording to the paper on huygen’s metasurface, I defined these four structures:\nt = 2  # thickness of the substrate # THIS SHOULD BE CHANGED TO INFINITE\nsubstrate = td.Structure(\n    geometry=td.Box(\n        center=(0,0,-t/2),\n        size=(td.inf,td.inf,t)\n    ),\n    medium=td.Medium(permittivity=1.45**2, name='oxide'),\n    name='substrate'\n)\nsuperstrate = td.Structure(\n    geometry=td.Box(\n        center=(0,0,t/2),\n        size=(td.inf,td.inf,t)\n    ),\n    medium=td.Medium(permittivity=1.4**2, name='glass'),\n    name='superstrate'\n)\npolymer = td.Structure(\n    geometry=td.Box(\n        center=(0,0,0),\n        size=(td.inf,td.inf,2*t)\n    ),\n    medium=td.Medium(permittivity=1.66**2, name='polymer'),\n    name='polymer'\n)\n# construct the silicon resonator\ncylinder = td.Structure(\n    geometry=td.Cylinder(center=[0, 0, h / 2], radius=r, length=h, axis=2), medium=td.Medium(permittivity=3.5**2, name='Si')\n)\n\n\n\nTuple of electric current sources injecting fields into the simulation. Common ones are:\nPlane Wave - Uniform current distribution on an infinite extent plane. (Doc)\npulse = GaussianPulse(freq0=200e12, fwidth=20e12)\npw_source = PlaneWave(size=(inf,0,inf), source_time=pulse, pol_angle=0.1, direction='+')\nPoint Dipole - Uniform current source with a zero size. (Doc)\npulse = td.GaussianPulse(freq0=200e12, fwidth=20e12)\npt_dipole = td.PointDipole(center=(1,2,3), source_time=pulse, polarization='Ex')\nSee documentation for Other Sources\n\nIn this case, I defined one plane wave source:\n# add a plane wave source\nplane_wave = td.PlaneWave(\n    source_time=td.GaussianPulse(freq0=freq0, fwidth=0.5 * freqw),\n    size=(td.inf, td.inf, 0),\n    center=(0, 0, 0.3 * lda0),\n    direction=\"-\",\n    pol_angle=0,\n)\n\n\n\nTuple of monitors in the simulation. Note: monitor names are used to access data after simulation is run.\nSee Other monitors\n\n\n\nTotal electromagnetic evolution time in seconds.\n\n\n\nSpecification of boundary conditions along each dimension. If None, PML boundary conditions are applied on all sides.\n\n\n\nTuple of integers defining reflection symmetry across a plane bisecting the simulation domain normal to the x-, y-, and z-axis at the simulation center of each axis, respectively. Each element can be 0 (no symmetry), 1 (even, i.e. ‘PMC’ symmetry) or -1 (odd, i.e. ‘PEC’ symmetry). Note that the vectorial nature of the fields must be taken into account to correctly determine the symmetry value.\nSymmetry can be used to greatly reduce the computational cost –&gt;",
+    "text": "Picturing light as rays is useful for predicting imaging properties.\nAs \\lambda \\rightarrow 0, Maxwell equation’s become the eikonal equation, which governs ray direction in a medium with a varying n(\\vec{r}).\nFermat’s principle is deduced from eikonal equation.\nSnell’s law is derived from fermat’s principle.\n\n\n\nWave equation in isotropic medium:\n\\nabla^2 \\vec{E}(\\vec{r}, t) + \\frac{[n(\\vec{r})]^2 \\omega^2}{c^2} \\vec{E}(\\vec{r}, t) = 0\nTrial solution:\n\\vec{E}(\\vec{r}, t) = \\vec{E}_0 e^{i[k_{vac} R(\\vec{r}) - \\omega t]}, k_{vac} = \\frac{\\omega}{c} \\left( \\frac{rad}{m} \\right)\nWe plug trial solution in, perform laplacian, arrange terms, and make the approximation that \\frac{1}{k_{vac}} = \\frac{\\lambda_{vac}}{2 \\pi} \\rightarrow 0, we get the simplified wave equation\n[\\nabla R(\\vec{r}) \\cdot \\nabla R(\\vec{r}) - [n(\\vec{r})]^2] \\vec{E}_0(\\vec{r}) = 0\n\\implies \\nabla R(\\vec{r}) \\cdot \\nabla R(\\vec{r}) = [n(\\vec{r})]^2\n\\implies \\boxed{ \\nabla R(\\vec{r}) = n(\\vec{r}) \\hat{s}(\\vec{r}) }\nIf R(\\vec{r}) (length) is real, no absorption or amplification. R(\\vec{r}) = constant is one wavefront. \\nabla R(\\vec{r}) is the local direction of propagation. \\hat{s} is unit vector in direction of energy flow. Rays are collection vectors \\hat{s}.\n\n\n\nCurl of eikonal function is\n\\nabla \\times [\\nabla R(\\vec{r})] = \\nabla \\times [n(\\vec{r}) \\hat{s}(\\vec{r})] = 0 \nIntegrating over open surface A, we get\n\\int_{A} \\nabla \\times [n(\\vec{r}) \\hat{s}(\\vec{r})] = 0  \\tag{}\nApply Stoke’s Theorem, we have\n\\oint_{C} n \\hat{s} \\cdot d\\vec{l} = 0\n\\implies \\int_{A}^{B} n \\hat{s} \\cdot d\\vec{l}\nNotice that\n\\int_{A}^{B} n \\hat{s} \\cdot d\\vec{l} = \\min{\\int_{A}^{B} n d \\vec{l}}\nWe define Optical Path Length as\n\\boxed{OPL = \\int_{A}^{B} n dl}\nAnd Fermat’s Theorem minimizes travel time,\n\\delta t = \\frac{OPL}{c}\n\n\n\nPropagation of rays through optical systems can be approximated as paraxial, nearly parallel to the axis of these systems.\nParaxial ray theory predicts stability of laser cavities, to see if ray drift away from optical axis.\n\n\n\n\n\n\nConstruction to prove Snell’s Law\n\n\nConstrained minimization problem: Minimize $n_1 d_1 _1 + $",
     "crumbs": [
-      "Simulation",
-      "Learning Tidy3D"
+      "Courses",
+      "Learning Optics"
     ]
   },
   {
-    "objectID": "simulation/huygens.slides.html#preconditions",
-    "href": "simulation/huygens.slides.html#preconditions",
-    "title": "Transmission of Huygens’ Surface",
-    "section": "Preconditions",
-    "text": "Preconditions\n\n# 0 Define a FreqRange object with desired wavelengths\nfr = td.FreqRange.from_wvl_interval(wvl_min=1.1, wvl_max=1.6)\nN = 301 # num_points\n\n\n# 1 Computational domain size\nh = 0.220  # Height of cylinder\nspc = 2\nLz = spc + h + h + spc\n\nPx = Py = P = 0.666 # periodicity\nsim_size = [Px, Py, Lz]\n\n\n# 2 Grid Specifications\ndl = P / 32\nhorizontal_grid = td.UniformGrid(dl=dl)\nvertical_grid = td.AutoGrid(min_steps_per_wvl=32)\ngrid_spec=td.GridSpec(\n    grid_x=horizontal_grid,\n    grid_y=horizontal_grid,\n    grid_z=vertical_grid,\n)\n\n\n# 3 Structures\nr = 0.242  # radius of the cylinder\nn_Si = 3.5\nSi = td.Medium(permittivity=n_Si**2, name='Si')\ncylinder = td.Structure(\n    geometry=td.Cylinder(center=[0, 0, h / 2], radius=r, length=h, axis=2), medium=Si\n)\n\n# Spin_on glass + substrate\nn_glass = 1.4\nn_SiO2 = 1.45\nglass = td.Medium(permittivity=n_glass**2, name='glass')\nSiO2 = td.Medium(permittivity=n_SiO2**2, name='oxide')\n\nsubstrate = td.Structure(\n    geometry=td.Box(\n        center=(0,0,-Lz/2),\n        size=(td.inf,td.inf,2 * (spc+h))\n    ),\n    medium=SiO2,\n    name='substrate'\n)\n\nglass = td.Structure(\n    geometry=td.Box(\n        center=(0,0,Lz/2),\n        size=(td.inf,td.inf,2 * (spc+h))\n    ),\n    medium=glass,\n    name='superstrate'\n)\n\n# Polymer\nn_polymer = 1.66\npolymer = td.Structure(\n    geometry=td.Box(\n        center=(0,0,0),\n        size=(td.inf,td.inf,td.inf)\n    ),\n    medium=td.Medium(permittivity=n_polymer**2, name='polymer'),\n    name='polymer'\n)\n\n\n# 4 Sources\nsource = td.PlaneWave(\n    source_time=fr.to_gaussian_pulse(),\n    size=(td.inf, td.inf, 0),\n    center=(0, 0, Lz/2 - spc + 2 * dl),\n    direction=\"-\",\n    pol_angle=0\n)\n\n\n# 5 Monitor\nmonitor = td.FluxMonitor(\n    center=(0, 0, -Lz/2 + spc - 2*dl),\n    size=(td.inf, td.inf, 0),\n    freqs=fr.freqs(N),\n    name=\"flux\"\n)\n\n\n# 6 Run Time\nbandwidth = fr.fmax - fr.fmin\nrun_time= 50 / bandwidth\n\n\n# 7 Boundary Condition\nbc = td.BoundarySpec(\n    x=td.Boundary.periodic(), \n    y=td.Boundary.periodic(), \n    z=td.Boundary.pml()\n)"
-  },
-  {
-    "objectID": "simulation/huygens.slides.html#simulation",
-    "href": "simulation/huygens.slides.html#simulation",
-    "title": "Transmission of Huygens’ Surface",
-    "section": "Simulation",
-    "text": "Simulation\n\nsim_empty=td.Simulation(\n    size=sim_size,\n    grid_spec=grid_spec,\n    structures=[substrate, glass],\n    sources=[source],\n    monitors=[monitor],\n    run_time=run_time,\n    boundary_spec=bc\n)\n\n\nsim_actual = td.Simulation(\n    size=sim_size,\n    grid_spec=grid_spec,\n    structures=[substrate, glass, cylinder],\n    sources=[source],\n    monitors=[monitor],\n    run_time=run_time,\n    boundary_spec=bc\n)\n\n\nfig, (ax1,ax2,ax3) = plt.subplots(1, 3, figsize=(10, 6))\nsim_actual.plot_eps(x=0, ax=ax1)\nsim_actual.plot_eps(y=0, ax=ax2)\nsim_actual.plot_eps(z=0, ax=ax3)\n\n\n\nsims = {\n    \"norm\": sim_empty,\n    \"actual\": sim_actual,\n}\n\nbatch = web.Batch(simulations=sims, verbose=True)\n\n\nbatch_data = batch.run(path_dir=\"data\")\n\n\n\n\n\n\n\n00:11:07 UTC Started working on Batch containing 2 tasks.                       \n\n\n\n             Maximum FlexCredit cost: 0.050 for the whole batch.                \n\n\n\n             Use 'Batch.real_cost()' to get the billed FlexCredit cost after the\n             Batch has completed.                                               \n\n\n\n\n\n\n00:11:08 UTC Batch complete."
-  },
-  {
-    "objectID": "simulation/huygens.slides.html#postprocess",
-    "href": "simulation/huygens.slides.html#postprocess",
-    "title": "Transmission of Huygens’ Surface",
-    "section": "Postprocess",
-    "text": "Postprocess\n\n35 seconds to run both simulations\nresults are stored inside batch_data\n\n\nT = batch_data[\"actual\"][\"flux\"].flux / batch_data[\"norm\"][\"flux\"].flux\n\n\n# plot transmission, compare to paper results, look similar\nfig, ax = plt.subplots(1, 1, figsize=(6, 4.5))\nplt.plot(fr.freqs(N), T, \"r\", label=\"T\")\nplt.xlabel(r\"Frequency ($Hz$)\")\nplt.ylabel(\"Magnitude\")\nplt.ylim(0, 1)\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\n\n# plot transmission, compare to paper results, look similar\nfig, ax = plt.subplots(1, 1, figsize=(6, 4.5))\nplt.plot(td.C_0 / fr.freqs(N) * 1000, T, \"r\", label=\"T\")\nplt.xlabel(r\"wavelength ($nm$)\")\nplt.ylabel(\"Magnitude\")\nplt.ylim(0, 1)\nplt.legend()\nplt.show()"
-  },
-  {
-    "objectID": "simulation/huygens.html",
-    "href": "simulation/huygens.html",
-    "title": "Transmission of Huygens’ Surface",
+    "objectID": "courses/optics.html#ray-optics",
+    "href": "courses/optics.html#ray-optics",
+    "title": "Learning Optics",
     "section": "",
-    "text": "Important Questions to answer:\n\nWhy do we need a normalizing run? (FDTD 101)\nWhy is there a mismatch between td.FreqRange.wvl0 and td.C_0 / td.FreqRange.freq0\n\nHuygens’ Metasurface Paper Link\n\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport tidy3d as td\nimport tidy3d.web as web\n\n\nPreconditions\n\n# 0 Define a FreqRange object with desired wavelengths\nfr = td.FreqRange.from_wvl_interval(wvl_min=1.1, wvl_max=1.6)\nN = 301 # num_points\n\n\n# 1 Computational domain size\nh = 0.220  # Height of cylinder\nspc = 2\nLz = spc + h + h + spc\n\nPx = Py = P = 0.666 # periodicity\nsim_size = [Px, Py, Lz]\n\n\n# 2 Grid Specifications\ndl = P / 32\nhorizontal_grid = td.UniformGrid(dl=dl)\nvertical_grid = td.AutoGrid(min_steps_per_wvl=32)\ngrid_spec=td.GridSpec(\n    grid_x=horizontal_grid,\n    grid_y=horizontal_grid,\n    grid_z=vertical_grid,\n)\n\n\n# 3 Structures\nr = 0.242  # radius of the cylinder\nn_Si = 3.5\nSi = td.Medium(permittivity=n_Si**2, name='Si')\ncylinder = td.Structure(\n    geometry=td.Cylinder(center=[0, 0, h / 2], radius=r, length=h, axis=2), medium=Si\n)\n\n# Spin_on glass + substrate\nn_glass = 1.4\nn_SiO2 = 1.45\nglass = td.Medium(permittivity=n_glass**2, name='glass')\nSiO2 = td.Medium(permittivity=n_SiO2**2, name='oxide')\n\nsubstrate = td.Structure(\n    geometry=td.Box(\n        center=(0,0,-Lz/2),\n        size=(td.inf,td.inf,2 * (spc+h))\n    ),\n    medium=SiO2,\n    name='substrate'\n)\n\nglass = td.Structure(\n    geometry=td.Box(\n        center=(0,0,Lz/2),\n        size=(td.inf,td.inf,2 * (spc+h))\n    ),\n    medium=glass,\n    name='superstrate'\n)\n\n# Polymer\nn_polymer = 1.66\npolymer = td.Structure(\n    geometry=td.Box(\n        center=(0,0,0),\n        size=(td.inf,td.inf,td.inf)\n    ),\n    medium=td.Medium(permittivity=n_polymer**2, name='polymer'),\n    name='polymer'\n)\n\n\n# 4 Sources\nsource = td.PlaneWave(\n    source_time=fr.to_gaussian_pulse(),\n    size=(td.inf, td.inf, 0),\n    center=(0, 0, Lz/2 - spc + 2 * dl),\n    direction=\"-\",\n    pol_angle=0\n)\n\n\n# 5 Monitor\nmonitor = td.FluxMonitor(\n    center=(0, 0, -Lz/2 + spc - 2*dl),\n    size=(td.inf, td.inf, 0),\n    freqs=fr.freqs(N),\n    name=\"flux\"\n)\n\n\n# 6 Run Time\nbandwidth = fr.fmax - fr.fmin\nrun_time= 50 / bandwidth\n\n\n# 7 Boundary Condition\nbc = td.BoundarySpec(\n    x=td.Boundary.periodic(), \n    y=td.Boundary.periodic(), \n    z=td.Boundary.pml()\n)\n\n\n\nSimulation\n\nsim_empty=td.Simulation(\n    size=sim_size,\n    grid_spec=grid_spec,\n    structures=[substrate, glass],\n    sources=[source],\n    monitors=[monitor],\n    run_time=run_time,\n    boundary_spec=bc\n)\n\n\nsim_actual = td.Simulation(\n    size=sim_size,\n    grid_spec=grid_spec,\n    structures=[substrate, glass, cylinder],\n    sources=[source],\n    monitors=[monitor],\n    run_time=run_time,\n    boundary_spec=bc\n)\n\n\nfig, (ax1,ax2,ax3) = plt.subplots(1, 3, figsize=(10, 6))\nsim_actual.plot_eps(x=0, ax=ax1)\nsim_actual.plot_eps(y=0, ax=ax2)\nsim_actual.plot_eps(z=0, ax=ax3)\n\n\n\n\n\n\n\n\n\nsims = {\n    \"norm\": sim_empty,\n    \"actual\": sim_actual,\n}\n\nbatch = web.Batch(simulations=sims, verbose=True)\n\n\nbatch_data = batch.run(path_dir=\"data\")\n\n\n\n\n\n\n\n00:11:07 UTC Started working on Batch containing 2 tasks.                       \n\n\n\n             Maximum FlexCredit cost: 0.050 for the whole batch.                \n\n\n\n             Use 'Batch.real_cost()' to get the billed FlexCredit cost after the\n             Batch has completed.                                               \n\n\n\n\n\n\n00:11:08 UTC Batch complete.                                                    \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPostprocess\n\n35 seconds to run both simulations\nresults are stored inside batch_data\n\n\nT = batch_data[\"actual\"][\"flux\"].flux / batch_data[\"norm\"][\"flux\"].flux\n\n\n# plot transmission, compare to paper results, look similar\nfig, ax = plt.subplots(1, 1, figsize=(6, 4.5))\nplt.plot(fr.freqs(N), T, \"r\", label=\"T\")\nplt.xlabel(r\"Frequency ($Hz$)\")\nplt.ylabel(\"Magnitude\")\nplt.ylim(0, 1)\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\n\n# plot transmission, compare to paper results, look similar\nfig, ax = plt.subplots(1, 1, figsize=(6, 4.5))\nplt.plot(td.C_0 / fr.freqs(N) * 1000, T, \"r\", label=\"T\")\nplt.xlabel(r\"wavelength ($nm$)\")\nplt.ylabel(\"Magnitude\")\nplt.ylim(0, 1)\nplt.legend()\nplt.show()",
+    "text": "Picturing light as rays is useful for predicting imaging properties.\nAs \\lambda \\rightarrow 0, Maxwell equation’s become the eikonal equation, which governs ray direction in a medium with a varying n(\\vec{r}).\nFermat’s principle is deduced from eikonal equation.\nSnell’s law is derived from fermat’s principle.\n\n\n\nWave equation in isotropic medium:\n\\nabla^2 \\vec{E}(\\vec{r}, t) + \\frac{[n(\\vec{r})]^2 \\omega^2}{c^2} \\vec{E}(\\vec{r}, t) = 0\nTrial solution:\n\\vec{E}(\\vec{r}, t) = \\vec{E}_0 e^{i[k_{vac} R(\\vec{r}) - \\omega t]}, k_{vac} = \\frac{\\omega}{c} \\left( \\frac{rad}{m} \\right)\nWe plug trial solution in, perform laplacian, arrange terms, and make the approximation that \\frac{1}{k_{vac}} = \\frac{\\lambda_{vac}}{2 \\pi} \\rightarrow 0, we get the simplified wave equation\n[\\nabla R(\\vec{r}) \\cdot \\nabla R(\\vec{r}) - [n(\\vec{r})]^2] \\vec{E}_0(\\vec{r}) = 0\n\\implies \\nabla R(\\vec{r}) \\cdot \\nabla R(\\vec{r}) = [n(\\vec{r})]^2\n\\implies \\boxed{ \\nabla R(\\vec{r}) = n(\\vec{r}) \\hat{s}(\\vec{r}) }\nIf R(\\vec{r}) (length) is real, no absorption or amplification. R(\\vec{r}) = constant is one wavefront. \\nabla R(\\vec{r}) is the local direction of propagation. \\hat{s} is unit vector in direction of energy flow. Rays are collection vectors \\hat{s}.\n\n\n\nCurl of eikonal function is\n\\nabla \\times [\\nabla R(\\vec{r})] = \\nabla \\times [n(\\vec{r}) \\hat{s}(\\vec{r})] = 0 \nIntegrating over open surface A, we get\n\\int_{A} \\nabla \\times [n(\\vec{r}) \\hat{s}(\\vec{r})] = 0  \\tag{}\nApply Stoke’s Theorem, we have\n\\oint_{C} n \\hat{s} \\cdot d\\vec{l} = 0\n\\implies \\int_{A}^{B} n \\hat{s} \\cdot d\\vec{l}\nNotice that\n\\int_{A}^{B} n \\hat{s} \\cdot d\\vec{l} = \\min{\\int_{A}^{B} n d \\vec{l}}\nWe define Optical Path Length as\n\\boxed{OPL = \\int_{A}^{B} n dl}\nAnd Fermat’s Theorem minimizes travel time,\n\\delta t = \\frac{OPL}{c}\n\n\n\nPropagation of rays through optical systems can be approximated as paraxial, nearly parallel to the axis of these systems.\nParaxial ray theory predicts stability of laser cavities, to see if ray drift away from optical axis.\n\n\n\n\n\n\nConstruction to prove Snell’s Law\n\n\nConstrained minimization problem: Minimize $n_1 d_1 _1 + $",
+    "crumbs": [
+      "Courses",
+      "Learning Optics"
+    ]
+  },
+  {
+    "objectID": "courses/optics.html#citations",
+    "href": "courses/optics.html#citations",
+    "title": "Learning Optics",
+    "section": "Citations",
+    "text": "Citations\n[1] Saleh, B. E. A., & Teich, M. C. (2019). Fundamentals of photonics (3rd ed.). Wiley. [2] Peatross, Justin, and Michael Ware. Physics of Light and Optics. 2015 ed., January 31, 2025 revision, Department of Physics, Brigham Young University. optics.byu.edu.",
+    "crumbs": [
+      "Courses",
+      "Learning Optics"
+    ]
+  },
+  {
+    "objectID": "log.slides.html#week-2-912025-972025",
+    "href": "log.slides.html#week-2-912025-972025",
+    "title": "Work Log",
+    "section": "Week 2 [9/1/2025-9/7/2025]",
+    "text": "Week 2 [9/1/2025-9/7/2025]\nTidy3D:\n\nMesh Study (P/2, P/4, P/8, P/16, P/32, …) on huygens metasurface and plot the transmission\nUnderstand how to calculate phase (Example)\nLearn how to use material library and define circular polarization (Example)\nRegenerate Figure 2B (Ultra narrowband geometric-phase resonant metasurfaces)\n\nNonlinear Optics:\nClasses so far:\n\nNonlinear susceptibility; anharmonic oscillator\nProperties of the nonlinear susceptibility; K.-K. relations 1.5—1.7\nWave equation in NLO; Coupled-wave equations for SFG 2.1—2.2\n\nSelf-Study:\n\nIIT Lectures 1-20\nBYU notebooks (implement 1, 2, 3, 4)\n\nAdvanced Optics:\nClasses so far:\n\nRay Optics, Graded Index Optics, Matrix Optics\nWave Optics, Paraxial Waves\nDiffraction/Transmission/Reflection\nGaussian Beams, ABCD matrices, etalons, thin films, cavities\nGuided wave optics, optical fibers, waveguides\n\nSelf-Study:\n\nFOP by Saleh 1, 2, 3, 6, 9, 11"
+  },
+  {
+    "objectID": "log.slides.html#week-1-8252025-8312025",
+    "href": "log.slides.html#week-1-8252025-8312025",
+    "title": "Work Log",
+    "section": "Week 1 [8/25/2025-8/31/2025]",
+    "text": "Week 1 [8/25/2025-8/31/2025]\n\nTidy3D Huygen’s metasurface simulation redo\nRead Fundamentals of Photonics Ch 1, 2, 6\nRead Boyd NLO Ch 1\nTidy3D Python Tutorial 1 and 2"
+  },
+  {
+    "objectID": "log.slides.html#tidy3d-learning-outline",
+    "href": "log.slides.html#tidy3d-learning-outline",
+    "title": "Work Log",
+    "section": "Tidy3D Learning Outline",
+    "text": "Tidy3D Learning Outline\nFDTD 101:\n\nIntroduction to FDTD Simulation\nUsing FDTD to compute transmission spectrum\nMode Injection\nModeling Dispersive materials in FDTD\nIntroduction to PML\nTimestep size and CFL conditions\nNumerical Dispersion in FDTD\nDielectric constant assignment on Yee Grids\nSubpixel Averaging\n\nTidy3D Python:\n\nBasics\nMediums\nStructures\nGrid Specifications\nBoundary Conditions and Symmetry\nSources\nData visualization and Postprocessing"
+  },
+  {
+    "objectID": "log.html",
+    "href": "log.html",
+    "title": "Work Log",
+    "section": "",
+    "text": "Week 2 [9/1/2025-9/7/2025]\nTidy3D:\n\nMesh Study (P/2, P/4, P/8, P/16, P/32, …) on huygens metasurface and plot the transmission\nUnderstand how to calculate phase (Example)\nLearn how to use material library and define circular polarization (Example)\nRegenerate Figure 2B (Ultra narrowband geometric-phase resonant metasurfaces)\n\nNonlinear Optics:\nClasses so far:\n\nNonlinear susceptibility; anharmonic oscillator\nProperties of the nonlinear susceptibility; K.-K. relations 1.5—1.7\nWave equation in NLO; Coupled-wave equations for SFG 2.1—2.2\n\nSelf-Study:\n\nIIT Lectures 1-20\nBYU notebooks (implement 1, 2, 3, 4)\n\nAdvanced Optics:\nClasses so far:\n\nRay Optics, Graded Index Optics, Matrix Optics\nWave Optics, Paraxial Waves\nDiffraction/Transmission/Reflection\nGaussian Beams, ABCD matrices, etalons, thin films, cavities\nGuided wave optics, optical fibers, waveguides\n\nSelf-Study:\n\nFOP by Saleh 1, 2, 3, 6, 9, 11\n\n\n\nWeek 1 [8/25/2025-8/31/2025]\n\nTidy3D Huygen’s metasurface simulation redo\nRead Fundamentals of Photonics Ch 1, 2, 6\nRead Boyd NLO Ch 1\nTidy3D Python Tutorial 1 and 2\n\n\n\nTidy3D Learning Outline\nFDTD 101:\n\nIntroduction to FDTD Simulation\nUsing FDTD to compute transmission spectrum\nMode Injection\nModeling Dispersive materials in FDTD\nIntroduction to PML\nTimestep size and CFL conditions\nNumerical Dispersion in FDTD\nDielectric constant assignment on Yee Grids\nSubpixel Averaging\n\nTidy3D Python:\n\nBasics\nMediums\nStructures\nGrid Specifications\nBoundary Conditions and Symmetry\nSources\nData visualization and Postprocessing",
+    "crumbs": [
+      "Work Log"
+    ]
+  },
+  {
+    "objectID": "simulation/numpy.slides.html#what-is-numpy",
+    "href": "simulation/numpy.slides.html#what-is-numpy",
+    "title": "Learning Numpy",
+    "section": "What is NumPy?",
+    "text": "What is NumPy?\nNumPy is a package for dealing with arrays that’s very fast and efficient.\nCreating array:\narr1 = np.array([3, 5, 7, 3]) # convert list to array\narr2 = np.zeros(10) # array with 10 zeroes\narr3 = np.ones(10) # array with 10 ones\narrR = np.random.random(10) # sample 10 numbers from uniform distribution\narrG = np.random.randn(10) # sample 10 numbers from normal distribution"
+  },
+  {
+    "objectID": "simulation/numpy.slides.html#two-most-common-functions",
+    "href": "simulation/numpy.slides.html#two-most-common-functions",
+    "title": "Learning Numpy",
+    "section": "Two most common functions",
+    "text": "Two most common functions\nlinspace - values equally spaced apart given the number of values\narr = np.linspace(0, 10, 100) # from 0 to 10, 100 values\narrange - values equally spaced apart given the spacing\narr = np.arrange(0, 10, 0.02) # from 0 to 10, spacing of 0.02"
+  },
+  {
+    "objectID": "simulation/numpy.slides.html#common-array-operation",
+    "href": "simulation/numpy.slides.html#common-array-operation",
+    "title": "Learning Numpy",
+    "section": "Common Array Operation",
+    "text": "Common Array Operation\nElement-wise operation\narr + 2     # addition\narr - 5     # subtraction\n2*arr       # multiplication\n1/arr       # division\narr % 5     # Modulus\nLet’s try to do the same element-wise operation but using functions:\ndef f(x):\n    return x**2 * np.sin(x) / np.exp(-x)\n\nx = np.linspace(0, 10, 100)\ny = f(x) # Element-wise application of f"
+  },
+  {
+    "objectID": "simulation/numpy.slides.html#common-plotting",
+    "href": "simulation/numpy.slides.html#common-plotting",
+    "title": "Learning Numpy",
+    "section": "Common Plotting",
+    "text": "Common Plotting\nMost basic Plotting\nx = np.linspace(0, 1, 100)  # x-axis definition\ny = x**2                    # element-wise x^2\nplt.plot(x, x**2)           # plot(x, y)\nplt.show()                  # show the output\nHistogram\nplt.hist(arr) # plotting the array as histogram"
+  },
+  {
+    "objectID": "simulation/numpy.slides.html#indexing-and-slicing",
+    "href": "simulation/numpy.slides.html#indexing-and-slicing",
+    "title": "Learning Numpy",
+    "section": "Indexing and Slicing",
+    "text": "Indexing and Slicing\nNormal Indexing\narr = np.array([2, 4, 6, 8, 10])\narr[2]   # return 6\narr[2:]  # return 6, 8, 10 (including index 2)\narr[:-2] # return 2, 4, 6 (exluding index -2)\narr[1:2] # return 4\nBoolean Indexing\narr &gt; 5 # return a boolean array with true or false as elemenets\narr[arr&gt;5] # filtering --&gt;  return the elements that are true\nUsing Boolean Indexing to filter data\nnames = np.array(['Jim', 'Luke', 'Josh', 'Pete'])\nfirst_letter_j = np.vectorize(lambda s: s[0])(names) == 'J'\nprint(names[first_letter_j]) # gets the names that have first letter as J\nNow what is this doing?"
+  },
+  {
+    "objectID": "simulation/numpy.slides.html#what-is-that-doing",
+    "href": "simulation/numpy.slides.html#what-is-that-doing",
+    "title": "Learning Numpy",
+    "section": "What is that doing?",
+    "text": "What is that doing?\nfirst_letter_j = np.vectorize(lambda s: s[0])(names) == 'J'\nLambda Function\nf = lambda s: s[0]\nThis is a function that says give me a string and I’ll give you the first character of the string. Note that String is not an array in python, but it supports the same indexing operations as arrays.\nWhat is np.vectorize?\nIt creates a for-loop, applies the function func to every element in the array arr, and return the result as an array.\nnp.vectorize(func)(arr) # this is an array"
+  },
+  {
+    "objectID": "simulation/numpy.slides.html#common-statistics-functions",
+    "href": "simulation/numpy.slides.html#common-statistics-functions",
+    "title": "Learning Numpy",
+    "section": "Common Statistics Functions",
+    "text": "Common Statistics Functions\narr = 2*np.random.randn(10000) + 10 # 2 times std dev with a shift of 10 to the right\\\nnp.mean(arr) # approx 10\nnp.std(arr) # approx 2\nnp.percentile(arr, 80) # 80% numbers less than this number"
+  },
+  {
+    "objectID": "simulation/numpy.slides.html#integrals-and-derivatives",
+    "href": "simulation/numpy.slides.html#integrals-and-derivatives",
+    "title": "Learning Numpy",
+    "section": "Integrals and Derivatives",
+    "text": "Integrals and Derivatives\nx = np.linspace(1, 10, 100)\ny = 1/x**2 + np.sin(x)\nplt.plot(x, y)\nDerivatives\ndydx = np.gradient(y, x)\nIntegrals\nnp.cumsum([1, 2, 3, 4]) # return [1,3,6,10]\ny_int = np.cumsum(y) * (x[1] - x[0]) # int y dx"
+  },
+  {
+    "objectID": "simulation/numpy.slides.html#resources-used",
+    "href": "simulation/numpy.slides.html#resources-used",
+    "title": "Learning Numpy",
+    "section": "Resources Used",
+    "text": "Resources Used\n\n[1] NumPy Tutorial\n[2] 100 numpy practice problems"
+  },
+  {
+    "objectID": "simulation/numpy.html",
+    "href": "simulation/numpy.html",
+    "title": "Learning Numpy",
+    "section": "",
+    "text": "NumPy is a package for dealing with arrays that’s very fast and efficient.\nCreating array:\narr1 = np.array([3, 5, 7, 3]) # convert list to array\narr2 = np.zeros(10) # array with 10 zeroes\narr3 = np.ones(10) # array with 10 ones\narrR = np.random.random(10) # sample 10 numbers from uniform distribution\narrG = np.random.randn(10) # sample 10 numbers from normal distribution\n\n\n\nlinspace - values equally spaced apart given the number of values\narr = np.linspace(0, 10, 100) # from 0 to 10, 100 values\narrange - values equally spaced apart given the spacing\narr = np.arrange(0, 10, 0.02) # from 0 to 10, spacing of 0.02",
     "crumbs": [
       "Simulation",
-      "Transmission of Huygens' Surface"
+      "Learning Numpy"
     ]
+  },
+  {
+    "objectID": "simulation/numpy.html#introduction-and-basics",
+    "href": "simulation/numpy.html#introduction-and-basics",
+    "title": "Learning Numpy",
+    "section": "",
+    "text": "NumPy is a package for dealing with arrays that’s very fast and efficient.\nCreating array:\narr1 = np.array([3, 5, 7, 3]) # convert list to array\narr2 = np.zeros(10) # array with 10 zeroes\narr3 = np.ones(10) # array with 10 ones\narrR = np.random.random(10) # sample 10 numbers from uniform distribution\narrG = np.random.randn(10) # sample 10 numbers from normal distribution\n\n\n\nlinspace - values equally spaced apart given the number of values\narr = np.linspace(0, 10, 100) # from 0 to 10, 100 values\narrange - values equally spaced apart given the spacing\narr = np.arrange(0, 10, 0.02) # from 0 to 10, spacing of 0.02",
+    "crumbs": [
+      "Simulation",
+      "Learning Numpy"
+    ]
+  },
+  {
+    "objectID": "simulation/numpy.html#array-manipulation",
+    "href": "simulation/numpy.html#array-manipulation",
+    "title": "Learning Numpy",
+    "section": "Array Manipulation",
+    "text": "Array Manipulation\n\nCommon Array Operation\nElement-wise operation\narr + 2     # addition\narr - 5     # subtraction\n2*arr       # multiplication\n1/arr       # division\narr % 5     # Modulus\nLet’s try to do the same element-wise operation but using functions:\ndef f(x):\n    return x**2 * np.sin(x) / np.exp(-x)\n\nx = np.linspace(0, 10, 100)\ny = f(x) # Element-wise application of f\n\n\nCommon Plotting\nMost basic Plotting\nx = np.linspace(0, 1, 100)  # x-axis definition\ny = x**2                    # element-wise x^2\nplt.plot(x, x**2)           # plot(x, y)\nplt.show()                  # show the output\nHistogram\nplt.hist(arr) # plotting the array as histogram\n\n\nIndexing and Slicing\nNormal Indexing\narr = np.array([2, 4, 6, 8, 10])\narr[2]   # return 6\narr[2:]  # return 6, 8, 10 (including index 2)\narr[:-2] # return 2, 4, 6 (exluding index -2)\narr[1:2] # return 4\nBoolean Indexing\narr &gt; 5 # return a boolean array with true or false as elemenets\narr[arr&gt;5] # filtering --&gt;  return the elements that are true\nUsing Boolean Indexing to filter data\nnames = np.array(['Jim', 'Luke', 'Josh', 'Pete'])\nfirst_letter_j = np.vectorize(lambda s: s[0])(names) == 'J'\nprint(names[first_letter_j]) # gets the names that have first letter as J\nNow what is this doing?\n\n\nWhat is that doing?\nfirst_letter_j = np.vectorize(lambda s: s[0])(names) == 'J'\nLambda Function\nf = lambda s: s[0]\nThis is a function that says give me a string and I’ll give you the first character of the string. Note that String is not an array in python, but it supports the same indexing operations as arrays.\nWhat is np.vectorize?\nIt creates a for-loop, applies the function func to every element in the array arr, and return the result as an array.\nnp.vectorize(func)(arr) # this is an array",
+    "crumbs": [
+      "Simulation",
+      "Learning Numpy"
+    ]
+  },
+  {
+    "objectID": "simulation/numpy.html#calculus-statistical-functions",
+    "href": "simulation/numpy.html#calculus-statistical-functions",
+    "title": "Learning Numpy",
+    "section": "Calculus / Statistical Functions",
+    "text": "Calculus / Statistical Functions\n\nCommon Statistics Functions\narr = 2*np.random.randn(10000) + 10 # 2 times std dev with a shift of 10 to the right\\\nnp.mean(arr) # approx 10\nnp.std(arr) # approx 2\nnp.percentile(arr, 80) # 80% numbers less than this number\n\n\nIntegrals and Derivatives\nx = np.linspace(1, 10, 100)\ny = 1/x**2 + np.sin(x)\nplt.plot(x, y)\nDerivatives\ndydx = np.gradient(y, x)\nIntegrals\nnp.cumsum([1, 2, 3, 4]) # return [1,3,6,10]\ny_int = np.cumsum(y) * (x[1] - x[0]) # int y dx\n\n\nResources Used\n\n[1] NumPy Tutorial\n[2] 100 numpy practice problems",
+    "crumbs": [
+      "Simulation",
+      "Learning Numpy"
+    ]
+  },
+  {
+    "objectID": "experiment.html",
+    "href": "experiment.html",
+    "title": "Yankun (Alex) Meng",
+    "section": "",
+    "text": "import tidy3d as td\nimport numpy as np\nimport matplotlib.pyplot as plt \nimport tidy3d.web as web\n\n\nweb.test()\n\n18:03:04 EDT Authentication configured successfully!"
   }
 ]
