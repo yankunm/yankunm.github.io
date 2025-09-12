@@ -17,15 +17,21 @@ website:
     contents:
       - href: index.qmd
         text: Home
-      - log.qmd
       - section: "Courses"
         contents:
           - courses/optics.qmd
       - section: "Simulation"
         contents:
+          - simulation/huygens.ipynb
+          - simulation/geom_phase.ipynb
+          - simulation/wfov.ipynb
+      - section: "Python"
+        contents:
           - simulation/tidy3d.qmd
           - simulation/numpy.qmd
-          - simulation/huygens.ipynb
+          - simulation/matplotlib.ipynb
+          - simulation/string_formatting.ipynb
+          - simulation/diffraction_monitor.ipynb
       
 format:
   html:

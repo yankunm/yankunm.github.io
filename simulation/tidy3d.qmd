@@ -1,5 +1,5 @@
 ---
-title: Learning Tidy3D
+title: Tidy3D
 ---
 
 # Introduction to Tidy3D
