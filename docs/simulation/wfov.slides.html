@@ -227,14 +227,14 @@
 </section>
 <section class="slide level2">
 
-<p><img data-src="../assets/wfov_paper.png" width="600" height="1200"></p>
 <p>This is reproduction of the results in 1(b) using Diffraction Monitor. Parameters from <a href="https://duke.box.com/s/xvysh66ew21g9o9e5pjcd11o11bzo73t">the paper</a>:</p>
 <p><span class="math display">P= 190nm</span> <span class="math display">h= 230nm</span> <span class="math display">D= [60, 135]nm</span> <span class="math display">\lambda = 532nm</span></p>
-</section>
+
+<img data-src="../assets/power_wfov.png" class="r-stretch"></section>
 <section class="slide level2">
 
 
-<img data-src="../assets/power_wfov.png" class="r-stretch"></section>
+<img data-src="../assets/phase_wfov.png" class="r-stretch"></section>
 <section class="slide level2">
 
 <div id="9fad3416" class="cell" data-execution_count="1">
@@ -379,18 +379,18 @@
 <span id="cb14-2"><a></a>batch_data <span class="op">=</span> batch.run(path_dir<span class="op">=</span><span class="st">"data/wfov_01"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"bd964688ffd5434db4d990c9eba4a506","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"53f006e142264dc99125a917f17f9b5d","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
 </div>
 <div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">20:23:21 EDT </span>Started working on Batch containing <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">17</span> tasks.                      
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">21:38:03 EDT </span>Started working on Batch containing <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">17</span> tasks.                      
 </pre>
 </div>
 <div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">20:23:33 EDT </span>Maximum FlexCredit cost: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.425</span> for the whole batch.                
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">21:38:16 EDT </span>Maximum FlexCredit cost: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.425</span> for the whole batch.                
 </pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -400,11 +400,11 @@
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"09d77da0ca5947ceaae0955855cabe5f","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"dc1bee145fdd4490974d01fb887a4f0f","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">20:23:42 EDT </span>Batch complete.                                                    
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">21:38:25 EDT </span>Batch complete.                                                    
 </pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -412,7 +412,7 @@
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"d3011e253a314785b74fceb441b8cd1b","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"d0ab601809db438b8f75dc2d46fd34e8","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
@@ -444,6 +444,65 @@
 <div>
 <figure>
 <p><img data-src="wfov_files/figure-revealjs/cell-15-output-1.png"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="a0b239bd" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a><span class="co"># extract the complex transmission coefficient</span></span>
+<span id="cb18-2"><a></a>t <span class="op">=</span> np.zeros(<span class="bu">len</span>(D), dtype<span class="op">=</span><span class="st">"complex"</span>)</span>
+<span id="cb18-3"><a></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(D)):</span>
+<span id="cb18-4"><a></a>    sim_data <span class="op">=</span> batch_data[<span class="ss">f"d</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>] <span class="co"># go though each simulation result</span></span>
+<span id="cb18-5"><a></a>    t[i] <span class="op">=</span> np.array(sim_data[<span class="st">"diffraction_monitor"</span>].amps.sel(f<span class="op">=</span>freq0, polarization<span class="op">=</span><span class="st">"p"</span>))[<span class="dv">0</span>][<span class="dv">0</span>] <span class="co"># extract complex transmission at freq0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="001d6efe" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a>theta <span class="op">=</span> np.unwrap(np.angle(t))</span>
+<span id="cb19-2"><a></a>theta <span class="op">=</span> theta <span class="op">-</span> theta[<span class="dv">0</span>]</span>
+<span id="cb19-3"><a></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">4.5</span>))</span>
+<span id="cb19-4"><a></a>plt.plot(D<span class="op">*</span><span class="dv">1000</span>, theta <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.pi), <span class="st">"o-"</span>, color<span class="op">=</span><span class="st">"blue"</span>, ms<span class="op">=</span><span class="dv">2</span>, lw<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"Phase"</span>)</span>
+<span id="cb19-5"><a></a>plt.xlabel(<span class="vs">r"Diameter ($nm$)"</span>)</span>
+<span id="cb19-6"><a></a>plt.ylabel(<span class="st">"Phase"</span>)</span>
+<span id="cb19-7"><a></a>plt.ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb19-8"><a></a>plt.xlim(<span class="dv">60</span>, <span class="dv">140</span>)</span>
+<span id="cb19-9"><a></a>plt.legend()</span>
+<span id="cb19-10"><a></a>plt.savefig(<span class="st">"phase_wfov"</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb19-11"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="wfov_files/figure-revealjs/cell-17-output-1.png"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="20868927" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a><span class="co"># plot the transmission phase</span></span>
+<span id="cb20-2"><a></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb20-3"><a></a>theta <span class="op">=</span> np.unwrap(np.angle(t))</span>
+<span id="cb20-4"><a></a>theta <span class="op">=</span> theta <span class="op">-</span> theta[<span class="dv">0</span>]</span>
+<span id="cb20-5"><a></a>ax1.plot(D, theta <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.pi), linewidth<span class="op">=</span><span class="dv">3</span>, c<span class="op">=</span><span class="st">"blue"</span>)</span>
+<span id="cb20-6"><a></a>ax1.set_xlim(np.min(D), np.max(D))</span>
+<span id="cb20-7"><a></a>ax1.set_ylim(<span class="op">-</span><span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb20-8"><a></a>ax1.set_xlabel(<span class="vs">r"D ($\mu m$)"</span>)</span>
+<span id="cb20-9"><a></a>ax1.set_ylabel(<span class="vs">r"Transmission phase ($2\pi$)"</span>)</span>
+<span id="cb20-10"><a></a></span>
+<span id="cb20-11"><a></a><span class="co"># plot the transmittance</span></span>
+<span id="cb20-12"><a></a>ax2.plot(D, np.abs(t), linewidth<span class="op">=</span><span class="dv">3</span>, c<span class="op">=</span><span class="st">"red"</span>)</span>
+<span id="cb20-13"><a></a>ax2.set_xlim(np.min(D), np.max(D))</span>
+<span id="cb20-14"><a></a>ax2.set_ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb20-15"><a></a>ax2.set_xlabel(<span class="vs">r"D ($\mu m$)"</span>)</span>
+<span id="cb20-16"><a></a>ax2.set_ylabel(<span class="st">"Transmittance"</span>)</span>
+<span id="cb20-17"><a></a>plt.show()</span>
+<span id="cb20-18"><a></a>ax2.plot(D, np.abs(t), linewidth<span class="op">=</span><span class="dv">3</span>, c<span class="op">=</span><span class="st">"red"</span>)</span>
+<span id="cb20-19"><a></a>ax2.set_xlim(np.min(D), np.max(D))</span>
+<span id="cb20-20"><a></a>ax2.set_ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb20-21"><a></a>ax2.set_xlabel(<span class="vs">r"D ($\mu m$)"</span>)</span>
+<span id="cb20-22"><a></a>ax2.set_ylabel(<span class="st">"Transmittance"</span>)</span>
+<span id="cb20-23"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="wfov_files/figure-revealjs/cell-18-output-1.png"></p>
 </figure>
 </div>
 </div>
