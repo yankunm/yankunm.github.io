@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Ultra narrowband Metasurface – Yankun (Alex) Meng</title>
+<title>Simulating Ultra narrowband Metasurface – Yankun (Alex) Meng</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../simulation/huygens.html">Simulation</a></li><li class="breadcrumb-item"><a href="../simulation/geom_phase.html">Ultra narrowband Metasurface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../simulation/huygens.html">Simulation</a></li><li class="breadcrumb-item"><a href="../simulation/geom_phase.html">Simulating Ultra narrowband Metasurface</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -187,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../simulation/geom_phase.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Ultra narrowband Metasurface</span></a>
+ <span class="menu-text">Simulating Ultra narrowband Metasurface</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -249,19 +249,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#preconditions" id="toc-preconditions" class="nav-link active" data-scroll-target="#preconditions">Preconditions</a></li>
+  <li><a href="#circular-polarization" id="toc-circular-polarization" class="nav-link active" data-scroll-target="#circular-polarization">Circular Polarization</a></li>
+  <li><a href="#circular-zoomed-in" id="toc-circular-zoomed-in" class="nav-link" data-scroll-target="#circular-zoomed-in">Circular Zoomed in</a></li>
+  <li><a href="#lcp-lcp-rcp" id="toc-lcp-lcp-rcp" class="nav-link" data-scroll-target="#lcp-lcp-rcp">LCP / (LCP + RCP)</a></li>
+  <li><a href="#preconditions" id="toc-preconditions" class="nav-link" data-scroll-target="#preconditions">Preconditions</a></li>
   <li><a href="#simulation" id="toc-simulation" class="nav-link" data-scroll-target="#simulation">Simulation</a></li>
   <li><a href="#postprocess" id="toc-postprocess" class="nav-link" data-scroll-target="#postprocess">Postprocess</a></li>
-  <li><a href="#zooming-in-and-doing-runtime-analysis" id="toc-zooming-in-and-doing-runtime-analysis" class="nav-link" data-scroll-target="#zooming-in-and-doing-runtime-analysis">Zooming in and doing Runtime Analysis</a></li>
+  <li><a href="#circular-polarization-1" id="toc-circular-polarization-1" class="nav-link" data-scroll-target="#circular-polarization-1">Circular Polarization</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="geom_phase.slides.html"><i class="bi bi-file-slides"></i>Slides</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../simulation/huygens.html">Simulation</a></li><li class="breadcrumb-item"><a href="../simulation/geom_phase.html">Ultra narrowband Metasurface</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../simulation/huygens.html">Simulation</a></li><li class="breadcrumb-item"><a href="../simulation/geom_phase.html">Simulating Ultra narrowband Metasurface</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Ultra narrowband Metasurface</h1>
+<h1 class="title">Simulating Ultra narrowband Metasurface</h1>
 <p class="subtitle lead">Yankun (Alex) Meng</p>
 </div>
 
@@ -293,9 +296,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 <p><img src="../assets/runtimes.png" class="img-fluid"></p>
 <hr>
+<section id="circular-polarization" class="level3">
+<h3 class="anchored" data-anchor-id="circular-polarization">Circular Polarization</h3>
+<p><img src="../assets/power_circular_big.png" class="img-fluid"></p>
+</section>
+<section id="circular-zoomed-in" class="level3">
+<h3 class="anchored" data-anchor-id="circular-zoomed-in">Circular Zoomed in</h3>
+<p><img src="../assets/power_circular.png" class="img-fluid"></p>
+</section>
+<section id="lcp-lcp-rcp" class="level3">
+<h3 class="anchored" data-anchor-id="lcp-lcp-rcp">LCP / (LCP + RCP)</h3>
+<p><img src="../assets/power_lcprcp.png" class="img-fluid"></p>
+<hr>
+</section>
 <section id="preconditions" class="level3">
 <h3 class="anchored" data-anchor-id="preconditions">Preconditions</h3>
-<div id="c6803c70" class="cell">
+<div id="c6803c70" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the necessary packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -400,7 +416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    pol_angle<span class="op">=</span><span class="dv">0</span>,</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="05110240" class="cell" data-execution_count="7">
+<div id="05110240" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>monitor <span class="op">=</span> td.FluxMonitor(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, Lz<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> spc <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> lda0),</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
@@ -409,11 +425,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
-<div id="c44a79d1" class="cell" data-execution_count="8">
+<div id="c44a79d1" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bandwidth <span class="op">=</span> fr.fmax <span class="op">-</span> fr.fmin</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>run_time <span class="op">=</span> <span class="dv">500</span> <span class="op">/</span> bandwidth <span class="co"># run_time for the transmittance simulation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="47656863" class="cell" data-execution_count="9">
+<div id="47656863" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>bc <span class="op">=</span> td.BoundarySpec(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>td.Boundary.periodic(), </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>td.Boundary.periodic(), </span>
@@ -423,7 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="simulation" class="level3">
 <h3 class="anchored" data-anchor-id="simulation">Simulation</h3>
-<div id="efce14b6" class="cell" data-execution_count="10">
+<div id="efce14b6" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sim_empty <span class="op">=</span> td.Simulation(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>sim_size,</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    grid_spec<span class="op">=</span>grid_spec,</span>
@@ -444,17 +460,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    boundary_spec<span class="op">=</span>bc</span>
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cf30d2c9" class="cell" data-execution_count="11">
+<div id="cf30d2c9" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sims <span class="op">=</span> {</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"actual"</span>: sim_actual,</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"norm"</span>: sim_empty</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="218acf11" class="cell" data-execution_count="67">
+<div id="218acf11" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sims[<span class="st">"actual"</span>].plot_3d()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
-    <div class="simulation-viewer" data-width="800" data-height="800" data-simulation="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"></div>
+    <div class="simulation-viewer" data-width="800" data-height="800" data-simulation="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"></div>
     <script>
         
         /**
@@ -551,7 +567,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     
 </div>
 </div>
-<div id="073d9327" class="cell" data-execution_count="78">
+<div id="073d9327" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Always visualize simulation before running</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>fig, (ax1,ax2,ax3) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, tight_layout<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">7</span>)</span>
@@ -572,23 +588,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="374b3d4d" class="cell" data-execution_count="12">
+<div id="374b3d4d" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> web.Batch(simulations<span class="op">=</span>sims, verbose<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>batch_data <span class="op">=</span> batch.run(path_dir<span class="op">=</span><span class="st">"data/geom_linear"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>batch_data <span class="op">=</span> batch.run(path_dir<span class="op">=</span><span class="st">"data/geom_linear2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"25a6df083e9d4737a6342d1b702a2b2c","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"6ca703abbeab4907a4efcbc2abcc675d","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
 </div>
 <div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">20:57:30 EDT </span>Started working on Batch containing <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span> tasks.                       
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">22:38:50 EDT </span>Started working on Batch containing <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span> tasks.                       
 </pre>
 </div>
 <div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">20:57:31 EDT </span>Maximum FlexCredit cost: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.370</span> for the whole batch.                
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">22:38:52 EDT </span>Maximum FlexCredit cost: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.370</span> for the whole batch.                
 </pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -598,11 +614,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"183762bcf41a4014b45928ef2517f5d6","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"e427be7f983c40cbb649595b166d51cf","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">20:57:32 EDT </span>Batch complete.                                                    
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">22:38:53 EDT </span>Batch complete.                                                    
 </pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -610,7 +626,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"65f239fd80ce496fa6df8dda7ffba9b5","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"3cb92e044080472fa8385205aa2ad186","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
@@ -620,11 +636,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="postprocess" class="level3">
 <h3 class="anchored" data-anchor-id="postprocess">Postprocess</h3>
-<div id="0bcc649a" class="cell" data-execution_count="13">
+<div id="0bcc649a" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>T_actual <span class="op">=</span> batch_data[<span class="st">"actual"</span>][<span class="st">"flux_monitor"</span>].flux </span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>T_norm <span class="op">=</span> batch_data[<span class="st">"norm"</span>][<span class="st">"flux_monitor"</span>].flux</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="37f8d924" class="cell" data-execution_count="14">
+<div id="37f8d924" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this uses scienceplots to make plots look better</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.style.use([<span class="st">'science'</span>, <span class="st">'notebook'</span>, <span class="st">'grid'</span>])</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot transmission, compare to paper results, look similar</span></span>
@@ -646,80 +662,178 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="zooming-in-and-doing-runtime-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="zooming-in-and-doing-runtime-analysis">Zooming in and doing Runtime Analysis</h3>
-<div id="27a9d12f" class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 0 Define a FreqRange object with desired wavelengths</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fr <span class="op">=</span> td.FreqRange.from_wvl_interval(wvl_min<span class="op">=</span><span class="fl">1.505</span>, wvl_max<span class="op">=</span><span class="fl">1.515</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">701</span> <span class="co"># increased num_points</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>fwidth <span class="op">=</span> fr.fmax <span class="op">-</span> fr.fmin</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>freq0 <span class="op">=</span> fr.freq0</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>lda0 <span class="op">=</span> td.C_0 <span class="op">/</span> fr.freq0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="circular-polarization-1" class="level3">
+<h3 class="anchored" data-anchor-id="circular-polarization-1">Circular Polarization</h3>
+<div id="b1cf3987" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> circular_polarized_plane_wave(pol):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># define a plane wave polarized in the x direction</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    plane_wave_x <span class="op">=</span> td.PlaneWave(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        source_time<span class="op">=</span>td.GaussianPulse(freq0<span class="op">=</span>fr.freq0, fwidth<span class="op">=</span>fwidth),</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span>Lz<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> spc <span class="op">-</span> (sh <span class="op">-</span> h) <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> lda0),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        direction<span class="op">=</span><span class="st">"+"</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        pol_angle<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># determine the phase difference given the polarization</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pol <span class="op">==</span> <span class="st">"left"</span>:</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>        phase <span class="op">=</span> <span class="op">-</span>np.pi <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> pol <span class="op">==</span> <span class="st">"right"</span>:</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>        phase <span class="op">=</span> np.pi <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"pol must be `left` or `right`"</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># define a plane wave polarized in the y direction with a phase difference</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    plane_wave_y <span class="op">=</span> td.PlaneWave(</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>        source_time<span class="op">=</span>td.GaussianPulse(freq0<span class="op">=</span>freq0, fwidth<span class="op">=</span>fwidth, phase<span class="op">=</span>phase),</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>        center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>,<span class="op">-</span>Lz<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> spc <span class="op">-</span> (sh <span class="op">-</span> h) <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> lda0),</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>        direction<span class="op">=</span><span class="st">"+"</span>,</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>        pol_angle<span class="op">=</span>np.pi <span class="op">/</span> <span class="dv">2</span>,</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [plane_wave_x, plane_wave_y]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<hr>
-<div id="20394bec" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>source <span class="op">=</span> td.PlaneWave(</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    source_time<span class="op">=</span>td.GaussianPulse(freq0<span class="op">=</span>fr.freq0, fwidth<span class="op">=</span>fwidth),</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span>Lz<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> spc <span class="op">-</span> (sh <span class="op">-</span> h) <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> lda0),</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    direction<span class="op">=</span><span class="st">"+"</span>,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    pol_angle<span class="op">=</span><span class="dv">0</span>,</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>monitor <span class="op">=</span> td.FluxMonitor(</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, Lz<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> spc <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> lda0),</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    freqs<span class="op">=</span>fr.freqs(N),</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"flux_monitor"</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>bandwidth <span class="op">=</span> fr.fmax <span class="op">-</span> fr.fmin</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co"># run_time = 50 / bandwidth # run_time for the transmittance simulation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="43c27760" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_sim(pol):</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    sim <span class="op">=</span> td.Simulation(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span>sim_size,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>        grid_spec<span class="op">=</span>grid_spec,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        structures<span class="op">=</span>[substrate, dioxide, atom],</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        sources<span class="op">=</span>circular_polarized_plane_wave(pol),</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        monitors<span class="op">=</span>[monitor],</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>        run_time<span class="op">=</span>run_time,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>        boundary_spec<span class="op">=</span>bc</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e20c8537" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>bc <span class="op">=</span> td.BoundarySpec(</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>td.Boundary.periodic(), </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>td.Boundary.periodic(), </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    z<span class="op">=</span>td.Boundary.pml()</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="ffdd7fdb" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sim_left <span class="op">=</span> make_sim(<span class="st">"left"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>sim_left.plot_3d()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+    <div class="simulation-viewer" data-width="800" data-height="800" data-simulation="H4sIADS60GgC/+1c244c13UdSjZAGAjgvCV5EubV4uDcL3kKI8uUbEsiRAcJoAid4nTNsOC+uS8UKUPv8R/kE/IpefG/5A+ctU51194z4siyFCSSzYZNsk/Xqb3XOfuy9q5T+t17P/3ZX/3o7350xs/9+2c/OPvxmf784fg5+/mt78fPvx3/vnf8+9+Pf//nG6fxe+23vzmO//Xx/rev+9XH777Lq/9w63OSY34w/n3/7PXnL/Hz3rsPH/Pvfzl+P9nTf71x87qfP/now9mTX338/oePbtjlP3xDuffOfjje497p+/0b930TmvDff3vvXrPsH0+/jdf9EH/z+xtvjMP3j5q/ebrRLX87O/uP7/Q+PPnwo5/em1bh7OytN1/b5uvP68/39fP7h4hA9yWHP3rno1/y7/9+eDOv//74/bfn3X6/3Z3//Vu//eLtt873Lzc9/n3+ZFgeFt1+WK/OMXrZr/b9FuOfmAvz9lunPz7FT7vh8378IUcO8k+bLoLjj8t+PhyWvPdNKatuyUmrw2KBb1fb/jeHfnX5crbtVtfqh26xWH82u+6GFcauusWu59z1ajGs+m472236S7l4uZ4fNb71w/Ph81sjz/puf2vohPuDUWOMbPrtctjvh+fD/iV+scR8frlezQ+X0yDWgHB2+y0GD9ueAD+5hfW6Xy/7/fbll1fhJPMf1y/uWuQH5cJZvczn76+uhhWlY1D92xouuVrb893hKfTq9j2vfNpd/vp6uz6s5rNbuI741QXTph1/2myH9fbGxZORnHCf//G9Pr98Mswebft+5Ywp56/c9k+cSTn6YGu2ptZ8UQDM1mpTLT5453PJF82w/h8s4/F60X/c74b5ocHtN7vZsLqaLGODn9v2Y/+3fbfAPx9Y51wyNRsfkouhEM/5sOyu+WMx0fhcY6i2AnVopiRzQ6zJuepzKj5bexFkanUpJxNxXyyMrTRCrImWm2N03kUbSjYxXrio5EZrnDXeQaGYa6k35bpaq/PQzZZSas4Xaqr3pmRvqw8GsKK/iLfkJl9dTNVUb4Ir/gbcGAP23eO3jNske1Osr9GmlEJMxmZTrBZbvCvJQZdkQw0QextusDk5b23CVIPQY9VaUSfjY6nJYj1surXMzseM5c0pZud8uChK5ex9yjm7WHKEus7fFmtKcLmGlDxwm4uYtNiQfbHF25Cwu/727nrsXS6uwBdSDTZqvPbCW4cFzBb7FLEhqf+JTV98+ukX7Rb/i8EFy/x1YgtW/GZkGRYDAuFb82H9Yph/V+LLk+EjN3sPd3ra3RFd4C0uVocdibCJcbOx0qViD521Hh7nxxX5foSXTIV9dr7WArv32v7sRYFLwI2tLQ6WapsNKRNsFiAmZ5ypMdHUEXXgQd/G5N5ZDJuPYAYTfVhPX/DrfLi66rfYmYbzdLdZ9xX3e4l1n8N6uTMvBv7umtnO+8+wUzPs76KfIG374+1nm0W3ajdYDvP5oonbdjCiXbsWrn8ns8HC0QwW/ep6/2y82mrss6f/19oaf0NZGG8t2C2kDsS2YH3/wMKaH+DCcicA7S2A0XX79fI1OXhNDl6Tgz8LctBS+cvlKTh/wkiG/7Xh9WF7+crq5GYlNpkzY9E/d8/7O6mDv0glZoudHP9M4eswiVPN2NSZ7Ycm+5ZG3XKzGPaHeS/e86zbScQ86fioO+x2Q7d6fICDn0KG4bbZEmtJKbtKs7nI/O2zYd4CYXIwI1gErA2fC89y9Xx9dbXr9/g1HmPycv28n80vZ5fr5Wa9An78hnDWtxU7LGcURYUZlOfDtr88JbeftKjPCD/bP0OInbQexzbPhmkEMeFWLsA3hKIpQN2RX342vOjn76/aFv3iCS99RZL+Pm0raWg2GVwGoasGeGP6M93mVwL95rvONX/KrNyBkbx6+osvD20WjVJ8PYPpkd7nA4QxUw6rbzhTapFR2Tb48rur2uffUrUPfnl+tKBF97Jvl1tywE23xYT9OHLrVrvhetnN1tt580k/jSwbixlt6TjSvRht6abIx7z5joJ/3W02N281joy3Gp3vONJu5UfTXcAhp1l2GtEKHEfaLDKLP33t/6KW5pXGdXtwdObGRBFO19tXZekpCiwOLz4YL7srhLsLBBcJ4LH8CQH8xMavIGa2FDkDxTzvFggy3eVYSr/NZWidycv1Yn3JNuMYO48RuqGwYITZkKBFgw/Vw1AAnQN/zwFh+4IhEGOI1CjAXS0tWoc2lkMElSyOk49TS0KtTsKcZCpGSvTgsmWaWlAXZBCrGiepKIJDKgaMWKQWz05ACMGL1EIWyRidJ6ngozU40EsrUoECs6KxUUmFdg66BMHK1oIFtqSwVihnwMGLwop5vvIXwVp9KhX4vcJaQwVvTDYprOCuBSkQaXuSWnPwCRWRUViRKUtESvQKK9i8D9ifOGGt2IXiUVMUwQolcK8KYi5YwZqxMZaU3UxToZzFpVGwVgPlDAszwQrswcECUCaI1JKwtQGli5KKUiPngs0QqdaCjGML84S1QiLLjVAFa7Wg5pF6C9aK7SOMGAQrSwKYkskKq4VyLsIqFFYL7XAlaLdIhXJQOgWF1VlWGKi6FFa2UqhOFawOG1pcdlZhdYGCsTAKq8M2pwhwgtXBZbCFuSisjloU663CiqrAeniFF6wsgFBZ+aSweijnwKKKwoqqJlluoWD1UM6ArHiFFfdhBRqiwuqpfgYlE6y+oHQq8EKF1VdYgPHGK6zBApdNMQrW4AKKSANPFKmw6gi3S0ZhDYEVHKohwRqgnMsmxRMtxBB0swWloIIaoBzKb+7ZNBO6wQO4a6eZKAtpOTkopCifEai4iZPMCIeDzSFuTDJjI3jROwUUKFFXF1r1NBNhKtAqqsiELwA9llzJRHjwXCnBmaAaCnlGmNNMVLqw9BSSwokIgptVQptmBpbvHk44yeS2I6oZr3AiWpRiTEyCM5WEijjQ9qeZFYHPof5WOLNtRoQ/JpnZecCGZoIzexTHiYWwyMRCo/KFJwlO3Nq3RRecmfUzrU3hRATxxjlXBGeuSA+o743gRGpwiPHeKZzF+YwMVKLghKewj+Kz4CwB8gqXUWQWNg6Qj5zgZMqDuBoEJ9fHexOywomAnBn0q+Bk+LeIxU5wwi6wEnA/hZPOB2ViFpy0ZdzQVMFJ6yjseiicXPDMxo/gJILk225OMzEWoUSdcDo6BcwKbnbCiSGYrM+VBjfOxBA0c4hSacKJMaiG/OfKCSebGrhb24k0zcxHr45KZkkABIMzIpM9T1xYwiQTdzKwhqbsaaZ1PiZkaO8mmYjBBjeCA04yLVI11iIUhRPrxeYUbH6SicjPpmN0ghMJAckrIj4pmVDNsnYWnEgIAIEsKTjZRqqVDiUyoSyMqtooOMEiAnhPyoKztQrbzotMx/QV4FmCE0aM2yOyC06QqhDAhrLC6a1BIMZPgtNDNUTlYgUntgNZDUIUTg/VLHt0ghNLi+QffBWcHqaOyFatwumxdwWxIwhOhlGk+JoEJzIPaBTgK5yIcrQsYwUnaAbdNXrBiZ2EpqAcCmfgF1xXBCe9EDzDGsEJQygM3V7hDLW1I20UnBGqwXhTEZxspIIJOKNwRqQjfMtecCIVIHfD9QRnBO9I+H9WOJEKwMWwC4ITmiMi5uIEJzMsspmPCifggKCEkgUnQg6Doa+CMzFRBlIQkYlUgFsirQpOqJUQ6GsWnMgEjUJXhRPGnrBoxglObBwiNzKf4ETwSlDFJIUTqcBi52IVnHCyhKRoreDMpDUteYnMDNXACm0SnHB+EupUBGeGZvRjq3AiFcARcbHgxEAkZU2CE5nA0FuKwgkDiuQNVnDCPLEkCK2CEyEBySj6qHAiFdCOShGcIFswAuyf4GTgxr5Xr3BW9nbBC6LgxK4ZRqEsOJHaSK2iUThBdfg00DjBiT0ifYtRcCJm4CImWSUTlUt2JhnBiYwBr6C+J5lYQyQjhBPhQxhzjqTLTnyIjxBiQB5MEx/CEDRzWAvhQxiDagyxEx/CEPt5ADrxIZYZqKkcU7mSiXwPkugnPuSYCRBjYpn4kCOVQ22JjCk4SUpYvJSJD2GIO84oJDhRY8HDkGwVTgAsEBmS4LSFSSDVIjjJRHBBtAonF8TCkr3gbEwF2SIKTmQCUndTFE5Qz1wZxwQnUgEYEjn/JBNUlH6QosJJPgOfskVw8jkJLslGcMKsIaJFimkmAgf4FZnIJBOpAJvM3D7JROmYKcUonEgF1M87wemhGgN9EJy4NxmzzwqnB83DIpYqOAMdttCPJ5kozhK2swaFE6kAm4XwKjiZ7yLNV3BiBXEll0NkAjesmxKaTN/GoBsiQkwCNJCBQi1FiGykI7AzMAJtUyOf5xlCmaRG2hBvppCyBC2w8SMjGqdiYuZDHYEa4U0JTEFRIss8FhPUMUoqVizwKZhgRfDDiqeiOJFNIAnYa+8VVuQDMpIipMi2KgYbo0gRbmtIiKpRWMEjmbaDsCKQH8Q6GKtiRaDB2BdUJFlhzQwrvJdghf0hfjChi1TQjsriKSqsuFkICIrCi7Av8NEI/qSwwi6xli45hZU0A7zNCjFCxkdVCKKsiBGcBVyslRsiFSHL86mqMCNGfhRxbIyI1BKYXFAxKKxfekLh2KxhRVIUNWLXiX0nHxRWFmjBsC0ySW0o6T4Ka4VyJJVWYUWpXmDIQcgRK2DkYBRrCitqytyMR2ElmSwMjYIVrgsvdFGxI5YSMFakPMFKdo4iCgxhwkq+C87DYyiTVDJIhHt4hGAlKWOhY4UfkeYg2qJeEawkDk1D45RUaMcSQAhSy27YGqcIEvMF4kbOWbC61vyAtwtDYlBLzG2KITFMWKoRFFZ2PyJdWLDCiC1LAkWRaBPYvlKdwsriGF4YhCNRY/ZSquJI/CALsjMgUl3rVnkjJAl+A3dCvaZI0ti/gsCksMIdYHJ81C1SWUMy5IxYSxuDZyJNJa+wggZHkhahSWSWhgt1pEltqkdwRfXgrMLauos0PcEKX43kWUeeNE7N5PY2F4WVzQKkSy9ECU7I7i+M34hUODALTB8V1sA1RowVpgQ/ZfeXrWORGshODOtVkYpNQIpg1pykYvfBM1inK6ngiKg1olFYEQ6xV8ArWCML8kz2L1LHwhqOrbBGPzYChCzBa0horXUKK6iCBwdPQWEFoS/shQhbwsqyT4YRhZW2hWzirMKKqg37U7LQJURMRDZElKSwJpZ/cPSqsKbA7i+4s2BNpNLsqiispMiwE58UVmQJx2aWECbHMxCFNqKwwqodu/1eYc2M7Ab0U7BiFpK1r0VhBesEcwFQhTXz2F9oJGyayp5uRDJRWJEkqKEpCisfBYBsJeFMoDyVp+WsU1gLExuqgKiwsj6ojAyCFQEBXs7ejUhFkkBmq84prGNkARbBiiQBUoAxhZUdRnD7XBVW9hJo6EKbYOPI9UzQCiv7ufBtnxVWHlcBSyrCm7hXCN8wEoUVEYzni6riTWwygA+FILyJZ1NgNihHBCuCfkVJCPokWFHu2tZiFN4Etdj9hckKVpRSCHOMHYIVdsknEaj2Jqwet8fuV+ujkgrl2FFXvAlRDU7C5xMTVjZFwEpqNoIV5SH4HxZT8Sb22gEXVjZh5UkecE7wcoXV8mARqZTCalGAIzJ54U2eLocrSlRY2aJFNeIVb2IfuXogE97kmZx4WNMprAjEYJyhKt7EdhCCOjKlYMUUFJ5sAIpUJAPsfYyKNzWPLuzvCFaHmpA9p6ywepJhNoIUVlIVKJKENxEhFg6rpbAiqfnWZ1VYsXmgyMYKb8IlCC8wV6uwItgUVmWKNwF94sOFLLzJ87lEBVctCmtoBVIuijcx0IEhWC+8iWmDIaskhZUbGPkAQGFFluAJsiq8yfP5SyD9UVgDO/RcY4UVNAXJADlFsEZWjLRWhZX1kiG7VliRJdgPNsKbkAgRNU2KWWFFkgCJRcGisEZyK88ut0jFVsGKbVRYE0NaMknxJp9awRys8KbWx/cg/05hRZKw4CpO8SbW4YmESngTtGCaK64qrAiRjLdF8SbPZA3b9MKbsB5sB8PwFNbMDkIhYRepwBn5pFd4E1sThu3loLAiw9P2q+JNsAdr+DBVeJPHyrKsM4o3+dYHQzmleBNLqMiEJbzJsxnMOkrxJuZLzAlW8SZyHyxuTsKb2DyFQVmreBOfeaOEYS5WUpF0sMpOeBPNDQZns+JN7JeH0DqoIpVJzbcSbpKKyAf6zngsUsGQmKuK4k0kvQFp2Atv8kwQJrLvr6QWumcKijeB+LAtXKvwpnYUNCM/Kd6EWgtuYlBPCtbG5hJbtRPWwCcl0berZSo0YH9T8Sbwr/Yw1AhvapaAhBsVbwK7RDnD4wSCtdEU9vSFNwXSNFQvVvGmQJLPp7OKN4X28C8wak9SbVvImBVvImdEPES+UliRJdqaC28KfHYI7F7xpkBqHVgmKqwsnJgWhDexoe7oZoo3IZG05ztB8SYmFraNq/Cm4NouYJ0UViQJVDmmKt5ElgcmhTUXrDBAS0qoeBNPKaAWtFHxJkZMy90S3sTODXgvnwWJVMQwdpes4k3ImHzWhGsFq6fb0J0UVs8nsRbMU2HlSxKGTQPBGliGwpIVb+KxD+Zqp3jT2JNIPNM3ScUUZFzjFW+CDZrG4RVvoo2DH2QvvCkgd0dupOJNPAUBa0fsU1gjnz8EOIpgRZLgM6ygeFMgxzWZvRmRCnWR+UsU3sTniaHCbxRvCuxTFeyN4k3wD7aJGT8mqYnnZXgMQ2GlX2KiVbwJWpFhIr4KVmxq2yDFm/icsTq2ZRRWfAtjo1mksonGqK2wIsojKrAZKlLhTDyCUIQ3sc3tC0/IKKxwEYS+XBRvYqOCz+W98CaEEbgg++kKK4I8Ih8dW0kt4Pp8YC9YW2uMzXOFtTBZ8amywlr4fI7PaQUr+3t8xKB4E2pQdothyAornz9CXyO8iYf8HR8fKd7ER+yZJyIUbwKiiCIOdihYK/vTrH4U1tqeTpqseBOfpvMQgxPexENUpOJZ8SaYdWYDxyneFJAl2HQpR97k2hi0My32j2LbKx2b9Xz4/PQO0e3zgftuu5ezhv1qLl9OB4JvnUN8KPebzt+t1ttlt5jNh+10xLd/cbk4zPvZ7rC96sYD9LxRO3l7vR3md5y6bT+9uPsw7z+thisIe4TLKGV+fB+LDDTH6QYvv+0NPr/7Bg8P+/Vp9rJ7MdtddscTyqG9rbN71s4V3jH70bab9/MPxqu+aAocz0KeXqoZVrPdnm/BbPrt7LPn7S0O185J3vxpNyxnx8OJ9vgy9Wfd8356b+l4v/XzfgttsRE33rRuRxtX3WYzrK5nm/Ww2k/D7XTpbNtfDat+2a/G93amXwXIMJ/2HzJ2x/Pd7qJe2PYS+GK9n43azA6rod3//F8Pxj+9bK9OTfrMTi9CzZbrdsb9vP/NoVvwmsVhuennM4CiIqL44elmeNEvvrzM8wHXXu63w1ecB3+8XnRbLNz8IdTurrEA4xnSft8t7p71ZN8N28tud7r8K4+cP373nXfWq6vmFcTBc/3cOaxqewd+PR5+5SHafn6NvRnGk+xchMv1Vo7Lt1ewmrjl5dfXbbHe7bCafwTQ6Jjvc4W74yuFd+hpvr6ecvdxiyYT2U3/VYTZ6Zr9MH/pmx9t1rv9jEFE/dcCDtuuvVVgLmptb8v1l8PJyJ69fHr0wDHyYDdnfHOwnSCmsGdw0qv2Eln/wPBI8/awOr1dUS5QHUbPLAP6mELoH1j3xdnZ2f8AnSGqOgBKAAA="></div>
+    <script>
+        
+        /**
+        * Simulation Viewer Injector
+        *
+        * Monitors the document for elements being added in the form:
+        *
+        *    <div class="simulation-viewer" data-width="800" data-height="800" data-simulation="{...}" />
+        *
+        * This script will then inject an iframe to the viewer application, and pass it the simulation data
+        * via the postMessage API on request. The script may be safely included multiple times, with only the
+        * configuration of the first started script (e.g. viewer URL) applying.
+        *
+        */
+        (function() {
+            const TARGET_CLASS = "simulation-viewer";
+            const ACTIVE_CLASS = "simulation-viewer-active";
+            const VIEWER_URL = "https://tidy3d.simulation.cloud/simulation-viewer";
+
+            class SimulationViewerInjector {
+                constructor() {
+                    for (var node of document.getElementsByClassName(TARGET_CLASS)) {
+                        this.injectViewer(node);
+                    }
+
+                    // Monitor for newly added nodes to the DOM
+                    this.observer = new MutationObserver(this.onMutations.bind(this));
+                    this.observer.observe(document.body, {childList: true, subtree: true});
+                }
+
+                onMutations(mutations) {
+                    for (var mutation of mutations) {
+                        if (mutation.type === 'childList') {
+                            /**
+                            * Have found that adding the element does not reliably trigger the mutation observer.
+                            * It may be the case that setting content with innerHTML does not trigger.
+                            *
+                            * It seems to be sufficient to re-scan the document for un-activated viewers
+                            * whenever an event occurs, as Jupyter triggers multiple events on cell evaluation.
+                            */
+                            var viewers = document.getElementsByClassName(TARGET_CLASS);
+                            for (var node of viewers) {
+                                this.injectViewer(node);
+                            }
+                        }
+                    }
+                }
+
+                injectViewer(node) {
+                    // (re-)check that this is a valid simulation container and has not already been injected
+                    if (node.classList.contains(TARGET_CLASS) && !node.classList.contains(ACTIVE_CLASS)) {
+                        // Mark node as injected, to prevent re-runs
+                        node.classList.add(ACTIVE_CLASS);
+
+                        var uuid;
+                        if (window.crypto && window.crypto.randomUUID) {
+                            uuid = window.crypto.randomUUID();
+                        } else {
+                            uuid = "" + Math.random();
+                        }
+
+                        var frame = document.createElement("iframe");
+                        frame.width = node.dataset.width || 800;
+                        frame.height = node.dataset.height || 800;
+                        frame.style.cssText = `width:${frame.width}px;height:${frame.height}px;max-width:none;border:0;display:block`
+                        frame.src = VIEWER_URL + "?uuid=" + uuid;
+
+                        var postMessageToViewer;
+                        postMessageToViewer = event => {
+                            if(event.data.type === 'viewer' && event.data.uuid===uuid){
+                                frame.contentWindow.postMessage({ type: 'jupyter', uuid, value: node.dataset.simulation, fileType: 'hdf5'}, '*');
+
+                                // Run once only
+                                window.removeEventListener('message', postMessageToViewer);
+                            }
+                        };
+                        window.addEventListener(
+                            'message',
+                            postMessageToViewer,
+                            false
+                        );
+
+                        node.appendChild(frame);
+                    }
+                }
+            }
+
+            if (!window.simulationViewerInjector) {
+                window.simulationViewerInjector = new SimulationViewerInjector();
+            }
+        })();
+    
+    </script>
+    
 </div>
-<hr>
-<div id="715bd006" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Runtime Loop Assignment</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>alphas <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">200</span>]</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>run_times <span class="op">=</span> [x <span class="op">/</span> bandwidth <span class="cf">for</span> x <span class="kw">in</span> alphas]</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>sims <span class="op">=</span> {}</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, run_time <span class="kw">in</span> <span class="bu">enumerate</span>(run_times):</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    sim_actual <span class="op">=</span> td.Simulation(</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span>sim_size,</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>        grid_spec<span class="op">=</span>grid_spec,</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>        structures<span class="op">=</span>[substrate, dioxide, atom],</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>        sources<span class="op">=</span>[source],</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>        monitors<span class="op">=</span>[monitor],</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>        run_time<span class="op">=</span>run_time,</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>        boundary_spec<span class="op">=</span>bc</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    sims[<span class="ss">f"actual</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> sim_actual</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="3b3ee761" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> web.Batch(simulations<span class="op">=</span>sims, verbose<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>batch_data <span class="op">=</span> batch.run(path_dir<span class="op">=</span><span class="st">"data/geom_lin"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="3cc93f22" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define simulations</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>sims <span class="op">=</span> {</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"LCP"</span>: sim_left,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"RCP"</span>: make_sim(<span class="st">"right"</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="7e10792b" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a batch and run all sims in parallel</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> web.Batch(simulations<span class="op">=</span>sims)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>batch_results <span class="op">=</span> batch.run(path_dir<span class="op">=</span><span class="st">"data/circular"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"b61993f9dc194454920a9e7e49e6e654","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"d80e58be849942ee9dd670fb2743df4a","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
 </div>
 <div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">21:01:35 EDT </span>Started working on Batch containing <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span> tasks.                       
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">22:55:09 EDT </span>Started working on Batch containing <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span> tasks.                       
 </pre>
 </div>
 <div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">21:01:40 EDT </span>Maximum FlexCredit cost: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7.571</span> for the whole batch.                
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">22:55:11 EDT </span>Maximum FlexCredit cost: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.379</span> for the whole batch.                
 </pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -729,11 +843,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"393ff5662132421085b7d62c7664d92a","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"5904f717ab724d2287af62783a743b92","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">21:01:43 EDT </span>Batch complete.                                                    
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">22:56:55 EDT </span>Batch complete.                                                    
 </pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -741,40 +855,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"069929557e074f81915d02abc2ab7f57","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"b092a96e92b44942a875abb114d00e52","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
 </div>
 </div>
-<hr>
-<div id="f251aa80" class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Runtime Analysis Postprocess</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>plt.style.use([<span class="st">'science'</span>, <span class="st">'notebook'</span>, <span class="st">'grid'</span>])</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>Ts <span class="op">=</span> []</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(alphas)):</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    Ts.append(batch_data[<span class="ss">f"actual</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>][<span class="st">"flux_monitor"</span>].flux)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="291c79ab" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>T_lcp <span class="op">=</span> batch_results[<span class="st">"LCP"</span>][<span class="st">"flux_monitor"</span>].flux </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>T_rcp <span class="op">=</span> batch_results[<span class="st">"RCP"</span>][<span class="st">"flux_monitor"</span>].flux</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="1a3721b1" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, T <span class="kw">in</span> <span class="bu">enumerate</span>(Ts):</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    plt.plot(x, T, <span class="st">"-"</span>,lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="ss">f"dl=</span><span class="sc">{</span>alphas[i] <span class="op">*</span> <span class="dv">1000</span><span class="sc">:.1f}</span><span class="ss"> sec"</span>)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r"Wavelength [$nm$]"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Power"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">1505</span>, <span class="dv">1515</span>)</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="fl">1.1</span>)</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>plt.tick_params(axis<span class="op">=</span><span class="st">'both'</span>, labelsize<span class="op">=</span><span class="dv">10</span>) <span class="co"># change tick label size to 10</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Transmission Spectra with Different Runtimes"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"runtimes.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<div id="ce64b158" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this uses scienceplots to make plots look better</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>plt.style.use([<span class="st">'science'</span>, <span class="st">'notebook'</span>, <span class="st">'grid'</span>])</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot transmission, compare to paper results, look similar</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">4.5</span>))</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.plot(td.C_0 / fr.freqs(N) * 1000, T_lcp, "r", lw=1, label="T_LCP")</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>plt.plot(td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span>, T_rcp, <span class="st">"b"</span>, lw<span class="op">=</span><span class="fl">0.5</span>, alpha<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"T_RCP"</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r"wavelength ($nm$)"</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Transmittance"</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Transmittance vs Wavelength"</span>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"power_geom"</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="geom_phase_files/figure-html/cell-24-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="d8b66265" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this uses scienceplots to make plots look better</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plt.style.use([<span class="st">'science'</span>, <span class="st">'notebook'</span>, <span class="st">'grid'</span>])</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot transmission, compare to paper results, look similar</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">4.5</span>))</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>plt.plot(td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span>, T_lcp <span class="op">/</span> (T_lcp <span class="op">+</span> T_rcp), <span class="st">"r"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"T"</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.plot(td.C_0 / fr.freqs(N) * 1000, T_rcp, "b", lw=0.5, alpha=1, label="T_RCP")</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r"wavelength ($nm$)"</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Transmittance"</span>)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Transmittance vs Wavelength"</span>)</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"power_geom"</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="geom_phase_files/figure-html/cell-25-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
