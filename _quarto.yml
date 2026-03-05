@@ -20,6 +20,9 @@ website:
       # - section: "Courses"
       #   contents:
       #     - courses/optics.qmd
+      - section: "Notes"
+        contents:
+          - deepLearning/deepLearning.qmd
       - section: "Simulation"
         contents:
           - simulation/huygens.ipynb
