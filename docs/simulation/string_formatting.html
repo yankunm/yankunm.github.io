@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.9.29">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>String Formatting – Yankun (Alex) Meng</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -73,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-265cabd6e0e175a3251a073a6682f21b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-8bf6286f300b06e442b235bcbe4e58cc.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d2aeea0b0a36cac4c1f623b7384caf0a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-504feee650212aad68144a92a9e1b4f4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -183,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../simulation/geom_phase.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ultra narrowband Metasurface</span></a>
+ <span class="menu-text">Simulating Ultra narrowband Metasurface</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -284,31 +287,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="old-style-string-formatting-with" class="level3">
 <h3 class="anchored" data-anchor-id="old-style-string-formatting-with">Old Style string formatting with <code>%</code></h3>
 <div id="b76e7b80" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data type comes after a modulo sign</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data type comes after a modulo sign</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># %s - string, and it is inside quotation marks</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># to assign value, you need to call % outside string</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello, </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> <span class="st">"Alex!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello, </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> <span class="st">"Alex!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Hello Alex!</code></pre>
 </div>
 </div>
 <div id="6b780f95" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use %d for integers and %f for floating point numbers</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use %d for integers and %f for floating point numbers</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># In order to insert multiple values, use a tuple</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"Alex"</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="fl">20.2</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>money <span class="op">=</span> <span class="fl">1000.56789</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st"> is </span><span class="sc">%d</span><span class="st"> years old and has $</span><span class="sc">%f</span><span class="st">."</span> <span class="op">%</span> (name, age, money))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st"> is </span><span class="sc">%d</span><span class="st"> years old and has $</span><span class="sc">%f</span><span class="st">."</span> <span class="op">%</span> (name, age, money))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Alex is 20 years old and has $1000.567890.</code></pre>
 </div>
 </div>
 <div id="307ab999" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write it this way to be cleaner</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write it this way to be cleaner</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fstring <span class="op">=</span> <span class="st">"Hello </span><span class="sc">%s</span><span class="st">, your current balance is $</span><span class="sc">%f</span><span class="st">"</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> (<span class="st">"Alex"</span>, <span class="fl">1000.56789</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fstring <span class="op">%</span> data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fstring <span class="op">%</span> data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Hello Alex, your current balance is $1000.567890</code></pre>
 </div>
@@ -318,47 +321,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="general-arguments">General Arguments</h4>
 <p>%[key][flags][width][.precision][length_type][conversion type] % [value]</p>
 <div id="e1ce24d6" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simplest string formatting</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st"> </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"foo"</span>, <span class="st">"bar"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simplest string formatting</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st"> </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"foo"</span>, <span class="st">"bar"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>foo bar</code></pre>
 </div>
 </div>
 <div id="ced0ef5a" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Floats</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Floats</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># %[type]</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%f</span><span class="st"> </span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="dv">1</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%f</span><span class="st"> </span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="dv">1</span>, <span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1.000000 2.000000</code></pre>
 </div>
 </div>
 <div id="195ea57a" class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Working with dictionaries</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Working with dictionaries</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># %([key])[type] -&gt; prints out [value]</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>dct <span class="op">=</span> {<span class="st">"Alex"</span>:<span class="dv">20</span>, <span class="st">'Bob'</span>:<span class="dv">18</span>}</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%(Alex)s</span><span class="st">"</span> <span class="op">%</span> dct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%(Alex)s</span><span class="st">"</span> <span class="op">%</span> dct)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>20</code></pre>
 </div>
 </div>
 <div id="7dd4b275" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can specify the minimum width given to the inputs</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can specify the minimum width given to the inputs</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># width -&gt; how much space to reserve for the value</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># (C style programming)</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 and 4 are widths</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># %[key][width][type]</span></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Total number of students </span><span class="sc">%4d</span><span class="st">"</span> <span class="op">%</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Total number of students </span><span class="sc">%4d</span><span class="st">"</span> <span class="op">%</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Total number of students    3</code></pre>
 </div>
 </div>
 <div id="9e96a05c" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># New type: %o - octal representation</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># New type: %o - octal representation</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Octal representation of </span><span class="sc">%d</span><span class="st"> is </span><span class="sc">%o</span><span class="st">"</span> <span class="op">%</span> (<span class="dv">8</span>, <span class="dv">8</span>))</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># New type: %x - hexadecimal representation</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hexadecimal representation of </span><span class="sc">%d</span><span class="st"> is </span><span class="sc">%x</span><span class="st">"</span> <span class="op">%</span> (<span class="dv">255</span>, <span class="dv">255</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hexadecimal representation of </span><span class="sc">%d</span><span class="st"> is </span><span class="sc">%x</span><span class="st">"</span> <span class="op">%</span> (<span class="dv">255</span>, <span class="dv">255</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Octal representation of 8 is 10
 Hexadecimal representation of 255 is ff</code></pre>
@@ -372,9 +375,9 @@ Hexadecimal representation of 255 is ff</code></pre>
 <li>’ ’ - Leave a space before positive numbers</li>
 </ul>
 <div id="605616ed" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"number </span><span class="sc">%d</span><span class="st">"</span> <span class="op">%</span> <span class="dv">3</span>)      <span class="co"># %[type]</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"number </span><span class="sc">%d</span><span class="st">"</span> <span class="op">%</span> <span class="dv">3</span>)      <span class="co"># %[type]</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"number </span><span class="sc">%4d</span><span class="st">"</span> <span class="op">%</span> <span class="dv">3</span>)     <span class="co"># %[width][type]</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"number </span><span class="sc">%04d</span><span class="st">"</span> <span class="op">%</span> <span class="dv">3</span>)    <span class="co"># %[flag][width][type]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"number </span><span class="sc">%04d</span><span class="st">"</span> <span class="op">%</span> <span class="dv">3</span>)    <span class="co"># %[flag][width][type]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>number 3
 number    3
@@ -382,9 +385,9 @@ number 0003</code></pre>
 </div>
 </div>
 <div id="c4dc2111" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%5d</span><span class="st">|"</span> <span class="op">%</span> <span class="dv">1</span>)   <span class="co"># right align the value</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%5d</span><span class="st">|"</span> <span class="op">%</span> <span class="dv">1</span>)   <span class="co"># right align the value</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-5d</span><span class="st">|"</span> <span class="op">%</span> <span class="dv">1</span>)  <span class="co"># left align the value</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"%0-5d|"</span> <span class="op">%</span> <span class="dv">1</span>)  <span class="co"># first flag will be overriden</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"%0-5d|"</span> <span class="op">%</span> <span class="dv">1</span>)  <span class="co"># first flag will be overriden</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    1|
 1    |
@@ -392,14 +395,14 @@ number 0003</code></pre>
 </div>
 </div>
 <div id="8eb8fcf4" class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"positive </span><span class="sc">%d</span><span class="st">"</span> <span class="op">%</span> <span class="dv">3</span>) <span class="co"># space before positive number</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"positive </span><span class="sc">%d</span><span class="st">"</span> <span class="op">%</span> <span class="dv">3</span>) <span class="co"># space before positive number</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"positive </span><span class="sc">% d</span><span class="st">"</span> <span class="op">%</span> <span class="dv">3</span>) <span class="co"># space before positive number</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"positive %  d"</span> <span class="op">%</span> <span class="dv">3</span>) <span class="co"># first space overriden by second space</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"negative </span><span class="sc">%d</span><span class="st">"</span> <span class="op">%</span> <span class="op">-</span><span class="dv">3</span>)</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># sign flags</span></span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"number </span><span class="sc">%d</span><span class="st">"</span> <span class="op">%</span> <span class="op">+</span><span class="dv">3</span>)   <span class="co"># doesn't work</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"number </span><span class="sc">%+d</span><span class="st">"</span> <span class="op">%</span> <span class="dv">3</span>)   <span class="co"># always show sign</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"number </span><span class="sc">%+d</span><span class="st">"</span> <span class="op">%</span> <span class="dv">3</span>)   <span class="co"># always show sign</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>positive 3
 positive  3
@@ -411,11 +414,11 @@ number +3</code></pre>
 </div>
 <p>precision: For floating point numbers, this is the number of digits to show AFTER the decimal point.</p>
 <div id="cf89f842" class="cell" data-execution_count="47">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %.[precision][type]</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %.[precision][type]</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"number </span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> <span class="fl">3.14159</span>)      <span class="co"># default precision is 6</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"number </span><span class="sc">%.2f</span><span class="st">"</span> <span class="op">%</span> <span class="fl">3.14159</span>)    <span class="co"># precision</span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Your id is: </span><span class="sc">%3d</span><span class="st">. Your score is </span><span class="sc">%010.2f</span><span class="st">"</span> <span class="op">%</span> (<span class="dv">7</span>, <span class="fl">3.14159</span>))</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 0 padding, width 10, precission 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 0 padding, width 10, precission 2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>number 3.141590
 number 3.14
@@ -423,17 +426,17 @@ Your id is:   7. Your score is 0000003.14</code></pre>
 </div>
 </div>
 <div id="5a2a7f04" class="cell" data-execution_count="50">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># New format: E is scientific notation</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># New format: E is scientific notation</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"number </span><span class="sc">%E</span><span class="st">"</span> <span class="op">%</span> <span class="dv">1000000</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"number </span><span class="sc">%.2E</span><span class="st">"</span> <span class="op">%</span> <span class="dv">1000000</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"number </span><span class="sc">%.2E</span><span class="st">"</span> <span class="op">%</span> <span class="dv">1000000</span>)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>number 1.000000E+06
 number 1.00E+06</code></pre>
 </div>
 </div>
 <div id="f0a3dbda" class="cell" data-execution_count="51">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Precision with strings truncates the string</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%.5s</span><span class="st">"</span> <span class="op">%</span> <span class="st">"HelloWorld"</span>)  <span class="co"># Hello</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Precision with strings truncates the string</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%.5s</span><span class="st">"</span> <span class="op">%</span> <span class="st">"HelloWorld"</span>)  <span class="co"># Hello</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Hello</code></pre>
 </div>
@@ -509,13 +512,14 @@ number 1.00E+06</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

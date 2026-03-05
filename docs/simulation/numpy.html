@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.9.29">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Numpy – Yankun (Alex) Meng</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -73,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-265cabd6e0e175a3251a073a6682f21b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-8bf6286f300b06e442b235bcbe4e58cc.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d2aeea0b0a36cac4c1f623b7384caf0a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-504feee650212aad68144a92a9e1b4f4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -183,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../simulation/geom_phase.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ultra narrowband Metasurface</span></a>
+ <span class="menu-text">Simulating Ultra narrowband Metasurface</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -295,18 +298,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="what-is-numpy">What is NumPy?</h3>
 <p>NumPy is a package for dealing with arrays that’s very fast and efficient.</p>
 <p>Creating array:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>arr1 <span class="ot">=</span> <span class="fu">np.array</span>([<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">3</span>]) <span class="co"># convert list to array</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>arr1 <span class="ot">=</span> <span class="fu">np.array</span>([<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">3</span>]) <span class="co"># convert list to array</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>arr2 <span class="ot">=</span> <span class="fu">np.zeros</span>(<span class="dv">10</span>) <span class="co"># array with 10 zeroes</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>arr3 <span class="ot">=</span> <span class="fu">np.ones</span>(<span class="dv">10</span>) <span class="co"># array with 10 ones</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>arrR <span class="ot">=</span> <span class="fu">np.random.random</span>(<span class="dv">10</span>) <span class="co"># sample 10 numbers from uniform distribution</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>arrG <span class="ot">=</span> <span class="fu">np.random.randn</span>(<span class="dv">10</span>) <span class="co"># sample 10 numbers from normal distribution</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>arrG <span class="ot">=</span> <span class="fu">np.random.randn</span>(<span class="dv">10</span>) <span class="co"># sample 10 numbers from normal distribution</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="two-most-common-functions" class="level3">
 <h3 class="anchored" data-anchor-id="two-most-common-functions">Two most common functions</h3>
 <p><strong>linspace</strong> - values equally spaced apart given the number of values</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>arr <span class="ot">=</span> <span class="fu">np.linspace</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>) <span class="co"># from 0 to 10, 100 values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>arr <span class="ot">=</span> <span class="fu">np.linspace</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>) <span class="co"># from 0 to 10, 100 values</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>arrange</strong> - values equally spaced apart given the spacing</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>arr <span class="ot">=</span> <span class="fu">np.arrange</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="fl">0.02</span>) <span class="co"># from 0 to 10, spacing of 0.02</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>arr <span class="ot">=</span> <span class="fu">np.arrange</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="fl">0.02</span>) <span class="co"># from 0 to 10, spacing of 0.02</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="array-manipulation" class="level2">
@@ -314,75 +317,75 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="common-array-operation" class="level3">
 <h3 class="anchored" data-anchor-id="common-array-operation">Common Array Operation</h3>
 <p><strong>Element-wise operation</strong></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>arr <span class="sc">+</span> <span class="dv">2</span>     <span class="co"># addition</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>arr <span class="sc">+</span> <span class="dv">2</span>     <span class="co"># addition</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>arr <span class="sc">-</span> <span class="dv">5</span>     <span class="co"># subtraction</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span>arr       <span class="co"># multiplication</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span>arr       <span class="co"># division</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>arr % <span class="dv">5</span>     <span class="co"># Modulus</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>arr % <span class="dv">5</span>     <span class="co"># Modulus</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Let’s try to do the same element-wise operation but using functions:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>def <span class="fu">f</span>(x)<span class="sc">:</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>def <span class="fu">f</span>(x)<span class="sc">:</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    return x<span class="sc">**</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">np.sin</span>(x) <span class="sc">/</span> <span class="fu">np.exp</span>(<span class="sc">-</span>x)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">np.linspace</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">f</span>(x) <span class="co"># Element-wise application of f</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">f</span>(x) <span class="co"># Element-wise application of f</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="common-plotting" class="level3">
 <h3 class="anchored" data-anchor-id="common-plotting">Common Plotting</h3>
 <p><strong>Most basic Plotting</strong></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">np.linspace</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">100</span>)  <span class="co"># x-axis definition</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">np.linspace</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">100</span>)  <span class="co"># x-axis definition</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> x<span class="sc">**</span><span class="dv">2</span>                    <span class="co"># element-wise x^2</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plt.plot</span>(x, x<span class="sc">**</span><span class="dv">2</span>)           <span class="co"># plot(x, y)</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plt.show</span>()                  <span class="co"># show the output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plt.show</span>()                  <span class="co"># show the output</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Histogram</strong></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plt.hist</span>(arr) <span class="co"># plotting the array as histogram</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plt.hist</span>(arr) <span class="co"># plotting the array as histogram</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="indexing-and-slicing" class="level3">
 <h3 class="anchored" data-anchor-id="indexing-and-slicing">Indexing and Slicing</h3>
 <p><strong>Normal Indexing</strong></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>arr <span class="ot">=</span> <span class="fu">np.array</span>([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>])</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>arr <span class="ot">=</span> <span class="fu">np.array</span>([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>])</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>arr[<span class="dv">2</span>]   <span class="co"># return 6</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>arr[<span class="dv">2</span><span class="sc">:</span>]  <span class="co"># return 6, 8, 10 (including index 2)</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>arr[<span class="sc">:-</span><span class="dv">2</span>] <span class="co"># return 2, 4, 6 (exluding index -2)</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>arr[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="co"># return 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>arr[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="co"># return 4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Boolean Indexing</strong></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>arr <span class="sc">&gt;</span> <span class="dv">5</span> <span class="co"># return a boolean array with true or false as elemenets</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>arr[arr<span class="sc">&gt;</span><span class="dv">5</span>] <span class="co"># filtering --&gt;  return the elements that are true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>arr <span class="sc">&gt;</span> <span class="dv">5</span> <span class="co"># return a boolean array with true or false as elemenets</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>arr[arr<span class="sc">&gt;</span><span class="dv">5</span>] <span class="co"># filtering --&gt;  return the elements that are true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Using Boolean Indexing to filter data</strong></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>names <span class="ot">=</span> <span class="fu">np.array</span>([<span class="st">'Jim'</span>, <span class="st">'Luke'</span>, <span class="st">'Josh'</span>, <span class="st">'Pete'</span>])</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>names <span class="ot">=</span> <span class="fu">np.array</span>([<span class="st">'Jim'</span>, <span class="st">'Luke'</span>, <span class="st">'Josh'</span>, <span class="st">'Pete'</span>])</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>first_letter_j <span class="ot">=</span> <span class="fu">np.vectorize</span>(lambda s<span class="sc">:</span> s[<span class="dv">0</span>])(names) <span class="sc">==</span> <span class="st">'J'</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(names[first_letter_j]) <span class="co"># gets the names that have first letter as J</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(names[first_letter_j]) <span class="co"># gets the names that have first letter as J</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now what is this doing?</p>
 </section>
 <section id="what-is-that-doing" class="level3">
 <h3 class="anchored" data-anchor-id="what-is-that-doing">What is that doing?</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>first_letter_j <span class="ot">=</span> <span class="fu">np.vectorize</span>(lambda s<span class="sc">:</span> s[<span class="dv">0</span>])(names) <span class="sc">==</span> <span class="st">'J'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>first_letter_j <span class="ot">=</span> <span class="fu">np.vectorize</span>(lambda s<span class="sc">:</span> s[<span class="dv">0</span>])(names) <span class="sc">==</span> <span class="st">'J'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Lambda Function</strong></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">=</span> lambda s<span class="sc">:</span> s[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">=</span> lambda s<span class="sc">:</span> s[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This is a function that says give me a string and I’ll give you the first character of the string. Note that <code>String</code> is not an array in python, but it supports the same indexing operations as arrays.</p>
 <p><strong>What is np.vectorize?</strong></p>
 <p>It creates a for-loop, applies the function <code>func</code> to every element in the array <code>arr</code>, and return the result as an array.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">np.vectorize</span>(func)(arr) <span class="co"># this is an array</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">np.vectorize</span>(func)(arr) <span class="co"># this is an array</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="calculus-statistical-functions" class="level2">
 <h2 class="anchored" data-anchor-id="calculus-statistical-functions">Calculus / Statistical Functions</h2>
 <section id="common-statistics-functions" class="level3">
 <h3 class="anchored" data-anchor-id="common-statistics-functions">Common Statistics Functions</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>arr <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">np.random.randn</span>(<span class="dv">10000</span>) <span class="sc">+</span> <span class="dv">10</span> <span class="co"># 2 times std dev with a shift of 10 to the right\</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>arr <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">np.random.randn</span>(<span class="dv">10000</span>) <span class="sc">+</span> <span class="dv">10</span> <span class="co"># 2 times std dev with a shift of 10 to the right\</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">np.mean</span>(arr) <span class="co"># approx 10</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">np.std</span>(arr) <span class="co"># approx 2</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">np.percentile</span>(arr, <span class="dv">80</span>) <span class="co"># 80% numbers less than this number</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">np.percentile</span>(arr, <span class="dv">80</span>) <span class="co"># 80% numbers less than this number</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="integrals-and-derivatives" class="level3">
 <h3 class="anchored" data-anchor-id="integrals-and-derivatives">Integrals and Derivatives</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">np.linspace</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">np.linspace</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span>x<span class="sc">**</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">np.sin</span>(x)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plt.plot</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plt.plot</span>(x, y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Derivatives</strong></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dydx <span class="ot">=</span> <span class="fu">np.gradient</span>(y, x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dydx <span class="ot">=</span> <span class="fu">np.gradient</span>(y, x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Integrals</strong></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">np.cumsum</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]) <span class="co"># return [1,3,6,10]</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>y_int <span class="ot">=</span> <span class="fu">np.cumsum</span>(y) <span class="sc">*</span> (x[<span class="dv">1</span>] <span class="sc">-</span> x[<span class="dv">0</span>]) <span class="co"># int y dx</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">np.cumsum</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]) <span class="co"># return [1,3,6,10]</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>y_int <span class="ot">=</span> <span class="fu">np.cumsum</span>(y) <span class="sc">*</span> (x[<span class="dv">1</span>] <span class="sc">-</span> x[<span class="dv">0</span>]) <span class="co"># int y dx</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="resources-used" class="level3">
 <h3 class="anchored" data-anchor-id="resources-used">Resources Used</h3>
@@ -447,13 +450,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

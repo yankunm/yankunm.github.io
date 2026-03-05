@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.9.29">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Huygens’ Surfaces – Yankun (Alex) Meng</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -58,25 +61,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../simulation/geom_phase.html" rel="next">
-<link href="../courses/optics.html" rel="prev">
+<link href="../index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-265cabd6e0e175a3251a073a6682f21b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-8bf6286f300b06e442b235bcbe4e58cc.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d2aeea0b0a36cac4c1f623b7384caf0a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-504feee650212aad68144a92a9e1b4f4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -104,10 +106,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
-<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
@@ -137,7 +139,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -198,7 +200,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Courses</span></a>
+ <span class="menu-text">Simulation</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -206,78 +208,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../courses/optics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Learning Optics</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Simulation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../simulation/huygens.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Huygens’ Surfaces</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../simulation/geom_phase.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ultra narrowband Metasurface</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../simulation/wfov.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wide FOV Metasurface</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Python</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../simulation/tidy3d.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tidy3D</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../simulation/numpy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Numpy</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../simulation/matplotlib.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Matplotlib</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../simulation/string_formatting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">String Formatting</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../simulation/diffraction_monitor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Diffraction Monitor in Tidy3D</span></a>
   </div>
 </li>
       </ul>
@@ -359,7 +291,7 @@ Figure&nbsp;1: Huygens Metasurface
 <section id="simulation-overview" class="level3">
 <h3 class="anchored" data-anchor-id="simulation-overview">Simulation Overview</h3>
 <div id="f0de51ac" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the necessary packages</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the necessary packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tidy3d <span class="im">as</span> td</span>
@@ -367,7 +299,7 @@ Figure&nbsp;1: Huygens Metasurface
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scienceplots</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Set logging level to ERROR to reduce output verbosity</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>td.config.logging_level <span class="op">=</span> <span class="st">"ERROR"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>td.config.logging_level <span class="op">=</span> <span class="st">"ERROR"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>For the transmittance and phase, two different background materials were used based in the paper, so two separate simulations were ran (with background medium as the only difference).</li>
@@ -419,30 +351,30 @@ Figure&nbsp;1: Huygens Metasurface
 <section id="frequency-range-specification" class="level3">
 <h3 class="anchored" data-anchor-id="frequency-range-specification">0 Frequency Range Specification</h3>
 <div id="c55ce7b3" class="cell" data-execution_count="76">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 0 Define a FreqRange object with desired wavelengths</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 0 Define a FreqRange object with desired wavelengths</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fr <span class="op">=</span> td.FreqRange.from_wvl_interval(wvl_min<span class="op">=</span><span class="fl">1.1</span>, wvl_max<span class="op">=</span><span class="fl">1.6</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">301</span> <span class="co"># num_points</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>freq0 <span class="op">=</span> fr.freq0</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>lda0 <span class="op">=</span> td.C_0 <span class="op">/</span> fr.freq0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>lda0 <span class="op">=</span> td.C_0 <span class="op">/</span> fr.freq0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="computational-domain-size" class="level3">
 <h3 class="anchored" data-anchor-id="computational-domain-size">1 Computational Domain Size</h3>
 <div id="0bd080e8" class="cell" data-execution_count="77">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 Computational Domain Size</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 Computational Domain Size</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="fl">0.220</span>  <span class="co"># Height of cylinder</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>spc <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>Lz <span class="op">=</span> spc <span class="op">+</span> h <span class="op">+</span> h <span class="op">+</span> spc</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>Px <span class="op">=</span> Py <span class="op">=</span> P <span class="op">=</span> <span class="fl">0.666</span> <span class="co"># periodicity</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>sim_size <span class="op">=</span> [Px, Py, Lz]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>sim_size <span class="op">=</span> [Px, Py, Lz]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="grid-resolution" class="level3">
 <h3 class="anchored" data-anchor-id="grid-resolution">2 Grid Resolution</h3>
 <p>Grid resolution is uniform grid in the horizontal direction with a yee cell length of <span class="math inline">\frac{P}{32}</span> where <span class="math inline">P</span> is the periodicity. In the vertical direction, <code>AutoGrid</code> means it’s non-uniform and adjusted based on the wavelength of the particular medium. Here, <code>min_steps_per_wvl=32</code> means we are taking a minimum of 32 steps based on the wavelength, which will be shorter in the medium with a higher index of refraction.</p>
 <div id="3bcd86b5" class="cell" data-execution_count="78">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 Grid Resolution</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 Grid Resolution</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dl <span class="op">=</span> P <span class="op">/</span> <span class="dv">32</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>horizontal_grid <span class="op">=</span> td.UniformGrid(dl<span class="op">=</span>dl)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>vertical_grid <span class="op">=</span> td.AutoGrid(min_steps_per_wvl<span class="op">=</span><span class="dv">32</span>)</span>
@@ -450,23 +382,23 @@ Figure&nbsp;1: Huygens Metasurface
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    grid_x<span class="op">=</span>horizontal_grid,</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    grid_y<span class="op">=</span>horizontal_grid,</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    grid_z<span class="op">=</span>vertical_grid,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="structures-and-materials" class="level3">
 <h3 class="anchored" data-anchor-id="structures-and-materials">3 Structures and Materials</h3>
 <p><strong>Structures and Materials for the meta-atom</strong></p>
 <div id="c3486f7e" class="cell" data-execution_count="79">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">0.242</span>  <span class="co"># radius of the cylinder</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">0.242</span>  <span class="co"># radius of the cylinder</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n_Si <span class="op">=</span> <span class="fl">3.5</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Si <span class="op">=</span> td.Medium(permittivity<span class="op">=</span>n_Si<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'Si'</span>)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>cylinder <span class="op">=</span> td.Structure(</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>td.Cylinder(center<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">0</span>, h <span class="op">/</span> <span class="dv">2</span>], radius<span class="op">=</span>r, length<span class="op">=</span>h, axis<span class="op">=</span><span class="dv">2</span>), medium<span class="op">=</span>Si</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Background Medium for Figure 5(a) (<span class="math inline">n_1=1.4, n_2=1.45</span>)</strong></p>
 <div id="2cd309a9" class="cell" data-execution_count="80">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Background medium for the first simulation</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Background medium for the first simulation</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>n_glass <span class="op">=</span> <span class="fl">1.4</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>n_SiO2 <span class="op">=</span> <span class="fl">1.45</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>glass <span class="op">=</span> td.Medium(permittivity<span class="op">=</span>n_glass<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'glass'</span>)</span>
@@ -488,12 +420,12 @@ Figure&nbsp;1: Huygens Metasurface
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    ),</span>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    medium<span class="op">=</span>glass,</span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'superstrate'</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 <p><strong>Background Medium for Figure 5(c) (<span class="math inline">n=1.66</span>)</strong></p>
 <div id="ebc07a61" class="cell" data-execution_count="81">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Background medium for the second simulation</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Background medium for the second simulation</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Polymer</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>n_polymer <span class="op">=</span> <span class="fl">1.66</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>polymer <span class="op">=</span> td.Structure(</span>
@@ -503,36 +435,36 @@ Figure&nbsp;1: Huygens Metasurface
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    medium<span class="op">=</span>td.Medium(permittivity<span class="op">=</span>n_polymer<span class="op">**</span><span class="dv">2</span>, name<span class="op">=</span><span class="st">'polymer'</span>),</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'polymer'</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="the-source" class="level3">
 <h3 class="anchored" data-anchor-id="the-source">4 The Source</h3>
 <p>The source is a simple Plane wave that traverses in the -z axis, placed <span class="math inline">\frac{\lambda_0}{2}</span> distance above the metaatom in the computational domain. Polarization is along the x-axis, that’s what <code>pol_angle=0</code> means.</p>
 <div id="934b8345" class="cell" data-execution_count="82">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>source <span class="op">=</span> td.PlaneWave(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>source <span class="op">=</span> td.PlaneWave(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    source_time<span class="op">=</span>fr.to_gaussian_pulse(),</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, Lz<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> spc <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> lda0),</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    direction<span class="op">=</span><span class="st">"-"</span>,</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    pol_angle<span class="op">=</span><span class="dv">0</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="monitors" class="level3">
 <h3 class="anchored" data-anchor-id="monitors">5 Monitors</h3>
 <p><strong>Monitor for Transmittance</strong></p>
 <div id="4b83ad20" class="cell" data-execution_count="83">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>flux_monitor <span class="op">=</span> td.FluxMonitor(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>flux_monitor <span class="op">=</span> td.FluxMonitor(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    center<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span>Lz<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> spc <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> lda0),</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>(td.inf, td.inf, <span class="dv">0</span>),</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    freqs<span class="op">=</span>fr.freqs(N),</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"flux_monitor"</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Monitor for Phase</strong></p>
 <div id="40214227" class="cell" data-execution_count="84">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We use FieldMonitor instead of DiffractionMonitor because</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We use FieldMonitor instead of DiffractionMonitor because</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># DiffractionMonitor only gives you amplitudes of diffraction orders, </span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># losing phase detail if you care about continuous phase.</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>field_monitor <span class="op">=</span> td.FieldMonitor(</span>
@@ -541,33 +473,33 @@ Figure&nbsp;1: Huygens Metasurface
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    fields<span class="op">=</span>[<span class="st">"Ex"</span>],</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    freqs<span class="op">=</span>fr.freqs(N),</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"field_monitor"</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="run-time" class="level3">
 <h3 class="anchored" data-anchor-id="run-time">6 Run Time</h3>
 <div id="c8f8153d" class="cell" data-execution_count="85">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>bandwidth <span class="op">=</span> fr.fmax <span class="op">-</span> fr.fmin</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>bandwidth <span class="op">=</span> fr.fmax <span class="op">-</span> fr.fmin</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>run_time_short <span class="op">=</span> <span class="dv">50</span> <span class="op">/</span> bandwidth <span class="co"># run_time for the transmittance simulation</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>run_time_long <span class="op">=</span> <span class="dv">200</span> <span class="op">/</span> bandwidth <span class="co"># run_time for the phase simulation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>run_time_long <span class="op">=</span> <span class="dv">200</span> <span class="op">/</span> bandwidth <span class="co"># run_time for the phase simulation</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="boundary-conditions" class="level3">
 <h3 class="anchored" data-anchor-id="boundary-conditions">7 Boundary Conditions</h3>
 <p>We apply PML in the +Z and -Z surfaces.</p>
 <div id="598fa6dd" class="cell" data-execution_count="86">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>bc <span class="op">=</span> td.BoundarySpec(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>bc <span class="op">=</span> td.BoundarySpec(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>td.Boundary.periodic(), </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>td.Boundary.periodic(), </span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    z<span class="op">=</span>td.Boundary.pml()</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="helper-function-for-simulation" class="level3">
 <h3 class="anchored" data-anchor-id="helper-function-for-simulation">Helper Function for simulation</h3>
 <p>Since we have to run simulation two times, it is convenient to abstract out what are the differences to the two simulations and make defining simulations easier. Always follow the <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY Principle</a>.</p>
 <div id="d97006cb" class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulation_helper(background, monitors, run_time):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulation_helper(background, monitors, run_time):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    sim_empty<span class="op">=</span>td.Simulation(</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span>sim_size,</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        grid_spec<span class="op">=</span>grid_spec,</span>
@@ -608,17 +540,17 @@ Figure&nbsp;1: Huygens Metasurface
 <span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sims</span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="transmittance-simulation" class="level3">
 <h3 class="anchored" data-anchor-id="transmittance-simulation">Transmittance Simulation</h3>
 <div id="2b21a899" class="cell" data-execution_count="88">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sims <span class="op">=</span> simulation_helper(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sims <span class="op">=</span> simulation_helper(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    background<span class="op">=</span>[substrate, glass],</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    monitors<span class="op">=</span>[flux_monitor],</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    run_time<span class="op">=</span>run_time_short</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -628,8 +560,8 @@ Figure&nbsp;1: Huygens Metasurface
 </div>
 </div>
 <div id="176e7401" class="cell" data-execution_count="89">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> web.Batch(simulations<span class="op">=</span>sims, verbose<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>batch_data <span class="op">=</span> batch.run(path_dir<span class="op">=</span><span class="st">"data/huygens5a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> web.Batch(simulations<span class="op">=</span>sims, verbose<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>batch_data <span class="op">=</span> batch.run(path_dir<span class="op">=</span><span class="st">"data/huygens5a"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"c00b72234eae4fd3b638550693d53daa","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
@@ -676,19 +608,19 @@ Figure&nbsp;1: Huygens Metasurface
 <section id="transmittance-results" class="level3">
 <h3 class="anchored" data-anchor-id="transmittance-results">Transmittance Results</h3>
 <div id="e9a64fa4" class="cell" data-execution_count="90">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this uses scienceplots to make plots look better</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this uses scienceplots to make plots look better</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.style.use([<span class="st">'science'</span>, <span class="st">'notebook'</span>, <span class="st">'grid'</span>])</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> batch_data[<span class="st">"actual"</span>][<span class="st">"flux_monitor"</span>].flux <span class="op">/</span> batch_data[<span class="st">"norm"</span>][<span class="st">"flux_monitor"</span>].flux</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> batch_data[<span class="st">"actual"</span>][<span class="st">"flux_monitor"</span>].flux <span class="op">/</span> batch_data[<span class="st">"norm"</span>][<span class="st">"flux_monitor"</span>].flux</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="0e6ae87b" class="cell" data-execution_count="91">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot transmission, compare to paper results, look similar</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot transmission, compare to paper results, look similar</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">4.5</span>))</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>plt.plot(td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span>, np.abs(T)<span class="op">**</span><span class="dv">2</span>, <span class="st">"r"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"T"</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r"wavelength ($nm$)"</span>)</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Transmittance"</span>)</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -701,11 +633,11 @@ Figure&nbsp;1: Huygens Metasurface
 <section id="phase-simulation" class="level3">
 <h3 class="anchored" data-anchor-id="phase-simulation">Phase Simulation</h3>
 <div id="3394cba4" class="cell" data-execution_count="92">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sims <span class="op">=</span> simulation_helper(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sims <span class="op">=</span> simulation_helper(</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    background<span class="op">=</span>[polymer],</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    monitors<span class="op">=</span>[field_monitor],</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    run_time<span class="op">=</span>run_time_long</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -715,8 +647,8 @@ Figure&nbsp;1: Huygens Metasurface
 </div>
 </div>
 <div id="709b4592" class="cell" data-execution_count="93">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> web.Batch(simulations<span class="op">=</span>sims, verbose<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>batch_data <span class="op">=</span> batch.run(path_dir<span class="op">=</span><span class="st">"data/huygens5c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> web.Batch(simulations<span class="op">=</span>sims, verbose<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>batch_data <span class="op">=</span> batch.run(path_dir<span class="op">=</span><span class="st">"data/huygens5c"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"fe8f5747d89a46938898f68ba257a23d","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
@@ -763,13 +695,13 @@ Figure&nbsp;1: Huygens Metasurface
 <section id="phase-results" class="level3">
 <h3 class="anchored" data-anchor-id="phase-results">Phase Results</h3>
 <div id="439f32fa" class="cell" data-execution_count="94">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data Extraction</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data Extraction</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>Ex_actual <span class="op">=</span> batch_data[<span class="st">"actual"</span>][<span class="st">"field_monitor"</span>].Ex </span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>Ex_norm <span class="op">=</span> batch_data[<span class="st">"norm"</span>][<span class="st">"field_monitor"</span>].Ex</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>Ex <span class="op">=</span> Ex_actual <span class="op">/</span> Ex_norm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>Ex <span class="op">=</span> Ex_actual <span class="op">/</span> Ex_norm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="8ca39300" class="cell" data-execution_count="95">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Compute average over the xy-plane</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Compute average over the xy-plane</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>Ex_avg <span class="op">=</span> np.mean(Ex[:, :, <span class="dv">0</span>, :], axis<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Compute phase</span></span>
@@ -782,17 +714,17 @@ Figure&nbsp;1: Huygens Metasurface
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>phase_rel <span class="op">=</span> phase_avg_unwrapped <span class="op">-</span> phase_avg_unwrapped[<span class="dv">0</span>]</span>
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>phase_actual <span class="op">=</span> np.unwrap(np.angle(np.mean(Ex_actual[:, :, <span class="dv">0</span>, :], axis<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">1</span>))))</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>phase_norm <span class="op">=</span> np.unwrap(np.angle(np.mean(Ex_norm[:, :, <span class="dv">0</span>, :], axis<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">1</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>phase_norm <span class="op">=</span> np.unwrap(np.angle(np.mean(Ex_norm[:, :, <span class="dv">0</span>, :], axis<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">1</span>))))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="af40b97a" class="cell" data-execution_count="96">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">4.5</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">4.5</span>))</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>plt.plot(td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span>, phase_rel, <span class="st">"r"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"$\phi$"</span>)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>plt.plot(td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span>, phase_actual, <span class="st">"b"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"Actual $\phi$"</span>)</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>plt.plot(td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span>, phase_norm, <span class="st">"g"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"Norm $\phi$"</span>)</span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r"wavelength ($nm$)"</span>)</span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Phase"</span>)</span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -805,7 +737,7 @@ Figure&nbsp;1: Huygens Metasurface
 <section id="final-plotting" class="level3">
 <h3 class="anchored" data-anchor-id="final-plotting">Final Plotting</h3>
 <div id="10adc21d" class="cell" data-execution_count="97">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># work on the first figure</span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>]</span>
@@ -834,7 +766,7 @@ Figure&nbsp;1: Huygens Metasurface
 <span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>ax.set_yticklabels(ytick_labels)</span>
 <span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
 <span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"huygens.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"huygens.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -848,11 +780,11 @@ Figure&nbsp;1: Huygens Metasurface
 <h3 class="anchored" data-anchor-id="mesh-study">Mesh Study</h3>
 <p>Here, we set out to study the effect of different yee cell length on the transmittance.</p>
 <div id="ed46b041" class="cell" data-execution_count="98">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> [P<span class="op">/</span><span class="dv">2</span>, P<span class="op">/</span><span class="dv">4</span>, P<span class="op">/</span><span class="dv">8</span>, P<span class="op">/</span><span class="dv">16</span>, P<span class="op">/</span><span class="dv">32</span>, P<span class="op">/</span><span class="dv">64</span>, P<span class="op">/</span><span class="dv">128</span>] <span class="co"># mesh study list</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>sims <span class="op">=</span> {}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> [P<span class="op">/</span><span class="dv">2</span>, P<span class="op">/</span><span class="dv">4</span>, P<span class="op">/</span><span class="dv">8</span>, P<span class="op">/</span><span class="dv">16</span>, P<span class="op">/</span><span class="dv">32</span>, P<span class="op">/</span><span class="dv">64</span>, P<span class="op">/</span><span class="dv">128</span>] <span class="co"># mesh study list</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>sims <span class="op">=</span> {}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="04a145a7" class="cell" data-execution_count="99">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for each dl in dls</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for each dl in dls</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, dl <span class="kw">in</span> <span class="bu">enumerate</span>(dls):</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2 Grid Specifications</span></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    horizontal_grid <span class="op">=</span> td.UniformGrid(dl<span class="op">=</span>dl)</span>
@@ -901,19 +833,19 @@ Figure&nbsp;1: Huygens Metasurface
 <span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a>    sims[<span class="ss">f"norm</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> sim_empty</span>
-<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a>    sims[<span class="ss">f"actual</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> sim_actual  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a>    sims[<span class="ss">f"actual</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> sim_actual  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="784f7037" class="cell" data-execution_count="100">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># verify the sims dictionary</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># verify the sims dictionary</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sims.keys())</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> web.Batch(simulations<span class="op">=</span>sims, verbose<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> web.Batch(simulations<span class="op">=</span>sims, verbose<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>dict_keys(['norm0', 'actual0', 'norm1', 'actual1', 'norm2', 'actual2', 'norm3', 'actual3', 'norm4', 'actual4', 'norm5', 'actual5', 'norm6', 'actual6'])</code></pre>
 </div>
 </div>
 <div id="34c1a381" class="cell" data-execution_count="101">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run the simulations</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>batch_data <span class="op">=</span> batch.run(path_dir<span class="op">=</span><span class="st">"data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run the simulations</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>batch_data <span class="op">=</span> batch.run(path_dir<span class="op">=</span><span class="st">"data"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"0aa442dd8b8b4db3aa5281282f231503","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
@@ -960,14 +892,14 @@ Figure&nbsp;1: Huygens Metasurface
 <section id="mesh-study-results" class="level3">
 <h3 class="anchored" data-anchor-id="mesh-study-results">Mesh Study Results</h3>
 <div id="3c6cfc0f" class="cell" data-execution_count="104">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract results</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract results</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> td.C_0 <span class="op">/</span> fr.freqs(N) <span class="op">*</span> <span class="dv">1000</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>Ts <span class="op">=</span> []</span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(dls)):</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    Ts.append(batch_data[<span class="ss">f"actual</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>][<span class="st">"flux"</span>].flux <span class="op">/</span> batch_data[<span class="ss">f"norm</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>][<span class="st">"flux"</span>].flux)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    Ts.append(batch_data[<span class="ss">f"actual</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>][<span class="st">"flux"</span>].flux <span class="op">/</span> batch_data[<span class="ss">f"norm</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>][<span class="st">"flux"</span>].flux)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="8b39087c" class="cell" data-execution_count="106">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot results</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot results</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, T <span class="kw">in</span> <span class="bu">enumerate</span>(Ts):</span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    plt.plot(x, np.abs(T)<span class="op">**</span><span class="dv">2</span>, <span class="st">"-"</span>,lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="ss">f"dl=</span><span class="sc">{</span>dls[i] <span class="op">*</span> <span class="dv">1000</span><span class="sc">:.1f}</span><span class="ss"> nm"</span>)</span>
@@ -979,7 +911,7 @@ Figure&nbsp;1: Huygens Metasurface
 <span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>plt.tick_params(axis<span class="op">=</span><span class="st">'both'</span>, labelsize<span class="op">=</span><span class="dv">10</span>) <span class="co"># change tick label size to 10</span></span>
 <span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Transmission Spectra with Different Mesh Sizes"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
 <span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"mesh_convergence.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1044,13 +976,14 @@ Figure&nbsp;1: Huygens Metasurface
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1394,14 +1327,11 @@ Figure&nbsp;1: Huygens Metasurface
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../courses/optics.html" class="pagination-link" aria-label="Learning Optics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Learning Optics</span>
+      <a href="../index.html" class="pagination-link" aria-label="Home">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Home</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../simulation/geom_phase.html" class="pagination-link" aria-label="Ultra narrowband Metasurface">
-        <span class="nav-page-text">Ultra narrowband Metasurface</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
