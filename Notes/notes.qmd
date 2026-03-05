@@ -1,0 +1,34 @@
+
+
+# Why 2D Materials?
+
+2D Materials Exhibit high mobility values for sub-nm thickness. The family of 2D materials is diverse: it includes graphene, a single layer of carbon atoms with extraordinary conductivity and strength; transition metal dichalcogenides (TMDs) like MoS₂ and WS₂, which exhibit tunable bandgaps and strong light-matter interactions; hexagonal boron nitride (h-BN), an insulating 2D dielectric; black phosphorus (phosphorene), notable for its anisotropic electronic properties; and emerging materials like MXenes, 2D oxides, and 2D magnetic or ferroelectric materials, each offering distinct functionalities for electronics, optoelectronics, energy storage, and sensing applications.
+
+In 2025, there’s a paper on nature where they built 2D material based computer. There were two teams, one from US and one from China, and they independently built working 2D material computers.
+
+if we check graphene, there’s a graphene electronics roadmap. The electron mobility of graphene is very high, and CVD graphene could have mobility higher than 10K. 
+
+Graphene could serve as channel material, and be used to build a field effect transistor. You can also create a bandgap in Graphene. You can tune the graphene from semimetal to a semiconductor by modifying the edge. There are a lot of challenges to use graphene as a channel material because graphene nanoribbons are hard to build.
+
+Between the electrode and 2D material, one challenge is how to improve the contact. ideally the contact should be ohmic, but often there’s some barrier. In 2013, Wang et. al. build edge contact, where they put a slope at the contact between graphene and gold to contact better. 
+
+When you have MoS2 with graphene, you can use CVD to build a covalent bond between graphene and MoS2. Not just MoS2, we can also have other geometries to build transistors.
+
+## Issue of Contact
+
+Schottky barrier and Fermi-level pinning is a huge problem when building transistors. It is possible build Tunnel FET to achieve better performance. If we are not using MOSFET and use TunnelFET, it will show lower opersting voltage and therefore lower energy consumption.
+
+Some work shows it is possible to use MoS2 to serve as tunneling layer. From tunneling consideration, it has direct bandgap, small mass in transport direction, and the bandbap can be tuned. It is possible to stack two different kinds of materials to replace MOSFET (T. Roy el. al. 2015). You don’t have to deposit, just have that material and then stack them.
+
+For stacking, the transfer process can induce alot of issues. There’s top-down stacking, where you grow the material and then peel it off and put it on the new substrate. How to attach? How to detach? Those are the teo fundamental questions.
+
+For detach, you can use polymer membranes, or viscoelastic stamps. Vander waals pickup, you can pick up the bottom layer through the top layer and put them together in another place. There’s also other methods such as wedging, electrochemicsl delamination, metal etching, SiO2 etching, etc.
+
+You can always just grow one material on top of the other. It is called synthesis assembly. If we have MoS2 on bottom, and if we grow tungsten disulfide, it is possible to have different geometries: rotated by 60 degrees, etc. That is called precursor design. The ontroduced new chemistry also might induce defects or contaminations to the original materials.
+
+We can also fold the 2D materials. Rotation angle matters alot for multilayer 2D materials. If we have graphene, we can halfly release, and keep the other half attached, then we can fold the material and change the angles. We can have bifold, different angle folds. It can achieve one degree precision. It is called Twistronics. By slowly changing the force, we can use AFM tip to rotate the material. At UC Berkeley, they desgined gears (MEMS) to facillitate the roation.
+
+
+
+
+
